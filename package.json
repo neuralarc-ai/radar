@@ -1,0 +1,69 @@
+{
+  "name": "radar",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@heroicons/react": "^2.2.0",
+    "@mui/icons-material": "^7.1.0",
+    "@mui/material": "^7.0.2",
+    "@mui/x-date-pickers": "^8.2.0",
+    "@radix-ui/react-icons": "^1.3.2",
+    "@radix-ui/react-popover": "^1.1.13",
+    "@supabase/supabase-js": "^2.49.4",
+    "axios": "^1.9.0",
+    "cors": "^2.8.5",
+    "cra-template-pwa": "2.0.0",
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "framer-motion": "^12.9.2",
+    "html2pdf.js": "^0.10.3",
+    "node-fetch": "^2.6.7",
+    "patch-package": "^8.0.0",
+    "pdfkit": "^0.17.0",
+    "react": "^18.2.0",
+    "react-composable-calendar": "^0.3.1",
+    "react-datepicker": "^8.3.0",
+    "react-dom": "^18.2.0",
+    "react-feather": "^2.0.10",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "6.20.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^4.2.4"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "start:frontend": "react-scripts start",
+    "start:backend": "node server.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "react-scripts start"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "proxy": "http://localhost:3001"
+}
