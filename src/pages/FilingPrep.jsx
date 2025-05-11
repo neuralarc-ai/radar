@@ -42,37 +42,37 @@ function FilingPrep() {
   };
 
   return (
-    <div className="min-h-screen bg-white px-4 py-10">
+    <div className="min-h-screen bg-[#1C1C1C] px-4 py-10">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-6">
             <button
               type="button"
-              className="p-2 text-gray-600 hover:text-[#C67B49] transition-colors rounded-[25%] hover:bg-gray-100 border border-gray-300"
+              className="p-2 text-[#FFFFFF] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#6C6C6C]"
               onClick={() => navigate(-1)}
               aria-label="Go back"
             >
               <IoArrowBack className="w-6 h-6" />
             </button>
-            <h1 className="text-2xl font-bold text-primary">Filing Preparation</h1>
+            <h1 className="text-2xl font-bold text-[#FFFFFF]">Filing Preparation</h1>
           </div>
         </div>
 
         {/* Tabs */}
         <div className="mb-8">
           <nav className="flex justify-center" aria-label="Tabs">
-            <div className="flex justify-between w-full bg-gray-100 p-1 rounded-lg">
+            <div className="flex justify-between w-full bg-[#868686] p-1 rounded-lg gap-2">
               <button
                 onClick={() => setActiveTab('checklist')}
                 className={`group flex-1 flex items-center justify-center space-x-2 py-3 px-6 rounded-md font-medium text-sm transition-all duration-200 ${
                   activeTab === 'checklist'
-                    ? 'bg-white text-primary shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'bg-[#302F2F] text-[#FFFFFF] shadow-sm'
+                    : 'text-[#1c1c1c] hover:text-[#FFFFFF] hover:bg-[#302F2F]'
                 }`}
               >
                 <svg 
                   className={`w-5 h-5 transition-colors duration-200 ${
-                    activeTab === 'checklist' ? 'text-primary' : 'text-gray-500 group-hover:text-gray-700'
+                    activeTab === 'checklist' ? 'text-[#FFFFFF]' : 'text-[#1C1C1C] group-hover:text-[#FFFFFF]'
                   }`} 
                   fill="none" 
                   stroke="currentColor" 
@@ -86,13 +86,13 @@ function FilingPrep() {
                 onClick={() => setActiveTab('analysis')}
                 className={`group flex-1 flex items-center justify-center space-x-2 py-3 px-6 rounded-md font-medium text-sm transition-all duration-200 ${
                   activeTab === 'analysis'
-                    ? 'bg-white text-primary shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'bg-[#302F2F] text-[#FFFFFF] shadow-sm'
+                    : 'text-[#1C1C1C] hover:text-[#FFFFFF] hover:bg-[#302F2F]'
                 }`}
               >
                 <svg 
                   className={`w-5 h-5 transition-colors duration-200 ${
-                    activeTab === 'analysis' ? 'text-primary' : 'text-gray-500 group-hover:text-gray-700'
+                    activeTab === 'analysis' ? 'text-[#FFFFFF]' : 'text-[#1C1C1C] group-hover:text-[#FFFFFF]'
                   }`} 
                   fill="none" 
                   stroke="currentColor" 
@@ -111,40 +111,40 @@ function FilingPrep() {
           {activeTab === 'checklist' && (
             <>
               {/* Filing Checklist */}
-              <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Filing Checklist</h2>
+              <div className="bg-[#302F2F] border border-[#6C6C6C] rounded-xl p-6 shadow-sm">
+                <h2 className="text-xl font-semibold text-[#FFFFFF] mb-4">Filing Checklist</h2>
                 <div className="space-y-4">
-                  <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-start space-x-3 p-3 bg-[#1C1C1C] rounded-lg">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-900">Trademark Application</h3>
-                      <p className="text-sm text-gray-600">Basic application details and requirements</p>
+                      <h3 className="font-medium text-[#FFFFFF]">Trademark Application</h3>
+                      <p className="text-sm text-[#868686]">Basic application details and requirements</p>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-start space-x-3 p-3 bg-[#1C1C1C] rounded-lg">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-900">Supporting Documents</h3>
-                      <p className="text-sm text-gray-600">All required documents uploaded</p>
+                      <h3 className="font-medium text-[#FFFFFF]">Supporting Documents</h3>
+                      <p className="text-sm text-[#868686]">All required documents uploaded</p>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-start space-x-3 p-3 bg-[#1C1C1C] rounded-lg">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-900">Compliance Check</h3>
-                      <p className="text-sm text-gray-600">Verified against jurisdiction requirements</p>
+                      <h3 className="font-medium text-[#FFFFFF]">Compliance Check</h3>
+                      <p className="text-sm text-[#868686]">Verified against jurisdiction requirements</p>
                     </div>
                   </div>
                 </div>
@@ -153,24 +153,24 @@ function FilingPrep() {
           )}
 
           {activeTab === 'analysis' && (
-            <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">AI Filing Assessment</h2>
-              <p className="text-gray-600 mb-6">Get an AI-powered analysis of your application's filing readiness</p>
+            <div className="bg-[#302F2F] border border-[#6C6C6C] rounded-xl p-6 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#FFFFFF] mb-4">AI Filing Assessment</h2>
+              <p className="text-[#868686] mb-6">Get an AI-powered analysis of your application's filing readiness</p>
 
               {!analysis && (
                 <div className="text-center py-8 max-w-xl mx-auto">
                   <div className="flex justify-center mb-5">
-                    <HiOutlineDocumentCheck size={80} color="#C67B49" />
+                    <HiOutlineDocumentCheck size={80} color="#FFFFFF" />
                   </div>
-                  <p className="text-lg text-gray-800 mt-5 mb-1">Get an AI-powered analysis of your application's filing readiness</p>
-                  <p className="text-gray-600 mb-8">Our AI can analyze your complete application and provide insights on its filing readiness and potential areas for improvement.</p>
+                  <p className="text-lg text-[#FFFFFF] mt-5 mb-1">Get an AI-powered analysis of your application's filing readiness</p>
+                  <p className="text-[#868686] mb-8">Our AI can analyze your complete application and provide insights on its filing readiness and potential areas for improvement.</p>
                   <button
                     onClick={handleAIAnalysis}
                     disabled={isLoading}
                     className={`flex items-center space-x-2 px-6 py-3 rounded-lg transition-colors duration-200 mx-auto mt-2 ${
                       isLoading
-                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                        : 'bg-primary text-white hover:bg-primary/90'
+                        ? 'bg-[#1C1C1C] text-[#868686] cursor-not-allowed'
+                        : 'bg-[#1C1C1C] text-[#FFFFFF] hover:bg-[#6C6C6C]'
                     }`}
                   >
                     {isLoading ? (
@@ -194,7 +194,7 @@ function FilingPrep() {
               )}
 
               {error && (
-                <div className="mt-4 p-4 bg-red-50 text-red-600 rounded-lg text-center">
+                <div className="mt-4 p-4 bg-red-500/10 text-red-500 rounded-lg text-center">
                   {error}
                 </div>
               )}
@@ -202,7 +202,7 @@ function FilingPrep() {
               {analysis && (
                 <div className="space-y-8">
                   {/* Approval Status */}
-                  <div className="p-6 bg-white border border-gray-200 rounded-lg">
+                  <div className="p-6 bg-[#302F2F] border border-[#6C6C6C] rounded-lg">
                     <div className="flex flex-col items-center text-center">
                       <div className="relative w-32 h-32 mb-4">
                         <svg className="w-full h-full" viewBox="0 0 36 36">
@@ -212,7 +212,7 @@ function FilingPrep() {
                               a 15.9155 15.9155 0 0 1 0 31.831
                               a 15.9155 15.9155 0 0 1 0 -31.831"
                             fill="none"
-                            stroke="#E5E7EB"
+                            stroke="#6C6C6C"
                             strokeWidth="3"
                           />
                           {/* Progress circle */}
@@ -229,16 +229,16 @@ function FilingPrep() {
                           />
                         </svg>
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-2xl font-bold">
+                          <span className="text-2xl font-bold text-[#FFFFFF]">
                             {analysis.overview.approvalPercentage}%
                           </span>
                         </div>
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      <h3 className="text-xl font-semibold text-[#FFFFFF] mb-2">
                         {analysis.overview.approvalPercentage >= 80 ? 'Good' : 
                          analysis.overview.approvalPercentage >= 60 ? 'Moderate' : 'Needs Improvement'}
                       </h3>
-                      <p className="text-gray-600 max-w-md">
+                      <p className="text-[#868686] max-w-md">
                         {analysis.overview.approvalPercentage >= 80 ? 
                           'Your application shows strong potential for approval.' :
                          analysis.overview.approvalPercentage >= 60 ?
@@ -249,12 +249,12 @@ function FilingPrep() {
                   </div>
 
                   {/* Overview Section */}
-                  <div className="p-4 bg-neutral-50 rounded-lg">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Overview</h3>
-                    <p className="text-gray-600 mb-4">{analysis.overview.summary}</p>
+                  <div className="p-4 bg-[#1C1C1C] rounded-lg">
+                    <h3 className="text-lg font-semibold text-[#FFFFFF] mb-2">Overview</h3>
+                    <p className="text-[#868686] mb-4">{analysis.overview.summary}</p>
                     <div className="space-y-2">
-                      <h4 className="font-medium text-gray-900">Next Steps</h4>
-                      <ul className="list-disc list-inside text-gray-600">
+                      <h4 className="font-medium text-[#FFFFFF]">Next Steps</h4>
+                      <ul className="list-disc list-inside text-[#868686]">
                         {analysis.overview.nextSteps.map((step, index) => (
                           <li key={index}>{step}</li>
                         ))}
@@ -263,20 +263,20 @@ function FilingPrep() {
                   </div>
 
                   {/* Application Review Section */}
-                  <div className="p-4 bg-white border border-gray-200 rounded-lg">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Application Review</h3>
+                  <div className="p-4 bg-[#302F2F] border border-[#6C6C6C] rounded-lg">
+                    <h3 className="text-lg font-semibold text-[#FFFFFF] mb-4">Application Review</h3>
                     <div className="space-y-6">
                       <div>
-                        <h4 className="font-medium text-green-600 mb-2">Strengths</h4>
-                        <ul className="list-disc list-inside text-gray-600 space-y-2">
+                        <h4 className="font-medium text-green-500 mb-2">Strengths</h4>
+                        <ul className="list-disc list-inside text-[#FFFFFF] space-y-2">
                           <li>The trademark name 'ampersand' is distinctive and has a clear brand identity</li>
                           <li>The business description of 'micro SaaS products' provides a clear and focused scope for the trademark</li>
                           <li>The applicant has filed the application based on an intent to use, indicating a plan to use the mark in commerce</li>
                         </ul>
                       </div>
                       <div>
-                        <h4 className="font-medium text-red-600 mb-2">Areas for Improvement</h4>
-                        <ul className="list-disc list-inside text-gray-600 space-y-2">
+                        <h4 className="font-medium text-red-500 mb-2">Areas for Improvement</h4>
+                        <ul className="list-disc list-inside text-[#FFFFFF] space-y-2">
                           <li>The application currently lacks a specimen of use, as the mark is not yet in use in commerce</li>
                           <li>The business description could potentially be expanded to further clarify the specific goods and services offered</li>
                         </ul>
@@ -285,12 +285,12 @@ function FilingPrep() {
                   </div>
 
                   {/* Document Analysis Section */}
-                  <div className="p-4 bg-white border border-gray-200 rounded-lg">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Document Analysis</h3>
+                  <div className="p-4 bg-[#302F2F] border border-[#6C6C6C] rounded-lg">
+                    <h3 className="text-lg font-semibold text-[#FFFFFF] mb-4">Document Analysis</h3>
                     <div className="space-y-4">
                       <div>
-                        <h4 className="font-medium text-gray-900 mb-2">Required Documents</h4>
-                        <ul className="list-disc list-inside text-gray-600">
+                        <h4 className="font-medium text-[#FFFFFF] mb-2">Required Documents</h4>
+                        <ul className="list-disc list-inside text-[#FFFFFF]">
                           {analysis.documentAnalysis.requiredDocuments.map((doc, index) => (
                             <li key={index}>{doc}</li>
                           ))}
@@ -298,8 +298,8 @@ function FilingPrep() {
                       </div>
                       {analysis.documentAnalysis.missingDocuments.length > 0 && (
                         <div>
-                          <h4 className="font-medium pt-3 text-red-600 mb-2">Missing Documents</h4>
-                          <ul className="list-disc list-inside text-gray-600">
+                          <h4 className="font-medium pt-3 text-red-500 mb-2">Missing Documents</h4>
+                          <ul className="list-disc list-inside text-[#FFFFFF]">
                             {analysis.documentAnalysis.missingDocuments.map((doc, index) => (
                               <li key={index}>{doc}</li>
                             ))}
@@ -310,31 +310,31 @@ function FilingPrep() {
                   </div>
 
                   {/* Filing Strategy Section */}
-                  <div className="p-4 bg-white border border-gray-200 rounded-lg">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Filing Strategy</h3>
+                  <div className="p-4 bg-[#302F2F] border border-[#6C6C6C] rounded-lg">
+                    <h3 className="text-lg font-semibold text-[#FFFFFF] mb-4">Filing Strategy</h3>
                     <div className="space-y-4">
                       <div>
-                        <h4 className="font-medium text-gray-900 mb-2">Recommended Jurisdiction Order</h4>
-                        <ul className="list-decimal list-inside text-gray-600">
+                        <h4 className="font-medium text-[#FFFFFF] mb-2">Recommended Jurisdiction Order</h4>
+                        <ul className="list-decimal list-inside text-[#FFFFFF]">
                           {analysis.filingStrategy.jurisdictionOrder.map((jurisdiction, index) => (
                             <li key={index}>{jurisdiction}</li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 className="font-medium text-gray-900 mb-2">Timeline</h4>
+                        <h4 className="font-medium text-[#FFFFFF] mb-2">Timeline</h4>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          <div className="p-3 bg-gray-50 rounded-lg">
-                            <p className="text-sm text-gray-600">Filing Date</p>
-                            <p className="font-medium text-gray-900">{analysis.filingStrategy.timeline.filingDate}</p>
+                          <div className="p-3 bg-[#1C1C1C] rounded-lg">
+                            <p className="text-sm mb-1 text-[#868686]">Filing Date</p>
+                            <p className="font-medium text-[#FFFFFF]">{analysis.filingStrategy.timeline.filingDate}</p>
                           </div>
-                          <div className="p-3 bg-gray-50 rounded-lg">
-                            <p className="text-sm text-gray-600">First Office Action</p>
-                            <p className="font-medium text-gray-900">{analysis.filingStrategy.timeline.firstOfficeAction}</p>
+                          <div className="p-3 bg-[#1C1C1C] rounded-lg">
+                            <p className="text-sm mb-1 text-[#868686]">First Office Action</p>
+                            <p className="font-medium text-[#FFFFFF]">{analysis.filingStrategy.timeline.firstOfficeAction}</p>
                           </div>
-                          <div className="p-3 bg-gray-50 rounded-lg">
-                            <p className="text-sm text-gray-600">Estimated Registration</p>
-                            <p className="font-medium text-gray-900">{analysis.filingStrategy.timeline.estimatedRegistration}</p>
+                          <div className="p-3 bg-[#1C1C1C] rounded-lg">
+                            <p className="text-sm mb-1 text-[#868686]">Estimated Registration</p>
+                            <p className="font-medium text-[#FFFFFF]">{analysis.filingStrategy.timeline.estimatedRegistration}</p>
                           </div>
                         </div>
                       </div>
@@ -342,22 +342,22 @@ function FilingPrep() {
                   </div>
 
                   {/* Recommendations Section */}
-                  <div className="p-4 bg-white border border-gray-200 rounded-lg">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Recommendations</h3>
+                  <div className="p-4 bg-[#302F2F] border border-[#6C6C6C] rounded-lg">
+                    <h3 className="text-lg font-semibold text-[#FFFFFF] mb-4">Recommendations</h3>
                     <div className="space-y-4">
                       {analysis.recommendations.map((rec, index) => (
-                        <div key={index} className="p-4 bg-gray-50 rounded-lg">
+                        <div key={index} className="p-4 bg-[#1C1C1C] rounded-lg">
                           <div className="flex items-start justify-between">
-                            <h4 className="font-medium text-gray-900">{rec.title}</h4>
+                            <h4 className="font-medium text-[#FFFFFF]">{rec.title}</h4>
                             <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                              rec.priority === 'high' ? 'bg-red-100 text-red-800' :
-                              rec.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-                              'bg-green-100 text-green-800'
+                              rec.priority === 'high' ? 'bg-red-500/10 text-red-500' :
+                              rec.priority === 'medium' ? 'bg-yellow-500/10 text-yellow-500' :
+                              'bg-green-500/10 text-green-500'
                             }`}>
                               {rec.priority} priority
                             </span>
                           </div>
-                          <p className="mt-2 text-gray-600">{rec.description}</p>
+                          <p className="mt-2 text-[#868686]">{rec.description}</p>
                         </div>
                       ))}
                     </div>
@@ -370,8 +370,8 @@ function FilingPrep() {
                       disabled={isLoading}
                       className={`flex items-center space-x-2 px-6 py-3 rounded-lg transition-colors duration-200 ${
                         isLoading
-                          ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                          : 'bg-primary text-white hover:bg-primary/90'
+                          ? 'bg-[#1C1C1C] text-[#868686] cursor-not-allowed'
+                          : 'bg-[#1C1C1C] text-[#FFFFFF] hover:bg-[#6C6C6C]'
                       }`}
                     >
                       {isLoading ? (
@@ -398,39 +398,45 @@ function FilingPrep() {
           )}
         </div>
         {/* Filing Calendar - always visible */}
-        <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm mt-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Filing Calendar</h2>
-          <p className="text-gray-600 mb-6">Important dates for your trademark application</p>
+        <div className="bg-[#302F2F] border border-[#6C6C6C] rounded-xl p-6 shadow-sm mt-8">
+          <h2 className="text-xl font-semibold text-[#FFFFFF] mb-2">Filing Calendar</h2>
+          <p className="text-[#868686] mb-6">Important dates for your trademark application</p>
           <div className="space-y-6">
-            <div className="p-4 bg-neutral-50 rounded-lg">
-              <h3 className="font-medium text-gray-900">Estimated Filing Date</h3>
-              <p className="text-sm text-gray-600 mb-2">When your application will be submitted</p>
-              <p className="text-primary font-medium text-lg">{formatDate(filingDate)}</p>
+            <div className="p-4 bg-[#1C1C1C] rounded-lg">
+              <h3 className="font-medium text-[#FFFFFF]">Estimated Filing Date</h3>
+              <p className="text-sm text-[#868686] mb-2">When your application will be submitted</p>
+              <p className="text-[#FFFFFF] font-medium text-lg">{formatDate(filingDate)}</p>
             </div>
-            <div className="p-4 bg-neutral-50 rounded-lg">
-              <h3 className="font-medium text-gray-900">Estimated First Office Action</h3>
-              <p className="text-sm text-gray-600 mb-2">Initial review by the patent office</p>
-              <p className="text-primary font-medium text-lg">3-4 months</p>
+            <div className="p-4 bg-[#1C1C1C] rounded-lg">
+              <h3 className="font-medium text-[#FFFFFF]">Estimated First Office Action</h3>
+              <p className="text-sm text-[#868686] mb-2">Initial review by the patent office</p>
+              <p className="text-[#FFFFFF] font-medium text-lg">3-4 months</p>
             </div>
-            <div className="p-4 bg-neutral-50 rounded-lg">
-              <h3 className="font-medium text-gray-900">Estimated Registration Time</h3>
-              <p className="text-sm text-gray-600 mb-2">Total time for application approval</p>
-              <p className="text-primary font-medium text-lg">9-12 months</p>
+            <div className="p-4 bg-[#1C1C1C] rounded-lg">
+              <h3 className="font-medium text-[#FFFFFF]">Estimated Registration Time</h3>
+              <p className="text-sm text-[#868686] mb-2">Total time for application approval</p>
+              <p className="text-[#FFFFFF] font-medium text-lg">9-12 months</p>
             </div>
           </div>
         </div>
 
         {/* Back to Home Button */}
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex gap-3 justify-center">
           <button
             onClick={() => navigate('/dashboard')}
-            className="px-6 py-3 bg-[#C67B49] text-white rounded-lg hover:bg-[#C67B49]/90 transition-colors flex items-center gap-2"
+            className="px-6 py-3 bg-[#302F2F] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors flex items-center gap-2"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            <span>Back to Home</span>
+            
+            <span>Back to Dashboard</span>
           </button>
+
+          <a
+            href="https://neuroclaim.vercel.app/"
+            className="px-6 py-3 bg-[#302F2F] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors flex items-center gap-2"
+          >
+            <span>Back to LawBit</span>
+            
+          </a>
         </div>
       </div>
     </div>

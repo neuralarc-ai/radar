@@ -21,7 +21,7 @@ const getSteps = (path) => {
       {
         id: 'documents',
         title: 'Documents',
-        description: 'Manage your documents',
+        description: 'Manage your AI-powered documents',
         path: '/dashboard/patent/documents',
         progress: 60
       },
@@ -59,7 +59,7 @@ const getSteps = (path) => {
       {
         id: 'documents',
         title: 'Documents',
-        description: 'Manage your documents',
+        description: 'Manage your AI-powered documents',
         path: '/dashboard/documents',
         progress: 60
       },
@@ -118,13 +118,14 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
   };
 
   return (
-    <div className="fixed left-0 top-0 h-screen w-64 bg-white border-r border-gray-200 overflow-y-auto">
+    <div className="fixed left-0 top-0 bottom-0 w-64 bg-[#1C1C1C] border-r border-[#6C6C6C] overflow-y-auto">
+
       <div className="p-6">
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-black">
+          <h2 className="text-xl font-semibold text-[#FFFFFF]">
             {location.pathname.includes('/patent') ? 'Patent Filing Progress' : 'Trademark Filing Progress'}
           </h2>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-[#868686]">
             {location.pathname.includes('/patent') 
               ? 'Track your patent application progress' 
               : 'Track your trademark application progress'}
@@ -133,13 +134,13 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
 
         {/* Progress bar */}
         <div className="mb-8">
-          <div className="flex justify-between text-xs text-gray-600 mb-2">
+          <div className="flex justify-between text-xs text-[#FFFFFF] mb-2">
             <span>Progress</span>
             <span>{safeProgress}%</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-[#6c6c6c]/40 rounded-full h-2">
             <div 
-              className="bg-[#C67B49] h-2 rounded-full transition-all duration-500"
+              className="bg-[#FFFFFF] h-2 rounded-full transition-all duration-500"
               style={{ width: `${safeProgress}%` }}
             />
           </div>
@@ -156,7 +157,7 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
                 {/* Connector line */}
                 {index > 0 && (
                   <div className={`absolute left-4 top-0 w-0.5 h-11 ${
-                    isCompleted ? 'bg-[#C67B49]' : 'bg-gray-200'
+                    isCompleted ? 'bg-[#302F2F]' : 'bg-[#6C6C6C]'
                   }`} style={{ marginTop: '-48px' }} />
                 )}
 
@@ -164,10 +165,10 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
                   {/* Step indicator */}
                   <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center relative z-10 ${
                     isCompleted 
-                      ? 'bg-[#C67B49] text-white' 
+                      ? 'bg-[#302F2F] text-[#FFFFFF]' 
                       : isActive 
-                        ? 'bg-[#C67B49]/10 text-[#C67B49] border-2 border-[#C67B49]' 
-                        : 'bg-gray-100 text-gray-400'
+                        ? 'bg-[#302F2F] text-[#FFFFFF] border-2 border-[#302F2F]' 
+                        : 'bg-[#302F2F] text-[#FFFFFF]'
                   }`}>
                     {isCompleted ? (
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -181,11 +182,11 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
                   {/* Step content */}
                   <div className="flex-1">
                     <h3 className={`text-sm font-medium ${
-                      isActive ? 'text-[#C67B49]' : isCompleted ? 'text-black' : 'text-gray-500'
+                      isActive ? 'text-[#FFFFFF]' : isCompleted ? 'text-[#FFFFFF]' : 'text-[#FFFFFF]/70'
                     }`}>
                       {step.title}
                     </h3>
-                    <p className="text-xs text-gray-600">{step.description}</p>
+                    <p className="text-xs text-[#868686]">{step.description}</p>
                   </div>
                 </div>
               </div>

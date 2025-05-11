@@ -73,16 +73,18 @@ const MainLayout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-[#1C1C1C]">
       <div className="flex flex-1">
         <div className="w-64 flex-shrink-0">
           <ProgressSidebar progress={progress} />
         </div>
-        <main className="w-full p-10">
+        <main className="w-full bg-[#1C1C1C] p-10">
           {children}
         </main>
       </div>
-      <MinimalFooter />
+      <div className="relative z-10">
+        <MinimalFooter />
+      </div>
     </div>
   );
 };

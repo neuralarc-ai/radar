@@ -17,7 +17,8 @@ import {
   Documents, 
   UploadDocuments,
   ComplianceChecker,
-  FilingPrep
+  FilingPrep,
+  Disclaimer
 } from './pages';
 import MainLayout from './components/MainLayout';
 import Terms from './pages/Terms';
@@ -38,6 +39,7 @@ function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/responsible-ai" element={<ResponsibleAI />} />
+        <Route path="/disclaimer" element={<Disclaimer />} />
         
         {/* Trademark Routes */}
         <Route path="/dashboard/trademark" element={

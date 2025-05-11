@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'react-feather';
 import logoHorizontal from '../assests/logo-horizontal.png';
+import footerLogo from '../assests/footer-logo.png';
+import footerImage from '../assests/footer-image.png';
+import neuralarcLogo from '../assests/neuralarc-logo.png';
 
 const ResponsibleAI = () => {
   return (
@@ -115,32 +118,57 @@ const ResponsibleAI = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-[#222222] text-white py-12 px-4">
+      <footer className="bg-[#3a2e28] rounded-t-3xl py-12 px-4 relative">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start mb-10">
-            <div className="flex flex-col items-start mb-6 md:mb-0">
-              <div className="flex items-center">
-                <img src={logoHorizontal} alt="Radar Logo" className="h-14 w-auto" />
-              </div>
-              <p className="text-gray-400 text-sm mt-2">IP Protection Made Simple</p>
+            <div className="flex items-center mb-6 md:mb-0">
+              <img src={footerLogo} alt="Radar Logo" className="h-14 w-auto" />
+              <span className="text-[#AFAFAF] text-sm ml-4">IP Protection Made Simple</span>
             </div>
           </div>
-          
-          <div className="border-t border-gray-700 pt-6 pb-4">
-            <div className="flex flex-col md:flex-row justify-start items-start gap-2 md:gap-6 mb-8">
-              <Link to="/terms" className="text-sm text-gray-400 hover:text-white">Terms of Use</Link>
-              <span className="hidden md:inline text-gray-500">•</span>
-              <Link to="/privacy" className="text-sm text-gray-400 hover:text-white">Privacy Policy</Link>
-              <span className="hidden md:inline text-gray-500">•</span>
-              <Link to="/responsible-ai" className="text-sm text-gray-400 hover:text-white">Responsible AI</Link>
+          <div className="pb-4">
+
+            <div className="flex flex-col md:flex-row justify-start items-start gap-2 md:gap-6 mb-4">
+              {/* Footer navigation links - ensure your router has these routes */}
+              <Link to="/terms" className="text-sm text-[#FFFFFF] hover:text-white"><u>Terms of Use</u></Link>
+              <span className="hidden md:inline text-[#FFFFFF]">•</span>
+              <Link to="/privacy" className="text-sm text-[#FFFFFF] hover:text-white"><u>Privacy Policy</u></Link>
+              <span className="hidden md:inline text-[#FFFFFF]">•</span>
+              <Link to="/responsible-ai" className="text-sm text-[#FFFFFF] hover:text-white"><u>Responsible AI</u></Link>
+              <span className="hidden md:inline text-[#FFFFFF]">•</span>
+              <Link to="/disclaimer" className="text-sm text-[#FFFFFF] hover:text-white"><u>Disclaimer</u></Link>
+            </div>
+            <div className="flex justify-start mb-4">
+              <div className="w-[600px] h-0.5 bg-gradient-to-r from-gray-500/30 to-gray-700/0 rounded-full"></div>
             </div>
             <div>
-              <p className="text-gray-400 text-sm">
-                Copyright 2025. All rights reserved. Radar, A thing by 
-                <span className="ml-1 opacity-70">NEURALARC</span>
+              <p className="text-[#AFAFAF] mt-4 text-sm">
+                Copyright 2025. All rights reserved. Radar, A thing by
+                <a
+                  href="https://www.neuralarc.ai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center ml-1"
+                >
+                  <img
+                    src={neuralarcLogo} // <-- Replace with actual path
+                    alt="NeuralArc Logo"
+                    width="81"
+                    height="25"
+                    className="inline-block ml-1 align-baseline relative top-[3px]"
+                  />
+                </a>
               </p>
+
             </div>
           </div>
+        </div>
+        <div className="hidden md:block absolute right-0 top-0 h-full">
+          <img
+            src={footerImage}
+            alt="Radar Application Interface"
+            className="h-full object-cover rounded-tl-3xl shadow-lg"
+          />
         </div>
       </footer>
     </div>

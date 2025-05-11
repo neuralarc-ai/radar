@@ -29,24 +29,24 @@ function ComplianceChecker() {
   const getStatusColor = (status) => {
     switch (status) {
       case 'met':
-        return 'text-green-600';
+        return 'text-green-500';
       case 'missing':
-        return 'text-red-600';
+        return 'text-red-500';
       case 'partial':
-        return 'text-yellow-600';
+        return 'text-yellow-500';
       default:
-        return 'text-gray-600';
+        return 'text-[#868686]';
     }
   };
 
   const getStatusText = (status) => {
     switch (status) {
       case 'met':
-        return '✓ Met';
+        return '✓ Fulfilled';
       case 'missing':
-        return '✗ Missing';
+        return '✗ Unfulfilled';
       case 'partial':
-        return '~ Partial';
+        return '~ Incomplete';
       default:
         return status;
     }
@@ -61,81 +61,81 @@ function ComplianceChecker() {
   };
 
   const getRatingColor = (score) => {
-    if (score >= 90) return 'text-green-600';
-    if (score >= 80) return 'text-primary';
-    if (score >= 70) return 'text-yellow-600';
-    if (score >= 60) return 'text-orange-600';
-    return 'text-red-600';
+    if (score >= 90) return 'text-green-500';
+    if (score >= 80) return 'text-[#FFFFFF]';
+    if (score >= 70) return 'text-yellow-500';
+    if (score >= 60) return 'text-orange-500';
+    return 'text-red-500';
   };
 
   return (
-    <div className="min-h-screen bg-white px-4 py-10">
+    <div className="min-h-screen bg-[#1C1C1C] px-4 py-10">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-6">
             <button
               type="button"
-              className="p-2 text-gray-600 hover:text-[#F1E8E2] transition-colors rounded-[25%] hover:bg-gray-100 border border-gray-300"
+              className="p-2 text-[#FFFFFF] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#6C6C6C]"
               onClick={() => navigate(-1)}
               aria-label="Go back"
             >
               <IoArrowBack className="w-6 h-6" />
             </button>
-            <h1 className="text-2xl font-bold text-primary">Compliance Checker</h1>
+            <h1 className="text-2xl font-bold text-[#FFFFFF]">Compliance Checker</h1>
           </div>
-          <p className="text-gray-600 mt-2">Verify your trademark application against official filing requirements</p>
+          <p className="text-[#FFFFFF]/80 mt-2">Verify your trademark application against official filing requirements</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
+        <div className="bg-[#302F2F] border border-[#6C6C6C] rounded-lg p-6 mb-8">
           {!complianceResults ? (
             <>
               <div className="mb-10">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-3">Check Filing Compliance</h2>
-                <p className="text-gray-600 max-w-2xl text-lg">Our AI will analyze your application against requirements for USPTO, EUIPO, and Indian IP offices</p>
+                <h2 className="text-2xl font-semibold text-[#FFFFFF] mb-3">Check Filing Compliance</h2>
+                <p className="text-[#FFFFFF]/80 max-w-2xl text-lg">Our AI will analyze your application against requirements for USPTO, EUIPO, and Indian IP offices</p>
               </div>
               
               <div className="text-center mb-10">
                 <div className="inline-flex items-center justify-center w-28 h-32 rounded-full mb-4">
-                  <svg className="w-14 h-16 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-14 h-16 text-[#FFFFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-medium text-gray-900">Ready to check compliance of your trademark application</h3>
+                <h3 className="text-xl font-medium text-[#FFFFFF]">Ready to check compliance of your trademark application</h3>
               </div>
               
-              <div className="bg-neutral-50 rounded-lg p-8 mb-10">
+              <div className="bg-[#1C1C1C] rounded-lg p-8 mb-10">
                 <div className="max-w-3xl mx-auto space-y-6">
                   <div className="flex items-start space-x-2">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" />
                       </svg>
                     </div>
-                    <p className="text-gray-700 text-lg">Validates required fields and documents</p>
+                    <p className="text-[#FFFFFF] text-sm">Validates required fields and documents</p>
                   </div>
                   <div className="flex items-start space-x-2">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" />
                       </svg>
                     </div>
-                    <p className="text-gray-700 text-lg">Checks against requirements for multiple jurisdictions</p>
+                    <p className="text-[#FFFFFF] text-sm">Checks against requirements for multiple jurisdictions</p>
                   </div>
                   <div className="flex items-start space-x-2">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" />
                       </svg>
                     </div>
-                    <p className="text-gray-700 text-lg">Identifies potential issues before filing</p>
+                    <p className="text-[#FFFFFF] text-sm">Identifies potential issues before filing</p>
                   </div>
                   <div className="flex items-start space-x-2">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" />
                       </svg>
                     </div>
-                    <p className="text-gray-700 text-lg">Provides guidance on missing information</p>
+                    <p className="text-[#FFFFFF] text-sm">Provides guidance on missing information</p>
                   </div>
                 </div>
               </div>
@@ -144,13 +144,13 @@ function ComplianceChecker() {
                 <button
                   onClick={handleRunComplianceCheck}
                   disabled={isLoading}
-                  className={`px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors flex items-center space-x-2 ${
+                  className={`px-8 py-3 bg-[#1C1C1C] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors flex items-center space-x-2 ${
                     isLoading ? 'opacity-50 cursor-not-allowed' : ''
                   }`}
                 >
                   {isLoading ? (
                     <div className="flex items-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
@@ -171,8 +171,8 @@ function ComplianceChecker() {
             <div className="space-y-8">
               <div className="max-w-4xl mx-auto">
                 <div className="mb-8">
-                  <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Overall Compliance Score</h2>
+                  <div className="bg-[#302F2F] border border-[#6C6C6C] rounded-xl p-6 shadow-sm">
+                    <h2 className="text-xl font-semibold text-[#FFFFFF] mb-4">Overall Compliance Score</h2>
                     <div className="flex flex-col items-center text-center">
                       <div className="relative w-32 h-32 mb-4">
                         <svg className="w-full h-full" viewBox="0 0 36 36">
@@ -182,7 +182,7 @@ function ComplianceChecker() {
                               a 15.9155 15.9155 0 0 1 0 31.831
                               a 15.9155 15.9155 0 0 1 0 -31.831"
                             fill="none"
-                            stroke="#E5E7EB"
+                            stroke="#6C6C6C"
                             strokeWidth="3"
                           />
                           {/* Progress circle */}
@@ -198,11 +198,11 @@ function ComplianceChecker() {
                           />
                         </svg>
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-2xl font-bold">3.5%</span>
+                          <span className="text-2xl font-bold text-[#FFFFFF]">3.5%</span>
                         </div>
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Needs Improvement</h3>
-                      <p className="text-gray-600 max-w-md">
+                      <h3 className="text-xl font-semibold text-[#FFFFFF] mb-2">Needs Improvement</h3>
+                      <p className="text-[#FFFFFF]/80 max-w-md">
                         Your application needs significant improvements for approval.
                       </p>
                     </div>
@@ -212,20 +212,20 @@ function ComplianceChecker() {
 
               <div className="mb-8">
                 <nav className="flex justify-center" aria-label="Tabs">
-                  <div className="flex justify-between w-full bg-gray-100 p-1 rounded-lg">
+                  <div className="flex justify-between w-full bg-[#1C1C1C] p-1 rounded-lg gap-2">
                     {Object.keys(complianceResults.jurisdictions).map((jurisdiction) => (
                       <button
                         key={jurisdiction}
                         onClick={() => setActiveTab(jurisdiction)}
                         className={`group flex-1 flex items-center justify-center space-x-2 py-3 px-6 rounded-md font-medium text-sm transition-all duration-200 ${
                           activeTab === jurisdiction
-                            ? 'bg-white text-primary shadow-sm'
-                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                            ? 'bg-[#302F2F] text-[#FFFFFF] shadow-sm'
+                            : 'text-[#868686] hover:text-[#FFFFFF] hover:bg-[#302F2F]'
                         }`}
                       >
                         <svg 
                           className={`w-5 h-5 transition-colors duration-200 ${
-                            activeTab === jurisdiction ? 'text-primary' : 'text-gray-500 group-hover:text-gray-700'
+                            activeTab === jurisdiction ? 'text-[#FFFFFF]' : 'text-[#868686] group-hover:text-[#FFFFFF]'
                           }`} 
                           fill="none" 
                           stroke="currentColor" 
@@ -245,23 +245,23 @@ function ComplianceChecker() {
                   key={jurisdiction}
                   className={`${activeTab === jurisdiction ? 'block' : 'hidden'}`}
                 >
-                  <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+                  <div className="bg-[#302F2F] border border-[#6C6C6C] rounded-xl p-6 shadow-sm">
                     <div className="space-y-4">
                       {data.requirements.map((req, index) => (
-                        <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                        <div key={index} className="flex items-start space-x-4 p-4 bg-[#1C1C1C] rounded-lg hover:bg-[#1c1c1c]/50 transition-colors duration-200">
                           <div className={`flex-shrink-0 mt-1 ${getStatusColor(req.status)}`}>
                             {getStatusText(req.status)}
                           </div>
                           <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900 mb-1">{req.requirement}</h4>
-                            <p className="text-gray-600 text-sm">{req.details}</p>
+                            <h4 className="font-semibold text-[#FFFFFF] mb-1">{req.requirement}</h4>
+                            <p className="text-[#868686] text-sm">{req.details}</p>
                             {req.status === 'missing' && (
-                              <div className="mt-2 text-sm text-red-600">
+                              <div className="mt-2 text-sm text-red-500">
                                 <span className="font-medium">Action Required:</span> Please provide this information to complete your application.
                               </div>
                             )}
                             {req.status === 'partial' && (
-                              <div className="mt-2 text-sm text-yellow-600">
+                              <div className="mt-2 text-sm text-yellow-500">
                                 <span className="font-medium">Recommendation:</span> Consider providing more detailed information.
                               </div>
                             )}
@@ -279,8 +279,8 @@ function ComplianceChecker() {
                   disabled={isLoading}
                   className={`flex items-center space-x-2 px-6 py-3 rounded-lg transition-colors duration-200 ${
                     isLoading
-                      ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-neutral-50 text-primary hover:bg-blue-100'
+                      ? 'bg-[#1C1C1C] text-[#868686] cursor-not-allowed'
+                      : 'bg-[#1C1C1C] text-[#FFFFFF] hover:bg-[#6C6C6C]'
                   }`}
                 >
                   {isLoading ? (
@@ -303,7 +303,7 @@ function ComplianceChecker() {
 
                 <button
                   onClick={() => navigate(`/dashboard/filing-prep/${filingId}`)}
-                  className="flex items-center space-x-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200"
+                  className="flex items-center space-x-2 px-6 py-3 bg-[#1C1C1C] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors duration-200"
                 >
                   <span>Continue to Filing Prep</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -315,7 +315,7 @@ function ComplianceChecker() {
           )}
 
           {error && (
-            <div className="mt-4 p-4 bg-red-50 text-red-600 rounded-lg text-center">
+            <div className="mt-4 p-4 bg-red-500/10 text-red-500 rounded-lg text-center">
               {error}
             </div>
           )}

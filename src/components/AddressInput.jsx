@@ -34,117 +34,66 @@ const AddressInput = ({ value, onChange, error, placeholder }) => {
         const style = document.createElement('style');
         style.textContent = `
           .pac-container {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 128, 255, 0.2);
-            padding: 8px 0;
-            margin-top: 8px;
-            z-index: 9999;
-            font-family: inherit;
-            max-height: 380px;
-            overflow-y: auto;
-            overflow-x: hidden;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(0, 128, 255, 0.5) transparent;
-            backdrop-filter: blur(8px);
-          }
-
-          .pac-container::-webkit-scrollbar {
-            width: 6px;
-          }
-
-          .pac-container::-webkit-scrollbar-track {
-            background: transparent;
-            border-radius: 3px;
-          }
-
-          .pac-container::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 128, 255, 0.5);
-            border-radius: 3px;
-            transition: background-color 0.2s;
-          }
-
-          .pac-container::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(0, 128, 255, 0.7);
+            background-color: #1C1C1C !important;
+            border-radius: 12px !important;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 5px 10px -5px rgba(0,0,0,0.04) !important;
+            border: 1px solid #6C6C6C !important;
+            padding: 8px 0 !important;
+            margin-top: 8px !important;
+            z-index: 9999 !important;
+            font-family: inherit !important;
+            max-height: 380px !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            scrollbar-width: thin !important;
+            scrollbar-color: #302F2F transparent !important;
+            backdrop-filter: blur(8px) !important;
           }
 
           .pac-item {
-            padding: 12px 16px;
-            cursor: pointer;
-            margin: 2px 4px;
-            border: none;
-            border-radius: 8px;
-            font-family: inherit;
-            line-height: 1.5;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.2s ease;
+            padding: 12px 16px !important;
+            cursor: pointer !important;
+            margin: 2px 4px !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-family: inherit !important;
+            line-height: 1.5 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+            transition: all 0.2s ease !important;
+            background: transparent !important;
+            color: #FFFFFF !important;
           }
 
-          .pac-item:hover {
-            background-color: rgba(0, 128, 255, 0.08);
-            transform: translateX(4px);
+          .pac-item:hover, .pac-item-selected, .pac-item-selected:hover {
+            background-color: #302F2F !important;
+            color: #FFFFFF !important;
+            transform: translateX(4px) !important;
           }
 
           .pac-item-query {
-            color: #1a1a1a;
-            font-size: 14px;
-            font-weight: 500;
-            padding-right: 8px;
-            flex: 1;
+            color: #FFFFFF !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            padding-right: 8px !important;
+            flex: 1 !important;
           }
 
           .pac-matched {
-            font-weight: 600;
-            color: #C67B49;
-            position: relative;
-          }
-
-          .pac-icon {
-            margin: 0;
-            width: 20px;
-            height: 20px;
-            opacity: 0.7;
-          }
-
-          .pac-item-selected, .pac-item-selected:hover {
-            background-color: rgba(0, 128, 255, 0.12);
-            transform: translateX(4px);
+            font-weight: 600 !important;
+            color:rgb(137, 137, 137) !important;
+            position: relative !important;
           }
 
           .pac-secondary-text {
-            font-size: 13px;
-            color: #666;
-            opacity: 0.9;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 200px;
-          }
-
-          .pac-item > span {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-          }
-
-          @media (max-width: 640px) {
-            .pac-container {
-              max-height: 300px;
-              margin-top: 4px;
-              border-radius: 8px;
-            }
-
-            .pac-item {
-              padding: 10px 12px;
-              margin: 1px 2px;
-            }
-
-            .pac-secondary-text {
-              max-width: 150px;
-            }
+            font-size: 13px !important;
+            color: #868686 !important;
+            opacity: 0.9 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            max-width: 200px !important;
           }
         `;
         document.head.appendChild(style);

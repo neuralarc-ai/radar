@@ -7,10 +7,7 @@ import AddressInput from '../components/AddressInput';
 import CustomSelect from '../components/CustomSelect';
 import { IoArrowBack } from 'react-icons/io5';
 import { IoInformationCircleOutline, IoBagHandleOutline, IoDocumentTextOutline, IoSparkles } from 'react-icons/io5';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
+import { DatePickerShadcn } from "../components/ui/DatePickerShadcn";
 
 const steps = [
   'Basic Info',
@@ -74,14 +71,14 @@ const countries = ['United States', 'India', 'United Kingdom', 'Canada', 'Austra
 // Add these styles to your component
 const customStyles = {
   calendar: {
-    base: "w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxyZWN0IHg9IjMiIHk9IjQiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjIiIHJ5PSIyIj48L3JlY3Q+PGxpbmUgeDE9IjE2IiB5MT0iMiIgeDI9IjE2IiB5Mj0iNiI+PC9saW5lPjxsaW5lIHgxPSI4IiB5MT0iMiIgeDI9IjgiIHkyPSI2Ij48L2xpbmU+PGxpbmUgeDE9IjMiIHkxPSIxMCIgeDI9IjIxIiB5Mj0iMTAiPjwvbGluZT48L3N2Zz4=')] bg-no-repeat bg-[right_1rem_center]",
-    hover: "hover:border-[#C67B49]/40",
-    focus: "focus:border-[#C67B49] focus:ring-2 focus:ring-[#C67B49]/20",
+    base: "w-full px-4 py-3 rounded-lg border border-[#6C6C6C] bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F] text-[#FFFFFF] appearance-none",
+    hover: "hover:border-[#868686]",
+    focus: "focus:border-[#302F2F] focus:ring-2 focus:ring-[#302F2F]/20",
   },
   fileUpload: {
     container: "relative w-full mb-4",
     input: "hidden",
-    button: "w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white text-[#C67B49] font-medium hover:bg-[#C67B49]/10 hover:border-[#C67B49]/40 transition-colors cursor-pointer text-center appearance-none [-webkit-appearance:none] [-moz-appearance:none]",
+    button: "w-full px-4 py-3 rounded-lg border border-[#6C6C6C] bg-[#1C1C1C] text-[#FFFFFF] font-medium hover:bg-[#302F2F] hover:border-[#868686] transition-colors cursor-pointer text-center",
   }
 };
 
@@ -138,7 +135,7 @@ const TrademarkFiling = () => {
       setAiLoading(field);
       console.log('Starting AI suggestion for field:', field);
       let suggestion = '';
-      
+
       if (field === 'trademarkName') {
         console.log('Getting AI suggestion for trademark name');
         suggestion = await getAITrademarkName(form.trademarkName || '');
@@ -156,7 +153,7 @@ const TrademarkFiling = () => {
         console.log('Getting AI class recommendation');
         const recommendation = await getAIClassRecommendation(form.goodsServices || '');
         setAiClassRecommendation(recommendation);
-        
+
         // Update the form with the suggested classes
         if (recommendation && recommendation.classes) {
           const suggestedClasses = recommendation.classes.map(c => c.number);
@@ -169,7 +166,7 @@ const TrademarkFiling = () => {
           toast.error('Please select a mark type first');
           return;
         }
-        
+
         // For Standard Character Mark, we don't need a file upload
         if (form.markType === 'Standard Character Mark (text only)') {
           suggestion = await getAIMarkDescription(form.logoDescription || '', null, form.markType);
@@ -182,9 +179,9 @@ const TrademarkFiling = () => {
           suggestion = await getAIMarkDescription(form.logoDescription || '', form.logo, form.markType);
         }
       }
-      
+
       console.log('Received suggestion:', suggestion);
-      
+
       if (suggestion) {
         setForm((f) => ({ ...f, [field]: suggestion }));
         toast.success('AI suggestion applied successfully');
@@ -220,7 +217,7 @@ const TrademarkFiling = () => {
 
   const validateCurrentStep = () => {
     const errors = {};
-    
+
     // Step 1: Mark & Owner Details
     if (step === 0) {
       if (!form.trademarkName?.trim()) {
@@ -247,7 +244,7 @@ const TrademarkFiling = () => {
         errors.ownerAddress = 'Owner address is required';
       }
     }
-    
+
     // Step 2: Filing & Usage
     if (step === 1) {
       if (!form.filingBasis) {
@@ -280,7 +277,7 @@ const TrademarkFiling = () => {
         }
       }
     }
-    
+
     // Step 3: Priority & Declaration
     if (step === 2) {
       if (form.priorityClaim) {
@@ -317,7 +314,7 @@ const TrademarkFiling = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Submit button clicked');
-    
+
     // Final validation
     const { isValid, errors } = validateTrademarkForm(form);
     if (!isValid) {
@@ -334,15 +331,15 @@ const TrademarkFiling = () => {
       console.log('Submitting form data:', form);
       const result = await submitTrademarkForm(form);
       console.log('Submission result:', result);
-      
+
       if (result.success) {
         setSubmissionData(result.data);
         console.log('Stored submission data:', result.data);
         toast.success('Trademark application submitted successfully!');
-        
+
         // Navigate to Generate Documents page with the submission data
         console.log('Navigating to Generate Documents with data:', result.data);
-        navigate('/dashboard/generate-documents', { 
+        navigate('/dashboard/generate-documents', {
           state: { submissionData: result.data }
         });
       } else {
@@ -366,27 +363,27 @@ const TrademarkFiling = () => {
   const progressPercent = ((step + 1) / steps.length) * 100;
 
   return (
-    <div className="w-[88%] mx-auto p-8 outline outline-1 outline-gray-200 rounded-lg">
+    <div className="w-[88%] mx-auto p-8 outline outline-1 outline-[#6C6C6C] rounded-lg bg-[#1C1C1C]">
       {/* Progress Bar Section */}
       <div className="mb-8">
-        <div className='flex items-center gap-4 mb-6'> 
-          <button 
+        <div className='flex items-center gap-4 mb-6'>
+          <button
             type="button"
-            className="p-2 text-gray-600 hover:text-[#C67B49] transition-colors rounded-[25%] hover:bg-gray-100 border border-gray-300"
+            className="p-2 text-[#868686] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#6C6C6C]"
             onClick={() => navigate(-1)}
             aria-label="Go back"
           >
             <IoArrowBack className="w-6 h-6" />
           </button>
-          <h1 className="text-2xl font-bold text-gray-800">Trademark Application Wizard</h1>
+          <h1 className="text-2xl font-bold text-[#FFFFFF]">Trademark Application Wizard</h1>
         </div>
-        <div className="flex justify-between text-sm text-gray-600 mb-2">
+        <div className="flex justify-between text-sm text-[#FFFFFF] mb-2">
           <span>Completion Progress</span>
           <span>In Progress</span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
-          <div 
-            className="bg-[#C67B49] h-2 rounded-full transition-all duration-500"
+        <div className="w-full bg-[#6C6C6C]/40 rounded-full h-2">
+          <div
+            className="bg-[#FFFFFF] h-2 rounded-full transition-all duration-500"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
@@ -408,7 +405,7 @@ const TrademarkFiling = () => {
                 <button
                   type="button"
                   className={`w-full px-4 py-2 rounded-lg border-2 transition-all duration-200 flex items-center gap-2
-                    ${isActive ? 'bg-[#C67B49] text-white border-[#C67B49] shadow-lg' : isCompleted ? 'bg-[#C67B49]/90 text-white border-[#C67B49]/80' : 'bg-white text-[#C67B49]/60 border-[#C67B49]/20'}
+                    ${isActive ? 'bg-[#302F2F] text-[#FFFFFF] border-[#302F2F] shadow-lg' : isCompleted ? 'bg-[#302F2F]/90 text-[#FFFFFF] border-[#302F2F]/80' : 'bg-[#1C1C1C] text-[#868686] border-[#6C6C6C]/20'}
                   `}
                   onClick={() => i <= step ? setStep(i) : null}
                   disabled={i > step}
@@ -420,7 +417,7 @@ const TrademarkFiling = () => {
               </div>
               {/* Render connector line except after the last step */}
               {i < steps.length - 1 && (
-                <div className={`flex-1 h-0.5 mx-2 transition-all duration-300 ${step > i ? 'bg-[#C67B49]' : 'bg-[#C67B49]/20'}`}></div>
+                <div className={`flex-1 h-0.5 mx-2 transition-all duration-300 ${step > i ? 'bg-[#302F2F]' : 'bg-[#6C6C6C]/20'}`}></div>
               )}
             </React.Fragment>
           );
@@ -432,7 +429,7 @@ const TrademarkFiling = () => {
         {step === 0 && (
           <>
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-[#FFFFFF] mb-1">
                 Trademark Name *
               </label>
               <input
@@ -440,13 +437,13 @@ const TrademarkFiling = () => {
                 name="trademarkName"
                 value={form.trademarkName}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C67B49] focus:border-[#C67B49]"
+                className="w-full px-4 py-2 border border-[#6C6C6C] rounded-lg focus:ring-2 focus:ring-[#302F2F] focus:border-[#302F2F] bg-[#1C1C1C] text-[#FFFFFF]"
                 placeholder="Enter your trademark name"
                 required
               />
             </div>
             <div>
-              <label className="block font-medium mb-1 text-gray-700">Mark Type <span className="text-[#C67B49]">*</span></label>
+              <label className="block font-medium mb-1 text-[#FFFFFF]">Mark Type <span className="text-[#302F2F]">*</span></label>
               <div className="space-y-2">
                 {markTypes.map((type) => (
                   <label key={type} className="flex items-center space-x-2">
@@ -456,9 +453,9 @@ const TrademarkFiling = () => {
                       value={type}
                       checked={form.markType === type}
                       onChange={handleChange}
-                      className="text-[#C67B49] focus:ring-[#C67B49]"
+                      className="text-[#302F2F] focus:ring-[#302F2F]"
                     />
-                    <span className="text-gray-700">{type}</span>
+                    <span className="text-[#868686]">{type}</span>
                   </label>
                 ))}
               </div>
@@ -469,18 +466,18 @@ const TrademarkFiling = () => {
             {['Design Mark (logo or stylized text)', 'Color Mark'].includes(form.markType) && (
               <>
                 <div className="mb-4">
-                  <label className="block font-medium mb-6 text-gray-700">Mark Image Upload <span className="text-[#C67B49]">*</span></label>
+                  <label className="block font-medium mb-6 text-[#FFFFFF]">Mark Image Upload <span className="text-[#302F2F]">*</span></label>
                   <div className={customStyles.fileUpload.container}>
-                  <input 
-                    name="logo" 
-                    type="file" 
-                    accept="image/jpeg,image/png,image/svg+xml" 
-                    onChange={handleChange} 
+                    <input
+                      name="logo"
+                      type="file"
+                      accept="image/jpeg,image/png,image/svg+xml"
+                      onChange={handleChange}
                       className={customStyles.fileUpload.input}
                       id="logo-upload"
                     />
-                    <label 
-                      htmlFor="logo-upload" 
+                    <label
+                      htmlFor="logo-upload"
                       className={customStyles.fileUpload.button}
                       style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
                     >
@@ -488,22 +485,22 @@ const TrademarkFiling = () => {
                     </label>
                   </div>
                   {form.logo && (
-                    <p className="text-sm text-[#C67B49]/80 mt-2">Selected: {form.logo.name}</p>
+                    <p className="text-sm text-[#302F2F]/80 mt-2">Selected: {form.logo.name}</p>
                   )}
                   {validationErrors.logo && (
                     <p className="text-red-500 text-xs mt-1">{validationErrors.logo}</p>
                   )}
-                  <p className="text-xs text-[#C67B49]/70 mt-1">Upload your mark image (JPEG, PNG, SVG). Max 10MB.</p>
+                  <p className="text-xs text-[#868686]/95 mt-1">Upload your mark image (JPEG, PNG, SVG). Max 10MB.</p>
                 </div>
                 <div>
-                  <label className="block font-medium mb-1 text-gray-700">Mark Description <span className="text-[#C67B49]">*</span></label>
+                  <label className="block font-medium mb-1 text-[#FFFFFF]">Mark Description <span className="text-[#302F2F]">*</span></label>
                   <div className="flex gap-2 items-center">
-                    <textarea 
-                      name="logoDescription" 
-                      value={form.logoDescription} 
-                      onChange={handleChange} 
-                      className="w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700" 
-                      placeholder="Describe mark elements (color, shape, stylization)" 
+                    <textarea
+                      name="logoDescription"
+                      value={form.logoDescription}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                      placeholder="Describe mark elements (color, shape, stylization)"
                     />
                   </div>
                   {validationErrors.logoDescription && (
@@ -513,11 +510,11 @@ const TrademarkFiling = () => {
               </>
             )}
             <div>
-              <label className="block font-medium mb-1 text-gray-700">Owner Name <span className="text-[#C67B49]">*</span></label>
-              <input name="ownerName" value={form.ownerName} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700" placeholder="Full legal name" required />
+              <label className="block font-medium mb-1 text-[#FFFFFF]">Owner Name <span className="text-[#302F2F]">*</span></label>
+              <input name="ownerName" value={form.ownerName} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]" placeholder="Full legal name" required />
             </div>
             <div>
-              <label className="block font-medium mb-1 text-gray-700">Owner Type <span className="text-[#C67B49]">*</span></label>
+              <label className="block font-medium mb-1 text-[#FFFFFF]">Owner Type <span className="text-[#302F2F]">*</span></label>
               <CustomSelect
                 name="ownerType"
                 value={form.ownerType}
@@ -529,57 +526,57 @@ const TrademarkFiling = () => {
               />
             </div>
             <div>
-              <label className="block font-medium mb-1 text-gray-700">Owner Address <span className="text-[#ed823a]">*</span></label>
-              <AddressInput 
-                name="ownerAddress" 
-                value={form.ownerAddress} 
-                onChange={handleChange} 
+              <label className="block font-medium mb-1 text-[#FFFFFF]">Owner Address <span className="text-[#302F2F]">*</span></label>
+              <AddressInput
+                name="ownerAddress"
+                value={form.ownerAddress}
+                onChange={handleChange}
                 error={validationErrors.ownerAddress}
                 placeholder="Full mailing address"
               />
             </div>
-            <div className="border-t border-[#C67B49]/10 pt-6 mt-6">
+            <div className="border-t border-[#6C6C6C]/10 pt-6 mt-6">
               <div className="flex items-center gap-2 mb-4">
-                <input 
-                  name="hasAttorney" 
-                  type="checkbox" 
-                  checked={form.hasAttorney} 
-                  onChange={handleChange} 
+                <input
+                  name="hasAttorney"
+                  type="checkbox"
+                  checked={form.hasAttorney}
+                  onChange={handleChange}
                 />
-                <label className="font-medium text-gray-700">I have an attorney representing me</label>
+                <label className="font-medium text-[#868686]">I have an attorney representing me</label>
               </div>
 
               {form.hasAttorney && (
-                <div className="space-y-4 pl-6 border-l-2 border-[#C67B49]/20">
+                <div className="space-y-4 pl-6 border-l-2 border-[#FFFFFF]/40">
                   <div>
-                    <label className="block font-medium mb-1 text-gray-700">Attorney Name</label>
-                    <input 
-                      name="attorneyName" 
-                      value={form.attorneyName} 
-                      onChange={handleChange} 
-                      className="w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700" 
-                      placeholder="Attorney's full name" 
+                    <label className="block font-medium mb-1 text-[#FFFFFF]">Attorney Name</label>
+                    <input
+                      name="attorneyName"
+                      value={form.attorneyName}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                      placeholder="Attorney's full name"
                     />
                   </div>
                   <div>
-                    <label className="block font-medium mb-1 text-gray-700">Attorney Address</label>
-                    <input 
-                      name="attorneyAddress" 
-                      value={form.attorneyAddress} 
-                      onChange={handleChange} 
-                      className="w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700" 
-                      placeholder="Attorney's address" 
+                    <label className="block font-medium mb-1 text-[#FFFFFF]">Attorney Address</label>
+                    <input
+                      name="attorneyAddress"
+                      value={form.attorneyAddress}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                      placeholder="Attorney's address"
                     />
                   </div>
                   <div>
-                    <label className="block font-medium mb-1 text-gray-700">Attorney Email</label>
-                    <input 
-                      name="attorneyEmail" 
+                    <label className="block font-medium mb-1 text-[#FFFFFF]">Attorney Email</label>
+                    <input
+                      name="attorneyEmail"
                       type="email"
-                      value={form.attorneyEmail} 
-                      onChange={handleChange} 
-                      className="w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700" 
-                      placeholder="Attorney's email address" 
+                      value={form.attorneyEmail}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                      placeholder="Attorney's email address"
                     />
                   </div>
                 </div>
@@ -592,7 +589,7 @@ const TrademarkFiling = () => {
         {step === 1 && (
           <>
             <div>
-              <label className="block font-medium mb-1 text-gray-700">Filing Basis <span className="text-[#C67B49]">*</span></label>
+              <label className="block font-medium mb-1 text-[#FFFFFF]">Filing Basis <span className="text-[#302F2F]">*</span></label>
               <CustomSelect
                 name="filingBasis"
                 value={form.filingBasis}
@@ -604,20 +601,20 @@ const TrademarkFiling = () => {
               />
             </div>
             <div>
-              <label className="block font-medium mb-1 text-gray-700">Business Description <span className="text-[#C67B49]">*</span></label>
+              <label className="block font-medium mb-1 text-[#FFFFFF]">Business Description <span className="text-[#302F2F]">*</span></label>
               <div className="flex gap-2 items-center">
-                <textarea 
-                  name="businessDescription" 
-                  value={form.businessDescription} 
-                  onChange={handleChange} 
-                  className="w-[80%] px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700" 
-                  placeholder="Describe your business, products, or services" 
-                  required 
+                <textarea
+                  name="businessDescription"
+                  value={form.businessDescription}
+                  onChange={handleChange}
+                  className="w-[80%] px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                  placeholder="Describe your business, products, or services"
+                  required
                 />
-                <button 
-                  type="button" 
-                  className="px-3 py-3 ml-4 rounded bg-[#C67B49] text-white text-xs font-semibold shadow hover:bg-[#C67B49]/80 transition-all flex items-center gap-1"
-                  onClick={() => handleAISuggest('businessDescription')} 
+                <button
+                  type="button"
+                  className="px-3 py-3 ml-4 rounded bg-[#302F2F] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
+                  onClick={() => handleAISuggest('businessDescription')}
                   disabled={aiLoading === 'businessDescription'}
                 >
                   <IoSparkles className="w-4 h-4" />
@@ -626,33 +623,33 @@ const TrademarkFiling = () => {
               </div>
             </div>
             <div>
-              <label className="block font-medium mb-1 text-gray-700">Trademark Class <span className="text-[#C67B49]">*</span></label>
+              <label className="block font-medium mb-1 text-[#FFFFFF]">Trademark Class <span className="text-[#302F2F]">*</span></label>
               <div className="flex gap-2 items-center mb-2">
-                <textarea 
-                  name="goodsServices" 
-                  value={form.goodsServices} 
-                  onChange={handleChange} 
-                  className="w-[80%] px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700" 
-                  placeholder="Describe your goods/services in detail" 
+                <textarea
+                  name="goodsServices"
+                  value={form.goodsServices}
+                  onChange={handleChange}
+                  className="w-[80%] px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                  placeholder="Describe your goods/services in detail"
                 />
-                <button 
-                  type="button" 
-                  className="px-3 py-3 ml-4 rounded bg-[#C67B49] text-white text-xs font-semibold shadow hover:bg-[#C67B49]/80 transition-all flex items-center gap-1"
-                  onClick={() => handleAISuggest('goodsServices')} 
+                <button
+                  type="button"
+                  className="px-3 py-3 ml-4 rounded bg-[#302F2F] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
+                  onClick={() => handleAISuggest('goodsServices')}
                   disabled={aiLoading === 'goodsServices'}
                 >
                   <IoSparkles className="w-4 h-4" />
                   {aiLoading === 'goodsServices' ? 'Analyzing...' : ''}
                 </button>
               </div>
-              
+
               {aiClassRecommendation && (
-                <div className="space-y-4 p-4 bg-[#C67B49]/5 rounded-lg">
-                  <p className="text-sm text-[#C67B49]/80">{aiClassRecommendation.summary}</p>
-                  
+                <div className="space-y-4 p-4 bg-[#FFFFFF]/10 rounded-lg">
+                  <p className="text-sm text-[#FFFFFF]/80">{aiClassRecommendation.summary}</p>
+
                   <div className="space-y-2">
                     {aiClassRecommendation.classes.map((classInfo) => (
-                      <div key={classInfo.number} className="flex items-start gap-2">
+                      <div key={classInfo.number} className="flex items-start text-[#FFFFFF] gap-2">
                         <input
                           type="checkbox"
                           id={`class-${classInfo.number}`}
@@ -662,7 +659,7 @@ const TrademarkFiling = () => {
                         />
                         <label htmlFor={`class-${classInfo.number}`} className="flex-1">
                           <div className="font-medium">Class {classInfo.number}</div>
-                          <div className="text-sm text-[#C67B49]/70">{classInfo.explanation}</div>
+                          <div className="text-sm text-[#FFFFFF]/40">{classInfo.explanation}</div>
                           <div className="text-sm mt-1">{classInfo.description}</div>
                         </label>
                       </div>
@@ -670,211 +667,50 @@ const TrademarkFiling = () => {
                   </div>
                 </div>
               )}
-              
+
               {validationErrors.trademarkClass && (
                 <p className="text-red-500 text-xs mt-1">{validationErrors.trademarkClass}</p>
               )}
             </div>
             {isUseInCommerce && (
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
               <div className="space-y-4">
                 <div>
-                  <label className="block font-medium mb-1 text-gray-700">Date of First Use Anywhere <span className="text-[#C67B49]">*</span></label>
-                  <DatePicker
-                    value={form.firstUseAnywhere ? dayjs(form.firstUseAnywhere) : null}
-                    onChange={date => setForm(f => ({ ...f, firstUseAnywhere: date ? date.format('YYYY-MM-DD') : '' }))}
-                    disableFuture
-                    format="YYYY-MM-DD"
-                    slotProps={{
-                      textField: {
-                        placeholder: 'yyyy-mm-dd',
-                        fullWidth: true,
-                        size: 'medium',
-                        sx: {
-                          backgroundColor: '#fff',
-                          borderRadius: '0.75rem',
-                          '& .MuiOutlinedInput-root': {
-                            borderRadius: '0.75rem',
-                          },
-                          '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#C67B49',
-                          },
-                          '&:hover .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#E3A778',
-                          },
-                          '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#C67B49',
-                          },
-                        },
-                        error: Boolean(validationErrors.firstUseAnywhere),
-                        helperText: validationErrors.firstUseAnywhere || '',
-                      },
-                      popper: {
-                        sx: {
-                          '& .MuiPaper-root': {
-                            borderRadius: 2,
-                            boxShadow: '0 4px 24px 0 rgba(198, 123, 73, 0.10)',
-                          },
-                          '& .MuiPickersDay-root': {
-                            borderRadius: '8px',
-                            fontWeight: 500,
-                            '&.Mui-selected': {
-                              backgroundColor: '#C67B49',
-                              color: '#fff',
-                            },
-                            '&:hover': {
-                              backgroundColor: '#E3A778',
-                              color: '#fff',
-                            },
-                          },
-                          '& .MuiPickersCalendarHeader-label': {
-                            color: '#C67B49',
-                            fontWeight: 700,
-                            fontSize: '1.15rem',
-                          },
-                          '& .MuiPickersArrowSwitcher-root button': {
-                            color: '#C67B49',
-                          },
-                          '& .MuiPickersCalendarHeader-switchViewButton': {
-                            color: '#C67B49',
-                          },
-                          '& .MuiPickersDay-today': {
-                            border: '1.5px solid #C67B49',
-                            background: '#fff',
-                            color: '#C67B49',
-                          },
-                          '& .MuiPickersDay-root.Mui-disabled': {
-                            color: '#ccc',
-                          },
-                          '& .MuiPickersCalendarHeader-root': {
-                            background: '#F1E8E2',
-                            borderRadius: '12px 12px 0 0',
-                          },
-                          '& .MuiPickersDay-dayOutsideMonth': {
-                            color: '#bbb',
-                          },
-                          '& .MuiPickersYear-yearButton, & .MuiPickersMonth-monthButton': {
-                            borderRadius: '8px',
-                            fontWeight: 600,
-                            '&.Mui-selected': {
-                              backgroundColor: '#C67B49',
-                              color: '#fff',
-                            },
-                            '&:hover': {
-                              backgroundColor: '#E3A778',
-                              color: '#fff',
-                            },
-                          },
-                        },
-                      },
-                    }}
+                  <label className="block font-medium mb-1 text-[#FFFFFF]">
+                    Date of First Use Anywhere <span className="text-[#302F2F]">*</span>
+                  </label>
+                  <DatePickerShadcn
+                    value={form.firstUseAnywhere}
+                    onChange={date => setForm(f => ({ ...f, firstUseAnywhere: date }))}
+                    placeholder="YYYY-MM-DD"
                   />
+                  {validationErrors.firstUseAnywhere && (
+                    <p className="text-red-500 text-xs mt-1">{validationErrors.firstUseAnywhere}</p>
+                  )}
                 </div>
                 <div>
-                  <label className="block font-medium mb-1 text-gray-700">Date of First Use in Commerce <span className="text-[#C67B49]">*</span></label>
-                  <DatePicker
-                    value={form.firstUseCommerce ? dayjs(form.firstUseCommerce) : null}
-                    onChange={date => setForm(f => ({ ...f, firstUseCommerce: date ? date.format('YYYY-MM-DD') : '' }))}
-                    disableFuture
-                    format="YYYY-MM-DD"
-                    slotProps={{
-                      textField: {
-                        placeholder: 'yyyy-mm-dd',
-                        fullWidth: true,
-                        size: 'medium',
-                        sx: {
-                          backgroundColor: '#fff',
-                          borderRadius: '0.75rem',
-                          '& .MuiOutlinedInput-root': {
-                            borderRadius: '0.75rem',
-                          },
-                          '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#C67B49',
-                          },
-                          '&:hover .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#E3A778',
-                          },
-                          '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#C67B49',
-                          },
-                        },
-                        error: Boolean(validationErrors.firstUseCommerce),
-                        helperText: validationErrors.firstUseCommerce || '',
-                      },
-                      popper: {
-                        sx: {
-                          '& .MuiPaper-root': {
-                            borderRadius: 2,
-                            boxShadow: '0 4px 24px 0 rgba(198, 123, 73, 0.10)',
-                          },
-                          '& .MuiPickersDay-root': {
-                            borderRadius: '8px',
-                            fontWeight: 500,
-                            '&.Mui-selected': {
-                              backgroundColor: '#C67B49',
-                              color: '#fff',
-                            },
-                            '&:hover': {
-                              backgroundColor: '#E3A778',
-                              color: '#fff',
-                            },
-                          },
-                          '& .MuiPickersCalendarHeader-label': {
-                            color: '#C67B49',
-                            fontWeight: 700,
-                            fontSize: '1.15rem',
-                          },
-                          '& .MuiPickersArrowSwitcher-root button': {
-                            color: '#C67B49',
-                          },
-                          '& .MuiPickersCalendarHeader-switchViewButton': {
-                            color: '#C67B49',
-                          },
-                          '& .MuiPickersDay-today': {
-                            border: '1.5px solid #C67B49',
-                            background: '#fff',
-                            color: '#C67B49',
-                          },
-                          '& .MuiPickersDay-root.Mui-disabled': {
-                            color: '#ccc',
-                          },
-                          '& .MuiPickersCalendarHeader-root': {
-                            background: '#F1E8E2',
-                            borderRadius: '12px 12px 0 0',
-                          },
-                          '& .MuiPickersDay-dayOutsideMonth': {
-                            color: '#bbb',
-                          },
-                          '& .MuiPickersYear-yearButton, & .MuiPickersMonth-monthButton': {
-                            borderRadius: '8px',
-                            fontWeight: 600,
-                            '&.Mui-selected': {
-                              backgroundColor: '#C67B49',
-                              color: '#fff',
-                            },
-                            '&:hover': {
-                              backgroundColor: '#E3A778',
-                              color: '#fff',
-                            },
-                          },
-                        },
-                      },
-                    }}
+                  <label className="block font-medium mb-1 text-[#FFFFFF]">Date of First Use in Commerce <span className="text-[#302F2F]">*</span></label>
+                  <DatePickerShadcn
+                    value={form.firstUseCommerce}
+                    onChange={date => setForm(f => ({ ...f, firstUseCommerce: date }))}
+                    placeholder="YYYY-MM-DD"
                   />
+                  {validationErrors.firstUseCommerce && (
+                    <p className="text-red-500 text-xs mt-1">{validationErrors.firstUseCommerce}</p>
+                  )}
                 </div>
                 {/* Type of Commerce Dropdown */}
                 <div>
-                  <label className="block font-medium mb-1 text-gray-700">Type of Commerce <span className="text-[#C67B49]">*</span></label>
+                  <label className="block font-medium mb-1 text-[#FFFFFF]">Type of Commerce <span className="text-[#302F2F]">*</span></label>
                   <select
                     name="typeOfCommerce"
                     value={form.typeOfCommerce}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700"
+                    className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C] bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F] text-[#FFFFFF] appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM2QzZDNkMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-no-repeat bg-[right_1rem_center]"
                     required
                   >
-                    <option value="">Select type of commerce</option>
+                    <option value="" className="bg-[#1C1C1C] text-[#FFFFFF]">Select type of commerce</option>
                     {commerceTypes.map((type) => (
-                      <option key={type} value={type}>{type}</option>
+                      <option key={type} value={type} className="bg-[#1C1C1C] text-[#FFFFFF]">{type}</option>
                     ))}
                   </select>
                   {validationErrors.typeOfCommerce && (
@@ -883,12 +719,12 @@ const TrademarkFiling = () => {
                 </div>
                 {/* Mark Usage Textarea */}
                 <div>
-                  <label className="block font-medium mb-1 text-gray-700">Mark Usage Description <span className="text-[#C67B49]">*</span></label>
+                  <label className="block font-medium mb-1 text-[#FFFFFF]">Mark Usage Description <span className="text-[#FFFFFF]">*</span></label>
                   <textarea
                     name="markUsage"
                     value={form.markUsage}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700"
+                    className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
                     placeholder="Describe how the mark is used in commerce"
                     required
                   />
@@ -898,7 +734,7 @@ const TrademarkFiling = () => {
                 </div>
                 {/* Specimen File Upload */}
                 <div>
-                  <label className="block font-medium mb-4 text-gray-700">Specimen of Use <span className="text-[#C67B49]">*</span></label>
+                  <label className="block font-medium mb-4 text-[#FFFFFF]">Specimen of Use <span className="text-[#FFFFFF]">*</span></label>
                   <div className={customStyles.fileUpload.container}>
                     <input
                       type="file"
@@ -917,15 +753,14 @@ const TrademarkFiling = () => {
                     </label>
                   </div>
                   {form.specimen && (
-                    <p className="text-sm text-[#C67B49]/80 mt-2">Selected: {form.specimen.name}</p>
+                    <p className="text-sm text-[#302F2F]/80 mt-2">Selected: {form.specimen.name}</p>
                   )}
                   {validationErrors.specimen && (
                     <p className="text-red-500 text-xs mt-1">{validationErrors.specimen}</p>
                   )}
-                  <p className="text-xs text-[#C67B49]/70 mt-1">Upload your specimen (JPEG, PNG, PDF). Max 10MB.</p>
+                  <p className="text-xs text-[#FFFFFF]/70 mt-1">Upload your specimen (JPEG, PNG, PDF). Max 10MB.</p>
                 </div>
               </div>
-              </LocalizationProvider>
             )}
           </>
         )}
@@ -934,18 +769,18 @@ const TrademarkFiling = () => {
         {step === 2 && (
           <>
             <div className="flex items-center gap-2 mb-2">
-              <input 
-                name="priorityClaim" 
-                type="checkbox" 
-                checked={form.priorityClaim} 
-                onChange={handleChange} 
+              <input
+                name="priorityClaim"
+                type="checkbox"
+                checked={form.priorityClaim}
+                onChange={handleChange}
               />
-              <label className="font-medium text-gray-700">Priority Claim (if previously filed abroad)</label>
+              <label className="font-medium text-[#FFFFFF]">Priority Claim (if previously filed abroad)</label>
             </div>
             {form.priorityClaim && (
-              <div className="space-y-3 pl-6 border-l-2 border-[#C67B49]/20">
+              <div className="space-y-3 pl-6 border-l-2 border-[#FFFFFF]/20">
                 <div>
-                  <label className="block font-medium mb-1 text-gray-700">Priority Filing Country</label>
+                  <label className="block font-medium mb-1 text-[#FFFFFF]">Priority Filing Country</label>
                   <CustomSelect
                     name="priorityCountry"
                     value={form.priorityCountry}
@@ -955,45 +790,45 @@ const TrademarkFiling = () => {
                   />
                 </div>
                 <div>
-                  <label className="block font-medium mb-1 text-gray-700">Priority Application Number</label>
-                  <input name="priorityAppNumber" value={form.priorityAppNumber} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700" placeholder="Application number" />
+                  <label className="block font-medium mb-1 text-[#FFFFFF]">Priority Application Number</label>
+                  <input name="priorityAppNumber" value={form.priorityAppNumber} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]" placeholder="Application number" />
                 </div>
                 <div>
-                  <label className="block font-medium mb-1 text-gray-700">Priority Filing Date</label>
-                  <input name="priorityFilingDate" type="date" value={form.priorityFilingDate} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700" />
+                  <label className="block font-medium mb-1 text-[#FFFFFF]">Priority Filing Date</label>
+                  <input name="priorityFilingDate" type="date" value={form.priorityFilingDate} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]" />
                 </div>
                 <div>
-                  <label className="block font-medium mb-1 text-gray-700">Certified Copy of Priority Document</label>
-                  <input 
-                    name="certifiedCopy" 
-                    type="file" 
-                    accept="application/pdf" 
-                    onChange={handleChange} 
-                    className={`block w-full text-gray-700 ${validationErrors.certifiedCopy ? 'border-red-500' : ''}`} 
+                  <label className="block font-medium mb-1 text-[#FFFFFF]">Certified Copy of Priority Document</label>
+                  <input
+                    name="certifiedCopy"
+                    type="file"
+                    accept="application/pdf"
+                    onChange={handleChange}
+                    className={`block w-full text-[#FFFFFF] ${validationErrors.certifiedCopy ? 'border-red-500' : ''}`}
                   />
                   {validationErrors.certifiedCopy && (
                     <p className="text-red-500 text-xs mt-1">{validationErrors.certifiedCopy}</p>
                   )}
-                  <p className="text-xs text-[#C67B49]/70 mt-1">Upload certified copy of priority document (PDF). Max 10MB.</p>
+                  <p className="text-xs text-[#6C6C6C]/90 mt-1">Upload certified copy of priority document (PDF). Max 10MB.</p>
                 </div>
               </div>
             )}
             <div>
-              <label className="block font-medium mb-1 text-gray-700">Additional Notes</label>
-              <textarea name="additionalNotes" value={form.additionalNotes} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700" placeholder="Any special instructions, background info, etc." />
+              <label className="block font-medium mb-1 text-[#FFFFFF]">Additional Notes</label>
+              <textarea name="additionalNotes" value={form.additionalNotes} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]" placeholder="Any special instructions, background info, etc." />
             </div>
-            <div className="mb-4 p-4 bg-[#C67B49]/10 rounded">
-              <p className="text-gray-700 text-sm">
+            <div className="mb-4 p-4 bg-[#302F2F]/10 rounded">
+              <p className="text-[#FFFFFF]/70 text-sm">
                 <strong>Declaration:</strong> "I declare that all statements made of my own knowledge are true and that all statements made on information and belief are believed to be true. I understand that willful false statements may result in penalties and jeopardize the validity of the application or any resulting registration."
               </p>
             </div>
             <div className="flex items-center gap-2 mb-4">
               <input name="declaration" type="checkbox" checked={form.declaration} onChange={handleChange} required />
-              <label className="font-medium text-gray-700">I agree to the above declaration</label>
+              <label className="font-medium text-[#FFFFFF]">I agree to the above declaration</label>
             </div>
             <div>
-              <label className="block font-medium mb-1 text-gray-700">Digital Signature <span className="text-[#C67B49]">*</span></label>
-              <input name="signature" value={form.signature} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#C67B49]/20 bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40 text-gray-700" placeholder="Type your full name as signature" required />
+              <label className="block font-medium mb-1 text-[#FFFFFF]">Digital Signature <span className="text-[#302F2F]">*</span></label>
+              <input name="signature" value={form.signature} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]" placeholder="Type your full name as signature" required />
             </div>
           </>
         )}
@@ -1007,27 +842,27 @@ const TrademarkFiling = () => {
 
         {/* Navigation Buttons */}
         <div className="flex justify-between pt-6">
-          <button 
-            type="button" 
-            onClick={prevStep} 
-            disabled={step === 0 || isSubmitting} 
-            className="px-6 py-2 rounded-lg font-semibold bg-white border border-[#C67B49]/20 text-[#C67B49] hover:bg-[#C67B49]/10 transition-all disabled:opacity-50"
+          <button
+            type="button"
+            onClick={prevStep}
+            disabled={step === 0 || isSubmitting}
+            className="px-6 py-2 rounded-lg font-semibold bg-[#1C1C1C] border border-[#6C6C6C]/20 text-[#868686] hover:bg-[#302F2F]/10 transition-all disabled:opacity-50"
           >
             Back
           </button>
           {step < steps.length - 1 ? (
-            <button 
-              type="button" 
+            <button
+              type="button"
               onClick={handleNext}
-              className="px-6 py-2 rounded-lg font-semibold bg-[#C67B49] text-white shadow hover:shadow-[#C67B49]/30 transition-all"
+              className="px-6 py-2 rounded-lg font-semibold bg-[#302F2F] text-[#FFFFFF] shadow hover:shadow-[#302F2F]/30 transition-all"
             >
               Next
             </button>
           ) : (
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={isSubmitting}
-              className="px-6 py-2 rounded-lg font-semibold bg-[#C67B49] text-white shadow hover:shadow-[#C67B49]/30 transition-all disabled:opacity-70"
+              className="px-6 py-2 rounded-lg font-semibold bg-[#302F2F] text-[#FFFFFF] shadow hover:shadow-[#302F2F]/30 transition-all disabled:opacity-70"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Filing'}
             </button>

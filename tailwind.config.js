@@ -6,24 +6,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#C67B49', // Main orange-brown color
-        'primary-light': '#E3A778', // Light variant
-        'primary-dark': '#8B5E3C', // Dark variant
+        primary: '#302F2F', // Main dark gray color
+        'primary-light': '#6C6C6C', // Light variant
+        'primary-dark': '#1C1C1C', // Dark variant
         warm: {
-          DEFAULT: '#C67B49',
-          50: '#C67B49/10',
-          100: '#C67B49/20',
-          200: '#C67B49/40',
-          300: '#C67B49/60',
-          400: '#C67B49/70',
-          500: '#C67B49/80',
-          600: '#C67B49/90',
-          700: '#E3A778',
-          800: '#8B5E3C',
+          DEFAULT: '#302F2F',
+          50: '#6C6C6C/10',
+          100: '#6C6C6C/20',
+          200: '#6C6C6C/40',
+          300: '#6C6C6C/60',
+          400: '#6C6C6C/70',
+          500: '#6C6C6C/80',
+          600: '#6C6C6C/90',
+          700: '#6C6C6C',
+          800: '#1C1C1C',
         },
-        background: '#000000',
-        accent: '#0080ff',
-        light: '#ffffff',
+        background: '#1C1C1C',
+        accent: '#868686',
+        light: '#FFFFFF',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

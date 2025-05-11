@@ -15,3 +15,5 @@ export { default as Documents } from './Documents';
 export { default as UploadDocuments } from './UploadDocuments';
 export { default as ComplianceChecker } from './ComplianceChecker';
 export { default as FilingPrep } from './FilingPrep'; 
+export { default as PatentUploadDocuments } from './PatentUploadDocuments';
+export { default as Disclaimer } from './Disclaimer'; 
