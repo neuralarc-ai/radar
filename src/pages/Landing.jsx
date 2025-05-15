@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, FileText, CreditCard, Check, Cpu, PhoneCall } from 'react-feather';
 import platformImage from '../assests/preview.png';
-import logoHorizontal from '../assests/logo-horizontal.png';
 import footerImage from '../assests/footer-image.png';
 import neuralarcLogo from '../assests/neuralarc-logo.png';
 import footerLogo from '../assests/footer-logo.png';
@@ -38,7 +37,7 @@ const Landing = () => {
       <nav className="flex items-center justify-between py-6 px-4 max-w-7xl mx-auto">
         <div className="flex items-center">
           <Link to="/">
-            <img src={logoHorizontal} alt="Radar Logo" className="h-14 w-auto" />
+            <span className="text-[#FFFFFF] text-2xl font-bold">Radar</span>
           </Link>
         </div>
         <div className="flex gap-4">
