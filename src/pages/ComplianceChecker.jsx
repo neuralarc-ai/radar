@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getFiling, getSupportingFiles } from "../services";
 import { checkCompliance } from "../services/complianceService";
 import { IoArrowBack } from 'react-icons/io5';
 

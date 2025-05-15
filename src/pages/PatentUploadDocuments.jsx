@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { uploadSupportingFile, deleteSupportingFile, initializeStorage, getFiling } from '../services';
 import { IoArrowBack } from 'react-icons/io5';
 
 function PatentUploadDocuments() {

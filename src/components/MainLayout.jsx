@@ -7,14 +7,6 @@ const MainLayout = ({ children }) => {
   const location = useLocation();
   const [progress, setProgress] = useState(0);
 
-  const steps = [
-    { path: '/dashboard/trademark', title: 'Trademark Filing', progress: 20 },
-    { path: '/dashboard/generate-documents', title: 'Generate Documents', progress: 40 },
-    { path: '/dashboard/documents', title: 'Documents', progress: 60 },
-    { path: '/dashboard/compliance', title: 'Compliance Check', progress: 80 },
-    { path: '/dashboard/filing-prep', title: 'Filing Preparation', progress: 100 }
-  ];
-
   console.log('Progress:', progress);
 
   const getCurrentProgress = () => {

@@ -46,7 +46,6 @@ const initialForm = {
   attorneyEmail: '',
 };
 
-const classOptions = Array.from({ length: 45 }, (_, i) => `Class ${i + 1}`);
 const markTypes = [
   'Standard Character Mark (text only)',
   'Design Mark (logo or stylized text)',

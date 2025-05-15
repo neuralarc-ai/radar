@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
 import { IoArrowBack } from 'react-icons/io5';
 import { HiOutlineDocumentCheck } from 'react-icons/hi2';
 import { getPatentFilingPrepAnalysis } from '../services/patentFilingService';

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'react-feather';
 import logoHorizontal from '../assests/logo-horizontal.png';
 import footerLogo from '../assests/footer-logo.png';
 import footerImage from '../assests/footer-image.png';

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons"
-import { addMonths, subMonths, format, isSameMonth, isSameDay, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isToday, isWithinInterval, isAfter, isBefore } from "date-fns"
+import { addMonths, subMonths, format, isSameMonth, isSameDay, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isToday } from "date-fns"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")

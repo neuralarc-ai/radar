@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../services/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { MinimalFooter } from '../components/Footer';
-import lawbitLogo from '../assests/lawbit.png';
 
 const filingTypes = [
   {

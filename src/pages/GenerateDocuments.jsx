@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import ProgressSidebar from '../components/ProgressSidebar';
 import { IoArrowBack } from 'react-icons/io5';
 
 const GenerateDocuments = () => {
