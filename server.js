@@ -5,6 +5,23 @@ const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch').default;
 const path = require('path');
+const fs = require('fs');
+const https = require('https');
+const WebSocket = require('ws');
+
+// Load SSL certificates
+const privateKey = fs.readFileSync('ssl/private.key', 'utf8');
+const certificate = fs.readFileSync('ssl/certificate.crt', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+
+const app = express();
+const port = 3001;
+
+// Enable CORS
+app.use(cors());
+
+// Parse JSON bodies
+app.use(express.json());
 
 // Debug logging for environment variables and file paths
 console.log('Current directory:', process.cwd());
@@ -13,15 +30,6 @@ console.log('Environment variables:', {
   CLAUDE_API_KEY: process.env.CLAUDE_API_KEY ? 'Set' : 'Not Set',
   NODE_ENV: process.env.NODE_ENV || 'Not Set'
 });
-
-const app = express();
-const port = process.env.PORT || 3001;
-
-// Enable CORS
-app.use(cors());
-
-// Parse JSON bodies
-app.use(express.json());
 
 // Proxy endpoint for AI analysis
 app.post('/api/analyze', async (req, res) => {
@@ -71,7 +79,13 @@ app.post('/api/analyze', async (req, res) => {
   }
 });
 
-// Start server
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Proxy server running at http://0.0.0.0:${port}`);
-}); 
+// Create HTTPS server
+const httpsServer = https.createServer(credentials, app);
+
+// Set up WebSocket server on /ws path
+const wss = new WebSocket.Server({ server: httpsServer, path: '/ws' });
+
+// Start HTTPS + WebSocket server
+httpsServer.listen(port, '0.0.0.0', () => {
+  console.log(`🚀 Server running at https://0.0.0.0:${port}`);
+});
