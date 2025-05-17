@@ -1,97 +1,61 @@
-// Load environment variables first
-require('dotenv').config({ path: '.env' });
-
-const express = require('express');
-const cors = require('cors');
-const fetch = require('node-fetch').default;
-const path = require('path');
-const http = require('http'); // For creating raw HTTP server
-const WebSocket = require('ws'); // WebSocket support
-
-// Debug logging for environment variables
-console.log('Current directory:', process.cwd());
-console.log('Environment file path:', path.resolve('.env'));
-console.log('Environment variables:', {
-  CLAUDE_API_KEY: process.env.CLAUDE_API_KEY ? 'Set' : 'Not Set',
-  NODE_ENV: process.env.NODE_ENV || 'Not Set'
-});
-
-const app = express();
-const port = 3001;
-
-// Enable CORS and JSON body parsing
-app.use(cors());
-app.use(express.json());
-
-// Claude API proxy endpoint
-app.post('/api/analyze', async (req, res) => {
+export const searchPriorArt = async (query, context) => {
   try {
-    if (!process.env.CLAUDE_API_KEY) {
-      throw new Error('CLAUDE_API_KEY is not set');
-    }
-
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    console.log('Starting prior art search with:', { query, context });
+    
+    const response = await fetch('/api/analyze', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.CLAUDE_API_KEY,
-        'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-3-haiku-20240307',
-        max_tokens: 2000,
-        messages: [
-          {
-            role: 'user',
-            content: req.body.prompt
-          }
-        ]
+        prompt: `Search for prior art related to the following invention:
+            
+            Search Query: ${query}
+            
+            Context:
+            - Title: ${context.patentTitle}
+            - Summary: ${context.briefSummary}
+            - Technical Field: ${context.technicalField}
+            
+            Please provide a list of relevant patents and patent applications in the following JSON format:
+            {
+              "results": [
+                {
+                  "patentNumber": "string",
+                  "documentType": "string",
+                  "relevance": "string",
+                  "summary": "string"
+                }
+              ]
+            }`
       })
     });
 
+    console.log('API Response status:', response.status);
+
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Claude API error:', errorData);
-      throw new Error(`Claude API error: ${errorData.error?.message || 'Unknown error'}`);
+      throw new Error(`Search API error: ${response.status}`);
     }
 
     const data = await response.json();
-
-    if (!data.content || !data.content[0] || !data.content[0].text) {
-      throw new Error('Invalid response format from Claude API');
+    console.log('Raw API Response:', data);
+    
+    // Extract the JSON response from Claude's message
+    const content = data.content[0].text;
+    console.log('Claude Response Content:', content);
+    
+    const jsonMatch = content.match(/\{[\s\S]*\}/);
+    
+    if (!jsonMatch) {
+      throw new Error('Invalid response format from Claude');
     }
 
-    res.json(data);
+    const results = JSON.parse(jsonMatch[0]);
+    console.log('Processed Results:', results);
+    
+    return results;
   } catch (error) {
-    console.error('Error in /api/analyze:', error);
-    res.status(500).json({
-      error: error.message,
-      details: error.stack
-    });
+    console.error('Error searching for prior art:', error);
+    throw error;
   }
-});
-
-// Create a raw HTTP server for both Express and WebSocket
-const server = http.createServer(app);
-
-// Set up WebSocket server on /ws path
-const wss = new WebSocket.Server({ server, path: '/ws' });
-
-wss.on('connection', (ws) => {
-  console.log('🔌 WebSocket client connected');
-
-  ws.on('message', (message) => {
-    console.log('💬 WebSocket message received:', message);
-    // Echo the message back
-    ws.send(`Echo: ${message}`);
-  });
-
-  ws.on('close', () => {
-    console.log('❌ WebSocket client disconnected');
-  });
-});
-
-// Start the HTTP + WebSocket server
-server.listen(port, '0.0.0.0', () => {
-  console.log(`🚀 Server running at http://0.0.0.0:${port}`);
-});
+}; 
