@@ -29,16 +29,35 @@ const SignUp = () => {
       return;
     }
     setLoading(true);
+    try {
     const { error: signUpError } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
       options: { data: { name: form.name } },
     });
-    setLoading(false);
+      
     if (signUpError) {
+        // Handle specific Supabase error cases
+        if (signUpError.message.includes('network')) {
+          setError('Network error: Please check your internet connection and try again.');
+        } else if (signUpError.message.includes('500')) {
+          setError('Server error: Please try again in a few moments.');
+        } else {
       setError(signUpError.message);
+        }
     } else {
       setSuccess(true); // Show confirmation message
+      }
+    } catch (err) {
+      // Handle unexpected errors
+      if (err instanceof TypeError && err.message === 'Failed to fetch') {
+        setError('Network error: Please check your internet connection and try again.');
+      } else {
+        setError('An unexpected error occurred. Please try again.');
+        console.error('Signup error:', err);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -59,7 +78,7 @@ const SignUp = () => {
     <div className="min-h-screen flex flex-col items-center bg-[#E8E8E8] text-[#000000] px-4">
       <div className="w-full flex-1 flex flex-col items-center justify-center py-8">
         <h1 className="text-4xl font-bold mb-6 text-center text-[#000000]">Radar</h1>
-        <div className="w-full max-w-md bg-[#FFFFFF] rounded-2xl shadow-xl p-8 border border-[#6C6C6C]/20 shadow-[0_0_10px_#FFFFFF]">
+        <div className="w-full max-w-md bg-[#FFFFFF] rounded-2xl  p-8 border border-[#FFFFFF]/5 border-[1.5px] ">
           <h1 className="text-2xl font-bold mb-6 text-center text-[#000000]">Create Your Radar Account</h1>
           {success ? (
             <div className="text-green-500 text-center mb-4">

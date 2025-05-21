@@ -59,23 +59,23 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between bg-[#E8E8E8] text-[#000000] px-4">
+    <div className="min-h-screen flex flex-col items-center justify-between bg-[#FBFBFB] text-[#000000] px-4">
       <div className="w-full flex-1 flex flex-col items-center justify-center">
-       <h1 className="text-4xl font-bold mb-6 text-center text-[#000000]">Radar</h1>
-        <div className="w-full max-w-md bg-[#ffffff] rounded-2xl shadow-xl p-8 border border-[#000000]/5 shadow-[0_0_10px_#000000]/5">
-          <h1 className="text-2xl font-bold mb-6 text-center text-[#000000]">Sign In to Radar</h1>
+       <h1 className="text-4xl font-bold mb-6 text-center text-[#362716]">Radar</h1>
+        <div className="w-full max-w-md bg-[#F5F4F1] rounded-2xl  p-8 border border-[#FFFFFF]/5 border-[1.5px] ">
+          <h1 className="text-2xl font-bold mb-6 text-center text-[#362716]">Sign In to Radar</h1>
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
-              <label className="block text-sm font-medium mb-1 text-[#000000]">Email</label>
-              <input name="email" type="email" className="w-full px-4 py-3 rounded-lg bg-[#ffffff] border border-[#000000]/5 text-[#000000] focus:outline-none focus:ring-2 focus:ring-[#000000]/20 transition" placeholder="you@email.com" value={form.email} onChange={handleChange} />
+              <label className="block text-sm font-medium mb-1 text-[#362716]">Email</label>
+              <input name="email" type="email" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#000000] focus:outline-none focus:ring-2 focus:ring-[#000000]/20 transition" placeholder="you@email.com" value={form.email} onChange={handleChange} />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1 text-[#000000]">Password</label>
+              <label className="block text-sm font-medium mb-1 text-[#362716]">Password</label>
               <div className="relative">
                 <input
                   name="password"
                   type={showPassword ? 'text' : 'password'}
-                  className="w-full px-4 py-3 pr-12 rounded-lg bg-[#ffffff] border border-[#000000]/5 text-[#000000] focus:outline-none focus:ring-2 focus:ring-[#000000]/20 transition"
+                  className="w-full px-4 py-3 pr-12 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#000000] focus:outline-none focus:ring-2 focus:ring-[#000000]/20 transition"
                   placeholder="••••••••"
                   value={form.password}
                   onChange={handleChange}
@@ -104,20 +104,20 @@ const SignIn = () => {
             </div>
             {error && <div className="text-red-500 text-sm text-center">{error}</div>}
             <div className="flex justify-between items-center text-sm">
-              <Link to="/signup" className="text-[#000000] hover:underline">Create an account</Link>
-              <button type="button" className="text-[#000000] hover:underline" onClick={() => setShowReset(true)}>Forgot Password?</button>
+              <Link to="/signup" className="text-[#362716] hover:underline">Create an account</Link>
+              <button type="button" className="text-[#362716] hover:underline" onClick={() => setShowReset(true)}>Forgot Password?</button>
             </div>
-            <button type="submit" disabled={loading} className="w-full py-3 rounded-lg font-semibold bg-[#000000] text-[#FFFFFF] hover:bg-[#202020]/90 transition-all duration-200 mt-2 disabled:opacity-60">{loading ? 'Signing In...' : 'Sign In'}</button>
+            <button type="submit" disabled={loading} className="w-full py-3 rounded-lg font-semibold bg-[#362716] text-[#FFFFFF] hover:bg-[#362716]/90 transition-all duration-200 mt-2 disabled:opacity-60">{loading ? 'Signing In...' : 'Sign In'}</button>
           </form>
           <div className="my-6 flex items-center gap-2">
             <div className="flex-1 h-px bg-[#000000]/10" />
-            <span className="text-xs text-[#000000]">or sign in with</span>
+            <span className="text-xs text-[#362716]">or sign in with</span>
             <div className="flex-1 h-px bg-[#000000]/10" />
           </div>
           <div className="flex justify-center mb-4">
             <button
               onClick={() => handleOAuth('google')}
-              className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-[#000000] border border-[#000000]/5 text-[#FFFFFF] hover:bg-[#202020]/90 font-semibold  transition-all duration-200 text-base"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-[#362716] border border-[#362716]/5 text-[#FFFFFF] hover:bg-[#362716]/90 font-semibold  transition-all duration-200 text-base"
             >
               <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' className="w-5 h-5"><g><path fill="#4285F4" d="M24 9.5c3.54 0 6.7 1.22 9.19 3.23l6.87-6.87C35.64 2.39 30.18 0 24 0 14.82 0 6.73 5.48 2.69 13.44l8.01 6.22C12.33 13.13 17.68 9.5 24 9.5z"/><path fill="#34A853" d="M46.1 24.55c0-1.64-.15-3.22-.42-4.74H24v9.01h12.42c-.54 2.9-2.18 5.36-4.65 7.01l7.19 5.6C43.98 37.13 46.1 31.36 46.1 24.55z"/><path fill="#FBBC05" d="M10.7 28.66c-1.01-2.99-1.01-6.23 0-9.22l-8.01-6.22C.68 17.82 0 20.81 0 24c0 3.19.68 6.18 1.89 8.78l8.81-6.89z"/><path fill="#EA4335" d="M24 48c6.18 0 11.36-2.05 15.15-5.57l-7.19-5.6c-2.01 1.35-4.59 2.15-7.96 2.15-6.32 0-11.67-3.63-13.3-8.66l-8.81 6.89C6.73 42.52 14.82 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></g></svg>
               <span>Sign in with Google</span>

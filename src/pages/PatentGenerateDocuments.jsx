@@ -138,72 +138,72 @@ const PatentGenerateDocuments = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1C1C1C] px-4 py-10">
+    <div className="min-h-screen bg-[#E8E8E8] px-4 py-10">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-6">
             <button
               type="button"
-              className="p-2 text-[#FFFFFF] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#6C6C6C]"
+              className="p-2 text-[#868686] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#000000]/5 border-[1.5px]"
               onClick={() => navigate(-1)}
               aria-label="Go back"
             >
               <IoArrowBack className="w-6 h-6" />
             </button>
-            <h1 className="text-2xl font-bold text-[#FFFFFF]">Generate Your Patent Documents</h1>
+            <h1 className="text-2xl font-bold text-[#000000]">Generate Your Patent Documents</h1>
           </div>
           <p className="text-[#868686] mt-2">
           Generate and manage filing-ready documents for your patent application</p>
         </div>
 
-        <div className="bg-[#302F2F] rounded-lg border border-[#6C6C6C] p-6 mb-8">
+        <div className="bg-[#FFFFFF] rounded-lg border border-[#6C6C6C] p-6 mb-8">
         <div className="mb-10">
-            <h2 className="text-2xl font-semibold text-[#FFFFFF] mb-3">Generate Your Documents</h2>
+            <h2 className="text-2xl font-semibold text-[#000000] mb-3">Generate Your Documents</h2>
             <p className="text-[#868686] mb-4">Our AI will analyze your application data and generate all required documents</p>
           </div>
           
           <div className="text-center mb-10">
             <div className="inline-flex items-center justify-center w-40 h-40 rounded-full mb-4">
-              <svg className="w-24 h-24 text-[#FFFFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-24 h-24 text-[#000000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h3 className="text-xl font-medium text-[#FFFFFF] mb-2">Ready to generate your patent filing documents</h3>
+            <h3 className="text-xl font-medium text-[#000000] mb-2">Ready to generate your patent filing documents</h3>
           </div>
           
-          <div className="bg-[#1C1C1C] rounded-lg p-8 mb-10">
+          <div className="bg-[#E8E8E8] rounded-lg p-8 mb-10">
             <div className="max-w-3xl mx-auto space-y-3">
               <div className="flex items-start space-x-2">
                 <div className="flex-shrink-0 mt-1">
-                  <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 text-[#000000]" fill="currentColor" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="4" />
                   </svg>
                 </div>
-                <p className="text-[#FFFFFF] text-sm">Documents will be tailored based on your patent application details</p>
+                <p className="text-[#000000] text-sm">Documents will be tailored based on your patent application details</p>
               </div>
               <div className="flex items-start space-x-2">
                 <div className="flex-shrink-0 mt-1">
-                  <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 text-[#000000]" fill="currentColor" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="4" />
                   </svg>
                 </div>
-                <p className="text-[#FFFFFF] text-sm">All required patent office forms will be prepared</p>
+                <p className="text-[#000000] text-sm">All required patent office forms will be prepared</p>
               </div>
               <div className="flex items-start space-x-2">
                 <div className="flex-shrink-0 mt-1">
-                  <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 text-[#000000]" fill="currentColor" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="4" />
                   </svg>
                 </div>
-                <p className="text-[#FFFFFF] text-sm">You can download, review, and modify as needed</p>
+                <p className="text-[#000000] text-sm">You can download, review, and modify as needed</p>
               </div>
               <div className="flex items-start space-x-2">
                 <div className="flex-shrink-0 mt-1">
-                  <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 text-[#000000]" fill="currentColor" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="4" />
                   </svg>
                 </div>
-                <p className="text-[#FFFFFF] text-sm">AI-powered validation ensures compliance with patent filing requirements</p>
+                <p className="text-[#000000] text-sm">AI-powered validation ensures compliance with patent filing requirements</p>
               </div>
             </div>
           </div>
@@ -212,7 +212,7 @@ const PatentGenerateDocuments = () => {
             <button
               onClick={handleGenerate}
               disabled={isGenerating}
-              className={`px-8 py-3 bg-[#1C1C1C] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors flex items-center space-x-2 ${
+                className={`px-8 py-3 bg-[#1C1C1C] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors flex items-center space-x-2 ${
                 isGenerating ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             >

@@ -32,22 +32,22 @@ const Landing = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#E8E8E8]">
+    <div className="min-h-screen bg-[#FBFBFB]">
       {/* Navbar */}
       <nav className="flex items-center justify-between py-6 px-4 max-w-7xl mx-auto">
         <div className="flex items-center">
           <Link to="/">
-            <span className="text-[#000000] text-2xl font-bold">Radar</span>
+            <span className="text-[#322B25] text-2xl font-bold">Radar</span>
           </Link>
         </div>
         <div className="flex gap-4">
           <Link to="/signin">
-            <button className="border border-[#000000] text-[#000000] hover:bg-[#302F2F]/5 px-4 py-2 rounded-lg font-medium transition-colors">
+            <button className="border border-[#322B25] text-[#322B25] hover:bg-[#302F2F]/5 px-4 py-2 rounded-lg font-medium transition-colors">
               Sign In
             </button>
           </Link>
           <Link to="/signup">
-            <button className="bg-[#000000] hover:bg-[#302F2F]/90 text-[#FFFFFF] px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors">
+            <button className="bg-[#322B25] hover:bg-[#302F2F]/90 text-[#FFFFFF] px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors">
               Get Started <ArrowRight className="h-4 w-4" />
             </button>
           </Link>
@@ -56,49 +56,49 @@ const Landing = () => {
 
       {/* Hero Section */}
       <div className="flex flex-col items-center justify-center text-center py-20 px-4 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-[#000000] leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-[#322B25] leading-tight">
           Simplify Your Legal Workflow
           <br />
           with AI Precision
         </h1>
 
-        <p className="text-[#000000]/60 text-lg md:text-xl mb-4 max-w-3xl">
+        <p className="text-[#322B25]/60 text-lg md:text-xl mb-4 max-w-3xl">
           Streamline your trademark, patent, and copyright filings with our intelligent platform.
         </p>
-        <p className="text-[#000000]/60 text-lg md:text-xl mb-16 max-w-3xl">
+        <p className="text-[#322B25]/60 text-lg md:text-xl mb-16 max-w-3xl">
           Get higher accuracy and faster approvals with AI assistance.
         </p>
 
         <Link to="/signup">
-          <button className="bg-[#000000] hover:bg-[#302F2F]/90 text-[#FFFFFF] rounded-[12px] px-6 py-4 text-lg flex items-center gap-2 transition-colors">
+          <button className="bg-[#322B25] hover:bg-[#302F2F]/90 text-[#FFFFFF] rounded-[12px] px-6 py-4 text-lg flex items-center gap-2 transition-colors">
             Try Now <ArrowRight className="h-5 w-5" />
           </button>
         </Link>
 
         {/* Trust Indicators */}
-        <div className="mt-12 flex flex-wrap justify-center gap-28 text-[#000000]/60 max-w-3xl md:max-w-4xl mx-auto px-6 md:px-12">
+        <div className="mt-12 flex flex-wrap justify-center gap-28 text-[#322B25]/60 max-w-3xl md:max-w-4xl mx-auto px-6 md:px-12">
           <div className="flex items-center">
-            <Cpu className="w-5 h-5 text-[#000000]/60 mr-2" />
+            <Cpu className="w-5 h-5 text-[#322B25]/60 mr-2" />
             <span>AI-Powered Accuracy</span>
           </div>
           <div className="flex items-center">
-            <Shield className="w-5 h-5 text-[#000000]/60 mr-2" />
+            <Shield className="w-5 h-5 text-[#322B25]/60 mr-2" />
             <span>Secure & Compliant</span>
           </div>
           <div className="flex items-center">
-            <PhoneCall className="w-5 h-5 text-[#000000]/60 mr-2" />
+            <PhoneCall className="w-5 h-5 text-[#322B25]/60 mr-2" />
             <span>AI-Powered Accuracy</span>
           </div>
         </div>
       </div>
 
       {/* Features Section */}
-      <div className="bg-[#FFFFFF] py-24 px-4">
+      <div className="bg-[#E8E8E8] py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#000000] text-center mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#322B25] text-center mb-6">
             Powerful Features for Your IP Protection
           </h2>
-          <p className="text-[#000000]/60 text-center mb-16 max-w-3xl mx-auto text-lg">
+          <p className="text-[#322B25]/60 text-center mb-16 max-w-3xl mx-auto text-lg">
             Streamline your intellectual property filings with our comprehensive
             suite of tools and AI assistance.
           </p>
@@ -108,7 +108,7 @@ const Landing = () => {
               <div key={index} className="rounded-[12px] bg-[#202020] overflow-hidden shadow-sm">
                 <div className="p-8">
                   {/* Icon container with border */}
-                  <div className="mb-6 w-14 h-14 rounded-[6px] border border-[#6C6C6C]/50 flex items-center justify-center bg-[#000000]">
+                  <div className="mb-6 w-14 h-14 rounded-[6px] border border-[#6C6C6C]/50 flex items-center justify-center bg-[#322B25]">
                     {feature.icon}
                   </div>
 
@@ -168,7 +168,7 @@ const Landing = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start mb-10">
             <div className="flex items-center mb-6 md:mb-0">
-              <img src={footerLogo} alt="Radar Logo" className="h-14 w-auto" />
+                <h3 className='text-[#FFFFFF] text-2xl font-bold'>Radar</h3>
               <span className="text-[#868686] text-sm ml-4">IP Protection Made Simple</span>
             </div>
           </div>

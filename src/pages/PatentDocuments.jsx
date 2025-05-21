@@ -205,7 +205,7 @@ const PatentDocuments = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#1C1C1C] px-4 py-10">
+    <div className="min-h-screen bg-[#E8E8E8] px-4 py-10">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <div className='flex items-center gap-2 mb-6'>
@@ -217,35 +217,35 @@ const PatentDocuments = () => {
             >
               <IoArrowBack className="w-6 h-6" />
             </button>
-            <h1 className="text-2xl font-bold text-[#FFFFFF]">Generated Patent Documents</h1>
+            <h1 className="text-2xl font-bold text-[#000000]">Generated Patent Documents</h1>
           </div>
           
-          <p className="text-[#868686] mt-2">Review and download your patent filing-ready documents</p>
+          <p className="text-[#000000]/60 mt-2">Review and download your patent filing-ready documents</p>
         </div>
 
-        <div className="bg-[#302F2F] rounded-lg border border-[#6C6C6C] overflow-hidden">
+        <div className="bg-[#E8E8E8] rounded-lg border border-[#6C6C6C] overflow-hidden">
           <table className="min-w-full divide-y divide-[#6C6C6C]">
-            <thead className="bg-[#1C1C1C]">
+            <thead className="bg-[#000000]">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Document Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-[#868686] uppercase tracking-wider">Action</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-[#FFFFFF] uppercase tracking-wider">Document Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-[#FFFFFF] uppercase tracking-wider">Type</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-[#FFFFFF] uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-[#FFFFFF] uppercase tracking-wider">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-[#302F2F] divide-y divide-[#6C6C6C]">
+            <tbody className="bg-[#FFFFFF] divide-y divide-[#6C6C6C]">
               {documentList.map((doc) => (
                 <tr key={doc.name}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div>
-                        <div className="text-sm font-medium text-[#FFFFFF]">{doc.name}</div>
+                        <div className="text-sm font-medium text-[#000000]">{doc.name}</div>
                         <div className="text-xs text-[#868686] font-medium">Required</div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-[#FFFFFF]">{doc.type}</div>
+                    <div className="text-sm text-[#000000]">{doc.type}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {getStatusBadge(doc.status)}
@@ -253,7 +253,7 @@ const PatentDocuments = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button
                       onClick={() => handleDownloadPDF(doc.name, doc.content)}
-                      className="text-[#FFFFFF] hover:text-[#868686]"
+                      className="text-[#000000] hover:text-[#868686]"
                     >
                       Download PDF
                     </button>
@@ -265,12 +265,12 @@ const PatentDocuments = () => {
         </div>
 
         <div className="mt-8 flex justify-between">
-          <button className="px-4 py-2 border border-[#6C6C6C] text-[#FFFFFF] rounded-lg hover:bg-[#302F2F] transition-colors">
+          <button className="px-4 py-2 bg-[#000000] border border-[#000000]/5 border-[1.5px] text-[#FFFFFF] rounded-[12px] hover:bg-[#302F2F] transition-colors">
             Regenerate
           </button>
           <button
             onClick={handleValidate}
-            className="px-4 py-2 bg-[#302F2F] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors flex items-center gap-2 border border-[#6C6C6C]"
+            className="px-4 py-2 bg-[#000000] border border-[#000000]/5 border-[1.5px] text-[#FFFFFF] rounded-[12px] hover:bg-[#302F2F] transition-colors flex items-center gap-2 "
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />

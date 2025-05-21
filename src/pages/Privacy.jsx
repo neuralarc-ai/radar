@@ -12,17 +12,17 @@ const Privacy = () => {
       <nav className="flex items-center justify-between py-6 px-4 max-w-7xl mx-auto">
         <div className="flex items-center">
           <Link to="/">
-            <img src={logoHorizontal} alt="Radar Logo" className="h-14 w-auto" />
+            <h3 className='text-[#000000] text-2xl font-bold'>Radar</h3>
           </Link>
         </div>
         <div className="flex gap-4">
-          <Link to="/signin">
-            <button className="border border-[#C67B49] text-[#C67B49] hover:bg-[#C67B49]/5 px-4 py-2 rounded-lg font-medium transition-colors">
+        <Link to="/signin">
+            <button className="border border-[#000000] text-[#000000] hover:bg-[#000000]/5 px-4 py-2 rounded-lg font-medium transition-colors">
               Sign In
             </button>
           </Link>
           <Link to="/signup">
-            <button className="bg-[#C67B49] hover:bg-[#C67B49]/90 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors">
+            <button className="bg-[#000000] hover:bg-[#202020] text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors">
               Get Started
             </button>
           </Link>
@@ -199,11 +199,11 @@ const Privacy = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-[#3a2e28] rounded-t-3xl py-12 px-4 relative">
+      <footer className="bg-[#000000] rounded-t-3xl py-12 px-4 relative">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start mb-10">
             <div className="flex items-center mb-6 md:mb-0">
-              <img src={footerLogo} alt="Radar Logo" className="h-14 w-auto" />
+              <h3 className='text-[#FFFFFF] text-2xl font-bold'>Radar</h3>
               <span className="text-[#AFAFAF] text-sm ml-4">IP Protection Made Simple</span>
             </div>
           </div>
