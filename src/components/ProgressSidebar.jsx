@@ -165,10 +165,10 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
                   {/* Step indicator */}
                   <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center relative z-10 ${
                     isCompleted 
-                      ? 'bg-[#302F2F] text-[#FFFFFF]' 
+                      ? 'bg-[#000000] text-[#FFFFFF]' 
                       : isActive 
-                        ? 'bg-[#302F2F] text-[#FFFFFF] border-2 border-[#302F2F]' 
-                        : 'bg-[#302F2F] text-[#FFFFFF]'
+                        ? 'bg-[#000000] text-[#FFFFFF] border-2 border-[#302F2F]' 
+                        : 'bg-[#000000] text-[#FFFFFF]'
                   }`}>
                     {isCompleted ? (
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

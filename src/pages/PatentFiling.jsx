@@ -75,7 +75,7 @@ const AISuggestionBox = ({ suggestions }) => (
     <ul className="space-y-2">
       {suggestions.map((suggestion, index) => (
         <li key={index} className="text-sm text-[#000000] flex items-start gap-2">
-          <span className="text-[#FFFFFF] mt-1">•</span>
+          <span className="text-[#000000] mt-1">•</span>
           {suggestion}
         </li>
       ))}
@@ -322,7 +322,7 @@ const PatentFiling = () => {
         <div className='flex items-center gap-4 mb-6'> 
           <button 
             type="button"
-            className="p-2 text-[#000000] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#000000] border border-[#6C6C6C]"
+            className="p-2 text-[#868686] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#000000]/5 border-[1.5px]"
             onClick={() => navigate(-1)}
             aria-label="Go back"
           >
@@ -995,7 +995,7 @@ const PatentFiling = () => {
             }
           }}
           className={`px-6 py-2 text-[#FFFFFF] rounded-lg transition-colors ${
-            isSubmitting ? 'bg-[#302F2F]/50' : 'bg-[#302F2F] hover:bg-[#6C6C6C]'
+            isSubmitting ? 'bg-[#000000]/50' : 'bg-[#000000] hover:bg-[#6C6C6C]'
           }`}
           disabled={isSubmitting}
         >

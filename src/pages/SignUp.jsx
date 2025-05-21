@@ -56,11 +56,11 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-[#1C1C1C] text-[#FFFFFF] px-4">
+    <div className="min-h-screen flex flex-col items-center bg-[#E8E8E8] text-[#000000] px-4">
       <div className="w-full flex-1 flex flex-col items-center justify-center py-8">
-        <img src={logoStacked} alt="Radar Logo" className="h-14 w-auto mb-8" />
-        <div className="w-full max-w-md bg-[#302F2F] rounded-2xl shadow-xl p-8 border border-[#6C6C6C]/20 shadow-[0_0_10px_#FFFFFF]">
-          <h1 className="text-2xl font-bold mb-6 text-center text-[#FFFFFF]">Create Your Radar Account</h1>
+        <h1 className="text-4xl font-bold mb-6 text-center text-[#000000]">Radar</h1>
+        <div className="w-full max-w-md bg-[#FFFFFF] rounded-2xl shadow-xl p-8 border border-[#6C6C6C]/20 shadow-[0_0_10px_#FFFFFF]">
+          <h1 className="text-2xl font-bold mb-6 text-center text-[#000000]">Create Your Radar Account</h1>
           {success ? (
             <div className="text-green-500 text-center mb-4">
               Account created! Please check your email to confirm your account before logging in.
@@ -69,20 +69,20 @@ const SignUp = () => {
             <>
               <form className="space-y-5" onSubmit={handleSubmit}>
                 <div>
-                  <label className="block text-sm font-medium mb-1 text-[#868686]">Full Name</label>
-                  <input name="name" type="text" className="w-full px-4 py-3 rounded-lg bg-[#1C1C1C] border border-[#6C6C6C]/30 text-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/60 transition" placeholder="Your Name" value={form.name} onChange={handleChange} />
+                  <label className="block text-sm font-medium mb-1 text-[#000000]">Full Name</label>
+                  <input name="name" type="text" className="w-full px-4 py-3 rounded-lg bg-[#ffffff] border border-[#000000]/5 text-[#000000] focus:outline-none focus:ring-2 focus:ring-[#000000]/20 transition" placeholder="Your Name" value={form.name} onChange={handleChange} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1 text-[#868686]">Email</label>
-                  <input name="email" type="email" className="w-full px-4 py-3 rounded-lg bg-[#1C1C1C] border border-[#6C6C6C]/30 text-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/60 transition" placeholder="you@email.com" value={form.email} onChange={handleChange} />
+                  <label className="block text-sm font-medium mb-1 text-[#000000]">Email</label>
+                  <input name="email" type="email" className="w-full px-4 py-3 rounded-lg bg-[#ffffff] border border-[#000000]/5 text-[#000000] focus:outline-none focus:ring-2 focus:ring-[#000000]/20 transition" placeholder="you@email.com" value={form.email} onChange={handleChange} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1 text-[#868686]">Password</label>
+                  <label className="block text-sm font-medium mb-1 text-[#000000]">Password</label>
                   <div className="relative">
                     <input
                       name="password"
                       type={showPassword ? 'text' : 'password'}
-                      className="w-full px-4 py-3 pr-12 rounded-lg bg-[#1C1C1C] border border-[#6C6C6C]/30 text-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/60 transition"
+                      className="w-full px-4 py-3 pr-12 rounded-lg bg-[#ffffff] border border-[#000000]/5 text-[#000000] focus:outline-none focus:ring-2 focus:ring-[#000000]/20 transition"
                       placeholder="••••••••"
                       value={form.password}
                       onChange={handleChange}
@@ -90,7 +90,7 @@ const SignUp = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword((v) => !v)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#868686]"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#000000]"
                       tabIndex={-1}
                       aria-label={showPassword ? 'Hide password' : 'Show password'}
                     >
@@ -110,12 +110,12 @@ const SignUp = () => {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1 text-[#868686]">Confirm Password</label>
+                  <label className="block text-sm font-medium mb-1 text-[#000000]">Confirm Password</label>
                   <div className="relative">
                     <input
                       name="confirm"
                       type={showConfirm ? 'text' : 'password'}
-                      className="w-full px-4 py-3 pr-12 rounded-lg bg-[#1C1C1C] border border-[#6C6C6C]/30 text-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/60 transition"
+                      className="w-full px-4 py-3 pr-12 rounded-lg bg-[#ffffff] border border-[#000000]/5 text-[#000000] focus:outline-none focus:ring-2 focus:ring-[#000000]/20 transition"
                       placeholder="••••••••"
                       value={form.confirm}
                       onChange={handleChange}
@@ -123,7 +123,7 @@ const SignUp = () => {
                     <button
                       type="button"
                       onClick={() => setShowConfirm((v) => !v)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#868686]"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#000000]"
                       tabIndex={-1}
                       aria-label={showConfirm ? 'Hide password' : 'Show password'}
                     >
@@ -143,7 +143,7 @@ const SignUp = () => {
                   </div>
                 </div>
                 {error && <div className="text-red-500 text-sm text-center">{error}</div>}
-                <button type="submit" disabled={loading} className="w-full py-3 rounded-lg font-semibold bg-[#6C6C6C] text-[#FFFFFF] shadow hover:shadow-[#6C6C6C]/30 transition-all duration-200 mt-2 disabled:opacity-60">{loading ? 'Creating Account...' : 'Create Account'}</button>
+                <button type="submit" disabled={loading} className="w-full py-3 rounded-lg font-semibold bg-[#000000] text-[#FFFFFF] hover:bg-[#202020]/90  transition-all duration-200 mt-2 disabled:opacity-60">{loading ? 'Creating Account...' : 'Create Account'}</button>
               </form>
               <div className="my-6 flex items-center gap-2">
                 <div className="flex-1 h-px bg-[#6C6C6C]/30" />
@@ -153,7 +153,7 @@ const SignUp = () => {
               <div className="flex justify-center mb-4">
                 <button
                   onClick={() => handleOAuth('google')}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-[#1C1C1C] border border-[#6C6C6C]/40 text-[#FFFFFF] font-semibold shadow hover:bg-[#6C6C6C]/10 hover:text-[#6C6C6C] hover:border-[#6C6C6C] transition-all duration-200 text-base"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-[#000000] border border-[#6C6C6C]/40 text-[#FFFFFF] font-semibold shadow hover:bg-[#202020]/90  hover:border border-[#6C6C6C] transition-all duration-200 text-base"
                 >
                   <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' className="w-5 h-5"><g><path fill="#4285F4" d="M24 9.5c3.54 0 6.7 1.22 9.19 3.23l6.87-6.87C35.64 2.39 30.18 0 24 0 14.82 0 6.73 5.48 2.69 13.44l8.01 6.22C12.33 13.13 17.68 9.5 24 9.5z"/><path fill="#34A853" d="M46.1 24.55c0-1.64-.15-3.22-.42-4.74H24v9.01h12.42c-.54 2.9-2.18 5.36-4.65 7.01l7.19 5.6C43.98 37.13 46.1 31.36 46.1 24.55z"/><path fill="#FBBC05" d="M10.7 28.66c-1.01-2.99-1.01-6.23 0-9.22l-8.01-6.22C.68 17.82 0 20.81 0 24c0 3.19.68 6.18 1.89 8.78l8.81-6.89z"/><path fill="#EA4335" d="M24 48c6.18 0 11.36-2.05 15.15-5.57l-7.19-5.6c-2.01 1.35-4.59 2.15-7.96 2.15-6.32 0-11.67-3.63-13.3-8.66l-8.81 6.89C6.73 42.52 14.82 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></g></svg>
                   <span>Sign up with Google</span>

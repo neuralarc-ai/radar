@@ -13,15 +13,15 @@ export function DatePickerShadcn({ value, onChange, placeholder = "YYYY-MM-DD", 
       <PopoverTrigger asChild>
         <button
           type="button"
-          className={`w-full flex items-center justify-between px-4 py-3 rounded-lg border border-[#6C6C6C] bg-[#1C1C1C] text-left text-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#302F2F] ${className}`}
+          className={`w-full flex items-center justify-between px-4 py-3 rounded-lg border border-[#000000]/5 border-[1.5px] bg-[#ffffff] text-left text-[#000000] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 ${className}`}
         >
-          <span className={dateValue ? "" : "text-[#B0B0B0]"}>
+          <span className={dateValue ? "" : "text-[#868686]"}>
             {dateValue ? format(dateValue, "yyyy-MM-dd") : placeholder}
           </span>
-          <CalendarIcon className="w-5 h-5 ml-2 text-[#B0B0B0]" />
+          <CalendarIcon className="w-5 h-5 ml-2 text-[#868686]" />
         </button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0 bg-[#1C1C1C] border-[#6C6C6C] text-[#FFFFFF]">
+      <PopoverContent className="w-auto p-0 bg-[#ffffff] border-[#000000]/5 border-[1.5px] text-[#000000]">
         <Calendar
           mode="single"
           selected={dateValue}
@@ -30,7 +30,7 @@ export function DatePickerShadcn({ value, onChange, placeholder = "YYYY-MM-DD", 
             if (date) onChange(format(date, "yyyy-MM-dd"));
           }}
           initialFocus
-          className="bg-[#1C1C1C] text-[#FFFFFF] border-none"
+          className="bg-[#ffffff] text-[#000000] border-none"
         />
       </PopoverContent>
     </Popover>

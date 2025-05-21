@@ -404,7 +404,7 @@ const TrademarkFiling = () => {
                 <button
                   type="button"
                   className={`w-full px-4 py-2 rounded-lg border-2 transition-all duration-200 flex items-center gap-2
-                    ${isActive ? 'bg-[#E8E8E8] text-[#000000] border-[#FFFFFF]/5 border-[1.5px] shadow-lg' : isCompleted ? 'bg-[#E8E8E8]/90 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' :'bg-[#E8E8E8]/90 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' }
+                    ${isActive ? 'bg-[#E8E8E8] text-[#000000] border-[#FFFFFF]/5 border-[1.5px] shadow-lg' : isCompleted ? 'bg-[#E8E8E8]/90 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' :'bg-[#000000] text-[#FFFFFF] border-[#6C6C6C]/14' }
                   `}
                   onClick={() => i <= step ? setStep(i) : null}
                   disabled={i > step}
@@ -613,7 +613,7 @@ const TrademarkFiling = () => {
                 />
                 <button
                   type="button"
-                  className="px-3 py-3 ml-4 rounded bg-[#302F2F] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#000000] transition-all flex items-center gap-1"
+                  className="px-3 py-3 ml-4 rounded bg-[#000000] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#000000] transition-all flex items-center gap-1"
                   onClick={() => handleAISuggest('businessDescription')}
                   disabled={aiLoading === 'businessDescription'}
                 >
@@ -634,7 +634,7 @@ const TrademarkFiling = () => {
                 />
                 <button
                   type="button"
-                  className="px-3 py-3 ml-4 rounded bg-[#302F2F] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
+                  className="px-3 py-3 ml-4 rounded bg-[#000000] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
                   onClick={() => handleAISuggest('goodsServices')}
                   disabled={aiLoading === 'goodsServices'}
                 >
@@ -645,11 +645,11 @@ const TrademarkFiling = () => {
 
               {aiClassRecommendation && (
                 <div className="space-y-4 p-4 bg-[#FFFFFF]/10 rounded-lg">
-                  <p className="text-sm text-[#FFFFFF]/80">{aiClassRecommendation.summary}</p>
+                  <p className="text-sm text-[#000000]/80">{aiClassRecommendation.summary}</p>
 
                   <div className="space-y-2">
                     {aiClassRecommendation.classes.map((classInfo) => (
-                      <div key={classInfo.number} className="flex items-start text-[#FFFFFF] gap-2">
+                      <div key={classInfo.number} className="flex items-start text-[#000000] gap-2">
                         <input
                           type="checkbox"
                           id={`class-${classInfo.number}`}
@@ -659,7 +659,7 @@ const TrademarkFiling = () => {
                         />
                         <label htmlFor={`class-${classInfo.number}`} className="flex-1">
                           <div className="font-medium">Class {classInfo.number}</div>
-                          <div className="text-sm text-[#FFFFFF]/40">{classInfo.explanation}</div>
+                          <div className="text-sm text-[#000000]/40">{classInfo.explanation}</div>
                           <div className="text-sm mt-1">{classInfo.description}</div>
                         </label>
                       </div>
@@ -724,7 +724,7 @@ const TrademarkFiling = () => {
                     name="markUsage"
                     value={form.markUsage}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border  border-[#000000]/5 border-[1.5px] bg-[#FFFFFF]  focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                    className="w-full px-4 py-3 rounded-lg border  border-[#000000]/5 border-[1.5px] bg-[#FFFFFF]  focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#000000]"
                     placeholder="Describe how the mark is used in commerce"
                     required
                   />
@@ -814,21 +814,21 @@ const TrademarkFiling = () => {
               </div>
             )}
             <div>
-              <label className="block font-medium mb-1 text-[#FFFFFF]">Additional Notes</label>
-              <textarea name="additionalNotes" value={form.additionalNotes} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]" placeholder="Any special instructions, background info, etc." />
+              <label className="block font-medium mb-1 text-[#000000]">Additional Notes</label>
+              <textarea name="additionalNotes" value={form.additionalNotes} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#000000]/5 border-[1.5px] bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#000000]" placeholder="Any special instructions, background info, etc." />
             </div>
             <div className="mb-4 p-4 bg-[#302F2F]/10 rounded">
-              <p className="text-[#FFFFFF]/70 text-sm">
+              <p className="text-[#000000]/70 text-sm">
                 <strong>Declaration:</strong> "I declare that all statements made of my own knowledge are true and that all statements made on information and belief are believed to be true. I understand that willful false statements may result in penalties and jeopardize the validity of the application or any resulting registration."
               </p>
             </div>
             <div className="flex items-center gap-2 mb-4">
               <input name="declaration" type="checkbox" checked={form.declaration} onChange={handleChange} required />
-              <label className="font-medium text-[#FFFFFF]">I agree to the above declaration</label>
+              <label className="font-medium text-[#000000]">I agree to the above declaration</label>
             </div>
             <div>
-              <label className="block font-medium mb-1 text-[#FFFFFF]">Digital Signature <span className="text-[#302F2F]">*</span></label>
-              <input name="signature" value={form.signature} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]" placeholder="Type your full name as signature" required />
+              <label className="block font-medium mb-1 text-[#000000]">Digital Signature <span className="text-[#302F2F]">*</span></label>
+              <input name="signature" value={form.signature} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#000000]/5 border-[1.5px] bg-[#ffffff] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#000000]" placeholder="Type your full name as signature" required />
             </div>
           </>
         )}
@@ -846,7 +846,7 @@ const TrademarkFiling = () => {
             type="button"
             onClick={prevStep}
             disabled={step === 0 || isSubmitting}
-            className="px-6 py-2 rounded-lg font-semibold bg-[#1C1C1C] border border-[#6C6C6C]/20 text-[#868686] hover:bg-[#302F2F]/10 transition-all disabled:opacity-50"
+            className="px-6 py-2 rounded-lg font-semibold bg-[#1C1C1C] border border-[#6C6C6C]/20 text-[#868686] hover:bg-[#E8E8E8]/10 transition-all disabled:opacity-50"
           >
             Back
           </button>
@@ -854,7 +854,7 @@ const TrademarkFiling = () => {
             <button
               type="button"
               onClick={handleNext}
-              className="px-6 py-2 rounded-lg font-semibold bg-[#302F2F] text-[#FFFFFF] shadow hover:shadow-[#302F2F]/30 transition-all"
+              className="px-6 py-2 rounded-lg font-semibold bg-[#000000] text-[#FFFFFF] shadow hover:shadow-[#302F2F]/30 transition-all"
             >
               Next
             </button>
@@ -862,7 +862,7 @@ const TrademarkFiling = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-2 rounded-lg font-semibold bg-[#302F2F] text-[#FFFFFF] shadow hover:shadow-[#302F2F]/30 transition-all disabled:opacity-70"
+              className="px-6 py-2 rounded-lg font-semibold bg-[#000000] text-[#FFFFFF] shadow hover:shadow-[#E8E8E8]/40 transition-all disabled:opacity-70"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Filing'}
             </button>

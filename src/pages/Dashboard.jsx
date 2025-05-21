@@ -100,7 +100,7 @@ const Dashboard = () => {
               <ul className="space-y-2 mb-6">
                 {type.features.map((feature, index) => (
                   <li key={index} className="flex items-center gap-3 text-sm text-[#000000]">
-                    <svg className="w-2 h-2 text-[#6C6C6C] flex-shrink-0" fill="currentColor" viewBox="0 0 8 8">
+                    <svg className="w-2 h-2 text-[#000000] flex-shrink-0" fill="currentColor" viewBox="0 0 8 8">
                       <circle cx="4" cy="4" r="4" />
                     </svg>
                     <span>{feature}</span>

@@ -46,29 +46,29 @@ export function Calendar({
   }
 
   return (
-    <div className={`p-4 rounded-lg bg-[#1C1C1C] text-[#FFFFFF] ${className}`}>
+    <div className={`p-4 rounded-lg bg-[#ffffff] text-[#000000] ${className}`}>
       <div className="flex items-center justify-between mb-2">
         <button
           type="button"
           onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
-          className="p-1 rounded hover:bg-[#302F2F]"
+          className="p-1 rounded hover:bg-[#E8E8E8]"
         >
-          <ChevronLeftIcon className="w-5 h-5 text-[#B0B0B0]" />
+          <ChevronLeftIcon className="w-5 h-5 text-[#868686]" />
         </button>
-        <span className="font-semibold text-lg">
+        <span className="font-semibold text-lg text-[#000000]">
           {format(currentMonth, "MMMM yyyy")}
         </span>
         <button
           type="button"
           onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-          className="p-1 rounded hover:bg-[#302F2F]"
+          className="p-1 rounded hover:bg-[#E8E8E8]"
         >
-          <ChevronRightIcon className="w-5 h-5 text-[#B0B0B0]" />
+          <ChevronRightIcon className="w-5 h-5 text-[#868686]" />
         </button>
       </div>
       <div className="grid grid-cols-7 mb-1">
         {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
-          <div key={d} className="text-xs font-semibold text-[#B0B0B0] text-center">
+          <div key={d} className="text-xs font-semibold text-[#868686] text-center">
             {d}
           </div>
         ))}
@@ -86,12 +86,12 @@ export function Calendar({
                 className={classNames(
                   "w-9 h-9 rounded-lg flex items-center justify-center text-sm font-medium transition-colors",
                   isSelected
-                    ? "bg-[#302F2F] text-[#FFFFFF]"
+                    ? "bg-[#E8E8E8] text-[#000000]"
                     : isToday(day)
-                    ? "border border-[#302F2F] bg-[#1C1C1C] text-[#FFFFFF]"
+                    ? "border border-[#000000]/5 bg-[#ffffff] text-[#000000]"
                     : isCurrentMonth
-                    ? "text-[#FFFFFF] hover:bg-[#6C6C6C]"
-                    : "text-[#6C6C6C]",
+                    ? "text-[#000000] hover:bg-[#E8E8E8]"
+                    : "text-[#868686]",
                   !isCurrentMonth && "opacity-50"
                 )}
                 tabIndex={isSelected ? 0 : -1}
