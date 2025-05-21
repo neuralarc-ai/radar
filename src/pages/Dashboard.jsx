@@ -15,7 +15,7 @@ const filingTypes = [
       'International PCT Filings'
     ],
     icon: (
-      <svg className="w-12 text-[#FFFFFF] h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <svg className="w-12 text-[#000000] h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
           d="M12 15l-3-3m0 0l3-3m-3 3h12m-2-3v6m5-4v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h7" />
         <circle cx="18" cy="6" r="3" strokeWidth="2" />
@@ -34,7 +34,7 @@ const filingTypes = [
       'International Madrid Protocol'
     ],
     icon: (
-      <svg className="w-12 text-[#FFFFFF] h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <svg className="w-12 text-[#000000] h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
           d="M7 7h10M7 11h10M7 15h6" />
         <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
@@ -56,7 +56,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#1C1C1C] relative overflow-hidden">
+    <div className="min-h-screen bg-[#E8E8E8] relative overflow-hidden">
       {/* Logo */}
       <div className="w-full flex justify-center pt-14">
         {/* <img src={lawbitLogo} alt="Radar Logo" className="h-11 w-auto" /> */}
@@ -66,10 +66,10 @@ const Dashboard = () => {
       <div className="relative container mx-auto px-6 py-12 md:py-16 min-h-[calc(100vh-174px)]">
         {/* Header section */}
         <div className="text-center mb-8 md:mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#FFFFFF] mb-3">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#000000] mb-3">
             Welcome to Radar
           </h1>
-          <p className="text-lg md:text-xl text-[#868686] max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-[#000000] max-w-2xl mx-auto">
             Your AI-powered assistant for intellectual property filings
           </p>
         </div>
@@ -79,15 +79,15 @@ const Dashboard = () => {
             {filingTypes.map((type) => (
             <div
               key={type.key}
-              className="group bg-[#302F2F] rounded-2xl p-6 shadow-[#FFFFFF] transition-all duration-300"
+              className="group bg-[#FFFFFF] rounded-2xl p-6 shadow-[#FFFFFF] transition-all duration-300"
             >
               {/* Card header */}
               <div className="mb-2">
-                <h2 className="text-xl font-semibold text-[#FFFFFF]">{type.label}</h2>
+                <h2 className="text-xl font-semibold text-[#000000]">{type.label}</h2>
               </div>
 
               {/* Description */}
-              <p className="text-sm text-[#868686] mb-6">{type.desc}</p>
+              <p className="text-sm text-[#] mb-6">{type.desc}</p>
 
               {/* Icon */}
               <div className="flex justify-center mb-6">
@@ -99,7 +99,7 @@ const Dashboard = () => {
               {/* Features list */}
               <ul className="space-y-2 mb-6">
                 {type.features.map((feature, index) => (
-                  <li key={index} className="flex items-center gap-3 text-sm text-[#868686]">
+                  <li key={index} className="flex items-center gap-3 text-sm text-[#000000]">
                     <svg className="w-2 h-2 text-[#6C6C6C] flex-shrink-0" fill="currentColor" viewBox="0 0 8 8">
                       <circle cx="4" cy="4" r="4" />
                     </svg>
@@ -111,7 +111,7 @@ const Dashboard = () => {
               {/* Action button */}
               <button
                 onClick={() => navigate(`/dashboard/${type.key}`)}
-                className="w-full py-2 px-4 text-sm rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#6C6C6C] focus:ring-offset-2 bg-[#6C6C6C] text-[#FFFFFF] hover:bg-[#868686]"
+                className="w-full py-2 px-4 text-sm rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#6C6C6C] focus:ring-offset-2 bg-[#000000] text-[#FFFFFF] hover:bg-[#868686]"
               >
                 Start {type.label} Process
               </button>

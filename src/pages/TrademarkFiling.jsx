@@ -362,27 +362,27 @@ const TrademarkFiling = () => {
   const progressPercent = ((step + 1) / steps.length) * 100;
 
   return (
-    <div className="w-[88%] mx-auto p-8 outline outline-1 outline-[#6C6C6C] rounded-lg bg-[#1C1C1C]">
+    <div className="w-[88%] mx-auto p-8 outline outline-1 outline-[#6C6C6C]/20  rounded-lg bg-[#ffffff]">
       {/* Progress Bar Section */}
       <div className="mb-8">
         <div className='flex items-center gap-4 mb-6'>
           <button
             type="button"
-            className="p-2 text-[#868686] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#6C6C6C]"
+            className="p-2 text-[#868686] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#000000]/5 border-[1.5px]"
             onClick={() => navigate(-1)}
             aria-label="Go back"
           >
             <IoArrowBack className="w-6 h-6" />
           </button>
-          <h1 className="text-2xl font-bold text-[#FFFFFF]">Trademark Application Wizard</h1>
+          <h1 className="text-2xl font-bold text-[#000000]">Trademark Application Wizard</h1>
         </div>
-        <div className="flex justify-between text-sm text-[#FFFFFF] mb-2">
+        <div className="flex justify-between text-sm text-[#000000] mb-2">
           <span>Completion Progress</span>
           <span>In Progress</span>
         </div>
         <div className="w-full bg-[#6C6C6C]/40 rounded-full h-2">
           <div
-            className="bg-[#FFFFFF] h-2 rounded-full transition-all duration-500"
+            className="bg-[#000000] h-2 rounded-full transition-all duration-500"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
@@ -404,7 +404,7 @@ const TrademarkFiling = () => {
                 <button
                   type="button"
                   className={`w-full px-4 py-2 rounded-lg border-2 transition-all duration-200 flex items-center gap-2
-                    ${isActive ? 'bg-[#302F2F] text-[#FFFFFF] border-[#302F2F] shadow-lg' : isCompleted ? 'bg-[#302F2F]/90 text-[#FFFFFF] border-[#302F2F]/80' : 'bg-[#1C1C1C] text-[#868686] border-[#6C6C6C]/20'}
+                    ${isActive ? 'bg-[#E8E8E8] text-[#000000] border-[#FFFFFF]/5 border-[1.5px] shadow-lg' : isCompleted ? 'bg-[#E8E8E8]/90 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' :'bg-[#E8E8E8]/90 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' }
                   `}
                   onClick={() => i <= step ? setStep(i) : null}
                   disabled={i > step}
@@ -416,7 +416,7 @@ const TrademarkFiling = () => {
               </div>
               {/* Render connector line except after the last step */}
               {i < steps.length - 1 && (
-                <div className={`flex-1 h-0.5 mx-2 transition-all duration-300 ${step > i ? 'bg-[#302F2F]' : 'bg-[#6C6C6C]/20'}`}></div>
+                <div className={`flex-1 h-0.5 mx-2 transition-all duration-300 ${step > i ? 'bg-[#000000]' : 'bg-[#6C6C6C]/20'}`}></div>
               )}
             </React.Fragment>
           );
@@ -428,7 +428,7 @@ const TrademarkFiling = () => {
         {step === 0 && (
           <>
             <div className="mb-6">
-              <label className="block text-sm font-medium text-[#FFFFFF] mb-1">
+              <label className="block text-sm font-medium text-[#0000000] mb-1">
                 Trademark Name *
               </label>
               <input
@@ -436,13 +436,13 @@ const TrademarkFiling = () => {
                 name="trademarkName"
                 value={form.trademarkName}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-[#6C6C6C] rounded-lg focus:ring-2 focus:ring-[#302F2F] focus:border-[#302F2F] bg-[#1C1C1C] text-[#FFFFFF]"
+                className="w-full px-4 py-2 border 'border-[#000000]/5 border-[1.5px]' rounded-lg bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#000000 ] text-base h-10` text-[#000000]"
                 placeholder="Enter your trademark name"
                 required
               />
             </div>
             <div>
-              <label className="block font-medium mb-1 text-[#FFFFFF]">Mark Type <span className="text-[#302F2F]">*</span></label>
+              <label className="block font-medium mb-1 text-[#000000]">Mark Type <span className="text-[#302F2F]">*</span></label>
               <div className="space-y-2">
                 {markTypes.map((type) => (
                   <label key={type} className="flex items-center space-x-2">
@@ -465,7 +465,7 @@ const TrademarkFiling = () => {
             {['Design Mark (logo or stylized text)', 'Color Mark'].includes(form.markType) && (
               <>
                 <div className="mb-4">
-                  <label className="block font-medium mb-6 text-[#FFFFFF]">Mark Image Upload <span className="text-[#302F2F]">*</span></label>
+                  <label className="block font-medium mb-6 text-[#000000]">Mark Image Upload <span className="text-[#302F2F]">*</span></label>
                   <div className={customStyles.fileUpload.container}>
                     <input
                       name="logo"
@@ -484,21 +484,21 @@ const TrademarkFiling = () => {
                     </label>
                   </div>
                   {form.logo && (
-                    <p className="text-sm text-[#302F2F]/80 mt-2">Selected: {form.logo.name}</p>
+                    <p className="text-sm text-[#FFFFFF]/80 mt-2">Selected: {form.logo.name}</p>
                   )}
                   {validationErrors.logo && (
                     <p className="text-red-500 text-xs mt-1">{validationErrors.logo}</p>
                   )}
-                  <p className="text-xs text-[#868686]/95 mt-1">Upload your mark image (JPEG, PNG, SVG). Max 10MB.</p>
+                  <p className="text-xs text-[#000000]/95 mt-1">Upload your mark image (JPEG, PNG, SVG). Max 10MB.</p>
                 </div>
                 <div>
-                  <label className="block font-medium mb-1 text-[#FFFFFF]">Mark Description <span className="text-[#302F2F]">*</span></label>
+                  <label className="block font-medium mb-1 text-[#000000]">Mark Description <span className="text-[#302F2F]">*</span></label>
                   <div className="flex gap-2 items-center">
                     <textarea
                       name="logoDescription"
                       value={form.logoDescription}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                      className="w-full px-4 py-3 rounded-lg border border-[#000000]/5 border-[1.5px] bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
                       placeholder="Describe mark elements (color, shape, stylization)"
                     />
                   </div>
@@ -509,11 +509,11 @@ const TrademarkFiling = () => {
               </>
             )}
             <div>
-              <label className="block font-medium mb-1 text-[#FFFFFF]">Owner Name <span className="text-[#302F2F]">*</span></label>
-              <input name="ownerName" value={form.ownerName} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]" placeholder="Full legal name" required />
+              <label className="block font-medium mb-1 text-[#000000]">Owner Name <span className="text-[#000000]">*</span></label>
+              <input name="ownerName" value={form.ownerName} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#000000]/5 border-[] bg-[#ffffff] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#000000]" placeholder="Full legal name" required />
             </div>
             <div>
-              <label className="block font-medium mb-1 text-[#FFFFFF]">Owner Type <span className="text-[#302F2F]">*</span></label>
+              <label className="block font-medium mb-1 text-[#000000]">Owner Type <span className="text-[#000000]">*</span></label>
               <CustomSelect
                 name="ownerType"
                 value={form.ownerType}
@@ -525,7 +525,8 @@ const TrademarkFiling = () => {
               />
             </div>
             <div>
-              <label className="block font-medium mb-1 text-[#FFFFFF]">Owner Address <span className="text-[#302F2F]">*</span></label>
+              <label className="block font-medium mb-1 text-[#000000]">Owner Address <span className="text-[#302F2F]">*</span></label>
+              
               <AddressInput
                 name="ownerAddress"
                 value={form.ownerAddress}
@@ -534,7 +535,7 @@ const TrademarkFiling = () => {
                 placeholder="Full mailing address"
               />
             </div>
-            <div className="border-t border-[#6C6C6C]/10 pt-6 mt-6">
+            <div className="border-t border-[#000000]/10 pt-6 mt-6">
               <div className="flex items-center gap-2 mb-4">
                 <input
                   name="hasAttorney"
@@ -542,39 +543,39 @@ const TrademarkFiling = () => {
                   checked={form.hasAttorney}
                   onChange={handleChange}
                 />
-                <label className="font-medium text-[#868686]">I have an attorney representing me</label>
+                <label className="font-medium text-[#000000]">I have an attorney representing me</label>
               </div>
 
               {form.hasAttorney && (
                 <div className="space-y-4 pl-6 border-l-2 border-[#FFFFFF]/40">
                   <div>
-                    <label className="block font-medium mb-1 text-[#FFFFFF]">Attorney Name</label>
+                    <label className="block font-medium mb-1 text-[#000000]">Attorney Name</label>
                     <input
                       name="attorneyName"
                       value={form.attorneyName}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                      className="w-full px-4 py-3 rounded-lg border border-[#000000]/5 border-[1.5px] bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#000000]"
                       placeholder="Attorney's full name"
                     />
                   </div>
                   <div>
-                    <label className="block font-medium mb-1 text-[#FFFFFF]">Attorney Address</label>
+                    <label className="block font-medium mb-1 text-[#000000]">Attorney Address</label>
                     <input
                       name="attorneyAddress"
                       value={form.attorneyAddress}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                      className="w-full px-4 py-3 rounded-lg border border-[#000000]/5 border-[1.5px] bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#000000]"
                       placeholder="Attorney's address"
                     />
                   </div>
                   <div>
-                    <label className="block font-medium mb-1 text-[#FFFFFF]">Attorney Email</label>
+                    <label className="block font-medium mb-1 text-[#000000]">Attorney Email</label>
                     <input
                       name="attorneyEmail"
                       type="email"
                       value={form.attorneyEmail}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                      className="w-full px-4 py-3 rounded-lg border border-[#000000]/5 border-[1.5px] bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#000000]"
                       placeholder="Attorney's email address"
                     />
                   </div>
@@ -588,7 +589,7 @@ const TrademarkFiling = () => {
         {step === 1 && (
           <>
             <div>
-              <label className="block font-medium mb-1 text-[#FFFFFF]">Filing Basis <span className="text-[#302F2F]">*</span></label>
+              <label className="block font-medium mb-1 text-[#000000]">Filing Basis <span className="text-[#302F2F]">*</span></label>
               <CustomSelect
                 name="filingBasis"
                 value={form.filingBasis}
@@ -600,19 +601,19 @@ const TrademarkFiling = () => {
               />
             </div>
             <div>
-              <label className="block font-medium mb-1 text-[#FFFFFF]">Business Description <span className="text-[#302F2F]">*</span></label>
+              <label className="block font-medium mb-1 text-[#000000]">Business Description <span className="text-[#302F2F]">*</span></label>
               <div className="flex gap-2 items-center">
                 <textarea
                   name="businessDescription"
                   value={form.businessDescription}
                   onChange={handleChange}
-                  className="w-[80%] px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                  className="w-[80%] px-4 py-3 rounded-lg border  border-[#000000]/5 border-[1.5px] bg-[#FFFFFF]  focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#000000]"
                   placeholder="Describe your business, products, or services"
                   required
                 />
                 <button
                   type="button"
-                  className="px-3 py-3 ml-4 rounded bg-[#302F2F] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
+                  className="px-3 py-3 ml-4 rounded bg-[#302F2F] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#000000] transition-all flex items-center gap-1"
                   onClick={() => handleAISuggest('businessDescription')}
                   disabled={aiLoading === 'businessDescription'}
                 >
@@ -622,13 +623,13 @@ const TrademarkFiling = () => {
               </div>
             </div>
             <div>
-              <label className="block font-medium mb-1 text-[#FFFFFF]">Trademark Class <span className="text-[#302F2F]">*</span></label>
+              <label className="block font-medium mb-1 text-[#000000]">Trademark Class <span className="text-[#302F2F]">*</span></label>
               <div className="flex gap-2 items-center mb-2">
                 <textarea
                   name="goodsServices"
                   value={form.goodsServices}
                   onChange={handleChange}
-                  className="w-[80%] px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                  className="w-[80%] px-4 py-3 rounded-lg border  border-[#000000]/5 border-[1.5px] bg-[#FFFFFF]  focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#000000]"
                   placeholder="Describe your goods/services in detail"
                 />
                 <button
@@ -674,7 +675,7 @@ const TrademarkFiling = () => {
             {isUseInCommerce && (
               <div className="space-y-4">
                 <div>
-                  <label className="block font-medium mb-1 text-[#FFFFFF]">
+                  <label className="block font-medium mb-1 text-[#000000]">
                     Date of First Use Anywhere <span className="text-[#302F2F]">*</span>
                   </label>
                   <DatePickerShadcn
@@ -687,7 +688,7 @@ const TrademarkFiling = () => {
                   )}
                 </div>
                 <div>
-                  <label className="block font-medium mb-1 text-[#FFFFFF]">Date of First Use in Commerce <span className="text-[#302F2F]">*</span></label>
+                  <label className="block font-medium mb-1 text-[#000000]">Date of First Use in Commerce <span className="text-[#302F2F]">*</span></label>
                   <DatePickerShadcn
                     value={form.firstUseCommerce}
                     onChange={date => setForm(f => ({ ...f, firstUseCommerce: date }))}
@@ -699,17 +700,17 @@ const TrademarkFiling = () => {
                 </div>
                 {/* Type of Commerce Dropdown */}
                 <div>
-                  <label className="block font-medium mb-1 text-[#FFFFFF]">Type of Commerce <span className="text-[#302F2F]">*</span></label>
+                  <label className="block font-medium mb-1 text-[#000000]">Type of Commerce <span className="text-[#302F2F]">*</span></label>
                   <select
                     name="typeOfCommerce"
                     value={form.typeOfCommerce}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C] bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F] text-[#FFFFFF] appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM2QzZDNkMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-no-repeat bg-[right_1rem_center]"
+                    className="w-full px-4 py-3 rounded-lg border border-[#000000]/5 border-[1.5px] bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#302F2F] text-[#000000] appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM2QzZDNkMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-no-repeat bg-[right_1rem_center]"
                     required
                   >
-                    <option value="" className="bg-[#1C1C1C] text-[#FFFFFF]">Select type of commerce</option>
+                    <option value="" className="bg-[#FFFFFF] text-[#000000]">Select type of commerce</option>
                     {commerceTypes.map((type) => (
-                      <option key={type} value={type} className="bg-[#1C1C1C] text-[#FFFFFF]">{type}</option>
+                      <option key={type} value={type} className="bg-[#E8E8E8] text-[#000000]">{type}</option>
                     ))}
                   </select>
                   {validationErrors.typeOfCommerce && (
@@ -718,12 +719,12 @@ const TrademarkFiling = () => {
                 </div>
                 {/* Mark Usage Textarea */}
                 <div>
-                  <label className="block font-medium mb-1 text-[#FFFFFF]">Mark Usage Description <span className="text-[#FFFFFF]">*</span></label>
+                  <label className="block font-medium mb-1 text-[#000000]">Mark Usage Description <span className="text-[#FFFFFF]">*</span></label>
                   <textarea
                     name="markUsage"
                     value={form.markUsage}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
+                    className="w-full px-4 py-3 rounded-lg border  border-[#000000]/5 border-[1.5px] bg-[#FFFFFF]  focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]"
                     placeholder="Describe how the mark is used in commerce"
                     required
                   />
@@ -733,7 +734,7 @@ const TrademarkFiling = () => {
                 </div>
                 {/* Specimen File Upload */}
                 <div>
-                  <label className="block font-medium mb-4 text-[#FFFFFF]">Specimen of Use <span className="text-[#FFFFFF]">*</span></label>
+                  <label className="block font-medium mb-4 text-[#000000]">Specimen of Use <span className="text-[#FFFFFF]">*</span></label>
                   <div className={customStyles.fileUpload.container}>
                     <input
                       type="file"
@@ -757,7 +758,7 @@ const TrademarkFiling = () => {
                   {validationErrors.specimen && (
                     <p className="text-red-500 text-xs mt-1">{validationErrors.specimen}</p>
                   )}
-                  <p className="text-xs text-[#FFFFFF]/70 mt-1">Upload your specimen (JPEG, PNG, PDF). Max 10MB.</p>
+                  <p className="text-xs text-[#000000]/70 mt-1">Upload your specimen (JPEG, PNG, PDF). Max 10MB.</p>
                 </div>
               </div>
             )}
@@ -774,12 +775,12 @@ const TrademarkFiling = () => {
                 checked={form.priorityClaim}
                 onChange={handleChange}
               />
-              <label className="font-medium text-[#FFFFFF]">Priority Claim (if previously filed abroad)</label>
+              <label className="font-medium text-[#000000]">Priority Claim (if previously filed abroad)</label>
             </div>
             {form.priorityClaim && (
               <div className="space-y-3 pl-6 border-l-2 border-[#FFFFFF]/20">
                 <div>
-                  <label className="block font-medium mb-1 text-[#FFFFFF]">Priority Filing Country</label>
+                  <label className="block font-medium mb-1 text-[#000000]">Priority Filing Country</label>
                   <CustomSelect
                     name="priorityCountry"
                     value={form.priorityCountry}
@@ -789,15 +790,15 @@ const TrademarkFiling = () => {
                   />
                 </div>
                 <div>
-                  <label className="block font-medium mb-1 text-[#FFFFFF]">Priority Application Number</label>
-                  <input name="priorityAppNumber" value={form.priorityAppNumber} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]" placeholder="Application number" />
+                  <label className="block font-medium mb-1 text-[#000000]">Priority Application Number</label>
+                  <input name="priorityAppNumber" value={form.priorityAppNumber} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border  border-[#000000]/5 border-[1.5px] bg-[#FFFFFF]  focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#000000]" placeholder="Application number" />
                 </div>
                 <div>
-                  <label className="block font-medium mb-1 text-[#FFFFFF]">Priority Filing Date</label>
-                  <input name="priorityFilingDate" type="date" value={form.priorityFilingDate} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C]/20 bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#FFFFFF]" />
+                  <label className="block font-medium mb-1 text-[#000000]">Priority Filing Date</label>
+                  <input name="priorityFilingDate" type="date" value={form.priorityFilingDate} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border  border-[#000000]/5 border-[1.5px] bg-[#FFFFFF]  focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 text-[#000000]" />
                 </div>
                 <div>
-                  <label className="block font-medium mb-1 text-[#FFFFFF]">Certified Copy of Priority Document</label>
+                  <label className="block font-medium mb-1 text-[#000000]">Certified Copy of Priority Document</label>
                   <input
                     name="certifiedCopy"
                     type="file"

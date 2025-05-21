@@ -85,7 +85,7 @@ const Footer = () => {
 };
 
 const MinimalFooter = () => (
-  <footer className="bg-[#302F2F] py-6 text-center text-xs w-full overflow-x-hidden rounded-t-3xl">
+  <footer className="bg-[#000000] py-6 text-center text-xs w-full overflow-x-hidden rounded-t-3xl">
     <div className="max-w-4xl mx-auto px-4 flex flex-wrap items-center justify-center gap-2 md:gap-4  text-center">
       <Link to="/terms" className="hover:text-[#6C6C6C] text-[#FFFFFF] transition-colors"><u>Terms of Use</u></Link>
       <span className="text-[#6C6C6C]">•</span>
@@ -94,10 +94,10 @@ const MinimalFooter = () => (
       <Link to="/responsible-ai" className="hover:text-[#6C6C6C] text-[#FFFFFF] transition-colors"><u>Responsible AI</u></Link>
       <span className="text-[#6C6C6C]">•</span>
       <Link to="/disclaimer" className="hover:text-[#6C6C6C] text-[#FFFFFF] transition-colors"><u>Disclaimer</u></Link>
-      <span className="text-[#6C6C6C]">•</span>
-      <span className="text-[#868686] text-sm">
+      <span className="text-[#FFFFFF]">•</span>
+      <span className="text-[#FFFFFF] text-sm">
         Copyright {new Date().getFullYear()}. All rights reserved.
-        <span className="font-semibold text-[#6C6C6C]"> Radar</span>, A thing by <a href='https://www.neuralarc.ai/'>
+        <span className="font-semibold text-[#FFFFFF]"> Radar</span>, A thing by <a href='https://www.neuralarc.ai/'>
         <span className="font-semibold text-[#FFFFFF]"> NeuralArc</span>
         <svg
           width="25"

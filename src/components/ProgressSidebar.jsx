@@ -118,14 +118,14 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
   };
 
   return (
-    <div className="fixed left-0 top-0 bottom-0 w-64 bg-[#1C1C1C] border-r border-[#6C6C6C] overflow-y-auto">
+    <div className="fixed left-0 top-0 bottom-0 w-64 bg-[#FFFFFF] border-r border-[#FFFFFF]/5 border-[1.5px] overflow-y-auto">
 
       <div className="p-6">
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-[#FFFFFF]">
+          <h2 className="text-xl font-semibold text-[#000000]">
             {location.pathname.includes('/patent') ? 'Patent Filing Progress' : 'Trademark Filing Progress'}
           </h2>
-          <p className="text-sm text-[#868686]">
+          <p className="text-sm text-[#000000]">
             {location.pathname.includes('/patent') 
               ? 'Track your patent application progress' 
               : 'Track your trademark application progress'}
@@ -134,13 +134,13 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
 
         {/* Progress bar */}
         <div className="mb-8">
-          <div className="flex justify-between text-xs text-[#FFFFFF] mb-2">
+          <div className="flex justify-between text-xs text-[#000000] mb-2">
             <span>Progress</span>
             <span>{safeProgress}%</span>
           </div>
-          <div className="w-full bg-[#6c6c6c]/40 rounded-full h-2">
+          <div className="w-full bg-[#000000]/40 rounded-full h-2">
             <div 
-              className="bg-[#FFFFFF] h-2 rounded-full transition-all duration-500"
+              className="bg-[#000000] h-2 rounded-full transition-all duration-500"
               style={{ width: `${safeProgress}%` }}
             />
           </div>
@@ -182,7 +182,7 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
                   {/* Step content */}
                   <div className="flex-1">
                     <h3 className={`text-sm font-medium ${
-                      isActive ? 'text-[#FFFFFF]' : isCompleted ? 'text-[#FFFFFF]' : 'text-[#FFFFFF]/70'
+                      isActive ? 'text-[#000000]' : isCompleted ? 'text-[#000000]' : 'text-[#000000]/70'
                     }`}>
                       {step.title}
                     </h3>
