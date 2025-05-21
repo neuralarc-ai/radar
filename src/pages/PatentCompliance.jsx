@@ -114,18 +114,18 @@ const PatentCompliance = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#1C1C1C] flex items-center justify-center">
-        <div className="text-center max-w-md p-6 bg-[#302F2F] rounded-lg border border-[#6C6C6C]">
+      <div className="min-h-screen bg-[#E8E8E8] flex items-center justify-center">
+        <div className="text-center max-w-md p-6 bg-[#ffffff] rounded-lg border border-[#6C6C6C]">
           <div className="text-red-500 mb-4">
             <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
           </div>
-          <h2 className="text-xl font-semibold mb-2 text-[#FFFFFF]">Error Loading Data</h2>
+          <h2 className="text-xl font-semibold mb-2 text-[#000000]">Error Loading Data</h2>
           <p className="text-[#868686] mb-6">{error}</p>
           <button
             onClick={() => navigate('/dashboard/patent')}
-            className="px-6 py-2 bg-[#302F2F] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors border border-[#6C6C6C]"
+            className="px-6 py-2 bg-[#000000] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors border border-[#6C6C6C]"
           >
             Back to Patent Filing
           </button>
@@ -135,73 +135,73 @@ const PatentCompliance = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1C1C1C] px-4 py-10">
+    <div className="min-h-screen bg-[#E8E8E8] px-4 py-10">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-6">
             <button
               type="button"
-              className="p-2 text-[#FFFFFF] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#6C6C6C]"
+              className="p-2 text-[#000000] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#6C6C6C]"
               onClick={() => navigate(-1)}
               aria-label="Go back"
             >
               <IoArrowBack className="w-6 h-6" />
             </button>
-            <h1 className="text-2xl font-bold text-[#FFFFFF]">Patent Compliance Checker</h1>
+            <h1 className="text-2xl font-bold text-[#000000]">Patent Compliance Checker</h1>
           </div>
-          <p className="text-[#868686] mt-2">Verify your patent application against USPTO filing requirements</p>
+          <p className="text-[#000000]/60 mt-2">Verify your patent application against USPTO filing requirements</p>
         </div>
 
-        <div className="bg-[#302F2F] rounded-lg border border-[#6C6C6C] p-6 mb-8">
+        <div className="bg-[#ffffff] rounded-lg border border-[#ffffff] border-[1.2px] p-6 mb-8">
           {!complianceResults ? (
             <>
               <div className="mb-10">
-                <h2 className="text-2xl font-semibold text-[#FFFFFF] mb-3">Check Patent Compliance</h2>
+                <h2 className="text-2xl font-semibold text-[#000000] mb-3">Check Patent Compliance</h2>
                 <p className="text-[#868686] max-w-2xl text-lg">Our AI will analyze your patent application against USPTO requirements</p>
               </div>
               
               <div className="text-center mb-10">
                 <div className="inline-flex items-center justify-center w-28 h-32 rounded-full mb-4">
-                  <svg className="w-14 h-16 text-[#FFFFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-14 h-16 text-[#000000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-medium text-[#FFFFFF]">Ready to check compliance of your patent application</h3>
+                <h3 className="text-xl font-medium text-[#000000]">Ready to check compliance of your patent application</h3>
               </div>
               
-              <div className="bg-[#1C1C1C] rounded-lg p-8 mb-10">
+              <div className="bg-[#e8e8e8] rounded-lg p-8 mb-10">
                 <div className="max-w-3xl mx-auto space-y-6">
                   <div className="flex items-start space-x-2">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 text-[#000000]" fill="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" />
                       </svg>
                     </div>
-                    <p className="text-[#FFFFFF] text-sm">Validates required fields and documents</p>
+                    <p className="text-[#000000] text-sm">Validates required fields and documents</p>
                   </div>
                   <div className="flex items-start space-x-2">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 text-[#000000]" fill="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" />
                       </svg>
                     </div>
-                    <p className="text-[#FFFFFF] text-sm">Checks against USPTO requirements</p>
+                    <p className="text-[#000000] text-sm">Checks against USPTO requirements</p>
                   </div>
                   <div className="flex items-start space-x-2">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 text-[#000000]" fill="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" />
                       </svg>
                     </div>
-                    <p className="text-[#FFFFFF] text-sm">Identifies potential issues before filing</p>
+                    <p className="text-[#000000] text-sm">Identifies potential issues before filing</p>
                   </div>
                   <div className="flex items-start space-x-2">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-3 h-3 text-[#FFFFFF]" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 text-[#000000]" fill="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4" />
                       </svg>
                     </div>
-                    <p className="text-[#FFFFFF] text-sm">Provides guidance on missing information</p>
+                    <p className="text-[#000000] text-sm">Provides guidance on missing information</p>
                   </div>
                 </div>
               </div>
@@ -210,7 +210,7 @@ const PatentCompliance = () => {
                 <button
                   onClick={handleRunComplianceCheck}
                   disabled={isLoading}
-                  className={`px-8 py-3 bg-[#302F2F] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors flex items-center space-x-2 border border-[#6C6C6C] ${
+                  className={`px-8 py-3 bg-[#000000] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors flex items-center space-x-2 border border-[#6C6C6C] ${
                     isLoading ? 'opacity-50 cursor-not-allowed' : ''
                   }`}
                 >

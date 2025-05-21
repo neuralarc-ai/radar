@@ -135,29 +135,29 @@ function PatentUploadDocuments() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1C1C1C] px-4 py-10">
+    <div className="min-h-screen bg-[#E8E8E8] px-4 py-10">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <div className='flex items-center gap-2 mb-6'>
             <button 
               type="button"
-              className="p-2 text-[#FFFFFF] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#6C6C6C]"
+              className="p-2 text-[#000000] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#6C6C6C]"
               onClick={() => navigate(-1)}
               aria-label="Go back"
             >
               <IoArrowBack className="w-6 h-6" />
             </button>
-            <h1 className="text-2xl font-bold text-[#FFFFFF]">Patent Document Upload</h1>
+            <h1 className="text-2xl font-bold text-[#000000]">Patent Document Upload</h1>
           </div>
           <p className="text-[#868686] mt-2">Upload and manage supporting documents for your patent application</p>
         </div>
 
-        <div className="bg-[#302F2F] rounded-lg border border-[#6C6C6C] p-6">
-          <h2 className="text-xl font-semibold text-[#FFFFFF] mb-6">Upload Documents</h2>
+        <div className="bg-[#ffffff] rounded-lg border border-[#6C6C6C] p-6">
+          <h2 className="text-xl font-semibold text-[#000000] mb-6">Upload Documents</h2>
           <p className="text-[#868686] mb-6">Select a category and upload supporting files</p>
 
           <div className="mb-6">
-            <label className="block text-sm font-medium text-[#FFFFFF] mb-2">
+            <label className="block text-sm font-medium text-[#000000] mb-2">
               Select document category
             </label>
             <select
@@ -242,7 +242,7 @@ function PatentUploadDocuments() {
 
           <div className="mt-8 flex justify-between">
             <button
-              className="px-6 py-2 border border-[#6C6C6C] text-[#FFFFFF] rounded-lg hover:bg-[#302F2F] transition-colors flex items-center gap-2"
+              className="px-6 py-2 bg-[#000000] border border-[#6C6C6C] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors flex items-center gap-2"
               onClick={() => navigate(-1)}
             >
               <span>Back</span>
