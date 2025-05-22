@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, FileText, CreditCard, Check, Cpu, PhoneCall } from 'react-feather';
-import platformImage from '../assests/preview.png';
-import footerImage from '../assests/footer-image.png';
+import platformImage from '../assests/preview01.png';
+import footerImage from '../assests/preview01.png';
 import neuralarcLogo from '../assests/neuralarc-logo.png';
 import footerLogo from '../assests/footer-logo.png';
 
