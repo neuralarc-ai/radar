@@ -31,23 +31,25 @@ const Landing = () => {
     "Track your filings in real-time"
   ];
 
+  const bgColors = ['#C0C6B8', '#C6AEA3', '#A9A9A9'];
+
   return (
-    <div className="min-h-screen bg-[#FBFBFB]">
+    <div className="min-h-screen bg-[#F8F7F3]">
       {/* Navbar */}
       <nav className="flex items-center justify-between py-6 px-4 max-w-7xl mx-auto">
         <div className="flex items-center">
           <Link to="/">
-            <span className="text-[#322B25] text-2xl font-bold">Radar</span>
+            <span className="text-[#1E1E1E] text-2xl font-bold">Radar</span>
           </Link>
         </div>
         <div className="flex gap-4">
           <Link to="/signin">
-            <button className="border border-[#322B25] text-[#322B25] hover:bg-[#302F2F]/5 px-4 py-2 rounded-lg font-medium transition-colors">
+            <button className="border border-[#232323] border-[1px] text-[#2B2521] hover:bg-[#2B2521]/5 px-4 py-2 rounded-[4px] font-medium transition-colors">
               Sign In
             </button>
           </Link>
           <Link to="/signup">
-            <button className="bg-[#322B25] hover:bg-[#302F2F]/90 text-[#FFFFFF] px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors">
+            <button className="bg-[#2B2521] hover:bg-[#2B2521]/90 text-[#FFFFFF] px-4 py-2 rounded-[4px] font-medium flex items-center gap-2 transition-colors">
               Get Started <ArrowRight className="h-4 w-4" />
             </button>
           </Link>
@@ -56,68 +58,68 @@ const Landing = () => {
 
       {/* Hero Section */}
       <div className="flex flex-col items-center justify-center text-center py-20 px-4 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-[#322B25] leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-[#202020] leading-tight">
           Simplify Your Legal Workflow
           <br />
           with AI Precision
         </h1>
 
-        <p className="text-[#322B25]/60 text-lg md:text-xl mb-4 max-w-3xl">
+        <p className="text-[#1E1E1E]/60 text-lg md:text-xl mb-4 max-w-3xl">
           Streamline your trademark, patent, and copyright filings with our intelligent platform.
         </p>
-        <p className="text-[#322B25]/60 text-lg md:text-xl mb-16 max-w-3xl">
+        <p className="text-[#1E1E1E]/60 text-lg md:text-xl mb-16 max-w-3xl">
           Get higher accuracy and faster approvals with AI assistance.
         </p>
 
         <Link to="/signup">
-          <button className="bg-[#322B25] hover:bg-[#302F2F]/90 text-[#FFFFFF] rounded-[12px] px-6 py-4 text-lg flex items-center gap-2 transition-colors">
+          <button className="bg-[#1E1E1E] hover:bg-[#1E1E1E]/90 text-[#FFFFFF] rounded-[4px] px-4 py-4 text-lg flex items-center gap-2 transition-colors">
             Try Now <ArrowRight className="h-5 w-5" />
           </button>
         </Link>
 
         {/* Trust Indicators */}
-        <div className="mt-12 flex flex-wrap justify-center gap-28 text-[#322B25]/60 max-w-3xl md:max-w-4xl mx-auto px-6 md:px-12">
+        <div className="mt-12 flex flex-wrap justify-center gap-28 text-[#1E1E1E]/60 max-w-3xl md:max-w-4xl mx-auto px-6 md:px-12">
           <div className="flex items-center">
-            <Cpu className="w-5 h-5 text-[#322B25]/60 mr-2" />
+            <Cpu className="w-5 h-5 text-[#1E1E1E]/60 mr-2" />
             <span>AI-Powered Accuracy</span>
           </div>
           <div className="flex items-center">
-            <Shield className="w-5 h-5 text-[#322B25]/60 mr-2" />
+            <Shield className="w-5 h-5 text-[#1E1E1E]/60 mr-2" />
             <span>Secure & Compliant</span>
           </div>
           <div className="flex items-center">
-            <PhoneCall className="w-5 h-5 text-[#322B25]/60 mr-2" />
+            <PhoneCall className="w-5 h-5 text-[#1E1E1E]/60 mr-2" />
             <span>AI-Powered Accuracy</span>
           </div>
         </div>
       </div>
 
       {/* Features Section */}
-      <div className="bg-[#E8E8E8] py-24 px-4">
+      <div className="bg-[#F8F7F3] py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#322B25] text-center mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1E1E1E] text-center mb-6">
             Powerful Features for Your IP Protection
           </h2>
-          <p className="text-[#322B25]/60 text-center mb-16 max-w-3xl mx-auto text-lg">
+          <p className="text-[#1E1E1E]/60 text-center mb-16 max-w-3xl mx-auto text-lg">
             Streamline your intellectual property filings with our comprehensive
             suite of tools and AI assistance.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="rounded-[12px] bg-[#202020] overflow-hidden shadow-sm">
-                <div className="p-8">
+              <div key={index} className="rounded-[12px] bg-[#FFFFFF] border border-[#FFFFFF]/4 overflow-hidden shadow-sm relative grain-texture">
+                <div className="p-8 relative z-10">
                   {/* Icon container with border */}
-                  <div className="mb-6 w-14 h-14 rounded-[6px] border border-[#6C6C6C]/50 flex items-center justify-center bg-[#322B25]">
+                  <div className="mb-6 w-14 h-14 rounded-[6px] border border-[#FFFFFF]/4 flex items-center justify-center" style={{ backgroundColor: bgColors[index % 3] }}>
                     {feature.icon}
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-medium mb-6 text-[#FFFFFF]">{feature.title}</h3>
+                  <h3 className="text-2xl font-medium mb-6 text-[#000000]">{feature.title}</h3>
 
                   {/* Description in a slightly darker background */}
-                  <div className="mt-4 bg-[#FFF]/5 p-5 rounded-[8px]">
-                    <p className="text-[#868686]">{feature.description}</p>
+                  <div className="mt-4 p-5 rounded-[8px]" style={{ backgroundColor: bgColors[index % 3] }}>
+                    <p className="text-[#000000]">{feature.description}</p>
                   </div>
                 </div>
               </div>
@@ -128,13 +130,13 @@ const Landing = () => {
 
       {/* Simplifying IP Section */}
       <div className="py-24 px-4 max-w-6xl mx-auto">
-        <div className="border border-[#6C6C6C] rounded-[12px] p-8 md:p-12 shadow-sm bg-[#1C1C1C]">
+        <div className="border border-[#FFFFFF]/4 rounded-[8px] p-8 md:p-12 shadow-sm bg-[#D0C3B5]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#FFFFFF] mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#000000] mb-6">
                 Simplifying IP Protection for Everyone
               </h2>
-              <p className="text-[#868686] mb-8">
+              <p className="text-[#000000] mb-8">
                 Our platform revolutionizes the way you protect your intellectual property.
                 With AI-powered assistance, we make trademark, patent, and copyright filings
                 accessible, affordable, and efficient for businesses of all sizes.
@@ -143,10 +145,10 @@ const Landing = () => {
               <div className="space-y-5">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="p-1 bg-[#6C6C6C]/10 rounded-full mt-1">
-                      <Check className="h-4 w-4 text-[#6C6C6C]" />
+                    <div className="p-1 bg-[#000000]/10 rounded-full mt-1">
+                      <Check className="h-4 w-4 text-[#000000]" />
                     </div>
-                    <p className="text-[#868686] font-medium">{benefit}</p>
+                    <p className="text-[#000000] font-medium">{benefit}</p>
                   </div>
                 ))}
               </div>
@@ -164,7 +166,7 @@ const Landing = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-[#302F2F] rounded-t-3xl py-12 px-4 relative">
+      <footer className="bg-[#232323] py-12 px-4 relative">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start mb-10">
             <div className="flex items-center mb-6 md:mb-0">

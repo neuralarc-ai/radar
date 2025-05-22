@@ -19,7 +19,7 @@ import SignUp from './pages/SignUp';
 
 function App() {
   return (
-    <Router>
+    <Router >
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/dashboard" element={<Dashboard />} />

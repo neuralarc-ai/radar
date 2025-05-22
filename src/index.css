@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap');
+
+body {
+  font-family: "Fustat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+button, .btn {
+  padding: 16px 27px;
+  border-radius: 4px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -180,4 +193,37 @@
 .react-datepicker__month-read-view:hover .react-datepicker__month-read-view--down-arrow,
 .react-datepicker__year-read-view:hover .react-datepicker__year-read-view--down-arrow {
   border-top-color: #FFFFFF;
+}
+
+.grain-texture {
+  position: relative;
+}
+
+.grain-texture::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+/* Special case for full-page grain texture */
+.min-h-screen.grain-texture::before {
+  position: fixed;
+  opacity: 0.4;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+}
+
+.grain-texture > * {
+  position: relative;
+  z-index: 999;
 }

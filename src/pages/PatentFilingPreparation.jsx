@@ -70,7 +70,7 @@ const PatentFilingPreparation = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#1C1C1C] flex items-center justify-center">
+      <div className="min-h-screen bg-[#F8F7F3] flex items-center justify-center">
         <div className="text-center max-w-md p-6 bg-[#302F2F] rounded-lg border border-[#6C6C6C]">
           <div className="text-red-500 mb-4">
             <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,7 +81,7 @@ const PatentFilingPreparation = () => {
           <p className="text-[#868686] mb-6">{error}</p>
           <button
             onClick={() => navigate('/dashboard/patent')}
-            className="px-6 py-2 bg-[#302F2F] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors border border-[#6C6C6C]"
+            className="px-6 py-2 bg-[#F8F7F3] text-[#2B2521] rounded-lg hover:bg-[#302D2A] transition-colors border border-[#232323] border-[1px]"
           >
             Back to Patent Filing
           </button>

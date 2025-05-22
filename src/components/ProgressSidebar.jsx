@@ -118,7 +118,7 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
   };
 
   return (
-    <div className="fixed left-0 top-0 bottom-0 w-64 bg-[#FFFFFF] border-r border-[#FFFFFF]/5 border-[1.5px] overflow-y-auto">
+    <div className="fixed left-0 top-0 bottom-0 w-64 bg-[#EFECE5] border-r border-[#FFFFFF]/5 border-[1.5px] overflow-y-auto">
 
       <div className="p-6">
         <div className="mb-8">

@@ -13,7 +13,7 @@ export function DatePickerShadcn({ value, onChange, placeholder = "YYYY-MM-DD", 
       <PopoverTrigger asChild>
         <button
           type="button"
-          className={`w-full flex items-center justify-between px-4 py-3 rounded-lg border border-[#000000]/5 border-[1.5px] bg-[#ffffff] text-left text-[#000000] focus:outline-none focus:ring-2 focus:ring-[#302F2F]/40 ${className}`}
+          className={`w-full flex items-center justify-between px-4 py-3 rounded-lg border border-[#000000]/5 border-[1.5px] bg-[#ffffff] text-left text-[#000000] focus:outline-none  ${className}`}
         >
           <span className={dateValue ? "" : "text-[#868686]"}>
             {dateValue ? format(dateValue, "yyyy-MM-dd") : placeholder}

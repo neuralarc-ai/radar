@@ -56,7 +56,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#E8E8E8] relative overflow-hidden">
+    <div className="min-h-screen bg-[#F8F7F3] relative overflow-hidden ">
       {/* Logo */}
       <div className="w-full flex justify-center pt-14">
         {/* <img src={lawbitLogo} alt="Radar Logo" className="h-11 w-auto" /> */}
@@ -79,19 +79,19 @@ const Dashboard = () => {
             {filingTypes.map((type) => (
             <div
               key={type.key}
-              className="group bg-[#FFFFFF] rounded-2xl p-6 shadow-[#FFFFFF] transition-all duration-300"
+              className="group bg-[#E0D6CA] rounded-2xl p-6 shadow-[#FFFFFF] transition-all duration-300"
             >
               {/* Card header */}
               <div className="mb-2">
-                <h2 className="text-xl font-semibold text-[#000000]">{type.label}</h2>
+                <h2 className="text-xl font-semibold text-[#202020]">{type.label}</h2>
               </div>
 
               {/* Description */}
-              <p className="text-sm text-[#] mb-6">{type.desc}</p>
+              <p className="text-sm text-[#202020] mb-6">{type.desc}</p>
 
               {/* Icon */}
               <div className="flex justify-center mb-6">
-                <div className="p-4 bg-[#6C6C6C]/10 rounded-full">
+                <div className="p-4 bg-[#8D785E]/40 rounded-full">
                   {type.icon}
                 </div>
               </div>
@@ -99,8 +99,8 @@ const Dashboard = () => {
               {/* Features list */}
               <ul className="space-y-2 mb-6">
                 {type.features.map((feature, index) => (
-                  <li key={index} className="flex items-center gap-3 text-sm text-[#000000]">
-                    <svg className="w-2 h-2 text-[#000000] flex-shrink-0" fill="currentColor" viewBox="0 0 8 8">
+                  <li key={index} className="flex items-center gap-3 text-sm text-[#202020]">
+                    <svg className="w-2 h-2 text-[#202020] flex-shrink-0" fill="currentColor" viewBox="0 0 8 8">
                       <circle cx="4" cy="4" r="4" />
                     </svg>
                     <span>{feature}</span>
@@ -111,7 +111,7 @@ const Dashboard = () => {
               {/* Action button */}
               <button
                 onClick={() => navigate(`/dashboard/${type.key}`)}
-                className="w-full py-2 px-4 text-sm rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#6C6C6C] focus:ring-offset-2 bg-[#000000] text-[#FFFFFF] hover:bg-[#868686]"
+                className="w-full py-2 px-4 text-sm rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#000000]/10 focus:ring-offset-2 bg-[#232323] text-[#FFFFFF] hover:bg-[#232323]"
               >
                 Start {type.label} Process
               </button>

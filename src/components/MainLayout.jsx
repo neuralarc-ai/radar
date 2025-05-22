@@ -65,12 +65,12 @@ const MainLayout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#E8E8E8]">
+    <div className="flex flex-col min-h-screen bg-[#F8F7F3]">
       <div className="flex flex-1">
         <div className="w-64 flex-shrink-0">
           <ProgressSidebar progress={progress} />
         </div>
-        <main className="w-full bg-[#e8e8e8] p-10">
+        <main className="w-full bg-[#F8F7F3] p-10">
           {children}
         </main>
       </div>

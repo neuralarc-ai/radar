@@ -7,7 +7,7 @@ import neuralarcLogo from '../assests/neuralarc-logo.png';
 
 const ResponsibleAI = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white grain-texture">
       {/* Navbar */}
       <nav className="flex items-center justify-between py-6 px-4 max-w-7xl mx-auto">
         <div className="flex items-center">

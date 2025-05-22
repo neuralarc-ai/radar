@@ -67,7 +67,7 @@ const countries = ['United States', 'India', 'United Kingdom', 'Canada', 'Austra
 
 // AI Suggestion Box Component
 const AISuggestionBox = ({ suggestions }) => (
-  <div className="bg-[#E8E8E8] border border-[#322B25]/5 border-[1.5px] rounded-lg p-4 mb-6">
+  <div className="bg-[#CFD2D4] border border-[#322B25]/5 border-[1.5px] rounded-lg p-4 mb-6">
     <div className="flex items-center gap-2 mb-2">
       <IoBulbOutline className="w-5 h-5 text-[#322B25]" />
       <h3 className="text-sm font-medium text-[#322B25]">AI Suggestions</h3>
@@ -316,13 +316,13 @@ const PatentFiling = () => {
   };
 
   return (
-    <div className="w-[88%] mx-auto p-8 outline outline-1 outline-[#FFFFFF]/5 outline-[1px] rounded-lg bg-[#FFFFFF]">
+    <div className="w-[88%] mx-auto p-8 outline outline-1 outline-[#FFFFFF]/5 outline-[2px] rounded-[12px] bg-[#EFECE5] grain-texture">
       {/* Progress Bar Section */}
       <div className="mb-8">
         <div className='flex items-center gap-4 mb-6'> 
           <button 
             type="button"
-            className="p-2 text-[#868686] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#322B25]/5 border-[1.5px]"
+            className="p-2 text-[#202020] hover:text-[#FFFFFF] transition-colors rounded-[4px] hover:bg-[#302F2F] border border-[#322B25]/5 border-[1.5px]"
             onClick={() => navigate(-1)}
             aria-label="Go back"
           >
@@ -358,8 +358,8 @@ const PatentFiling = () => {
               <div className="flex flex-col items-center">
                 <button
                   type="button"
-                  className={`w-full px-4 py-2 rounded-lg border-2 transition-all duration-200 flex items-center gap-2
-                    ${isActive ? 'bg-[#E8E8E8] text-[#322B25] border-[#FFFFFF]/5 border-[1.5px] shadow-lg' : isCompleted ? 'bg-[#E8E8E8]/90 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' : 'bg-[#322B25] text-[#FFFFFF] border-[#6C6C6C]/14'}
+                  className={`w-full px-4 py-2 rounded-[4px] border-2 transition-all duration-200 flex items-center gap-2
+                    ${isActive ? 'bg-[#322B25] text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px] shadow-lg' : isCompleted ? 'bg-[#322B25]/50 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' : 'bg-[#322B25] text-[#FFFFFF] border-[#6C6C6C]/14'}
                   `}
                   onClick={() => i <= step ? setStep(i) : null}
                   disabled={i > step}
@@ -381,14 +381,14 @@ const PatentFiling = () => {
       {step === 0 && (
         <div className="space-y-6">
           <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Invention Title <span className="text-[#868686]">*</span></label>
+            <label className="block font-medium mb-1 text-[#322B25]">Invention Title <span className="text-[#202020]">*</span></label>
             <input
               type="text"
               name="patentTitle"
               value={form.patentTitle}
               onChange={handleChange}
               className={`w-full px-4 py-3 rounded-lg border ${
-                validationErrors.patentTitle ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
+                validationErrors.patentTitle ? 'border-red-500' : 'border-[#E2E2E2] border-[1px]'
               } bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base h-10`}
               placeholder="Enter patent title"
               required
@@ -397,14 +397,14 @@ const PatentFiling = () => {
           </div>
 
           <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Inventor Name(s) <span className="text-[#868686]">*</span></label>
+            <label className="block font-medium mb-1 text-[#322B25]">Inventor Name(s) <span className="text-[#202020]">*</span></label>
             <input
               type="text"
               name="inventorNames"
               value={form.inventorNames}
               onChange={handleChange}
               className={`w-full px-4 py-3 rounded-lg border ${
-                validationErrors.inventorNames ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
+                validationErrors.inventorNames ? 'border-red-500' : 'border-[#E2E2E2] border-[1px]'
               } bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base h-10`}
               placeholder="Enter inventor name(s), separate multiple names with commas"
               required
@@ -413,7 +413,7 @@ const PatentFiling = () => {
           </div>
 
           <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Patent Type <span className="text-[#868686]">*</span></label>
+            <label className="block font-medium mb-1 text-[#322B25]">Patent Type <span className="text-[#202020]">*</span></label>
             <CustomSelect
               name="patentType"
               value={form.patentType}
@@ -426,19 +426,19 @@ const PatentFiling = () => {
           </div>
 
           <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Brief Summary <span className="text-[#868686]">*</span></label>
+            <label className="block font-medium mb-1 text-[#322B25]">Brief Summary <span className="text-[#202020]">*</span></label>
             <div className="flex gap-2 items-center">
             <textarea
               name="briefSummary"
               value={form.briefSummary}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.briefSummary ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'} bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.briefSummary ? 'border-red-500' : 'border-[#232323]/10 border-[1px]'} bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base resize-none h-10 overflow-hidden`}
               placeholder="Provide a brief summary of your invention"
               required
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded-[4px] bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#f] transition-all flex items-center gap-1"
                 onClick={() => handleAISuggest('briefSummary')}
                 disabled={aiLoading === 'briefSummary'}
               >
@@ -559,7 +559,7 @@ const PatentFiling = () => {
                   />
                   <label
                     htmlFor="certified-copy-upload"
-                    className="w-full px-4 py-3 rounded-lg border border-[#322B25]/5 border-[1.5px] bg-[#302F2F] text-[#FFFFFF] font-medium hover:bg-[#6C6C6C] hover:border-[#868686] transition-colors cursor-pointer text-center appearance-none"
+                    className="w-full px-4 py-3 rounded-[4px]  border border-[#322B25]/5 border-[1.5px] bg-[#302F2F] text-[#FFFFFF] font-medium hover:bg-[#232323] hover:border-[#868686] transition-colors cursor-pointer text-center appearance-none"
                     style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
                   >
                     Browse Files
@@ -587,13 +587,13 @@ const PatentFiling = () => {
               name="technicalField"
               value={form.technicalField}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.technicalField ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'} bg-[#ffffff] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+              className={`w-full px-4 py-3 rounded-[4px] bg-[#F6F6F6] focus:outline-none  text-[#322B25] text-base resize-none h-10 overflow-hidden`}
               placeholder="Describe the technical field to which the invention relates"
               required
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#232323] transition-all flex items-center gap-1"
                 onClick={() => handleAISuggest('technicalField')}
                 disabled={aiLoading === 'technicalField'}
               >
@@ -611,13 +611,13 @@ const PatentFiling = () => {
               name="backgroundArt"
               value={form.backgroundArt}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.backgroundArt ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'} bg-[#ffffff] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+              className={`w-full px-4 py-3 rounded-[4px] bg-[#ffffff] focus:outline-none text-[#322B25] text-base resize-none h-10 overflow-hidden`}
               placeholder="Describe the existing art, problems, and limitations that your invention addresses"
               required
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#232323] transition-all flex items-center gap-1"
                 onClick={() => handleAISuggest('backgroundArt')}
                 disabled={aiLoading === 'backgroundArt'}
               >
@@ -635,13 +635,13 @@ const PatentFiling = () => {
               name="detailedDescription"
               value={form.detailedDescription}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.detailedDescription ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'} bg-[#ffffff] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base resize-none h-10 overflow-hidden`}
-              placeholder="Provide a detailed description of your invention, including all components, how they interact, and alternative embodiments"
+                className={`w-full px-4 py-3 rounded-[4px] bg-[#ffffff] focus:outline-none text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+                placeholder="Provide a detailed description of your invention, including all components, how they interact, and alternative embodiments"
               required
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded-[4px] bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#232323] transition-all flex items-center gap-1"
                 onClick={() => handleAISuggest('detailedDescription')}
                 disabled={aiLoading === 'detailedDescription'}
               >
@@ -659,7 +659,7 @@ const PatentFiling = () => {
               name="advantageousEffects"
               value={form.advantageousEffects}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.advantageousEffects ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'} bg-[#ffffff] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+              className={`w-full px-4 py-3 rounded-[4px] bg-[#ffffff] focus:outline-none  text-[#322B25] text-base resize-none h-10 overflow-hidden`}
               placeholder="Describe the advantages and improvements your invention provides over existing solutions"
               required
             />
@@ -687,7 +687,7 @@ const PatentFiling = () => {
                     name={`drawingFigure${index + 1}`}
                     value={drawing.figure}
                     onChange={e => handleDrawingChange(index, 'figure', e.target.value)}
-                    className={`flex h-10 w-full rounded-md border border-[#322B25]/5 border-[1.5px] bg-[#E8E8E8] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm col-span-1 text-[#322B25]`}
+                    className={`flex h-10 w-full rounded-[4px] border border-[#322B25]/5 border-[1.5px] bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none  disabled:cursor-not-allowed disabled:opacity-50 md:text-sm col-span-1 text-[#322B25]`}
                     placeholder={`Fig. ${index + 1}`}
                 />
                 <input
@@ -695,7 +695,7 @@ const PatentFiling = () => {
                     name={`drawingDescription${index + 1}`}
                     value={drawing.description}
                     onChange={e => handleDrawingChange(index, 'description', e.target.value)}
-                    className={`flex h-10 w-full rounded-md border border-[#322B25]/5 border-[1.5px] bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm col-span-2 text-[#322B25]`}
+                    className={`flex h-10 w-full rounded-[4px] border border-[#322B25]/5 border-[1.5px] bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm col-span-2 text-[#322B25]`}
                     placeholder={`Description of Figure ${index + 1}`}
                 />
                   <div className="flex items-center gap-2 col-span-1">
@@ -729,13 +729,13 @@ const PatentFiling = () => {
               name="knownPriorArt"
               value={form.knownPriorArt}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.knownPriorArt ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'} bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.knownPriorArt ? 'border-red-500' : 'border-[#E2E2E2] border-[1px]'} bg-[#FFFFFF] focus:outline-none  text-[#322B25] text-base resize-none h-10 overflow-hidden`}
               placeholder="Describe any known existing solutions or technologies related to your invention"
               required
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded-[4px] bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#E2E2E2] transition-all flex items-center gap-1"
                 onClick={() => handleAISuggest('knownPriorArt')}
                 disabled={aiLoading === 'knownPriorArt'}
               >
@@ -766,7 +766,7 @@ const PatentFiling = () => {
                       }}
                       className={`flex h-10 w-full rounded-md border ${
                         validationErrors.priorArtReferences ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
-                      } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
+                      } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
                       placeholder="Patent number or article title"
                     />
                     )}
@@ -787,7 +787,7 @@ const PatentFiling = () => {
                       }}
                       className={`flex h-10 w-full rounded-md border ${
                         validationErrors.priorArtReferences ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
-                      } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
+                      } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
                       placeholder="Patent, Article, etc."
                     />
                       )}
@@ -809,7 +809,7 @@ const PatentFiling = () => {
                       }}
                       className={`flex h-10 w-full rounded-md border ${
                         validationErrors.priorArtReferences ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
-                      } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
+                      } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
                       placeholder="How it relates to your invention"
                     />
                       )}
@@ -841,7 +841,7 @@ const PatentFiling = () => {
                     priorArtReferences: [...f.priorArtReferences, { reference: '', type: '', relevance: '' }]
                   }));
                 }}
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#302F2F] text-[#FFFFFF] hover:bg-[#6C6C6C] h-10 px-4 py-2 w-full"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none  disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#302F2F] text-[#FFFFFF] hover:bg-[#6C6C6C] h-10 px-4 py-2 w-full"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
@@ -860,7 +860,7 @@ const PatentFiling = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className={`flex-1 px-4 py-3 rounded-lg border ${
                   validationErrors.searchQuery ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
-                } bg-[#ffffff] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base h-10`}
+                } bg-[#ffffff] focus:outline-none  text-[#322B25] text-base h-10`}
                 placeholder="Enter keywords related to your invention"
               />
               <button
@@ -941,13 +941,13 @@ const PatentFiling = () => {
               name="claims"
               value={form.claims.join('\n')}
               onChange={(e) => setForm(f => ({ ...f, claims: e.target.value.split('\n') }))}
-              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.claims ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'} bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.claims ? 'border-red-500' : 'border-[#E2E2E2] border-[1px]'} bg-[#FFFFFF] focus:outline-none text-[#322B25] text-base resize-none h-10 overflow-hidden`}
               placeholder="Enter patent claims (one per line)"
               required
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded-[4px] bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#E2E2E2] transition-all flex items-center gap-1"
                 onClick={() => handleAISuggest('claims')}
                 disabled={aiLoading === 'claims'}
               >
@@ -977,7 +977,7 @@ const PatentFiling = () => {
         <button
           type="button"
           onClick={() => setStep(s => Math.max(0, s - 1))}
-          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C]/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-[#6C6C6C] bg-[#302F2F] text-[#FFFFFF] hover:bg-[#6C6C6C] hover:text-[#FFFFFF] h-10 px-4 py-2"
+          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[4px] text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C]/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-[#6C6C6C] bg-[#302F2F] text-[#FFFFFF] hover:bg-[#E2E2E2] hover:text-[#322B25] h-10 px-4 py-2"
           disabled={step === 0}
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -994,7 +994,7 @@ const PatentFiling = () => {
               handleNext();
             }
           }}
-          className={`px-6 py-2 text-[#FFFFFF] rounded-lg transition-colors ${
+          className={`px-6 py-2 text-[#FFFFFF] rounded-[4px] transition-colors ${
             isSubmitting ? 'bg-[#322B25]/50' : 'bg-[#322B25] hover:bg-[#6C6C6C]'
           }`}
           disabled={isSubmitting}
