@@ -1,8 +1,10 @@
+const AI_SERVICE_URL = process.env.REACT_APP_AI_SERVICE_URL || 'http://localhost:3001';
+
 export const searchPriorArt = async (query, context) => {
   try {
     console.log('Starting prior art search with:', { query, context });
     
-    const response = await fetch('/api/analyze', {
+    const response = await fetch(`${AI_SERVICE_URL}/api/analyze`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

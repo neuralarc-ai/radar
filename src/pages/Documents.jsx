@@ -186,47 +186,47 @@ function Documents() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#1C1C1C] px-4 py-10">
+    <div className="min-h-screen bg-[#EFECE5] rounded-[12px] px-4 py-10">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <div className='flex items-center gap-2 mb-6'>
             <button 
               type="button"
-              className="p-2 text-[#FFFFFF] hover:text-[#FFFFFF] transition-colors rounded-[25%] hover:bg-[#302F2F] border border-[#6C6C6C]"
+              className="p-2 text-[#FFFFFF] hover:text-[#FFFFFF] transition-colors rounded-[8px] hover:bg-[#302F2F] border border-[#6C6C6C]"
               onClick={() => navigate(-1)}
               aria-label="Go back"
             >
               <IoArrowBack className="w-6 h-6" />
             </button>
-            <h1 className="text-2xl font-bold text-[#FFFFFF]">Generated Documents</h1>
+            <h1 className="text-2xl font-bold text-[#202020]">Generated Documents</h1>
           </div>
           
-          <p className="text-[#FFFFFF]/80 mt-2">Review and download your filing-ready documents</p>
+          <p className="text-[#322B25] mt-2">Review and download your filing-ready documents</p>
         </div>
 
-        <div className="bg-[#302F2F] border border-[#6C6C6C] rounded-lg shadow overflow-hidden">
-          <table className="min-w-full divide-y divide-[#6C6C6C]">
-            <thead className="bg-[#1C1C1C]">
+        <div className="bg-[#A8B0B8] rounded-[8px] overflow-hidden">
+          <table className="min-w-full ">
+            <thead className="bg-[#A8B0B8]">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Document Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-[#868686] uppercase tracking-wider">Action</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-[#000000] uppercase tracking-wider">Document Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-[#000000] uppercase tracking-wider">Type</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-[#000000] uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-[#000000] uppercase tracking-wider">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-[#302F2F] divide-y divide-[#6C6C6C]">
+            <tbody className="bg-[#FFFFFF] divide-y divide-[#A8B0B8]/20">
               {documentList.map((doc) => (
                 <tr key={doc.name}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div>
-                        <div className="text-sm font-medium text-[#FFFFFF]">{doc.name}</div>
+                        <div className="text-sm font-medium text-[#000000]">{doc.name}</div>
                         <div className="text-xs text-[#868686] font-medium">Required</div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-[#FFFFFF]">{doc.type}</div>
+                    <div className="text-sm text-[#000000]">{doc.type}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {getStatusBadge(doc.status)}
@@ -234,7 +234,7 @@ function Documents() {
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button
                       onClick={() => handleDownloadPDF(doc.name, doc.content)}
-                      className="text-[#FFFFFF] hover:text-[#868686]"
+                      className="text-[#000000] hover:text-[#4F4F4F]"
                     >
                       Download PDF
                     </button>
@@ -246,8 +246,8 @@ function Documents() {
         </div>
 
         <div className="mt-8 flex justify-between">
-          <button className="px-4 py-2 border border-[#6C6C6C] text-[#FFFFFF] rounded-lg hover:bg-[#302F2F] transition-colors">
-            Regenerate
+        <button className="px-4 py-2 bg-[#322B25] border border-[#000000]/5 border-[1.5px] text-[#FFFFFF] rounded-[4px] hover:bg-[#302F2F] transition-colors">
+        Regenerate
           </button>
           <button
             onClick={handleValidate}
@@ -261,12 +261,12 @@ function Documents() {
         </div>
 
         {/* Next Steps Section */}
-        <div className="mt-12 bg-[#302F2F] rounded-lg border border-[#6C6C6C] p-6">
+        <div className="mt-12 bg-[#302F2F] rounded-[8px] border border-[#6C6C6C] p-6">
           <h2 className="text-xl font-semibold text-[#FFFFFF] mb-6">Next Steps</h2>
           <div className="space-y-6">
             {/* Review Documents */}
             <div className="flex items-start gap-4">
-              <div className="p-2 bg-[#1C1C1C] rounded-full">
+              <div className="p-2 bg-[#1C1C1C] rounded-[8px]">
                 <svg className="w-5 h-5 text-[#FFFFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>

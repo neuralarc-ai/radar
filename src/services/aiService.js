@@ -1,3 +1,5 @@
+const AI_SERVICE_URL = process.env.REACT_APP_AI_SERVICE_URL || 'http://localhost:3001';
+
 export const generateDocuments = async (filing, files) => {
   try {
     // Construct the prompt for the AI
@@ -110,7 +112,7 @@ The specimen demonstrates use of the mark "${filing.trademark_name}" in commerce
 
 export const analyzeCompliance = async (prompt) => {
   try {
-    const response = await fetch('/api/analyze', {
+    const response = await fetch(`${AI_SERVICE_URL}/api/analyze`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -132,7 +134,7 @@ export const analyzeCompliance = async (prompt) => {
 
 export const analyzeApprovalChances = async (prompt) => {
   try {
-    const response = await fetch('/api/analyze', {
+    const response = await fetch(`${AI_SERVICE_URL}/api/analyze`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -155,7 +157,7 @@ export const analyzeApprovalChances = async (prompt) => {
 
 export const analyzeFilingDates = async (prompt) => {
   try {
-    const response = await fetch('/api/analyze', {
+    const response = await fetch(`${AI_SERVICE_URL}/api/analyze`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
