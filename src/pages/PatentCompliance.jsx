@@ -63,11 +63,11 @@ const PatentCompliance = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case 'met':
-        return 'text-green-600';
+        return 'text-[#C5CFB8]';
       case 'missing':
-        return 'text-red-600';
+        return 'text-[#D3B8AC]';
       case 'partial':
-        return 'text-yellow-600';
+        return 'text-[#B4BFCA]';
       default:
         return 'text-gray-600';
     }
@@ -100,6 +100,61 @@ const PatentCompliance = () => {
     if (score >= 70) return 'text-yellow-600';
     if (score >= 60) return 'text-orange-600';
     return 'text-red-600';
+  };
+
+  const getStatusPill = (status) => {
+    let bg = '';
+    let text = 'text-[#000000]';
+    let label = '';
+    switch (status) {
+      case 'met':
+        bg = 'bg-[#C5CFB8]';
+        label = 'Met';
+        break;
+      case 'missing':
+        bg = 'bg-[#D3B8AC]';
+        label = 'Missing';
+        break;
+      case 'partial':
+        bg = 'bg-[#B4BFCA]';
+        label = 'Partial';
+        break;
+      default:
+        bg = 'bg-gray-300';
+        label = status;
+    }
+    return (
+      <span className={`w-36 h-9 flex items-center justify-center rounded-full font-medium ${bg} ${text}`}>
+        {label}
+      </span>
+    );
+  };
+
+  const getPriorityPill = (priority) => {
+    let bg = '';
+    let text = '';
+    let label = '';
+    switch (priority) {
+      case 'high':
+        bg = 'bg-[#E6CFCB]'; // light red
+        text = 'text-[#D36363]'; // red
+        label = 'high priority';
+        break;
+      case 'medium':
+        bg = 'bg-[#E6DFCB]'; // light yellow
+        text = 'text-[#D3B863]'; // yellow
+        label = 'medium priority';
+        break;
+      default:
+        bg = 'bg-gray-300';
+        text = 'text-gray-700';
+        label = priority + ' priority';
+    }
+    return (
+      <span className={`inline-flex items-center justify-center rounded-full px-5 py-2 font-medium text-sm ${bg} ${text}`}>
+        {label}
+      </span>
+    );
   };
 
   const handleContinue = () => {
@@ -210,7 +265,7 @@ const PatentCompliance = () => {
                 <button
                   onClick={handleRunComplianceCheck}
                   disabled={isLoading}
-                  className={`px-8 py-3 bg-[#302F2F] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors flex items-center space-x-2 border border-[#6C6C6C] ${
+                  className={`px-[27px] py-[16px] bg-[#302F2F] text-[#FFFFFF] rounded-[4px] hover:bg-[#6C6C6C] hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors flex items-center space-x-2 border border-[#322B25] ${
                     isLoading ? 'opacity-50 cursor-not-allowed' : ''
                   }`}
                 >
@@ -237,7 +292,7 @@ const PatentCompliance = () => {
             <div className="space-y-8">
               <div className="max-w-4xl mx-auto">
                 <div className="mb-8">
-                  <div className="bg-[#302F2F] rounded-xl border border-[#6C6C6C] p-6">
+                  <div className="bg-[#2B2521] rounded-[12px] border: 1px solid #FFFFFF0A p-6">
                     <h2 className="text-xl font-semibold text-[#FFFFFF] mb-4">Overall Compliance Score</h2>
                     <div className="flex flex-col items-center text-center">
                       <div className="relative w-32 h-32 mb-4">
@@ -278,23 +333,23 @@ const PatentCompliance = () => {
                 </div>
               </div>
 
-              <div className="bg-[#302F2F] rounded-xl border border-[#6C6C6C] p-6">
+              <div className="bg-[#2B2521] rounded-[12px] border: 1px solid #FFFFFF0A p-6">
                 <div className="space-y-4">
                   {complianceResults.requirements.map((req) => (
-                    <div key={req.id} className="flex items-start space-x-4 p-4 bg-[#1C1C1C] rounded-lg hover:bg-[#6C6C6C] transition-colors duration-200">
-                      <div className={`flex-shrink-0 mt-1 ${getStatusColor(req.status)}`}>
-                        {getStatusText(req.status)}
+                    <div key={req.id} className="flex items-start space-x-4 p-4 bg-[#FFFFFF]/5 rounded-lg hover:bg-[#6C6C6C] transition-colors duration-200">
+                      <div className="flex-shrink-0 mt-1">
+                        {getStatusPill(req.status)}
                       </div>
                       <div className="flex-1">
                         <h4 className="font-semibold text-[#FFFFFF] mb-1">{req.name}</h4>
                         <p className="text-[#868686] text-sm">{req.details}</p>
                         {req.status === 'missing' && (
-                          <div className="mt-2 text-sm text-red-500">
+                          <div className="mt-2 text-sm text-[#D3B8AC]">
                             <span className="font-medium">Action Required:</span> {req.recommendation}
                           </div>
                         )}
                         {req.status === 'partial' && (
-                          <div className="mt-2 text-sm text-yellow-500">
+                          <div className="mt-2 text-sm text-[#B4BFCA]/100">
                             <span className="font-medium">Recommendation:</span> {req.recommendation}
                           </div>
                         )}
@@ -308,7 +363,8 @@ const PatentCompliance = () => {
                 <button
                   onClick={handleRunComplianceCheck}
                   disabled={isLoading}
-                  className={`flex items-center space-x-2 px-6 py-3 rounded-lg transition-colors duration-200 border border-[#6C6C6C] ${
+                  className={`flex items-center space-x-2 px-[27px] py-[16px] rounded-[4px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+ ${
                     isLoading
                       ? 'bg-[#1C1C1C] text-[#868686] cursor-not-allowed'
                       : 'bg-[#302F2F] text-[#FFFFFF] hover:bg-[#6C6C6C]'
@@ -334,7 +390,8 @@ const PatentCompliance = () => {
 
                 <button
                   onClick={handleContinue}
-                  className="flex items-center space-x-2 px-6 py-3 bg-[#302F2F] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors duration-200 border border-[#6C6C6C]"
+                  className="flex items-center space-x-2 px-[27px] py-[16px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
                 >
                   <span>Continue to Filing Prep</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -342,6 +399,23 @@ const PatentCompliance = () => {
                   </svg>
                 </button>
               </div>
+
+              {complianceResults.recommendations && complianceResults.recommendations.length > 0 && (
+                <div className="mt-8">
+                  <h3 className="text-lg font-semibold text-[#FFFFFF] mb-4">Recommendations</h3>
+                  <div className="space-y-4">
+                    {complianceResults.recommendations.map((rec, idx) => (
+                      <div key={idx} className="flex items-center space-x-4 p-4 bg-[#FFFFFF]/5 rounded-lg">
+                        {getPriorityPill(rec.priority)}
+                        <div>
+                          <div className="font-semibold text-[#FFFFFF]">{rec.title}</div>
+                          <div className="text-[#868686] text-sm">{rec.description}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 

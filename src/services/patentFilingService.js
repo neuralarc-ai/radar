@@ -1,5 +1,8 @@
 import { supabase } from './supabaseClient';
 
+// AI Service Integration
+const AI_SERVICE_URL = process.env.REACT_APP_AI_SERVICE_URL || 'http://localhost:3001';
+
 export const getPatentFilingPrepAnalysis = async (filingId) => {
   try {
     // Get filing data from localStorage
@@ -71,7 +74,7 @@ IMPORTANT:
 2. Respond ONLY with the JSON object, no additional text or explanation.`;
 
     // Call the AI analysis endpoint
-    const response = await fetch('/api/analyze', {
+    const response = await fetch(`${AI_SERVICE_URL}/api/analyze`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

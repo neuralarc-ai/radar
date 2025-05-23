@@ -118,7 +118,7 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
   };
 
   return (
-    <div className="fixed left-0 top-0 bottom-0 w-64 bg-[#EFECE5] border-r border-[#FFFFFF]/5 border-[1.5px] overflow-y-auto">
+    <div className="fixed left-0 top-0 bottom-0 max-w-64 bg-[#EFECE5] border-r border-[#FFFFFF]/5 border-[1.5px] overflow-y-auto">
 
       <div className="p-6">
         <div className="mb-8">
@@ -140,7 +140,7 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
           </div>
           <div className="w-full bg-[#000000]/40 rounded-full h-2">
             <div 
-              className="bg-[#000000] h-2 rounded-full transition-all duration-500"
+              className="bg-gradient-to-r from-[#3987BE] to-[#D48EA3] h-2 rounded-full transition-all duration-500"
               style={{ width: `${safeProgress}%` }}
             />
           </div>
@@ -151,42 +151,32 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
             const status = getStepStatus(index);
             const isCompleted = status === 'completed';
             const isActive = status === 'active';
+            const isPending = status === 'pending';
 
             return (
               <div key={step.id} className="relative">
-                {/* Connector line */}
-                {index > 0 && (
-                  <div className={`absolute left-4 top-0 w-0.5 h-11 ${
-                    isCompleted ? 'bg-[#302F2F]' : 'bg-[#6C6C6C]'
-                  }`} style={{ marginTop: '-48px' }} />
-                )}
+              
 
                 <div className="flex items-start gap-3">
-                  {/* Step indicator */}
-                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center relative z-10 ${
-                    isCompleted 
-                      ? 'bg-[#000000] text-[#FFFFFF]' 
-                      : isActive 
-                        ? 'bg-[#000000] text-[#FFFFFF] border-2 border-[#302F2F]' 
-                        : 'bg-[#000000] text-[#FFFFFF]'
-                  }`}>
-                    {isCompleted ? (
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    ) : (
-                      index + 1
-                    )}
+                  {/* Step indicator: outer and inner circle */}
+                  <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center relative z-10">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      isActive ? 'bg-[#D9D9D9]' : 'bg-[#D9D9D9]'
+                    }`}>
+                      <div className={`w-4 h-4 rounded-full flex items-center justify-center ${
+                        isActive ? 'bg-[#302F2F]' : 'bg-[#BDBDBD]'
+                      }`} />
+                    </div>
                   </div>
 
                   {/* Step content */}
                   <div className="flex-1">
-                    <h3 className={`text-sm font-medium ${
-                      isActive ? 'text-[#000000]' : isCompleted ? 'text-[#000000]' : 'text-[#000000]/70'
+                    <h3 className={`text-base font-semibold ${
+                      isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'
                     }`}>
                       {step.title}
                     </h3>
-                    <p className="text-xs text-[#868686]">{step.description}</p>
+                    <p className={`text-sm ${isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'}`}>{step.description}</p>
                   </div>
                 </div>
               </div>

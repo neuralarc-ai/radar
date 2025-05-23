@@ -265,12 +265,12 @@ const PatentDocuments = () => {
         </div>
 
         <div className="mt-8 flex justify-between">
-          <button className="px-4 py-2 bg-[#322B25] border border-[#000000]/5 border-[1.5px] text-[#FFFFFF] rounded-[4px] hover:bg-[#302F2F] transition-colors">
+          <button className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors">
             Regenerate
           </button>
           <button
             onClick={handleValidate}
-            className="px-4 py-2 bg-[#322B25] border border-[#000000]/5 border-[1.5px] text-[#FFFFFF] rounded-[4px] hover:bg-[#302F2F] transition-colors flex items-center gap-2 "
+            className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors flex items-center gap-2 "
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -280,18 +280,18 @@ const PatentDocuments = () => {
         </div>
 
         {/* Next Steps Section */}
-        <div className="mt-12 bg-[#302F2F] rounded-[8px] border border-[#6C6C6C] p-6">
-          <h2 className="text-xl font-semibold text-[#FFFFFF] mb-6">Next Steps</h2>
+        <div className="mt-12 bg-[#CFD4C9] rounded-[8px] p-6">
+          <h2 className="text-xl font-semibold text-[#322B25] mb-6">Next Steps</h2>
           <div className="space-y-6">
             {/* Review Documents */}
             <div className="flex items-start gap-4">
-              <div className="p-2 bg-[#1C1C1C] rounded-full">
-                <svg className="w-5 h-5 text-[#FFFFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-2 bg-[#FFFFFF] rounded-full">
+                <svg className="w-5 h-5 text-[#322B25]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-medium text-[#FFFFFF]">Review Documents</h3>
+                <h3 className="text-lg font-medium text-[#322B25]">Review Documents</h3>
                 <p className="text-[#868686]">Download and carefully review all generated patent documents for accuracy</p>
               </div>
             </div>
@@ -300,13 +300,13 @@ const PatentDocuments = () => {
 
             {/* Validate Compliance */}
             <div className="flex items-start gap-4">
-              <div className="p-2 bg-[#1C1C1C] rounded-full">
-                <svg className="w-5 h-5 text-[#FFFFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-2 bg-[#FFFFFF] rounded-full">
+                <svg className="w-5 h-5 text-[#322B25]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-medium text-[#FFFFFF]">Validate Compliance</h3>
+                <h3 className="text-lg font-medium text-[#322B25]">Validate Compliance</h3>
                 <p className="text-[#868686]">Run our compliance checker to ensure all patent filing requirements are met</p>
               </div>
             </div>
@@ -315,13 +315,13 @@ const PatentDocuments = () => {
 
             {/* Submit Application */}
             <div className="flex items-start gap-4">
-              <div className="p-2 bg-[#1C1C1C] rounded-full">
-                <svg className="w-5 h-5 text-[#FFFFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-2 bg-[#FFFFFF] rounded-full">
+                <svg className="w-5 h-5 text-[#322B25]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-medium text-[#FFFFFF]">Submit Application</h3>
+                <h3 className="text-lg font-medium text-[#322B25]">Submit Application</h3>
                 <p className="text-[#868686]">Use the documents to file your patent application with the appropriate patent office</p>
               </div>
             </div>
@@ -331,7 +331,7 @@ const PatentDocuments = () => {
         {/* Continue to Upload Button */}
         <div className="mt-8 flex justify-end">
           <button 
-            className="px-6 py-2 bg-[#322B25] text-[#FFFFFF] rounded-[4px] hover:bg-[#302F2F] transition-colors flex items-center gap-2 border border-[#6C6C6C]" 
+            className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors flex items-center gap-2 "
             onClick={handleContinueToUpload}
           >
             <span>Continue to Upload</span>

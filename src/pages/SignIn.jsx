@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import logoStacked from '../assests/logo-horizontal.png';
+import RadarCard01 from '../assests/RadarCard01.png';
+import RadarCard02 from '../assests/RadarCard02.png';
+import { ReactComponent as RadarLogo } from '../assests/Radar.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../services/supabaseClient';
 import { MinimalFooter } from '../components/Footer';
@@ -127,11 +130,12 @@ const SignIn = () => {
         className="flex-shrink-0"
         style={{
           width: '622px',
-          height: '818px',
+          height: '1000px',
           borderRadius: '16px',
-          backgroundImage: "url('/Frame 1400005961.png')",
-          backgroundSize: 'cover',
+          background: `url(${activeTab === 'login' ? RadarCard01 : RadarCard02}), linear-gradient(153.57deg, rgba(118,94,84,0.85) 8.24%, rgba(49,33,25,0.85) 104.37%)`,
+          backgroundRepeat: 'no-repeat, no-repeat',
           backgroundPosition: 'center',
+          backgroundSize: 'cover',
           boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
           display: 'flex',
           flexDirection: 'column',
@@ -140,7 +144,7 @@ const SignIn = () => {
           marginRight: '64px'
         }}
       >
-        <span className="text-2xl font-bold text-[#1E1E1E] p-8">Radar</span>
+        <RadarLogo className="p-8 w-[105px] h-[54px]" />
       </div>
       {/* Right Section (Tabs + Form) */}
       <div className="flex flex-col" style={{ minWidth: '564px' }}>
@@ -157,13 +161,13 @@ const SignIn = () => {
           }}
         >
           <button
-            className={`flex-1 rounded-l-lg font-semibold border border-[#322B25] ${activeTab === 'login' ? 'bg-[#322B25] text-white' : 'bg-[#E8E8E8] text-[#322B25]'}`}
+            className={`flex-1 rounded-l-lg font-semibold  ${activeTab === 'login' ? 'bg-[#322B25] text-white' : 'bg-[#E8E8E8] text-[#322B25]'}`}
             onClick={() => setActiveTab('login')}
           >
             Log In
           </button>
           <button
-            className={`flex-1 rounded-r-lg font-semibold border border-l-0 border-[#322B25] ${activeTab === 'signup' ? 'bg-[#322B25] text-white' : 'bg-[#E8E8E8] text-[#322B25]'}`}
+            className={`flex-1 rounded-r-lg font-semibold  ${activeTab === 'signup' ? 'bg-[#322B25] text-white' : 'bg-[#E8E8E8] text-[#322B25]'}`}
             onClick={() => setActiveTab('signup')}
           >
             Sign Up
@@ -182,11 +186,11 @@ const SignIn = () => {
             <form className="w-full flex flex-col gap-6" onSubmit={handleLoginSubmit}>
               <div className="p-6 pb-0">
                 <label className="block text-sm font-medium mb-1 text-[#322B25]">User Name</label>
-                <input name="email" type="email" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none focus:ring-2 focus:ring-[#322B25]/20 transition" placeholder="Johndoe" value={loginForm.email} onChange={handleLoginChange} />
+                <input name="email" type="email" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none transition" placeholder="Johndoe" value={loginForm.email} onChange={handleLoginChange} />
               </div>
               <div className='p-6 py-0'>
                 <label className="block text-sm font-medium mb-1 text-[#322B25]">Password</label>
-                <input name="password" type="password" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none focus:ring-2 focus:ring-[#322B25]/20 transition" placeholder="********" value={loginForm.password} onChange={handleLoginChange} />
+                <input name="password" type="password" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none transition" placeholder="********" value={loginForm.password} onChange={handleLoginChange} />
               </div>
               {loginError && <div className="text-red-500 text-sm text-center">{loginError}</div>}
               <div className="flex justify-between items-center text-sm mb-2 px-6">
@@ -206,19 +210,19 @@ const SignIn = () => {
             <form className="w-full flex flex-col gap-6" onSubmit={handleSignupSubmit}>
               <div className="p-6 pb-0"> 
                 <label className="block text-sm font-medium mb-1 text-[#322B25]">Full Name</label>
-                <input name="name" type="text" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none focus:ring-2 focus:ring-[#322B25]/20 transition" placeholder="Your Name" value={signupForm.name} onChange={handleSignupChange} />
+                <input name="name" type="text" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none  transition" placeholder="Your Name" value={signupForm.name} onChange={handleSignupChange} />
               </div>
               <div className="p-6 py-0">
                 <label className="block text-sm font-medium mb-1 text-[#322B25]">Email</label>
-                <input name="email" type="email" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none focus:ring-2 focus:ring-[#322B25]/20 transition" placeholder="you@email.com" value={signupForm.email} onChange={handleSignupChange} />
+                <input name="email" type="email" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none  transition" placeholder="you@email.com" value={signupForm.email} onChange={handleSignupChange} />
               </div>
               <div className="p-6 py-0">
                 <label className="block text-sm font-medium mb-1 text-[#322B25]">Password</label>
-                <input name="password" type="password" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none focus:ring-2 focus:ring-[#322B25]/20 transition" placeholder="********" value={signupForm.password} onChange={handleSignupChange} />
+                <input name="password" type="password" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none  transition" placeholder="********" value={signupForm.password} onChange={handleSignupChange} />
               </div>
               <div className="p-6 py-0">
                 <label className="block text-sm font-medium mb-1 text-[#322B25]">Confirm Password</label>
-                <input name="confirm" type="password" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none focus:ring-2 focus:ring-[#322B25]/20 transition" placeholder="********" value={signupForm.confirm} onChange={handleSignupChange} />
+                <input name="confirm" type="password" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none  transition" placeholder="********" value={signupForm.confirm} onChange={handleSignupChange} />
               </div>
               {signupError && <div className="text-red-500 text-sm text-center">{signupError}</div>}
               {signupSuccess && <div className="text-green-500 text-center mb-4">Account created! Please check your email to confirm your account before logging in.</div>}

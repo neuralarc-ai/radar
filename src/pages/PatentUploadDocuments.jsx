@@ -164,7 +164,7 @@ function PatentUploadDocuments() {
               name="documentCategory"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-[#6C6C6C] bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C] text-[#FFFFFF]"
+              className="w-full px-[14px] py-[16px] rounded-[4px] border border-[#6C6C6C] bg-[#1C1C1C] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C] text-[#FFFFFF] appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[length:16px_12px] bg-[right_4px_center] bg-no-repeat pr-8"
             >
               <option value="">Select a category</option>
               {documentCategories.map(category => (
@@ -202,7 +202,7 @@ function PatentUploadDocuments() {
               <svg className="mx-auto h-12 w-12 text-[#868686]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
               </svg>
-              <p className="text-[#868686]">Drag and drop files here, or click to select files</p>
+              <p className="text-[#322B25]">Drag and drop files here, or click to select files</p>
                 {selectedCategory ? (
                   <p className="text-sm text-[#868686]">
                     Allowed formats: {documentCategories.find(cat => cat.id === selectedCategory)?.typeDescription} (Max 10MB)
@@ -216,15 +216,15 @@ function PatentUploadDocuments() {
 
           {uploadedFiles.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-lg font-medium text-[#FFFFFF] mb-4">Uploaded Files</h3>
+              <h3 className="text-lg font-medium text-[#322B25] mb-4">Uploaded Files</h3>
               <div className="space-y-2">
                 {uploadedFiles.map((file, index) => (
-                  <div key={file.id} className="flex items-center justify-between p-3 bg-[#1C1C1C] rounded-lg border border-[#6C6C6C]">
+                  <div key={file.id} className="flex items-center justify-between p-3 bg-[#F5F5F5] rounded-lg border border-[#6C6C6C]">
                     <div className="flex items-center space-x-3">
                       <svg className="h-5 w-5 text-[#868686]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
-                      <span className="text-sm text-[#FFFFFF]">{file.name}</span>
+                      <span className="text-sm text-[#322B25]">{file.name}</span>
                     </div>
                     <button
                       onClick={() => handleRemoveFile(file.id)}
@@ -242,13 +242,14 @@ function PatentUploadDocuments() {
 
           <div className="mt-8 flex justify-between">
             <button
-              className="px-6 py-2 border border-[#6C6C6C] text-[#322B25] rounded-lg hover:bg-[#302F2F] transition-colors flex items-center gap-2"
+              className="px-[27px] py-[16px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
               onClick={() => navigate(-1)}
             >
               <span>Back</span>
             </button>
             <button
-                className="px-6 py-2 bg-[#302F2F] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors flex items-center gap-2 border border-[#6C6C6C]"
+                className="px-[27px] py-[16px] bg-[#302F2F] text-[#FFFFFF] rounded-[4px] hover:bg-[#6C6C6C] hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors flex items-center gap-2 border border-[#322B25]"
               onClick={handleCheckCompliance}
             >
               <span>Check Compliance</span>

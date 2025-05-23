@@ -212,7 +212,7 @@ const PatentGenerateDocuments = () => {
             <button
               onClick={handleGenerate}
               disabled={isGenerating}
-                className={`px-8 py-3 bg-[#2B2521] text-[#FFFFFF] rounded-lg hover:bg-[#2B2521]/90 transition-colors flex items-center space-x-2 ${
+                className={`px-8 py-3 bg-[#2B2521] text-[#ffffff] rounded-[4px] rounded-[4px] border border-[#322B25]  font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors flex items-center space-x-2 ${
                 isGenerating ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             >

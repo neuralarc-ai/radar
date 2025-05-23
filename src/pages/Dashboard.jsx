@@ -111,7 +111,7 @@ const Dashboard = () => {
               {/* Action button */}
               <button
                 onClick={() => navigate(`/dashboard/${type.key}`)}
-                className="w-full py-2 px-4 text-sm rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#000000]/10 focus:ring-offset-2 bg-[#232323] text-[#FFFFFF] hover:bg-[#232323]"
+                className="w-full py-[16px] px-[27px] text-sm rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#000000]/10 focus:ring-offset-2 bg-[#232323] text-[#FFFFFF] hover:bg-[#232323]"
               >
                 Start {type.label} Process
               </button>

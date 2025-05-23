@@ -90,8 +90,11 @@ const PatentProgressSidebar = () => {
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
-              className="bg-[#C67B49] h-2 rounded-full transition-all duration-500"
-              style={{ width: `${progress}%` }}
+              className="h-2 rounded-full transition-all duration-500"
+              style={{ 
+                width: `${progress}%`,
+                background: 'radial-gradient(circle at center, #D48EA3 0%, #3987BE 50%, #262626 100%)'
+              }}
             />
           </div>
         </div>

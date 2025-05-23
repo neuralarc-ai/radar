@@ -358,7 +358,7 @@ const PatentFiling = () => {
               <div className="flex flex-col items-center">
                 <button
                   type="button"
-                  className={`w-full px-4 py-2 rounded-[4px] border-2 transition-all duration-200 flex items-center gap-2
+                  className={`w-full px-[27px] py-[11px] rounded-[4px] border-2 transition-all duration-200 flex items-center gap-2
                     ${isActive ? 'bg-[#322B25] text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px] shadow-lg' : isCompleted ? 'bg-[#322B25]/50 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' : 'bg-[#322B25] text-[#FFFFFF] border-[#6C6C6C]/14'}
                   `}
                   onClick={() => i <= step ? setStep(i) : null}
@@ -389,7 +389,7 @@ const PatentFiling = () => {
               onChange={handleChange}
               className={`w-full px-4 py-3 rounded-lg border ${
                 validationErrors.patentTitle ? 'border-red-500' : 'border-[#E2E2E2] border-[1px]'
-              } bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base h-10`}
+              } bg-[#FFFFFF] focus:outline-none text-[#322B25] text-base h-10`}
               placeholder="Enter patent title"
               required
             />
@@ -405,7 +405,7 @@ const PatentFiling = () => {
               onChange={handleChange}
               className={`w-full px-4 py-3 rounded-lg border ${
                 validationErrors.inventorNames ? 'border-red-500' : 'border-[#E2E2E2] border-[1px]'
-              } bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base h-10`}
+              } bg-[#FFFFFF] focus:outline-none text-[#322B25] text-base h-10`}
               placeholder="Enter inventor name(s), separate multiple names with commas"
               required
             />
@@ -432,13 +432,14 @@ const PatentFiling = () => {
               name="briefSummary"
               value={form.briefSummary}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.briefSummary ? 'border-red-500' : 'border-[#232323]/10 border-[1px]'} bg-[#FFFFFF] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C]/40 text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.briefSummary ? 'border-red-500' : 'border-[#232323]/10 border-[1px]'} bg-[#FFFFFF] focus:outline-none text-[#322B25] text-base resize-none h-10 overflow-hidden`}
               placeholder="Provide a brief summary of your invention"
               required
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded-[4px] bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#f] transition-all flex items-center gap-1"
+                className="px-[27px] py-[16px] ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
                 onClick={() => handleAISuggest('briefSummary')}
                 disabled={aiLoading === 'briefSummary'}
               >
@@ -593,7 +594,8 @@ const PatentFiling = () => {
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#232323] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
                 onClick={() => handleAISuggest('technicalField')}
                 disabled={aiLoading === 'technicalField'}
               >
@@ -617,7 +619,8 @@ const PatentFiling = () => {
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#232323] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
                 onClick={() => handleAISuggest('backgroundArt')}
                 disabled={aiLoading === 'backgroundArt'}
               >
@@ -641,7 +644,8 @@ const PatentFiling = () => {
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded-[4px] bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#232323] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
                 onClick={() => handleAISuggest('detailedDescription')}
                 disabled={aiLoading === 'detailedDescription'}
               >
@@ -665,7 +669,8 @@ const PatentFiling = () => {
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#6C6C6C] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
                 onClick={() => handleAISuggest('advantageousEffects')}
                 disabled={aiLoading === 'advantageousEffects'}
               >
@@ -706,7 +711,9 @@ const PatentFiling = () => {
                       style={{ display: 'none' }}
                       onChange={e => handleDrawingFileChange(index, e.target.files[0])}
                     />
-                    <label htmlFor={`drawing-file-${index}`} className="px-3 py-2 bg-[#322B25] text-[#FFFFFF] rounded cursor-pointer hover:bg-[#6C6C6C] text-xs font-semibold shadow">
+                    <label htmlFor={`drawing-file-${index}`} className="px-2 py-2 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
+                    >
                       Upload
                     </label>
                     {drawing.file && (
@@ -735,7 +742,8 @@ const PatentFiling = () => {
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded-[4px] bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#E2E2E2] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
                 onClick={() => handleAISuggest('knownPriorArt')}
                 disabled={aiLoading === 'knownPriorArt'}
               >
@@ -866,7 +874,8 @@ const PatentFiling = () => {
               <button
                 type="button"
                 onClick={handleSearchPriorArt}
-                className="px-6 py-3 bg-[#322B25] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors"
+                className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
                 disabled={aiLoading}
               >
                 {aiLoading ? 'Searching...' : 'Search'}
@@ -947,7 +956,8 @@ const PatentFiling = () => {
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded-[4px] bg-[#322B25] text-[#FFFFFF] text-xs font-semibold shadow hover:bg-[#E2E2E2] transition-all flex items-center gap-1"
+                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
                 onClick={() => handleAISuggest('claims')}
                 disabled={aiLoading === 'claims'}
               >
@@ -977,10 +987,10 @@ const PatentFiling = () => {
         <button
           type="button"
           onClick={() => setStep(s => Math.max(0, s - 1))}
-          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[4px] text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C]/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-[#6C6C6C] bg-[#302F2F] text-[#FFFFFF] hover:bg-[#E2E2E2] hover:text-[#322B25] h-10 px-4 py-2"
+          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[4px] text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C]/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-[#6C6C6C] bg-[#302F2F] text-[#FFFFFF] hover:bg-[#E2E2E2] hover:text-[#322B25] h-10 px-[27px] py-[16px]"
           disabled={step === 0}
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
           </svg>
           Previous
@@ -994,8 +1004,7 @@ const PatentFiling = () => {
               handleNext();
             }
           }}
-          className={`px-6 py-2 text-[#FFFFFF] rounded-[4px] transition-colors ${
-            isSubmitting ? 'bg-[#322B25]/50' : 'bg-[#322B25] hover:bg-[#6C6C6C]'
+          className={`px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
           }`}
           disabled={isSubmitting}
         >

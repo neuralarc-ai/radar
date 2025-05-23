@@ -382,7 +382,7 @@ const TrademarkFiling = () => {
         </div>
         <div className="w-full bg-[##EFECE5]/40 rounded-full h-2">
           <div
-            className="bg-[#000000] h-2 rounded-full transition-all duration-500"
+            className="bg-gradient-to-r from-[#262626] to-[#3987BE] to-[#D48EA3] h-2 rounded-full transition-all duration-500"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
@@ -403,7 +403,7 @@ const TrademarkFiling = () => {
               <div className="flex flex-col items-center">
                 <button
                   type="button"
-                  className={`w-full px-4 py-2 rounded-[4px] border-2 transition-all duration-200 flex items-center gap-2
+                  className={`w-full px-[27px] py-[11px] rounded-[4px] border-2 transition-all duration-200 flex items-center gap-2
                     ${isActive ? 'bg-[#322B25] text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px] shadow-lg' : isCompleted ? 'bg-[#322B25]/50 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' : 'bg-[#322B25] text-[#FFFFFF] border-[#6C6C6C]/14'}
                   `}
                   onClick={() => i <= step ? setStep(i) : null}
@@ -613,7 +613,8 @@ const TrademarkFiling = () => {
                 />
                 <button
                   type="button"
-                  className="px-3 py-3 ml-4 rounded-[4px]  bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+                  className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+
  transition-all flex items-center gap-1"
                   onClick={() => handleAISuggest('businessDescription')}
                   disabled={aiLoading === 'businessDescription'}
@@ -635,7 +636,7 @@ const TrademarkFiling = () => {
                 />
                 <button
                   type="button"
-                  className="px-3 py-3 ml-4 rounded-[4px]  bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+                  className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
  transition-all flex items-center gap-1"
                   onClick={() => handleAISuggest('goodsServices')}
                   disabled={aiLoading === 'goodsServices'}

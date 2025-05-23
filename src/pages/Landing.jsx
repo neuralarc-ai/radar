@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, FileText, CreditCard, Check, Cpu, PhoneCall } from 'react-feather';
 import platformImage from '../assests/preview01.png';
 import footerImage from '../assests/preview01.png';
-import neuralarcLogo from '../assests/neuralarc-logo.png';
+import neuralarcLogo from '../assests/neuralarc-logo.svg';
 import footerLogo from '../assests/footer-logo.png';
+import { ReactComponent as RadarLogo } from '../assests/Radar.svg';
 
 const Landing = () => {
   const features = [
@@ -34,23 +35,18 @@ const Landing = () => {
   const bgColors = ['#C0C6B8', '#C6AEA3', '#A9A9A9'];
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3]">
+    <div className="min-h-screen bg-[#F8F7F3] ">
       {/* Navbar */}
       <nav className="flex items-center justify-between py-6 px-4 max-w-7xl mx-auto">
         <div className="flex items-center">
           <Link to="/">
-            <span className="text-[#1E1E1E] text-2xl font-bold">Radar</span>
+            <RadarLogo className="w-[105px] h-[54px]" />
           </Link>
         </div>
         <div className="flex gap-4">
           <Link to="/signin">
-            <button className="border border-[#232323] border-[1px] text-[#2B2521] hover:bg-[#2B2521]/5 px-4 py-2 rounded-[4px] font-medium transition-colors">
+            <button className="border border-[#232323] border-[1px] text-[#2B2521] hover:bg-[#2B2521]/5 px-[27px] py-[16px] rounded-[4px] font-medium transition-colors">
               Sign In
-            </button>
-          </Link>
-          <Link to="/signup">
-            <button className="bg-[#2B2521] hover:bg-[#2B2521]/90 text-[#FFFFFF] px-4 py-2 rounded-[4px] font-medium flex items-center gap-2 transition-colors">
-              Get Started <ArrowRight className="h-4 w-4" />
             </button>
           </Link>
         </div>
@@ -64,15 +60,15 @@ const Landing = () => {
           with AI Precision
         </h1>
 
-        <p className="text-[#1E1E1E]/60 text-lg md:text-xl mb-4 max-w-3xl">
+        <p className="text-[#4f4f4f]/60 text-lg md:text-xl mb-4 max-w-3xl">
           Streamline your trademark, patent, and copyright filings with our intelligent platform.
         </p>
-        <p className="text-[#1E1E1E]/60 text-lg md:text-xl mb-16 max-w-3xl">
+        <p className="text-[#4f4f4f]/60 text-lg md:text-xl mb-16 max-w-3xl">
           Get higher accuracy and faster approvals with AI assistance.
         </p>
 
-        <Link to="/signup">
-          <button className="bg-[#1E1E1E] hover:bg-[#1E1E1E]/90 text-[#FFFFFF] rounded-[4px] px-4 py-4 text-lg flex items-center gap-2 transition-colors">
+        <Link to="/signin">
+          <button className="bg-[#1E1E1E] text-[#FFFFFF] hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 border border-[#322B25]/5 rounded-[4px] px-[27px] py-[16px] text-lg flex items-center gap-2 transition-colors">
             Try Now <ArrowRight className="h-5 w-5" />
           </button>
         </Link>
@@ -200,7 +196,7 @@ const Landing = () => {
                   <img
                     src={neuralarcLogo}
                     alt="NeuralArc Logo"
-                    className="h-4 w-auto"
+                    className="h-auto w-6"
                   />
                 </a>
               </p>
