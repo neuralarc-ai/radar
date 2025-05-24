@@ -67,7 +67,7 @@ const countries = ['United States', 'India', 'United Kingdom', 'Canada', 'Austra
 
 // AI Suggestion Box Component
 const AISuggestionBox = ({ suggestions }) => (
-  <div className="bg-[#CFD2D4] border border-[#322B25]/5 border-[1.5px] rounded-lg p-4 mb-6">
+  <div className="bg-[#CFD2D4] border border-[#322B25]/5 border-[1.5px] rounded-lg -z-50 p-4 mb-6">
     <div className="flex items-center gap-2 mb-2">
       <IoBulbOutline className="w-5 h-5 text-[#322B25]" />
       <h3 className="text-sm font-medium text-[#322B25]">AI Suggestions</h3>

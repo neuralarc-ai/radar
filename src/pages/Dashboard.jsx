@@ -56,7 +56,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] relative overflow-hidden ">
+    <div className="min-h-screen bg-[#F8F7F3] relative overflow-hidden grain-texture ">
       {/* Logo */}
       <div className="w-full flex justify-center pt-14">
         {/* <img src={lawbitLogo} alt="Radar Logo" className="h-11 w-auto" /> */}

@@ -5,6 +5,7 @@ import logoHorizontal from '../assests/logo-horizontal.png';
 import footerLogo from '../assests/footer-logo.png';
 import footerImage from '../assests/preview01.png';
 import neuralarcLogo from '../assests/neuralarc-logo.png';
+import radarLogoPng from '../assests/Radar_beta.png';
 
 const Terms = () => {
   return (
@@ -12,7 +13,7 @@ const Terms = () => {
       {/* Navbar */}
       <nav className="flex items-center justify-between py-6 px-4 max-w-7xl mx-auto">
         <div className="flex items-center">
-          <img src={require('../assests/radar_logo.png')} alt="Radar Logo" className="w-[105px] h-[54px] object-contain" />
+          <img src={radarLogoPng} alt="Radar Logo" className="w-[105px] h-[54px] object-contain" />
         </div>
         <div className="flex gap-4">
           <Link to="/signin">

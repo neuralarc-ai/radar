@@ -70,7 +70,7 @@ const MainLayout = ({ children }) => {
         <div className="w-64 flex-shrink-0">
           <ProgressSidebar progress={progress} />
         </div>
-        <main className="w-full bg-[#F8F7F3] p-10">
+        <main className="w-full bg-[#F8F7F3] p-10 grain-texture">
           {children}
         </main>
       </div>

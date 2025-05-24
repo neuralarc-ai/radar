@@ -44,7 +44,7 @@ const CustomSelect = ({
     >
       <div
         className={`
-          w-full px-4 py-3 rounded-lg border
+          w-full px-4 py-3 rounded-lg z-50 border
           ${error ? 'border-red-500' : 'border-[#C67B49]/20'}
           bg-white focus:outline-none focus:ring-2 focus:ring-[#C67B49]/40
           text-gray-700 cursor-pointer
@@ -82,7 +82,7 @@ const CustomSelect = ({
         <div className="
           absolute w-full mt-1 bg-white rounded-lg shadow-lg
           border border-gray-200 max-h-60 overflow-y-auto
-          z-[9999]
+          z-50
         ">
           {options.map((option) => (
             <div

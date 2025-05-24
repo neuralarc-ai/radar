@@ -5,7 +5,7 @@ import platformImage from '../assests/preview01.png';
 import footerImage from '../assests/preview01.png';
 import neuralarcLogo from '../assests/neuralarc-logo.svg';
 import footerLogo from '../assests/footer-logo.png';
-import radarLogoPng from '../assests/radar_logo.png';
+import radarLogoPng from '../assests/Radar_beta.png';
 import { ReactComponent as RadarLogo } from '../assests/Radar.svg';
 
 const Landing = () => {
@@ -36,7 +36,7 @@ const Landing = () => {
   const bgColors = ['#C0C6B8', '#C6AEA3', '#A9A9A9'];
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] ">
+    <div className="min-h-screen bg-[#F8F7F3] grain-texture ">
       {/* Navbar */}
       <nav className="flex items-center justify-between py-6 px-4 max-w-7xl mx-auto">
         <div className="flex items-center">

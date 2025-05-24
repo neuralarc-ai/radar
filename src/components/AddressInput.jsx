@@ -40,7 +40,7 @@ const AddressInput = ({ value, onChange, error, placeholder }) => {
             border: 1px solid #6C6C6C !important;
             padding: 8px 0 !important;
             margin-top: 8px !important;
-            z-index: 9999 !important;
+            z-index: 999 !important;
             font-family: inherit !important;
             max-height: 380px !important;
             overflow-y: auto !important;
