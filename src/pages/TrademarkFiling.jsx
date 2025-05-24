@@ -368,11 +368,11 @@ const TrademarkFiling = () => {
         <div className='flex items-center gap-4 mb-6'>
           <button
             type="button"
-            className="p-2  text-[#322B25] hover:text-[#FFFFFF] transition-colors rounded-[4px] hover:bg-[#302F2F] border border-[#000000]/5 border-[1.5px]"
+            className="circular-button"
             onClick={() => navigate(-1)}
             aria-label="Go back"
           >
-            <IoArrowBack className="w-6 h-6" />
+            <IoArrowBack className="icon" />
           </button>
           <h1 className="text-2xl font-bold text-[#322B25]">Trademark Application Wizard</h1>
         </div>

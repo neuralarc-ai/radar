@@ -7,6 +7,7 @@ import neuralarcLogo from '../assests/neuralarc-logo.svg';
 import footerLogo from '../assests/footer-logo.png';
 import radarLogoPng from '../assests/Radar_beta.png';
 import { ReactComponent as RadarLogo } from '../assests/Radar.svg';
+import LandingPageImage from '../assests/LandingPage_image.png';
 
 const Landing = () => {
   const features = [
@@ -36,7 +37,7 @@ const Landing = () => {
   const bgColors = ['#C0C6B8', '#C6AEA3', '#A9A9A9'];
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] grain-texture ">
+    <div className="min-h-screen bg-[#FBFAF8] grain-texture ">
       {/* Navbar */}
       <nav className="flex items-center justify-between py-6 px-4 max-w-7xl mx-auto">
         <div className="flex items-center">
@@ -46,11 +47,9 @@ const Landing = () => {
         </div>
         <div className="flex gap-4">
           <Link to="/signin">
-            <div className="gradient-border-wrapper rounded-[4px] group">
-              <button className="bg-transparent text-[#4f4f4f] hover:bg-[#322B25]/50  hover:text-[#322B25]/90  rounded-[4px] px-[27px] py-[16px] font-medium focus:outline-none transition-transform duration-200 hover:scale-105">
-                Sign In
-              </button>
-            </div>
+            <button className="bg-transparent text-[#232323] border border-[#232323] border-[1px] rounded-[4px] px-[27px] py-[16px] text-lg flex items-center gap-2 focus:outline-none">
+              Sign In
+            </button>
           </Link>
         </div>
       </nav>
@@ -69,28 +68,54 @@ const Landing = () => {
         <p className="text-[#4f4f4f]/60 text-lg md:text-xl mb-16 max-w-3xl">
           Get higher accuracy and faster approvals with AI assistance.
         </p>
-
+        <img src={LandingPageImage} alt="Landing Page Image" className="w-full h-full object-cover" />
         <Link to="/signin">
-          <div className="gradient-border-wrapper rounded-[4px] group">
-            <button className="bg-transparent hover:bg-[#322B25]/50  hover:text-[#322B25]/90  rounded-[4px] px-[27px] py-[16px] text-lg flex items-center gap-2 focus:outline-none transition-transform duration-200 hover:scale-105">
-              Try Now <span className="transition-transform duration-200 group-hover:translate-x-1"><ArrowRight className="h-5 w-5" /></span>
-            </button>
-          </div>
+          <button className="bg-transparent text-[#232323] border border-[#232323] border-[1px] rounded-[4px] px-[27px] py-[16px] text-lg flex items-center gap-2 focus:outline-none">
+            Try Now <span><ArrowRight className="h-5 w-5" /></span>
+          </button>
         </Link>
 
-        {/* Trust Indicators */}
-        <div className="mt-12 flex flex-wrap justify-center gap-28 text-[#1E1E1E]/60 max-w-3xl md:max-w-4xl mx-auto px-6 md:px-12">
-          <div className="flex items-center">
-            <Cpu className="w-5 h-5 text-[#1E1E1E]/60 mr-2" />
-            <span>AI-Powered Accuracy</span>
-          </div>
-          <div className="flex items-center">
-            <Shield className="w-5 h-5 text-[#1E1E1E]/60 mr-2" />
-            <span>Secure & Compliant</span>
-          </div>
-          <div className="flex items-center">
-            <PhoneCall className="w-5 h-5 text-[#1E1E1E]/60 mr-2" />
-            <span>AI-Powered Accuracy</span>
+        {/* Trust Indicators Box */}
+        <div className="mt-12 w-full flex justify-center">
+          <div className="bg-white rounded-[24px] shadow-sm px-6 py-8 w-full max-w-5xl flex flex-col items-center">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[#232323] text-center mb-8">
+              Transform your investment decisions<br />with cutting-edge AI technology
+            </h2>
+            <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 justify-center">
+              {/* Card 1 */}
+              <div className="flex-1 min-w-[220px] bg-[#CFC1B1] rounded-[10px] p-8 flex flex-col items-start justify-between">
+                <div className="flex items-center mb-6">
+                  <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#F3F3F0]">
+                    <span className="flex items-center justify-center w-10 h-10 rounded-full bg-[#CFD4C9]">
+                      <Cpu className="w-6 h-6 text-[#232323]" />
+                    </span>
+                  </span>
+                </div>
+                <div className="text-2xl font-bold text-[#232323] leading-tight">AI-Powered Accuracy</div>
+              </div>
+              {/* Card 2 */}
+              <div className="flex-1 min-w-[220px] bg-[#CFC1B1] rounded-[10px] p-8 flex flex-col items-start justify-between">
+                <div className="flex items-center mb-6">
+                  <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#F3F3F0]">
+                    <span className="flex items-center justify-center w-10 h-10 rounded-full bg-[#CFD4C9]">
+                      <Shield className="w-6 h-6 text-[#232323]" />
+                    </span>
+                  </span>
+                </div>
+                <div className="text-2xl font-bold text-[#232323] leading-tight">Secure & Compliant</div>
+              </div>
+              {/* Card 3 */}
+              <div className="flex-1 min-w-[220px] bg-[#CFC1B1] rounded-[10px] p-8 flex flex-col items-start justify-between">
+                <div className="flex items-center mb-6">
+                  <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#F3F3F0]">
+                    <span className="flex items-center justify-center w-10 h-10 rounded-full bg-[#CFD4C9]">
+                      <PhoneCall className="w-6 h-6 text-[#232323]" />
+                    </span>
+                  </span>
+                </div>
+                <div className="text-2xl font-bold text-[#232323] leading-tight">24/7 Support</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -130,8 +155,8 @@ const Landing = () => {
       </div>
 
       {/* Simplifying IP Section */}
-      <div className="py-24 px-4 max-w-6xl mx-auto animate-fade-in">
-        <div className="border border-[#FFFFFF]/4 rounded-[8px] p-8 md:p-12 shadow-sm bg-[#D0C3B5]">
+      <div className="py-24 px-4 rounded-[8px] max-w-6xl mx-auto animate-fade-in">
+        <div className="border border-[#FFFFFF]/4 rounded-[8px] p-8 md:p-12 shadow-sm bg-[#CFD4C9]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-[#000000] mb-6">
@@ -143,24 +168,10 @@ const Landing = () => {
                 accessible, affordable, and efficient for businesses of all sizes.
               </p>
 
-              <div className="space-y-5">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="p-1 bg-[#000000]/10 rounded-full mt-1">
-                      <Check className="h-4 w-4 text-[#000000]" />
-                    </div>
-                    <p className="text-[#000000] font-medium">{benefit}</p>
-                  </div>
-                ))}
-              </div>
             </div>
 
             <div className="relative -mr-12">
-              <img
-                src={platformImage}
-                alt="Radar Platform Interface"
-                className="object-cover h-full w-full"
-              />
+                
             </div>
           </div>
         </div>

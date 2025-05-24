@@ -319,14 +319,14 @@ const PatentFiling = () => {
     <div className="w-[88%] mx-auto p-8 outline outline-1 outline-[#FFFFFF]/5 outline-[2px] rounded-[12px] bg-[#EFECE5] grain-texture">
       {/* Progress Bar Section */}
       <div className="mb-8">
-        <div className='flex items-center gap-4 mb-6'> 
-          <button 
+        <div className='flex items-center gap-4 mb-6'>
+          <button
             type="button"
-            className="p-2 text-[#202020] hover:text-[#FFFFFF] transition-colors rounded-[4px] hover:bg-[#302F2F] border border-[#322B25]/5 border-[1.5px]"
+            className="circular-button"
             onClick={() => navigate(-1)}
             aria-label="Go back"
           >
-            <IoArrowBack className="w-6 h-6" />
+            <IoArrowBack className="icon" />
           </button>
           <h1 className="text-2xl font-bold text-[#322B25]">Patent Application Wizard</h1>
         </div>
