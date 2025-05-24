@@ -857,7 +857,7 @@ const TrademarkFiling = () => {
             <button
               type="button"
               onClick={handleNext}
-              className="px-6 py-2 rounded-lg font-semibold bg-[#322B25] text-[#FFFFFF] shadow hover:shadow-[#302F2F]/30 transition-all"
+              className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90-[#302F2F]/30 transition-all"
             >
               Next
             </button>
@@ -865,7 +865,7 @@ const TrademarkFiling = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-2 rounded-lg font-semibold bg-[#322B25] text-[#FFFFFF] shadow hover:shadow-[#E8E8E8]/40 transition-all disabled:opacity-70"
+              className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90-[#302F2F]/30 transition-all"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Filing'}
             </button>

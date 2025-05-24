@@ -127,24 +127,15 @@ const SignIn = () => {
     <div className="min-h-screen flex flex-row items-center justify-center bg-[#FBFBF8] grain-texture">
       {/* Left Card */}
       <div
-        className="flex-shrink-0"
-        style={{
-          width: '622px',
-          height: '1000px',
-          borderRadius: '16px',
-          background: `url(${activeTab === 'login' ? RadarCard01 : RadarCard02}), linear-gradient(153.57deg, rgba(118,94,84,0.85) 8.24%, rgba(49,33,25,0.85) 104.37%)`,
-          backgroundRepeat: 'no-repeat, no-repeat',
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'flex-start',
-          marginRight: '64px'
-        }}
+        className="flex-shrink-0 relative w-[400px] h-full rounded-[16px] bg-gradient-to-br from-[#765E54D9] to-[#312119D9] shadow-md mr-16"
       >
-        <RadarLogo className="p-8 w-[105px] h-[54px]" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img
+            src={activeTab === 'login' ? RadarCard01 : RadarCard02}
+            alt="Radar Card"
+            className="w-full h-[80vh] object-contain rounded-[12px]"
+          />
+        </div>
       </div>
       {/* Right Section (Tabs + Form) */}
       <div className="flex flex-col" style={{ minWidth: '564px' }}>

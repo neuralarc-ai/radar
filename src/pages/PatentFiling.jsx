@@ -336,7 +336,7 @@ const PatentFiling = () => {
         </div>
         <div className="w-full bg-[#322B25]/40 rounded-full h-2">
           <div 
-            className="bg-[#322B25] h-2 rounded-full transition-all duration-500"
+            className="bg-gradient-to-r from-[#3987BE] to-[#D48EA3] h-2 rounded-full transition-all duration-500"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
@@ -438,13 +438,13 @@ const PatentFiling = () => {
             />
               <button
                 type="button"
-                className="px-[27px] py-[16px] ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+                className="px-4 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
 "
                 onClick={() => handleAISuggest('briefSummary')}
                 disabled={aiLoading === 'briefSummary'}
               >
                 <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'briefSummary' ? 'Suggesting...' : ''}
+                {aiLoading === 'briefSummary' ? '' : ''}
               </button>
             </div>
             {showError('briefSummary')}

@@ -5,6 +5,7 @@ import platformImage from '../assests/preview01.png';
 import footerImage from '../assests/preview01.png';
 import neuralarcLogo from '../assests/neuralarc-logo.svg';
 import footerLogo from '../assests/footer-logo.png';
+import radarLogoPng from '../assests/radar_logo.png';
 import { ReactComponent as RadarLogo } from '../assests/Radar.svg';
 
 const Landing = () => {
@@ -40,7 +41,7 @@ const Landing = () => {
       <nav className="flex items-center justify-between py-6 px-4 max-w-7xl mx-auto">
         <div className="flex items-center">
           <Link to="/">
-            <RadarLogo className="w-[105px] h-[54px]" />
+            <img src={radarLogoPng} alt="Radar Logo" className="w-[105px] h-[54px] object-contain" />
           </Link>
         </div>
         <div className="flex gap-4">
@@ -166,7 +167,7 @@ const Landing = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start mb-10">
             <div className="flex items-center mb-6 md:mb-0">
-                <h3 className='text-[#FFFFFF] text-2xl font-bold'>Radar</h3>
+              <RadarLogo className="h-8 w-auto" />
               <span className="text-[#868686] text-sm ml-4">IP Protection Made Simple</span>
             </div>
           </div>
