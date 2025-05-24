@@ -46,15 +46,17 @@ const Landing = () => {
         </div>
         <div className="flex gap-4">
           <Link to="/signin">
-            <button className="border border-[#232323] border-[1px] text-[#2B2521] hover:bg-[#2B2521]/5 px-[27px] py-[16px] rounded-[4px] font-medium transition-colors">
-              Sign In
-            </button>
+            <div className="gradient-border-wrapper rounded-[4px] group">
+              <button className="bg-transparent text-[#4f4f4f] hover:bg-[#322B25]/50  hover:text-[#322B25]/90  rounded-[4px] px-[27px] py-[16px] font-medium focus:outline-none transition-transform duration-200 hover:scale-105">
+                Sign In
+              </button>
+            </div>
           </Link>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <div className="flex flex-col items-center justify-center text-center py-20 px-4 max-w-4xl mx-auto">
+      <div className="flex flex-col items-center justify-center text-center py-20 px-4 max-w-4xl mx-auto animate-fade-in">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-[#202020] leading-tight">
           Simplify Your Legal Workflow
           <br />
@@ -69,9 +71,11 @@ const Landing = () => {
         </p>
 
         <Link to="/signin">
-          <button className="bg-[#1E1E1E] text-[#FFFFFF] hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 border border-[#322B25]/5 rounded-[4px] px-[27px] py-[16px] text-lg flex items-center gap-2 transition-colors">
-            Try Now <ArrowRight className="h-5 w-5" />
-          </button>
+          <div className="gradient-border-wrapper rounded-[4px] group">
+            <button className="bg-transparent hover:bg-[#322B25]/50  hover:text-[#322B25]/90  rounded-[4px] px-[27px] py-[16px] text-lg flex items-center gap-2 focus:outline-none transition-transform duration-200 hover:scale-105">
+              Try Now <span className="transition-transform duration-200 group-hover:translate-x-1"><ArrowRight className="h-5 w-5" /></span>
+            </button>
+          </div>
         </Link>
 
         {/* Trust Indicators */}
@@ -92,7 +96,7 @@ const Landing = () => {
       </div>
 
       {/* Features Section */}
-      <div className="bg-[#F8F7F3] py-24 px-4">
+      <div className="bg-[#F8F7F3] py-24 px-4 animate-fade-in">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-[#1E1E1E] text-center mb-6">
             Powerful Features for Your IP Protection
@@ -104,7 +108,7 @@ const Landing = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="rounded-[12px] bg-[#FFFFFF] border border-[#FFFFFF]/4 overflow-hidden shadow-sm relative grain-texture">
+              <div key={index} className="rounded-[12px] bg-[#FFFFFF] border border-[#FFFFFF]/4 overflow-hidden shadow-sm relative grain-texture transition-transform duration-200 hover:-translate-y-2 hover:shadow-lg">
                 <div className="p-8 relative z-10">
                   {/* Icon container with border */}
                   <div className="mb-6 w-14 h-14 rounded-[6px] border border-[#FFFFFF]/4 flex items-center justify-center" style={{ backgroundColor: bgColors[index % 3] }}>
@@ -126,7 +130,7 @@ const Landing = () => {
       </div>
 
       {/* Simplifying IP Section */}
-      <div className="py-24 px-4 max-w-6xl mx-auto">
+      <div className="py-24 px-4 max-w-6xl mx-auto animate-fade-in">
         <div className="border border-[#FFFFFF]/4 rounded-[8px] p-8 md:p-12 shadow-sm bg-[#D0C3B5]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>

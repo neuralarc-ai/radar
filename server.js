@@ -1,10 +1,10 @@
+// Load environment variables first
 require('dotenv').config({ path: '.env' });
 
 const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch').default;
 const path = require('path');
-const { handleTrademarkAnalysis, handlePatentAnalysis } = require('./src/api/analyze');
 
 // Debug logging for environment variables and file paths
 console.log('Current directory:', process.cwd());
@@ -22,10 +22,6 @@ app.use(cors());
 
 // Parse JSON bodies
 app.use(express.json());
-
-// Analysis API routes
-app.get('/api/analyze/trademark/:filingId', handleTrademarkAnalysis);
-app.get('/api/analyze/patent/:filingId', handlePatentAnalysis);
 
 // Proxy endpoint for AI analysis
 app.post('/api/analyze', async (req, res) => {

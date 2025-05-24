@@ -1,4 +1,3 @@
-// AI Service Integration
 const AI_SERVICE_URL = process.env.REACT_APP_AI_SERVICE_URL || 'http://localhost:3001';
 
 export const generateDocuments = async (filing, files) => {
@@ -148,6 +147,7 @@ export const analyzeApprovalChances = async (prompt) => {
     }
 
     const data = await response.json();
+    // The server returns the content directly as a string
     return data;
   } catch (error) {
     console.error('Error analyzing approval chances:', error);
@@ -170,6 +170,7 @@ export const analyzeFilingDates = async (prompt) => {
     }
 
     const data = await response.json();
+    // The server returns the content directly as a string
     return data;
   } catch (error) {
     console.error('Error analyzing filing dates:', error);

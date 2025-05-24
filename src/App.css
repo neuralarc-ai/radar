@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+/* Gradient border with hover effect for buttons */
+.gradient-border {
+  border: 4px solid;
+  border-image: linear-gradient(90deg, #C6AEA3 0%, #8EE3F0 95.42%);
+  border-image-slice: 1;
+  transition: border-image-source 0.3s;
+}
+
+.gradient-border:hover {
+  border-image: linear-gradient(90deg, #8EE3F0 0%, #C6AEA3 95.42%);
+  border-image-slice: 1;
+}

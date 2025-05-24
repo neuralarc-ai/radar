@@ -380,9 +380,9 @@ const TrademarkFiling = () => {
           <span>Completion Progress</span>
           <span>In Progress</span>
         </div>
-        <div className="w-full bg-[##EFECE5]/40 rounded-full h-2">
+        <div className="w-full bg-[#322B25]/40 rounded-full h-2">
           <div
-            className="bg-gradient-to-r from-[#262626] to-[#3987BE] to-[#D48EA3] h-2 rounded-full transition-all duration-500"
+            className="bg-gradient-to-r from-[#3987BE] to-[#D48EA3] h-2 rounded-full transition-all duration-500"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
@@ -620,7 +620,7 @@ const TrademarkFiling = () => {
                   disabled={aiLoading === 'businessDescription'}
                 >
                   <IoSparkles className="w-4 h-4" />
-                  {aiLoading === 'businessDescription' ? 'Suggesting...' : ''}
+                  {aiLoading === 'businessDescription' ? '' : ''}
                 </button>
               </div>
             </div>

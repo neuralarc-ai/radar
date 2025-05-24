@@ -600,7 +600,7 @@ const PatentFiling = () => {
                 disabled={aiLoading === 'technicalField'}
               >
                 <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'technicalField' ? 'Suggesting...' : ''}
+                {aiLoading === 'technicalField' ? '' : ''}
               </button>
             </div>
             {showError('technicalField')}
@@ -625,7 +625,7 @@ const PatentFiling = () => {
                 disabled={aiLoading === 'backgroundArt'}
               >
                 <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'backgroundArt' ? 'Suggesting...' : ''}
+                {aiLoading === 'backgroundArt' ? '' : ''}
               </button>
             </div>
             {showError('backgroundArt')}
@@ -650,7 +650,7 @@ const PatentFiling = () => {
                 disabled={aiLoading === 'detailedDescription'}
               >
                 <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'detailedDescription' ? 'Suggesting...' : ''}
+                {aiLoading === 'detailedDescription' ? '' : ''}
               </button>
             </div>
             {showError('detailedDescription')}
@@ -675,7 +675,7 @@ const PatentFiling = () => {
                 disabled={aiLoading === 'advantageousEffects'}
               >
                 <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'advantageousEffects' ? 'Suggesting...' : ''}
+                {aiLoading === 'advantageousEffects' ? '' : ''}
               </button>
             </div>
             {showError('advantageousEffects')}
@@ -748,7 +748,7 @@ const PatentFiling = () => {
                 disabled={aiLoading === 'knownPriorArt'}
               >
                 <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'knownPriorArt' ? 'Suggesting...' : ''}
+                  {aiLoading === 'knownPriorArt' ? '' : ''}
               </button>
             </div>
             {showError('knownPriorArt')}
@@ -962,7 +962,7 @@ const PatentFiling = () => {
                 disabled={aiLoading === 'claims'}
               >
                 <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'claims' ? 'Suggesting...' : ''}
+                {aiLoading === 'claims' ? '' : ''}
               </button>
             </div>
             {showError('claims')}

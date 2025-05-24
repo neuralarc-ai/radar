@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logoHorizontal from '../assests/logo-horizontal.png';
 import footerLogo from '../assests/footer-logo.png';
-import footerImage from '../assests/footer-image.png';
+import footerImage from '../assests/preview01.png';
 import neuralarcLogo from '../assests/neuralarc-logo.png';
 
 const Disclaimer = () => {
@@ -12,19 +12,16 @@ const Disclaimer = () => {
       <nav className="flex items-center justify-between py-6 px-4 max-w-7xl mx-auto">
         <div className="flex items-center">
           <Link to="/">
-            <h3 className='text-[#322B25] text-2xl font-bold'>Radar</h3>
+            <img src={require('../assests/radar_logo.png')} alt="Radar Logo" className="w-[105px] h-[54px] object-contain" />
           </Link>
         </div>
         <div className="flex gap-4">
-        <Link to="/signin">
-            <button className="border border-[#322B25] text-[#322B25] hover:bg-[#322B25]/5 px-4 py-2 rounded-lg font-medium transition-colors">
-              Sign In
-            </button>
-          </Link>
-          <Link to="/signup">
-            <button className="bg-[#322B25] hover:bg-[#202020] text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors">
-              Get Started
-            </button>
+          <Link to="/signin">
+            <div className="gradient-border-wrapper rounded-[4px] group">
+              <button className="bg-transparent text-[#4f4f4f] hover:bg-[#322B25]/50 hover:text-[#322B25]/90 rounded-[4px] px-[27px] py-[16px] font-medium focus:outline-none transition-transform duration-200 hover:scale-105">
+                Sign In
+              </button>
+            </div>
           </Link>
         </div>
       </nav>
@@ -70,11 +67,11 @@ const Disclaimer = () => {
         </div>
       </div>
 
-      <footer className="bg-[#322B25] rounded-t-3xl py-12 px-4 relative">
+      <footer className="bg-[#232323] py-12 px-4 relative">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start mb-10">
             <div className="flex items-center mb-6 md:mb-0">
-              <h3 className='text-[#FFFFFF] text-2xl font-bold'>Radar</h3>
+              <img src={require('../assests/Radar.svg').default} alt="Radar Logo" className="h-8 w-auto" />
               <span className="text-[#AFAFAF] text-sm ml-4">IP Protection Made Simple</span>
             </div>
           </div>

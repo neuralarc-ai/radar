@@ -1,5 +1,7 @@
 import { supabase } from './supabaseClient';
 
+const AI_SERVICE_URL = process.env.REACT_APP_AI_SERVICE_URL || 'http://localhost:3001';
+
 // Create a new filing
 export const createFiling = async (filingData) => {
   try {
@@ -211,9 +213,6 @@ export const deleteSupportingFile = async (fileId) => {
     return { success: false, error: error.message };
   }
 };
-
-// AI Service Integration
-const AI_SERVICE_URL = process.env.REACT_APP_AI_SERVICE_URL || 'http://localhost:3001';
 
 export const getFilingPrepAnalysis = async (filingId) => {
   try {
