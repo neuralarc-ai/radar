@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { IoArrowBack } from 'react-icons/io5';
 import { IoInformationCircleOutline, IoDocumentTextOutline, IoSearchOutline, IoListOutline, IoBulbOutline, IoSparkles } from 'react-icons/io5';
@@ -316,7 +316,17 @@ const PatentFiling = () => {
   };
 
   return (
-    <div className="w-[88%] mx-auto p-8 outline outline-1 outline-[#FFFFFF]/5 outline-[2px] rounded-[12px] bg-[#EFECE5] grain-texture">
+    <div className="min-h-screen bg-[#FBFAF8] ">
+      {/* Navbar */}
+      <nav className="flex items-center justify-between py-6 px-4 max-w-[1440px] mx-auto w-full">
+        <div className="flex items-center">
+          <Link to="/">
+            <img src={require('../assests/Radar_H.png')} alt="Radar Logo" className="w-[105px] h-[54px] object-contain" />
+          </Link>
+        </div>
+      </nav>
+      
+      <div className="w-[88%] mx-auto p-8 outline outline-1 outline-[#FFFFFF]/5 outline-[2px] rounded-[12px] bg-[#EFECE5]">
       {/* Progress Bar Section */}
       <div className="mb-8">
         <div className='flex items-center gap-4 mb-6'>
@@ -328,9 +338,9 @@ const PatentFiling = () => {
           >
             <IoArrowBack className="icon" />
           </button>
-          <h1 className="text-2xl font-bold text-[#322B25]">Patent Application Wizard</h1>
+          <h1 className="text-2xl font-bold text-[#1E1E1E]">Patent Application Wizard</h1>
         </div>
-        <div className="flex justify-between text-sm text-[#322B25] mb-2">
+        <div className="flex justify-between text-sm text-[#1E1E1E] mb-2">
           <span>Completion Progress</span>
           <span>In Progress</span>
         </div>
@@ -359,7 +369,7 @@ const PatentFiling = () => {
                 <button
                   type="button"
                   className={`w-full px-[27px] py-[11px] rounded-[4px] border-2 transition-all duration-200 flex items-center gap-2
-                    ${isActive ? 'bg-[#322B25] text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px] shadow-lg' : isCompleted ? 'bg-[#322B25]/50 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' : 'bg-[#322B25] text-[#FFFFFF] border-[#6C6C6C]/14'}
+                    ${isActive ? 'bg-[#302D2A] text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px] shadow-lg' : isCompleted ? 'bg-[#302D2A]/50 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' : 'bg-[#302D2A] text-[#FFFFFF] border-[#6C6C6C]/14'}
                   `}
                   onClick={() => i <= step ? setStep(i) : null}
                   disabled={i > step}
@@ -370,7 +380,7 @@ const PatentFiling = () => {
                 </button>
               </div>
               {i < steps.length - 1 && (
-                <div className={`flex-1 h-0.5 mx-2 transition-all duration-300 ${step > i ? 'bg-[#302F2F]' : 'bg-[#6C6C6C]/20'}`}></div>
+                <div className={`flex-1 h-0.5 mx-2 transition-all duration-300 ${step > i ? 'bg-[#302F2F]' : 'bg-[#302D2A]/20'}`}></div>
               )}
             </React.Fragment>
           );
@@ -438,13 +448,13 @@ const PatentFiling = () => {
             />
               <button
                 type="button"
-                className="px-4 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+                className="px-4 py-3 ml-4 rounded-[4px]  bg-[#302D2A] text-[#FFFFFF] font-medium
 "
                 onClick={() => handleAISuggest('briefSummary')}
                 disabled={aiLoading === 'briefSummary'}
               >
                 <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'briefSummary' ? '' : ''}
+                {aiLoading === 'briefSummary' ? 'Analyzing' : ''}
               </button>
             </div>
             {showError('briefSummary')}
@@ -956,7 +966,7 @@ const PatentFiling = () => {
             />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+                className="px-3 py-3 ml-4 rounded-[4px]  bg-[#1E1E1E] text-[#FFFFFF] font-medium 
 "
                 onClick={() => handleAISuggest('claims')}
                 disabled={aiLoading === 'claims'}
@@ -987,7 +997,7 @@ const PatentFiling = () => {
         <button
           type="button"
           onClick={() => setStep(s => Math.max(0, s - 1))}
-          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[4px] text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C]/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-[#6C6C6C] bg-[#302F2F] text-[#FFFFFF] hover:bg-[#E2E2E2] hover:text-[#322B25] h-10 px-[27px] py-[16px]"
+          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[4px] text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C]/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-[#6C6C6C] bg-[#2B2521] text-[#FFFFFF] hover:bg-[#E2E2E2] hover:text-[#322B25] h-10 px-[27px] py-[16px]"
           disabled={step === 0}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1004,12 +1014,13 @@ const PatentFiling = () => {
               handleNext();
             }
           }}
-          className={`px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+          className={`px-[27px] py-[11px] rounded-[4px]  bg-[#2B2521] text-[#FFFFFF] font-medium 
           }`}
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Processing...' : step === steps.length - 1 ? 'Submit' : 'Next'}
         </button>
+      </div>
       </div>
     </div>
   );

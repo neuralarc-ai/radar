@@ -5,7 +5,7 @@ import platformImage from '../assests/preview01.png';
 import footerImage from '../assests/preview01.png';
 import neuralarcLogo from '../assests/neuralarc-logo.svg';
 import footerLogo from '../assests/footer-logo.png';
-import radarLogoPng from '../assests/Link → Radar Logo.png';
+import radarLogoPng from '../assests/Radar_H.png';
 import { ReactComponent as RadarLogo } from '../assests/Radar.svg';
 import LandingPageImage from '../assests/LandingPage_image.png';
 
@@ -55,70 +55,81 @@ const Landing = () => {
       </nav>
 
       {/* Hero Section */}
-      <div className="flex flex-col items-center justify-center text-center py-20 px-4 max-w-[1440px] mx-auto animate-fade-in">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[#202020] leading-tight">
-          Simplify Your Legal Workflow
-          <br />
-          with AI Precision
-        </h1>
+      <div className="w-[1326px] h-[1047px] flex flex-col items-center justify-center text-center gap-10 mx-auto animate-fade-in">
+        <div className="w-[1326px] h-[228px] flex flex-col gap-4">
+          <h1 className="font-['Fustat'] font-semibold text-[64px] leading-[79px] tracking-[-3%] text-center align-middle text-[#202020]">
+            Simplify Your Legal Workflow
+            <br />
+            with AI Precision
+          </h1>
+        </div>
 
-        <p style={{fontFamily: "Fustat", fontWeight: 400, fontSize: "24px", lineHeight: "37px", letterSpacing: "-2%", textAlign: "center", verticalAlign: "middle"}} className="text-[#202020] mb-6 max-w-5xl">
-          Streamline your trademark, patent, and copyright filings with our intelligent platform.
-          Get higher accuracy and faster approvals with AI assistance.
-        </p>
-        <img src={LandingPageImage} alt="Landing Page Image" className="w-full h-full object-cover" />
+        <div className="w-[920px] h-[44px]">
+          <p className="font-['Fustat'] font-normal text-[24px] leading-[37px] tracking-[-2%] text-center align-middle text-[#4f4f4f]/60">
+            Streamline your trademark, patent, and copyright filings with our intelligent platform. Get higher accuracy and faster approvals with AI assistance.
+          </p>
+        </div>
+
+        <div className="w-[1194px] h-[675px]">
+          <img 
+            src={LandingPageImage} 
+            alt="Landing Page Image" 
+            className="w-full h-full object-cover rounded-t-[8px]" 
+          />
+        </div>
+
         <Link to="/signin">
           <button className="bg-transparent text-[#232323] border border-[#232323] border-[1px] rounded-[4px] px-[27px] py-[16px] text-lg flex items-center gap-2 focus:outline-none">
             Try Now <span><ArrowRight className="h-5 w-5" /></span>
           </button>
         </Link>
+      </div>
 
-        {/* Trust Indicators Box */}
-        <div className="mt-12 w-full flex justify-center">
-          <div className="w-[1280px] h-[529px] bg-white rounded-[24px] px-8 py-8 flex flex-col items-center gap-8">
-            {/* Title Section */}
-            <div className="w-[860px] h-[157px] flex flex-col items-center justify-center">
-              <h2 style={{fontFamily: "Fustat", fontWeight: 700, fontSize: "48px", lineHeight: "69px", letterSpacing: "-2%", textAlign: "center", verticalAlign: "middle"}}>
-                Transform your investment decisions<br />with cutting-edge AI technology
-              </h2>
+      {/* Trust Indicators Box */}
+      <div className="mt-12 w-full flex justify-center">
+        <div className="w-[1280px] h-[529px] bg-white rounded-[24px] px-8 py-8 flex flex-col items-center gap-8">
+          {/* Title Section */}
+          <div className="w-[860px] h-[157px] flex flex-col items-center justify-center">
+            <h2 style={{fontFamily: "Fustat", fontWeight: 700, fontSize: "48px", lineHeight: "69px", letterSpacing: "-2%", textAlign: "center", verticalAlign: "middle"}}>
+              Transform your investment decisions<br />with cutting-edge AI technology
+            </h2>
+          </div>
+
+          {/* Cards Container */}
+          <div className="w-[1280px] h-[276px] flex flex-row justify-center gap-4">
+            {/* Card 1 */}
+            <div className="w-[399px] h-[276px] bg-[#CFC1B1] rounded-[8px] border border-[#FFFFFF]/4 flex flex-col items-start justify-between px-10 py-8">
+              <div className="w-[319px] h-[96px] flex flex-col gap-6">
+                <div className="w-[72px] h-[72px] rounded-[52px] bg-[#F3F3F0] p-[14px] flex items-center justify-center">
+                  <span className="w-[44px] h-[44px] rounded-full bg-[#CFD4C9] flex items-center justify-center">
+                    <Cpu className="w-6 h-6 text-[#232323]" />
+                  </span>
+                </div>
+                <div className="text-4xl font-bold text-[#232323] leading-tight" style={{textAlign: "left"}}>AI-Powered Accuracy</div>
+              </div>
             </div>
 
-            {/* Cards Container */}
-            <div className="w-[1280px] h-[276px] flex flex-row justify-center gap-4">
-              {/* Card 1 */}
-              <div className="w-[399px] h-[276px] bg-[#CFC1B1] rounded-[8px] border border-[#FFFFFF]/4 flex flex-col items-start justify-between px-10 py-8">
-                <div className="w-[319px] h-[96px] flex flex-col gap-6">
-                  <div className="w-[72px] h-[72px] rounded-[52px] bg-[#F3F3F0] p-[14px] flex items-center justify-center">
-                    <span className="w-[44px] h-[44px] rounded-full bg-[#CFD4C9] flex items-center justify-center">
-                      <Cpu className="w-6 h-6 text-[#232323]" />
-                    </span>
-                  </div>
-                  <div className="text-4xl font-bold text-[#232323] leading-tight" style={{textAlign: "left"}}>AI-Powered Accuracy</div>
+            {/* Card 2 */}
+            <div className="w-[399px] h-[276px] bg-[#CFC1B1] rounded-[8px] border border-[#FFFFFF]/4 flex flex-col items-start justify-between px-10 py-8">
+              <div className="w-[319px] h-[96px] flex flex-col gap-6">
+                <div className="w-[72px] h-[72px] rounded-[52px] bg-[#F3F3F0] p-[14px] flex items-center justify-center">
+                  <span className="w-[44px] h-[44px] rounded-full bg-[#CFD4C9] flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-[#232323]" />
+                  </span>
                 </div>
+                <div className="text-4xl font-bold text-[#232323] leading-tight" style={{textAlign: "left"}}>Secure & Compliant</div>
               </div>
+            </div>
 
-              {/* Card 2 */}
-              <div className="w-[399px] h-[276px] bg-[#CFC1B1] rounded-[8px] border border-[#FFFFFF]/4 flex flex-col items-start justify-between px-10 py-8">
-                <div className="w-[319px] h-[96px] flex flex-col gap-6">
-                  <div className="w-[72px] h-[72px] rounded-[52px] bg-[#F3F3F0] p-[14px] flex items-center justify-center">
-                    <span className="w-[44px] h-[44px] rounded-full bg-[#CFD4C9] flex items-center justify-center">
-                      <Shield className="w-6 h-6 text-[#232323]" />
-                    </span>
-                  </div>
-                  <div className="text-4xl font-bold text-[#232323] leading-tight" style={{textAlign: "left"}}>Secure & Compliant</div>
+            {/* Card 3 */}
+            <div className="w-[399px] h-[276px] bg-[#CFC1B1] rounded-[8px] border border-[#FFFFFF]/4 flex flex-col items-start justify-between px-10 py-8">
+              <div className="w-[319px] h-[96px] flex flex-col gap-6">
+                <div className="w-[72px] h-[72px] rounded-[52px] bg-[#F3F3F0] p-[14px] flex items-center justify-center">
+                  <span className="w-[44px] h-[44px] rounded-full bg-[#CFD4C9] flex items-center justify-center">
+                    <PhoneCall className="w-6 h-6 text-[#232323]" />
+                  </span>
                 </div>
-              </div>
-
-              {/* Card 3 */}
-              <div className="w-[399px] h-[276px] bg-[#CFC1B1] rounded-[8px] border border-[#FFFFFF]/4 flex flex-col items-start justify-between px-10 py-8">
-                <div className="w-[319px] h-[96px] flex flex-col gap-6">
-                  <div className="w-[72px] h-[72px] rounded-[52px] bg-[#F3F3F0] p-[14px] flex items-center justify-center">
-                    <span className="w-[44px] h-[44px] rounded-full bg-[#CFD4C9] flex items-center justify-center">
-                      <PhoneCall className="w-6 h-6 text-[#232323]" />
-                    </span>
-                  </div>
-                  <div className="text-4xl font-bold text-[#232323] leading-tight" style={{textAlign: "left"}}>24/7 <br />Support</div>
-                </div>
+                <div className="text-4xl font-bold text-[#232323] leading-tight" style={{textAlign: "left"}}>24/7 <br />Support</div>
               </div>
             </div>
           </div>

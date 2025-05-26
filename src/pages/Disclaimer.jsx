@@ -4,7 +4,7 @@ import logoHorizontal from '../assests/logo-horizontal.png';
 import footerLogo from '../assests/footer-logo.png';
 import footerImage from '../assests/preview01.png';
 import neuralarcLogo from '../assests/neuralarc-logo.png';
-import radarLogoPng from '../assests/Radar_beta.png';
+import radarLogoPng from '../assests/Radar_H.png';
 
 const Disclaimer = () => {
   return (
@@ -72,7 +72,7 @@ const Disclaimer = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start mb-10">
             <div className="flex items-center mb-6 md:mb-0">
-              <img src={require('../assests/Radar.svg').default} alt="Radar Logo" className="h-8 w-auto" />
+              <img src={radarLogoPng} alt="Radar Logo" className="h-8 w-auto" />
               <span className="text-[#AFAFAF] text-sm ml-4">IP Protection Made Simple</span>
             </div>
           </div>

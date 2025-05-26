@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import logoStacked from '../assests/logo-horizontal.png';
-import { Link } from 'react-router-dom';
+import GradientImage from '../assests/Gradient_image.png';
+import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../services/supabaseClient';
 import { MinimalFooter } from '../components/Footer';
 
@@ -75,9 +76,17 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between bg-[#FBFBFB] text-[#000000] px-4 grain-texture">
+    <div className="min-h-screen flex flex-col bg-[#FBFAF8] grain-texture">
+      {/* Navbar */}
+      <nav className="flex items-center justify-between py-6 px-4 max-w-[1440px] mx-auto w-full">
+        <div className="flex items-center">
+          <Link to="/">
+            <img src={require('../assests/Radar_H.png')} alt="Radar Logo" className="w-[105px] h-[54px] object-contain" />
+          </Link>
+        </div>
+      </nav>
+      
       <div className="w-full flex-1 flex flex-col items-center justify-center py-8">
-        <h1 className="text-4xl font-bold mb-6 text-center text-[#000000]">Radar</h1>
         <div className="w-[564px] bg-[#FFFFFF] rounded-2xl p-8 border border-[#FFFFFF]/5 border-[1.5px] mx-auto">
           <h1 className="text-2xl font-bold mb-6 text-center text-[#000000]">Create Your Radar Account</h1>
           {success ? (
@@ -162,7 +171,15 @@ const SignUp = () => {
                   </div>
                 </div>
                 {error && <div className="text-red-500 text-sm text-center">{error}</div>}
-                <div className="login-buttons flex gap-4 w-full p-4 rounded-b-[12px] mt-8" style={{background: 'radial-gradient(circle, #E7CDC1 0%, #6FC3D4 100%)'}}>
+                <div 
+                  className="login-buttons flex gap-4 w-full p-4 rounded-b-[12px] mt-8"
+                  style={{ 
+                    backgroundImage: `url(${GradientImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                >
                   <button
                     type="button"
                     onClick={() => handleOAuth('google')}
@@ -193,10 +210,10 @@ const SignUp = () => {
                 <span className="text-xs text-[#868686]">or sign up with</span>
                 <div className="flex-1 h-px bg-[#6C6C6C]/30" />
               </div>
-              <div className="flex justify-center mb-4 p-4 rounded-b-[12px]" style={{background: 'radial-gradient(circle, #E7CDC1 0%, #6FC3D4 100%)'}}>
+              <div className="flex justify-center mb-4 p-4 rounded-b-[12px] bg-cover bg-center" style={{backgroundImage: `url(${GradientImage})`}}>
                 <button
                   onClick={() => handleOAuth('google')}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-[#E8E8E8] border border-[#6C6C6C]/40 text-[#322B25] font-semibold shadow hover:bg-[#322B25]/10 hover:border-[#322B25] transition-all duration-200 text-base"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-[#E8E8E8] border border-[#6C6C6C]/40 text-[#322B25] font-semibold s hover:bg-[#FFFFFF]  transition-all duration-200 text-base"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="w-5 h-5">
                     <g>

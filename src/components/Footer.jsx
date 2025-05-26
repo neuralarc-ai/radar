@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoHorizontal from '../assests/Radar.svg';
+import logoHorizontal from '../assests/Radar_H.png';
 
 const Footer = () => {
   return (
@@ -85,7 +85,7 @@ const Footer = () => {
 };
 
 const MinimalFooter = () => (
-  <footer className="bg-[#000000] py-6 text-center text-xs w-full overflow-x-hidden rounded-t-3xl">
+  <footer className="bg-[#000000] py-6 text-center text-xs  overflow-x-hidden">
     <div className="max-w-4xl mx-auto px-4 flex flex-wrap items-center justify-center gap-2 md:gap-4  text-center">
       <Link to="/terms" className="hover:text-[#6C6C6C] text-[#FFFFFF] transition-colors"><u>Terms of Use</u></Link>
       <span className="text-[#6C6C6C]">•</span>
