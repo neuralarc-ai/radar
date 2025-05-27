@@ -62,8 +62,8 @@ const Landing = () => {
         </div>
         <div className="flex gap-4">
           <Link to="/signin">
-            <button className="bg-transparent text-[#232323] border border-[#232323] border-[1px] rounded-[4px] px-[27px] py-[16px] text-lg flex items-center gap-2 focus:outline-none">
-              Sign In
+            <button className="bg-[#302D2A] text-[#FFFFFF] border border-[#232323] border-[1px] rounded-[4px] px-[27px] py-[16px] text-lg flex items-center gap-2 focus:outline-none group">
+              <span>Get Started Free</span> <span className="transition-transform duration-200 group-hover:translate-x-1"><ArrowRight className="h-5 w-5" /></span>
             </button>
           </Link>
         </div>

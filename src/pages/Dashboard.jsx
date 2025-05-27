@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../services/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { MinimalFooter } from '../components/Footer';
+import { ArrowRight } from 'react-feather';
+import patentBg from '../assests/dashboard-bg/patent.png';
+import trademarkBg from '../assests/dashboard-bg/trademark.png';
 
 const filingTypes = [
   {
@@ -15,13 +18,27 @@ const filingTypes = [
       'International PCT Filings'
     ],
     icon: (
-      <svg className="w-12 text-[#000000] h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-          d="M12 15l-3-3m0 0l3-3m-3 3h12m-2-3v6m5-4v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h7" />
-        <circle cx="18" cy="6" r="3" strokeWidth="2" />
-        <path strokeLinecap="round" strokeWidth="2" d="M18 3v6M15 6h6" />
+
+
+
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_564_1296)">
+          <path d="M7.58301 1.625V3.79167C7.58301 3.93533 7.64008 4.0731 7.74166 4.17468C7.84324 4.27626 7.98102 4.33333 8.12467 4.33333H10.2913" stroke="white" stroke-width="0.722222" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M9.20801 11.375H3.79134C3.50402 11.375 3.22847 11.2609 3.02531 11.0577C2.82214 10.8545 2.70801 10.579 2.70801 10.2917V2.70833C2.70801 2.42102 2.82214 2.14547 3.02531 1.9423C3.22847 1.73914 3.50402 1.625 3.79134 1.625H7.58301L10.2913 4.33333V10.2917C10.2913 10.579 10.1772 10.8545 9.97404 11.0577C9.77088 11.2609 9.49533 11.375 9.20801 11.375Z" stroke="white" stroke-width="0.722222" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M4.875 9.20837H8.125" stroke="white" stroke-width="0.722222" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M4.875 7.04163H8.125" stroke="white" stroke-width="0.722222" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+        <defs>
+          <clipPath id="clip0_564_1296">
+            <rect width="13" height="13" fill="white" />
+          </clipPath>
+        </defs>
       </svg>
+
     ),
+    backgroundImage: patentBg,
+    outerCircleBg: 'rgba(243, 243, 240, 0.5)',
+    innerCircleBg: '#8D785E',
   },
   {
     key: 'trademark',
@@ -34,16 +51,25 @@ const filingTypes = [
       'International Madrid Protocol'
     ],
     icon: (
-      <svg className="w-12 text-[#000000] h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-          d="M7 7h10M7 11h10M7 15h6" />
-        <rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="2" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-          d="M16 15h2m-1-1.5v3" />
-        <path strokeLinecap="round" strokeWidth="2" 
-          d="M19.5 13.5c-.5 0-1 .5-1 1s.5 1 1 1" />
+
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_564_1291)">
+          <path d="M4.5 9H9.5M7 9V15" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M13 15V9L16 13L19 9V15" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+        <defs>
+          <clipPath id="clip0_564_1291">
+            <rect width="24" height="24" fill="white" />
+          </clipPath>
+        </defs>
       </svg>
+
+
+
     ),
+    backgroundImage: trademarkBg,
+    outerCircleBg: 'rgba(236, 226, 244, 0.69)',
+    innerCircleBg: '#8C789E',
   },
 ];
 
@@ -76,47 +102,51 @@ const Dashboard = () => {
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
-            {filingTypes.map((type) => (
+          {filingTypes.map((type) => (
             <div
               key={type.key}
-              className="group bg-[#E0D6CA] rounded-2xl p-6 shadow-[#FFFFFF] transition-all duration-300"
+              className="group bg-[#E0D6CA] rounded-[8px] p-6 shadow-[#FFFFFF] transition-all duration-300 flex flex-col"
+              style={{ backgroundImage: `url(${type.backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
             >
-              {/* Card header */}
-              <div className="mb-2">
-                <h2 className="text-xl font-semibold text-[#202020]">{type.label}</h2>
-              </div>
-
-              {/* Description */}
-              <p className="text-sm text-[#202020] mb-6">{type.desc}</p>
-
-              {/* Icon */}
-              <div className="flex justify-center mb-6">
-                <div className="p-4 bg-[#8D785E]/40 rounded-full">
-                  {type.icon}
+              {/* Icon and Title container (positioned above white box) */}
+              <div className="flex items-center gap-4 px-2">
+                {/* Icon container (Outer circle) */}
+                <div className="w-10 h-10 rounded-full p-2 flex items-center justify-center" style={{ backgroundColor: type.outerCircleBg }}>
+                  {/* Inner circle */}
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: type.innerCircleBg }}>
+                    {/* Icon itself - color is set via text-white on the parent div */}
+                    {type.icon}
+                  </div>
                 </div>
+                {/* Title */}
+                <h2 className="text-xl font-semibold text-[#000000]">{type.label}</h2>
               </div>
 
-              {/* Features list */}
-              <ul className="space-y-2 mb-6">
-                {type.features.map((feature, index) => (
-                  <li key={index} className="flex items-center gap-3 text-sm text-[#202020]">
-                    <svg className="w-2 h-2 text-[#202020] flex-shrink-0" fill="currentColor" viewBox="0 0 8 8">
-                      <circle cx="4" cy="4" r="4" />
-                    </svg>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+              {/* White inner div */}
+              <div className="bg-white rounded-[4px] p-6 flex flex-col h-full mt-5">
+                <p className="text-sm text-[#000000] mb-4 flex-grow">{type.desc}</p>
 
-              {/* Action button */}
-              <button
-                onClick={() => navigate(`/dashboard/${type.key}`)}
-                className="w-full py-[16px] px-[27px] text-sm rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#000000]/10 focus:ring-offset-2 bg-[#232323] text-[#FFFFFF] hover:bg-[#232323]"
-              >
-                Start {type.label} Process
-              </button>
+                <ul className="space-y-2 mb-6 text-[#000000]">
+                  {type.features.map((feature, index) => (
+                    <li key={index} className="flex items-center gap-3 text-sm">
+                      <svg className="w-1 h-1 text-[#000000] flex-shrink-0" fill="currentColor" viewBox="0 0 8 8">
+                        <circle cx="4" cy="4" r="4" />
+                      </svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  onClick={() => navigate(`/dashboard/${type.key}`)}
+                  className="w-full py-[12px] px-[20px] text-sm rounded-[4px] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#000000]/10 focus:ring-offset-2 bg-[#2B2521] text-[#FFFFFF] hover:bg-[#232323]/80 flex items-center justify-center gap-2"
+                >
+                  <span>Start {type.label}</span>
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
             </div>
-            ))}
+          ))}
         </div>
       </div>
       <MinimalFooter />
