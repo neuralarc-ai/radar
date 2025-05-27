@@ -3,13 +3,12 @@ import logoStacked from '../assests/logo-horizontal.png';
 import radarLogoPng from '../assests/Radar_H.png';
 import neuralarcLogo from '../assests/neuralarc-logo.png';
 import footerImage from '../assests/preview01.png';
-import LoginCard from '../assests/Login_card.png';
-import SignupCard from '../assests/Login_card01.png';
+import LoginCard from '../assests/LoginCard.png';
+import SignupCard from '../assests/SignupCard.png';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../services/supabaseClient';
 import { MinimalFooter } from '../components/Footer';
-import GradientImage from '../assests/Gradient_image.png';  
-
+import backgroundImage from '../assests/background.png';
 const SignIn = () => {
   // Tab state
   const [activeTab, setActiveTab] = useState('login');
@@ -127,7 +126,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FBFAF8] grain-texture">
+    <div className="min-h-screen flex flex-col bg-[#FBFAF8] ">
       {/* Navbar */}
       <nav className="flex items-center justify-between py-6 px-4 max-w-[1440px] mx-auto w-full">
         <div className="flex items-center">
@@ -140,7 +139,7 @@ const SignIn = () => {
       {/* Main Content Wrapper */}
       <div className="flex items-center max-w-[1440px] mx-auto justify-center px-4 py-12 w-full">
         {/* Left Card */}
-        <div className="hidden lg:flex h-[calc(100vh-144px)] min-w-[634px] justify-center items-center pr-12">
+        <div className="hidden lg:flex h-[calc(100vh-250px)] min-w-[634px] justify-center items-center pr-12">
           <img 
             src={activeTab === 'login' ? LoginCard : SignupCard}
             alt={activeTab === 'login' ? 'Login illustration' : 'Sign up illustration'} 
@@ -181,11 +180,16 @@ const SignIn = () => {
             style={{
               width: '564px',
               borderRadius: '16px',
+              backgroundImage: `url(${backgroundImage})`,  // ← update path as needed
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
             }}
           >
             {/* Login Form */}
             {activeTab === 'login' && (
-              <form className="w-full flex flex-col gap-6" onSubmit={handleLoginSubmit}>
+              <form className="w-full flex flex-col gap-6 p-4" onSubmit={handleLoginSubmit}>
+                <div className='flex flex-col gap-4 bg-[#D4CDC9] rounded-[8px]'>
                 <div className="p-6 pb-0">
                   <label className="block text-sm font-medium mb-1 text-[#322B25]">User Name</label>
                   <input name="email" type="email" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none transition" placeholder="Johndoe" value={loginForm.email} onChange={handleLoginChange} />
@@ -198,8 +202,9 @@ const SignIn = () => {
                 <div className="flex justify-between items-center text-sm mb-2 px-6">
                   <span className="text-[#322B25] opacity-60 cursor-pointer">Forgot password?</span>
                 </div>
-                <div className="login-buttons flex gap-4 w-full p-4 rounded-b-[12px] mt-8 bg-no-repeat bg-center" style={{ backgroundImage: `url(${GradientImage})` }}>
-                  <button type="button" className="flex-1 flex items-center justify-center gap-2 py-3 rounded-[4px] border border-[#322B25]/10 text-[#322B25] font-semibold hover:bg-[#FFFFFF] transition-all duration-200 text-base" onClick={() => handleOAuth('google')}>
+                  </div>
+                <div className="login-buttons flex gap-4 w-full p-4 rounded-b-[12px]  bg-no-repeat bg-center" >
+                  <button type="button" className="flex-1 flex items-center justify-center gap-2 py-3 rounded-[4px] bg-[#ffffff]/30 border border-[#322B25]/10 [1px] text-[#322B25] font-semibold hover:bg-[#FFFFFF] transition-all duration-200 text-base" onClick={() => handleOAuth('google')}>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' className="w-5 h-5"><g><path fill="#4285F4" d="M24 9.5c3.54 0 6.7 1.22 9.19 3.23l6.87-6.87C35.64 2.39 30.18 0 24 0 14.82 0 6.73 5.48 2.69 13.44l8.01 6.22C12.33 13.13 17.68 9.5 24 9.5z"/><path fill="#34A853" d="M46.1 24.55c0-1.64-.15-3.22-.42-4.74H24v9.01h12.42c-.54 2.9-2.18 5.36-4.65 7.01l7.19 5.6C43.98 37.13 46.1 31.36 46.1 24.55z"/><path fill="#FBBC05" d="M10.7 28.66c-1.01-2.99-1.01-6.23 0-9.22l-8.01-6.22C.68 17.82 0 20.81 0 24c0 3.19.68 6.18 1.89 8.78l8.81-6.89z"/><path fill="#EA4335" d="M24 48c6.18 0 11.36-2.05 15.15-5.57l-7.19-5.6c-2.01 1.35-4.59 2.15-7.96 2.15-6.32 0-11.67-3.63-13.3-8.66l-8.81 6.89C6.73 42.52 14.82 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></g></svg>
                     Sign in with Google
                   </button>
@@ -209,7 +214,8 @@ const SignIn = () => {
             )}
             {/* Signup Form */}
             {activeTab === 'signup' && (
-              <form className="w-full flex flex-col gap-6" onSubmit={handleSignupSubmit}>
+              <form className="w-full flex flex-col gap-6 p-4"  onSubmit={handleSignupSubmit}>
+                <div className='flex flex-col gap-4 bg-[#D4CDC9] rounded-[8px]'>
                 <div className="p-6 pb-0"> 
                   <label className="block text-sm font-medium mb-1 text-[#322B25]">Full Name</label>
                   <input name="name" type="text" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none  transition" placeholder="Your Name" value={signupForm.name} onChange={handleSignupChange} />
@@ -222,14 +228,15 @@ const SignIn = () => {
                   <label className="block text-sm font-medium mb-1 text-[#322B25]">Password</label>
                   <input name="password" type="password" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none  transition" placeholder="********" value={signupForm.password} onChange={handleSignupChange} />
                 </div>
-                <div className="p-6 py-0">
+                <div className="p-6 pt-0">
                   <label className="block text-sm font-medium mb-1 text-[#322B25]">Confirm Password</label>
                   <input name="confirm" type="password" className="w-full px-4 py-3 rounded-lg bg-[#F5EFEB] border border-[#E2E2E2] text-[#322B25] focus:outline-none  transition" placeholder="********" value={signupForm.confirm} onChange={handleSignupChange} />
                 </div>
                 {signupError && <div className="text-red-500 text-sm text-center">{signupError}</div>}
                 {signupSuccess && <div className="text-green-500 text-center mb-4">Account created! Please check your email to confirm your account before logging in.</div>}
-                <div className="login-buttons flex gap-4 w-full p-4 rounded-b-[12px] mt-8" style={{background: 'radial-gradient(circle, #E7CDC1 0%, #6FC3D4 100%)'}}>
-                  <button type="button" className="flex-1 flex items-center justify-center gap-2 py-3 rounded-lg bg-[#E8E8E8] border border-[#322B25]/10 text-[#322B25] font-semibold shadow hover:bg-[#322B25]/10 hover:border-[#322B25] transition-all duration-200 text-base" onClick={() => handleOAuth('google')}>
+                </div>
+                <div className="login-buttons flex gap-4 w-full p-4 rounded-b-[12px] " >
+                  <button type="button" className="flex-1 flex items-center justify-center gap-2 py-3 rounded-[4px] bg-[#FFFFFF]/30  border border-[#FFFFFF]/10 border-[1px] text-[#322B25] font-semibold hover:bg-[#FFFFFF] transition-all duration-200 text-base" onClick={() => handleOAuth('google')}>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' className="w-5 h-5"><g><path fill="#4285F4" d="M24 9.5c3.54 0 6.7 1.22 9.19 3.23l6.87-6.87C35.64 2.39 30.18 0 24 0 14.82 0 6.73 5.48 2.69 13.44l8.01 6.22C12.33 13.13 17.68 9.5 24 9.5z"/><path fill="#34A853" d="M46.1 24.55c0-1.64-.15-3.22-.42-4.74H24v9.01h12.42c-.54 2.9-2.18 5.36-4.65 7.01l7.19 5.6C43.98 37.13 46.1 31.36 46.1 24.55z"/><path fill="#FBBC05" d="M10.7 28.66c-1.01-2.99-1.01-6.23 0-9.22l-8.01-6.22C.68 17.82 0 20.81 0 24c0 3.19.68 6.18 1.89 8.78l8.81-6.89z"/><path fill="#EA4335" d="M24 48c6.18 0 11.36-2.05 15.15-5.57l-7.19-5.6c-2.01 1.35-4.59 2.15-7.96 2.15-6.32 0-11.67-3.63-13.3-8.66l-8.81 6.89C6.73 42.52 14.82 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></g></svg>
                     Sign up with Google
                   </button>

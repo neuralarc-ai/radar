@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import logoStacked from '../assests/logo-horizontal.png';
-import GradientImage from '../assests/Gradient_image.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../services/supabaseClient';
 import { MinimalFooter } from '../components/Footer';
+import backgroundImage from '../assests/background.png';
 
 const SignUp = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' });
@@ -95,7 +95,8 @@ const SignUp = () => {
             </div>
           ) : (
             <>
-              <form className="space-y-5" onSubmit={handleSubmit}>
+              <form className="space-y-5 p-4"  onSubmit={handleSubmit}>
+                <div className='flex flex-col gap-4 bg-[#D4CDC9] rounded-[8px]'>
                 <div className="p-6 pb-0">
                   <label className="block text-sm font-medium mb-1 text-[#000000]">Full Name</label>
                   <input name="name" type="text" className="w-full px-4 py-3 rounded-lg bg-[#ffffff] border border-[#000000]/5 text-[#000000] focus:outline-none focus:ring-2 focus:ring-[#000000]/20 transition" placeholder="Your Name" value={form.name} onChange={handleChange} />
@@ -171,10 +172,11 @@ const SignUp = () => {
                   </div>
                 </div>
                 {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+                </div>
                 <div 
                   className="login-buttons flex gap-4 w-full p-4 rounded-b-[12px] mt-8"
                   style={{ 
-                    backgroundImage: `url(${GradientImage})`,
+                    backgroundImage: `url(${backgroundImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
@@ -210,7 +212,7 @@ const SignUp = () => {
                 <span className="text-xs text-[#868686]">or sign up with</span>
                 <div className="flex-1 h-px bg-[#6C6C6C]/30" />
               </div>
-              <div className="flex justify-center mb-4 p-4 rounded-b-[12px] bg-cover bg-center" style={{backgroundImage: `url(${GradientImage})`}}>
+              <div className="flex justify-center mb-4 p-4 rounded-b-[12px] bg-cover bg-center" style={{backgroundImage: `url(${backgroundImage})`}}>
                 <button
                   onClick={() => handleOAuth('google')}
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-[#E8E8E8] border border-[#6C6C6C]/40 text-[#322B25] font-semibold s hover:bg-[#FFFFFF]  transition-all duration-200 text-base"

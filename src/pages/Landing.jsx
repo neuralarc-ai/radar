@@ -5,7 +5,7 @@ import platformImage from '../assests/preview01.png';
 import footerImage from '../assests/preview01.png';
 import neuralarcLogo from '../assests/neuralarc-logo.svg';
 import footerLogo from '../assests/footer-logo.png';
-import radarLogoPng from '../assests/Link → Radar Logo.png';
+import radarLogoPng from '../assests/Radar_H.png';
 import { ReactComponent as RadarLogo } from '../assests/Radar.svg';
 import LandingPageImage from '../assests/LandingPage_image.png';
 
