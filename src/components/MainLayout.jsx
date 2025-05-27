@@ -65,9 +65,9 @@ const MainLayout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#F8F7F3]">
+    <div className="flex flex-col min-h-screen bg-[#FFFFFF]">
       <div className="flex flex-1">
-        <div className="w-64 flex-shrink-0">
+        <div className="w-96 flex-shrink-0">
           <ProgressSidebar progress={progress} />
         </div>
         <main className="w-full bg-[#F8F7F3] p-10 grain-texture">

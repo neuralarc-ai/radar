@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../services/supabaseClient';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { MinimalFooter } from '../components/Footer';
 import { ArrowRight } from 'react-feather';
 import patentBg from '../assests/dashboard-bg/patent.png';
 import trademarkBg from '../assests/dashboard-bg/trademark.png';
+import radarLogoPng from '../assests/radar_top_logo.png';
 
 const filingTypes = [
   {
@@ -83,13 +84,17 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#F8F7F3] relative overflow-hidden grain-texture ">
-      {/* Logo */}
-      <div className="w-full flex justify-center pt-14">
-        {/* <img src={lawbitLogo} alt="Radar Logo" className="h-11 w-auto" /> */}
-      </div>
+      {/* Navbar */}
+      <nav className="flex items-center justify-between py-6 px-4 max-w-[1440px] mx-auto">
+        <div className="flex items-center">
+          <Link to="/">
+            <img src={radarLogoPng} alt="Radar Logo" className="w-[105px] h-[54px] object-contain" />
+          </Link>
+        </div>
+      </nav>
 
       {/* Main content */}
-      <div className="relative container mx-auto px-6 py-12 md:py-16 min-h-[calc(100vh-174px)]">
+      <div className="relative container mx-auto px-6 py-12 md:py-16 min-h-[calc(100vh-164px)]">
         {/* Header section */}
         <div className="text-center mb-8 md:mb-10">
           <h1 className="text-3xl md:text-4xl font-bold text-[#000000] mb-3">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import radarLogoPng from '../assests/radar_top_logo.png'; // Import the logo image
 
 const getSteps = (path) => {
   if (path.includes('/patent')) {
@@ -118,25 +119,38 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
   };
 
   return (
-    <div className="fixed left-0 top-0 bottom-0 max-w-64 bg-[#EFECE5] border-r border-[#FFFFFF]/5 border-[1.5px] overflow-y-auto">
+    <div className="fixed  left-0 top-0 bottom-0 max-w-md bg-[#FFFFFF] border-r border-[#FFFFFF]/5 border-[1.5px] overflow-y-auto">
+
+      {/* Add the logo here */}
+      <div className="w-fullflex justify-start py-6 px-6">
+        <img src={radarLogoPng} alt="Radar Logo" className="h-11 w-auto" />
+      </div>
 
       <div className="p-6">
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-[#000000]">
+        <div className="mb-6">
+          <h2 className="text-3xl font-semibold text-[#000000] mb-6">
             {location.pathname.includes('/patent') ? 'Patent Filing Progress' : 'Trademark Filing Progress'}
           </h2>
-          <p className="text-sm text-[#000000]">
+          <p className="text-xl font-light text-[#000000]">
             {location.pathname.includes('/patent') 
-              ? 'Track your patent application progress' 
-              : 'Track your trademark application progress'}
+              ? <>
+                  {'Track your patent application'}
+                  <br />
+                  {'progress'}
+                </>
+              : <>
+                  {'Track your trademark application'}
+                  <br />
+                  {'progress'}
+                </>}
           </p>
         </div>
 
         {/* Progress bar */}
         <div className="mb-8">
-          <div className="flex justify-between text-xs text-[#000000] mb-2">
-            <span>Progress</span>
-            <span>{safeProgress}%</span>
+          <div className="flex justify-between text-xl text-[#000000] mb-2">
+            <span>Processing...</span>
+            
           </div>
           <div className="w-full bg-[#000000]/40 rounded-full h-2">
             <div 
@@ -171,12 +185,12 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
 
                   {/* Step content */}
                   <div className="flex-1">
-                    <h3 className={`text-base font-semibold ${
+                    <h3 className={`text-[24px] font-semibold ${
                       isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'
                     }`}>
                       {step.title}
                     </h3>
-                    <p className={`text-sm ${isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'}`}>{step.description}</p>
+                    <p className={`text-[16px] ${isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'}`}>{step.description}</p>
                   </div>
                 </div>
               </div>

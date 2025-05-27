@@ -27,19 +27,22 @@ const Landing = () => {
       icon: <Shield className="h-6 w-6 text-[#232323]" />,
       title: "AI-Powered Compliance Check",
       description: "Our advanced AI system ensures your filings meet all legal requirements, reducing rejection rates.",
-      backgroundImage: featureBg1
+      backgroundImage: featureBg1,
+      descriptionBg: '#7f8a73'
     },
     {
       icon: <FileText className="h-6 w-6 text-[#232323]" />,
       title: "Easy Document Management",
       description: "Upload and analyze documents with our intuitive drag-and-drop interface. Get instant feedback on your submissions.",
-      backgroundImage: featureBg2
+      backgroundImage: featureBg2,
+      descriptionBg: '#a98b7d'
     },
     {
       icon: <CreditCard className="h-6 w-6 text-[#232323]" />,
       title: "Smart Class Selection Assistant",
-      description: "Let our AI recommend the right trademark classes for your application based on your product or service description, no legal jargon needed.",
-      backgroundImage: featureBg3
+      description: "Let our AI recommend the right trademark classes for your application based on your product or service description.",
+      backgroundImage: featureBg3,
+      descriptionBg: '#676565'
     }
   ];
 
@@ -180,7 +183,7 @@ const Landing = () => {
             suite of tools and AI assistance.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {features.map((feature, index) => (
               <div key={index} className="rounded-[12px] overflow-hidden shadow-sm relative grain-texture transition-transform duration-200 hover:-translate-y-2 hover:shadow-lg"
                    style={{ backgroundImage: `url(${feature.backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
@@ -191,9 +194,9 @@ const Landing = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-medium mb-4 text-[#000000]">{feature.title}</h3>
+                  <h3 className="text-2xl font-medium mb-4 text-[#000000]">{feature.title}</h3>
 
-                  <div className="mt-2 p-4 rounded-[8px]" style={{ backgroundColor: bgColors[index % 3] }}>
+                  <div className="mt-2 p-4 rounded-[8px]" style={{ backgroundColor: feature.descriptionBg }}>
                     <p className="text-[#FFFFFF] text-sm">{feature.description}</p>
                   </div>
                 </div>
