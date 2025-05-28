@@ -124,7 +124,7 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
   className="overflow-y-auto h-full relative"
 >
   <div
-    className="absolute top-0 right-0 w-[22px] h-full bg-no-repeat bg-cover"
+    className="absolute top-0 right-0  h-full bg-no-repeat bg-cover"
     style={{ backgroundImage: `url(${filingBg})` }}
   />
 
@@ -132,11 +132,11 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
 
 
       <div className="p-6">
-        <div className="mb-6 mt-8">
-          <h2 className="text-3xl font-semibold text-[#000000] mb-6">
+        <div className="mb-6 mt-2">
+          <h2 className="xl:text-3xl text-2xl font-semibold text-[#000000] mb-4">
             {location.pathname.includes('/patent') ? 'Patent Filing Progress' : 'Trademark Filing Progress'}
           </h2>
-          <p className="text-xl font-light text-[#000000]">
+          <p className="xl:text-xl text-base font-light text-[#000000]">
             {location.pathname.includes('/patent') 
               ? <>
                   {'Track your patent application'}
@@ -153,11 +153,11 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
 
         {/* Progress bar */}
         <div className="mb-8">
-          <div className="flex justify-between text-xl text-[#000000] mb-2">
+          <div className="flex justify-between xl:text-xl text-base text-[#000000] mb-2">
             <span>Processing...</span>
             
           </div>
-          <div className="w-full bg-[#000000]/40 rounded-full h-2">
+          <div className="w-5/6 bg-[#000000]/40 rounded-full h-2">
             <div 
               className="bg-gradient-to-r from-[#3987BE] to-[#D48EA3] h-2 rounded-full transition-all duration-500"
               style={{ width: `${safeProgress}%` }}
@@ -190,12 +190,12 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
 
                   {/* Step content */}
                   <div className="flex-1">
-                    <h3 className={`text-[24px] font-semibold ${
+                    <h3 className={`xl:text-2xl text-lg font-semibold ${
                       isCompleted ? 'text-[#BDBDBD]' : isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'
                     }`}>
                       {step.title}
                     </h3>
-                    <p className={`text-[16px] ${isCompleted ? 'text-[#BDBDBD]' : isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'}`}>{step.description}</p>
+                    <p className={`xl:text-base text-sm ${isCompleted ? 'text-[#BDBDBD]' : isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'}`}>{step.description}</p>
                   </div>
                 </div>
               </div>

@@ -67,9 +67,9 @@ const MainLayout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen items-center p-8">
+    <div className="flex flex-col min-h-screen items-center p-0 m-0 w-full">
       {/* Top section for logo and menu button */}
-      <div className="flex justify-between items-center w-full max-w-[1200px] mb-8">
+      <div className="flex justify-between items-center w-full max-w-[1200px] mb-8 mt-8 px-8">
         {/* Radar Logo */}
         <div className="">
           <img src={radarLogoPng} alt="Radar Logo" className="h-11 w-auto" />
@@ -83,24 +83,24 @@ const MainLayout = ({ children }) => {
       </div>
 
       {/* Main layout container with image background and border effect */}
-      <div className="relative w-full max-w-[1200px] mx-auto rounded-[24px] p-3 shadow-xl bg-cover bg-center" style={{ backgroundImage: `url(${filingBg})` }}>
+      <div className="relative w-full p-6 max-w-[1200px] mx-auto rounded-[24px] p-3 mb-12 shadow-xl bg-cover bg-center flex-grow" style={{ backgroundImage: `url(${filingBg})` }}>
         {/* Inner white content area */}
-        <div className="flex bg-white rounded-[22px] overflow-hidden">
+        <div className="flex rounded-[22px] gap-6 overflow-hidden">
           {/* Left panel (ProgressSidebar) */}
-          <div className="w-2/5 flex-shrink-0">
+          <div className="w-fit bg-white rounded-[22px]">
             <ProgressSidebar progress={progress} />
           </div>
           {/* Right panel (Main Content) */}
-          <main className="flex-1 p-8 overflow-y-auto">
+          <main className="flex-1 overflow-y-auto rounded-[22px]">
             {children}
           </main>
         </div>
       </div>
 
-      {/* Footer outside the main container, maybe adjust positioning later */}
-      {/* <div className="relative z-10">
+      {/* Sticky footer at the bottom, always full width */}
+      <div className="w-full flex-shrink-0">
         <MinimalFooter />
-      </div> */}
+      </div>
     </div>
   );
 };

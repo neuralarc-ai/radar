@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { IoArrowBack } from 'react-icons/io5';
-import { IoInformationCircleOutline, IoDocumentTextOutline, IoSearchOutline, IoListOutline, IoBulbOutline, IoSparkles } from 'react-icons/io5';
+import { IoInformationCircleOutline, IoDocumentTextOutline, IoSearchOutline, IoListOutline, IoBulbOutline } from 'react-icons/io5';
 import { searchPriorArt } from '../api/priorArtSearch';
 import CustomSelect from '../components/CustomSelect';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -10,6 +10,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { getAIDescription } from '../services/trademarkService'; // Import background image
+import AIAnalyzeIcon from '../assests/AI_Analyze.png';
 
 const steps = [
   'Basic Info',
@@ -67,7 +68,7 @@ const countries = ['United States', 'India', 'United Kingdom', 'Canada', 'Austra
 
 // AI Suggestion Box Component
 const AISuggestionBox = ({ suggestions }) => (
-  <div className="bg-[#CFD2D4] border border-[#322B25]/5 border-[1.5px] rounded-lg -z-50 p-4 mb-6">
+  <div className="  -z-50 p-4 mb-6">
     <div className="flex items-center gap-2 mb-2">
       <IoBulbOutline className="w-5 h-5 text-[#322B25]" />
       <h3 className="text-sm font-medium text-[#322B25]">AI Suggestions</h3>
@@ -110,6 +111,12 @@ const suggestions = {
     "Ensure claims are supported by the detailed description"
   ]
 };
+
+// Add fade animation CSS in a <style> tag at the top of the component
+const fadeStyle = `
+@keyframes fadeInOut { from { opacity: 1; } to { opacity: 0.3; } }
+.fade { animation: fadeInOut 1s linear infinite alternate; }
+`;
 
 const PatentFiling = () => {
   const navigate = useNavigate();
@@ -316,736 +323,725 @@ const PatentFiling = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FBFAF8] ">
-      {/* Navbar */}
-      
-      
-      {/* Outer container for the wide border effect */}
-      <div className="rounded-[16px] mb-0 relative z-10">
-        {/* Inner container for the white content area */}
-      <div className="p-8 outline outline-1 outline-[#FFFFFF]/5 outline-[2px] rounded-[12px] bg-[#FFFFFF] relative overflow-hidden">
-        {/* Background Images */}
-        <div className="absolute inset-0 z-0 opacity-10">
-          <div 
-            className="absolute top-0 right-0 w-1/2 h-full" 
-            style={{ 
-              backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%23322B25\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }} 
-          />
-          <div 
-            className="absolute bottom-0 left-0 w-full h-full" 
-            style={{ 
-              backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%23322B25\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              opacity: 0.5
-            }} 
-          />
-        </div>
-        <div className="relative z-10">
-      {/* Progress Bar Section */}
-      <div className="mb-8">
-        <div className='flex items-center gap-4 mb-6'>
-          <button
-            type="button"
-            className="circular-button"
-            onClick={() => navigate(-1)}
-            aria-label="Go back"
-          >
-            <IoArrowBack className="icon" />
-          </button>
-          <h1 className="text-2xl font-bold text-[#1E1E1E]">Patent Application Wizard</h1>
-        </div>
-        <div className="flex justify-between text-sm text-[#1E1E1E] mb-2">
-          <span>Completion Progress</span>
-          <span>In Progress</span>
-        </div>
-        <div className="w-full bg-[#322B25]/40 rounded-full h-2">
-          <div 
-            className="bg-gradient-to-r from-[#3987BE] to-[#D48EA3] h-2 rounded-full transition-all duration-500"
-            style={{ width: `${progressPercent}%` }}
-          />
-        </div>
-      </div>
-
-      {/* Stepper Tabs */}
-      <div className="flex items-center justify-between mb-10">
-        {steps.map((label, i) => {
-          const isActive = i === step;
-          const isCompleted = i < step;
-          const icons = [
-            <IoInformationCircleOutline className="w-5 h-5" />,
-            <IoDocumentTextOutline className="w-5 h-5" />,
-            <IoSearchOutline className="w-5 h-5" />,
-            <IoListOutline className="w-5 h-5" />
-          ];
-          return (
-            <React.Fragment key={label}>
-              <div className="flex flex-col items-center">
-                <button
-                  type="button"
-                  className={`w-full px-[27px] py-[11px] rounded-[4px] border-2 transition-all duration-200 flex items-center gap-2
-                    ${isActive ? 'bg-[#302D2A] text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px] shadow-lg' : isCompleted ? 'bg-[#302D2A]/50 text-[#FFFFFF] border-[#FFFFFF]/5 border-[1.5px]' : 'bg-[#302D2A] text-[#FFFFFF] border-[#6C6C6C]/14'}
-                  `}
-                  onClick={() => i <= step ? setStep(i) : null}
-                  disabled={i > step}
-                  aria-current={isActive ? 'step' : undefined}
-                >
-                  {icons[i]}
-                  {label}
-                </button>
-              </div>
-              {i < steps.length - 1 && (
-                <div className={`flex-1 h-0.5 mx-2 transition-all duration-300 ${step > i ? 'bg-[#302F2F]' : 'bg-[#302D2A]/20'}`}></div>
-              )}
-            </React.Fragment>
-          );
-        })}
-      </div>
-
-      {/* Form Steps */}
-      {step === 0 && (
-        <div className="space-y-6">
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Invention Title <span className="text-[#202020]">*</span></label>
-            <input
-              type="text"
-              name="patentTitle"
-              value={form.patentTitle}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${
-                validationErrors.patentTitle ? 'border-red-500' : 'border-[#E2E2E2] border-[1px]'
-              } bg-[#F6F6F6] focus:outline-none text-[#322B25] text-base h-10`}
-              placeholder="Enter patent title"
-              required
+    <>
+      <style>{fadeStyle}</style>
+      <div className="min-h-[calc(100vh-144px)] bg-[#FBFAF8] ">
+        {/* Navbar */}
+        
+        
+        {/* Outer container for the wide border effect */}
+        <div className="mb-0 relative z-10">
+          {/* Inner container for the white content area */}
+        <div className="p-8 outline outline-1 outline-[#FFFFFF]/5 outline-[2px] rounded-[12px] bg-[#FFFFFF] relative overflow-hidden">
+          {/* Background Images */}
+          <div className="absolute inset-0 z-0 opacity-10">
+            <div 
+              className="absolute top-0 right-0 w-1/2 h-full" 
+              style={{ 
+                backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%23322B25\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }} 
             />
-            {showError('patentTitle')}
-          </div>
-
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Inventor Name(s) <span className="text-[#202020]">*</span></label>
-            <input
-              type="text"
-              name="inventorNames"
-              value={form.inventorNames}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${
-                validationErrors.inventorNames ? 'border-red-500' : 'border-[#E2E2E2] border-[1px]'
-              } bg-[#F6F6F6] focus:outline-none text-[#322B25] text-base h-10`}
-              placeholder="Enter inventor name(s), separate multiple names with commas"
-              required
-            />
-            {showError('inventorNames')}
-          </div>
-
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Patent Type <span className="text-[#202020]">*</span></label>
-            <CustomSelect
-              name="patentType"
-              value={form.patentType}
-              onChange={handleChange}
-              options={patentTypes}
-              placeholder="Select patent type"
-              error={validationErrors.patentType}
-              required
+            <div 
+              className="absolute bottom-0 left-0 w-full h-full" 
+              style={{ 
+                backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%23322B25\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.5
+              }} 
             />
           </div>
-
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Brief Summary <span className="text-[#202020]">*</span></label>
-            <div className="flex gap-2 items-center">
-            <textarea
-              name="briefSummary"
-              value={form.briefSummary}
-              onChange={handleChange}
-                className={`w-full px-3 py-3 rounded-lg border ${validationErrors.briefSummary ? 'border-red-500' : 'border-[#232323]/10 border-[1px]'} bg-[#F6F6F6] focus:outline-none text-[#322B25] text-base min-h-[120px] overflow-y-auto`}
-              placeholder="Provide a brief summary of your invention"
-              required
-            />
-              <button
-                type="button"
-                className="px-4 py-3 ml-4 rounded-[4px]  bg-[#302D2A] text-[#FFFFFF] font-medium
-"
-                onClick={() => handleAISuggest('briefSummary')}
-                disabled={aiLoading === 'briefSummary'}
-              >
-                <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'briefSummary' ? 'Analyzing' : ''}
-              </button>
-            </div>
-            {showError('briefSummary')}
+          <div className="relative z-10">
+        {/* Progress Bar Section */}
+        <div className="mb-8">
+          <div className='flex items-center gap-4 mb-6'>
+            <button
+              type="button"
+              className="circular-button"
+              onClick={() => navigate(-1)}
+              aria-label="Go back"
+            >
+              <IoArrowBack className="icon" />
+            </button>
+            <h1 className="text-2xl font-bold text-[#1E1E1E]">Patent Application Wizard</h1>
           </div>
+          <div className="flex justify-between text-sm text-[#1E1E1E] mb-2">
+            <span>Completion Progress</span>
+            <span>In Progress</span>
+          </div>
+          <div className="w-full bg-[#322B25]/40 rounded-full h-2">
+            <div 
+              className="bg-gradient-to-r from-[#3987BE] to-[#D48EA3] h-2 rounded-full transition-all duration-500"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+        </div>
 
-          {form.priorityClaim && (
-            <>
-              <div>
-                <label className="block font-medium mb-1 text-[#322B25]">Priority Filing Date</label>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    value={form.priorityFilingDate ? dayjs(form.priorityFilingDate) : null}
-                    onChange={date => setForm(f => ({ ...f, priorityFilingDate: date ? date.format('YYYY-MM-DD') : '' }))}
-                    disableFuture
-                    format="DD-MM-YYYY"
-                    slotProps={{
-                      textField: {
-                        placeholder: 'dd-mm-yyyy',
-                        fullWidth: true,
-                        size: 'medium',
-                        sx: {
-                          backgroundColor: '#302F2F',
-                          borderRadius: '0.75rem',
-                          '& .MuiOutlinedInput-root': {
-                            borderRadius: '0.75rem',
-                          },
-                          '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#6C6C6C',
-                          },
-                          '&:hover .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#868686',
-                          },
-                          '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#6C6C6C',
-                          },
-                        },
-                        error: Boolean(validationErrors.priorityFilingDate),
-                        helperText: validationErrors.priorityFilingDate || '',
-                      },
-                      popper: {
-                        sx: {
-                          '& .MuiPaper-root': {
-                            borderRadius: 2,
-                            boxShadow: '0 4px 24px 0 rgba(108, 108, 108, 0.10)',
-                          },
-                          '& .MuiPickersDay-root': {
-                            borderRadius: '8px',
-                            fontWeight: 500,
-                            '&.Mui-selected': {
-                              backgroundColor: '#302F2F',
-                              color: '#fff',
-                            },
-                            '&:hover': {
-                              backgroundColor: '#6C6C6C',
-                              color: '#fff',
-                            },
-                          },
-                          '& .MuiPickersCalendarHeader-label': {
-                            color: '#FFFFFF',
-                            fontWeight: 700,
-                            fontSize: '1.15rem',
-                          },
-                          '& .MuiPickersArrowSwitcher-root button': {
-                            color: '#FFFFFF',
-                          },
-                          '& .MuiPickersCalendarHeader-switchViewButton': {
-                            color: '#FFFFFF',
-                          },
-                          '& .MuiPickersDay-today': {
-                            border: '1.5px solid #6C6C6C',
-                            background: '#302F2F',
-                            color: '#FFFFFF',
-                          },
-                          '& .MuiPickersDay-root.Mui-disabled': {
-                            color: '#6C6C6C',
-                          },
-                          '& .MuiPickersCalendarHeader-root': {
-                            background: '#1C1C1C',
-                            borderRadius: '12px 12px 0 0',
-                          },
-                          '& .MuiPickersDay-dayOutsideMonth': {
-                            color: '#6C6C6C',
-                          },
-                          '& .MuiPickersYear-yearButton, & .MuiPickersMonth-monthButton': {
-                            borderRadius: '8px',
-                            fontWeight: 600,
-                            '&.Mui-selected': {
-                              backgroundColor: '#302F2F',
-                              color: '#fff',
-                            },
-                            '&:hover': {
-                              backgroundColor: '#6C6C6C',
-                              color: '#fff',
-                            },
-                          },
-                        },
-                      },
-                    }}
-                  />
-                </LocalizationProvider>
-              </div>
-              {/* File upload for certified copy (if needed) */}
-              <div className="mt-4">
-                <label className="block font-medium mb-1 text-[#FFFFFF]">Certified Copy of Priority Document</label>
-                <div className="relative w-full mb-2">
-                  <input
-                    name="certifiedCopy"
-                    type="file"
-                    accept="application/pdf"
-                    onChange={handleChange}
-                    className="hidden"
-                    id="certified-copy-upload"
-                  />
-                  <label
-                    htmlFor="certified-copy-upload"
-                    className="w-full px-4 py-3 rounded-[4px]  border border-[#322B25]/5 border-[1.5px] bg-[#302F2F] text-[#FFFFFF] font-medium hover:bg-[#232323] hover:border-[#868686] transition-colors cursor-pointer text-center appearance-none"
-                    style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
+        {/* Stepper Tabs */}
+        <div className="flex items-center justify-between mb-10">
+          {steps.map((label, i) => {
+            const isActive = i === step;
+            const isCompleted = i < step;
+            const icons = [
+              <IoInformationCircleOutline className="w-5 h-5" />,
+              <IoDocumentTextOutline className="w-5 h-5" />,
+              <IoSearchOutline className="w-5 h-5" />,
+              <IoListOutline className="w-5 h-5" />
+            ];
+            return (
+              <React.Fragment key={label}>
+                <div className="flex flex-col items-center">
+                  <button
+                    type="button"
+                    className={`w-full px-[12px]  py-[12px] rounded-[4px] border-2 transition-all duration-200 flex items-center gap-2 lg:text-sm text-xs
+                      ${isActive ? 'bg-[#2B2521] text-[#FFFFFF]  shadow-lg' : isCompleted ? 'bg-[#302D2A]/50 text-[#FFFFFF] shadow-lg' : 'bg-[#302D2A] text-[#FFFFFF] shadow-lg'}
+                    `}
+                    onClick={() => i <= step ? setStep(i) : null}
+                    disabled={i > step}
+                    aria-current={isActive ? 'step' : undefined}
                   >
-                    Browse Files
-                  </label>
+                    {icons[i]}
+                    {label}
+                  </button>
                 </div>
-                {form.certifiedCopy && (
-                  <p className="text-sm text-[#868686] mt-2">Selected: {form.certifiedCopy.name}</p>
+                {i < steps.length - 1 && (
+                  <div className={`flex-1 h-0.5 mx-2 transition-all duration-300 ${step > i ? 'bg-[#302F2F]' : 'bg-[#302D2A]/20'}`}></div>
                 )}
-                {validationErrors.certifiedCopy && (
-                  <p className="text-red-500 text-xs mt-1">{validationErrors.certifiedCopy}</p>
-                )}
-                <p className="text-xs text-[#868686] mt-1">Upload certified copy of priority document (PDF). Max 10MB.</p>
-              </div>
-            </>
-          )}
+              </React.Fragment>
+            );
+          })}
         </div>
-      )}
 
-      {step === 1 && (
-        <div className="space-y-6">
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Technical Field <span className="text-[#868686]">*</span></label>
-            <div className="flex gap-2 items-center">
-            <textarea
-              name="technicalField"
-              value={form.technicalField}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-[4px] bg-[#F6F6F6] focus:outline-none  text-[#322B25] text-base resize-none h-10 overflow-hidden`}
-              placeholder="Describe the technical field to which the invention relates"
-              required
-            />
-              <button
-                type="button"
-                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
-"
-                onClick={() => handleAISuggest('technicalField')}
-                disabled={aiLoading === 'technicalField'}
-              >
-                <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'technicalField' ? '' : ''}
-              </button>
-            </div>
-            {showError('technicalField')}
-          </div>
-
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Background Art <span className="text-[#868686]">*</span></label>
-            <div className="flex gap-2 items-center">
-            <textarea
-              name="backgroundArt"
-              value={form.backgroundArt}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-[4px] bg-[#ffffff] focus:outline-none text-[#322B25] text-base resize-none h-10 overflow-hidden`}
-              placeholder="Describe the existing art, problems, and limitations that your invention addresses"
-              required
-            />
-              <button
-                type="button"
-                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
-"
-                onClick={() => handleAISuggest('backgroundArt')}
-                disabled={aiLoading === 'backgroundArt'}
-              >
-                <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'backgroundArt' ? '' : ''}
-              </button>
-            </div>
-            {showError('backgroundArt')}
-          </div>
-
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25] ">Detailed Description <span className="text-[#868686]">*</span></label>
-            <div className="flex gap-2 items-center">
-            <textarea
-              name="detailedDescription"
-              value={form.detailedDescription}
-              onChange={handleChange}
-                className={`w-full px-4 py-3 rounded-[4px] bg-[#ffffff] focus:outline-none text-[#322B25] text-base resize-none h-10 overflow-hidden`}
-                placeholder="Provide a detailed description of your invention, including all components, how they interact, and alternative embodiments"
-              required
-            />
-              <button
-                type="button"
-                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
-"
-                onClick={() => handleAISuggest('detailedDescription')}
-                disabled={aiLoading === 'detailedDescription'}
-              >
-                <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'detailedDescription' ? '' : ''}
-              </button>
-            </div>
-            {showError('detailedDescription')}
-          </div>
-
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Advantageous Effects <span className="text-[#868686]">*</span></label>
-            <div className="flex gap-2 items-center">
-            <textarea
-              name="advantageousEffects"
-              value={form.advantageousEffects}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-[4px] bg-[#ffffff] focus:outline-none  text-[#322B25] text-base resize-none h-10 overflow-hidden`}
-              placeholder="Describe the advantages and improvements your invention provides over existing solutions"
-              required
-            />
-              <button
-                type="button"
-                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
-"
-                onClick={() => handleAISuggest('advantageousEffects')}
-                disabled={aiLoading === 'advantageousEffects'}
-              >
-                <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'advantageousEffects' ? '' : ''}
-              </button>
-            </div>
-            {showError('advantageousEffects')}
-          </div>
-
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Drawing References</label>
-            <p className="text-sm text-[#868686] mb-4">List the drawings you plan to include and briefly describe each</p>
-            <div className="space-y-4">
-              {form.drawings && form.drawings.map((drawing, index) => (
-                <div key={index} className="grid grid-cols-4 gap-4 items-center">
-                <input
-                  type="text"
-                    name={`drawingFigure${index + 1}`}
-                    value={drawing.figure}
-                    onChange={e => handleDrawingChange(index, 'figure', e.target.value)}
-                    className={`flex h-10 w-full rounded-[4px] border border-[#322B25]/5 border-[1.5px] bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none  disabled:cursor-not-allowed disabled:opacity-50 md:text-sm col-span-1 text-[#322B25]`}
-                    placeholder={`Fig. ${index + 1}`}
-                />
-                <input
-                  type="text"
-                    name={`drawingDescription${index + 1}`}
-                    value={drawing.description}
-                    onChange={e => handleDrawingChange(index, 'description', e.target.value)}
-                    className={`flex h-10 w-full rounded-[4px] border border-[#322B25]/5 border-[1.5px] bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm col-span-2 text-[#322B25]`}
-                    placeholder={`Description of Figure ${index + 1}`}
-                />
-                  <div className="flex items-center gap-2 col-span-1">
-                <input
-                      type="file"
-                      accept="image/*,application/pdf"
-                      id={`drawing-file-${index}`}
-                      style={{ display: 'none' }}
-                      onChange={e => handleDrawingFileChange(index, e.target.files[0])}
-                    />
-                    <label htmlFor={`drawing-file-${index}`} className="px-2 py-2 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
-"
-                    >
-                      Upload
-                    </label>
-                    {drawing.file && (
-                      <span className="text-xs text-[#868686] ml-2">{drawing.file.name}</span>
-                    )}
-              </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {step === 2 && (
-        <div className="space-y-6">
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Known Prior Art <span className="text-[#868686]">*</span></label>
-            <div className="flex gap-2 items-center">
-            <textarea
-              name="knownPriorArt"
-              value={form.knownPriorArt}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.knownPriorArt ? 'border-red-500' : 'border-[#E2E2E2] border-[1px]'} bg-[#FFFFFF] focus:outline-none  text-[#322B25] text-base resize-none h-10 overflow-hidden`}
-              placeholder="Describe any known existing solutions or technologies related to your invention"
-              required
-            />
-              <button
-                type="button"
-                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
-"
-                onClick={() => handleAISuggest('knownPriorArt')}
-                disabled={aiLoading === 'knownPriorArt'}
-              >
-                <IoSparkles className="w-4 h-4" />
-                  {aiLoading === 'knownPriorArt' ? '' : ''}
-              </button>
-            </div>
-            {showError('knownPriorArt')}
-          </div>
-
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Prior Art References</label>
-            <div className="space-y-4">
-              {form.priorArtReferences.map((ref, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="flex flex-col flex-1">
-                    <label className="text-sm text-[#322B25] mb-1">Reference</label>
-                    {ref.fromSearch ? (
-                      <div className="flex h-10 items-center px-3 bg-[#FFFFFF] rounded-md text-base text-[#322B25]">{ref.reference}</div>
-                    ) : (
-                    <input
-                      type="text"
-                      value={ref.reference}
-                      onChange={(e) => {
-                        const newRefs = [...form.priorArtReferences];
-                        newRefs[index] = { ...ref, reference: e.target.value };
-                        setForm(f => ({ ...f, priorArtReferences: newRefs }));
-                      }}
-                      className={`flex h-10 w-full rounded-md border ${
-                        validationErrors.priorArtReferences ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
-                      } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
-                      placeholder="Patent number or article title"
-                    />
-                    )}
-                  </div>
-                  <div className="flex flex-col w-[200px]">
-                    <label className="text-sm text-[#322B25] mb-1">Type</label>
-                    <>
-                      {ref.fromSearch ? (
-                        <div className="flex h-10 items-center px-3 bg-[#1C1C1C] rounded-md text-base text-[#322B25]">{ref.type}</div>
-                      ) : (
-                    <input
-                      type="text"
-                      value={ref.type}
-                      onChange={(e) => {
-                        const newRefs = [...form.priorArtReferences];
-                        newRefs[index] = { ...ref, type: e.target.value };
-                        setForm(f => ({ ...f, priorArtReferences: newRefs }));
-                      }}
-                      className={`flex h-10 w-full rounded-md border ${
-                        validationErrors.priorArtReferences ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
-                      } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
-                      placeholder="Patent, Article, etc."
-                    />
-                      )}
-                    </>
-                  </div>
-                  <div className="flex flex-col flex-1">
-                    <label className="text-sm text-[#322B25] mb-1">Relevance</label>
-                    <>
-                      {ref.fromSearch ? (
-                        <div className="flex h-10 items-center px-3 bg-[#1C1C1C] rounded-md text-base text-[#322B25]">{ref.relevance}</div>
-                      ) : (
-                    <input
-                      type="text"
-                      value={ref.relevance}
-                      onChange={(e) => {
-                        const newRefs = [...form.priorArtReferences];
-                        newRefs[index] = { ...ref, relevance: e.target.value };
-                        setForm(f => ({ ...f, priorArtReferences: newRefs }));
-                      }}
-                      className={`flex h-10 w-full rounded-md border ${
-                        validationErrors.priorArtReferences ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
-                      } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
-                      placeholder="How it relates to your invention"
-                    />
-                      )}
-                    </>
-                  </div>
-                  {index > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const newRefs = [...form.priorArtReferences];
-                        newRefs.splice(index, 1);
-                        setForm(f => ({ ...f, priorArtReferences: newRefs }));
-                      }}
-                      className="self-end h-10 px-3 text-red-500 hover:bg-[#322B25] rounded-md transition-colors"
-                      title="Remove reference"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  )}
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={() => {
-                  setForm(f => ({
-                    ...f,
-                    priorArtReferences: [...f.priorArtReferences, { reference: '', type: '', relevance: '' }]
-                  }));
-                }}
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none  disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#302F2F] text-[#FFFFFF] hover:bg-[#6C6C6C] h-10 px-4 py-2 w-full"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-                </svg>
-                Add Reference
-              </button>
-            </div>
-          </div>
-
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Search for Prior Art</label>
-            <div className="flex gap-4">
+        {/* Form Steps */}
+        {step === 0 && (
+          <div className="space-y-6">
+            <div>
+              <label className="block font-medium mb-1 text-[#322B25]">Invention Title <span className="text-[#202020]">*</span></label>
               <input
                 type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className={`flex-1 px-4 py-3 rounded-lg border ${
-                  validationErrors.searchQuery ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
-                } bg-[#ffffff] focus:outline-none  text-[#322B25] text-base h-10`}
-                placeholder="Enter keywords related to your invention"
+                name="patentTitle"
+                value={form.patentTitle}
+                onChange={handleChange}
+                className={`w-full px-4 py-3 rounded-lg  ${
+                  validationErrors.patentTitle ? 'border-red-500' : ''
+                } bg-[#F6F6F6] focus:outline-none text-[#322B25] text-base h-10`}
+                placeholder="Enter patent title"
+                required
               />
-              <button
-                type="button"
-                onClick={handleSearchPriorArt}
-                className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
-"
-                disabled={aiLoading}
-              >
-                {aiLoading ? 'Searching...' : 'Search'}
-              </button>
+              {showError('patentTitle')}
             </div>
-            
-            {/* Search Results */}
-            {searchResults.length > 0 && (
-              <div className="mt-6 border border-[#6C6C6C] rounded-lg p-4 bg-[#302F2F]">
-                <h3 className="text-lg font-medium mb-2 text-[#FFFFFF]">Search Results for "{searchQuery}"</h3>
-                <p className="text-sm text-[#868686] mb-3">Found {searchResults.length} potentially relevant documents</p>
-                
-                <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-[#6C6C6C]">
-                    <thead className="bg-[#1C1C1C]">
-                      <tr>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Reference</th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Type</th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Relevance</th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-[#302F2F] divide-y divide-[#6C6C6C]">
-                      {searchResults.map((result, index) => (
-                        <tr key={index}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#FFFFFF]">{result.reference}</td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-[#868686]">{result.type}</td>
-                          <td className="px-6 py-4 text-sm text-[#868686]">{result.relevance}</td>
-                          <td className="pl-[35px] pr-6 py-4 whitespace-nowrap text-sm text-[#868686]">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setForm(f => ({
-                                  ...f,
-                                  priorArtReferences: [
-                                    ...f.priorArtReferences,
-                                    { 
-                                      reference: result.reference,
-                                      type: result.type,
-                                      relevance: result.relevance,
-                                      fromSearch: true
-                                    }
-                                  ]
-                                }));
-                                toast.success('Reference added to your list');
-                              }}
-                              className="inline-flex items-center justify-center w-8 h-8 text-[#FFFFFF] hover:text-[#FFFFFF] hover:bg-[#6C6C6C] rounded-[25%] border border-[#6C6C6C] transition-colors"
-                              title="Add to References"
-                            >
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-                              </svg>
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+
+            <div>
+              <label className="block font-medium mb-1 text-[#000000]">Inventor Name(s) <span className="text-[#202020]">*</span></label>
+              <input
+                type="text"
+                name="inventorNames"
+                value={form.inventorNames}
+                onChange={handleChange}
+                className={`w-full px-4 py-3 rounded-lg  ${
+                  validationErrors.inventorNames ? 'border-red-500' : ''
+                } bg-[#F6F6F6] focus:outline-none text-[#322B25] text-base h-10`}
+                placeholder="Enter inventor name(s), separate multiple names with commas"
+                required
+              />
+              {showError('inventorNames')}
+            </div>
+
+            <div>
+              <label className="block font-medium mb-1 text-[#000000]">Patent Type <span className="text-[#202020]">*</span></label>
+              <CustomSelect
+                name="patentType"
+                value={form.patentType}
+                onChange={handleChange}
+                options={patentTypes}
+                placeholder="Select patent type"
+                error={validationErrors.patentType}
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block font-medium mb-1 text-[#000000]">Brief Summary <span className="text-[#202020]">*</span></label>
+              <div className="flex gap-2 items-center">
+              <textarea
+                name="briefSummary"
+                value={form.briefSummary}
+                onChange={handleChange}
+                  className={`w-full px-3 py-3 rounded-lg  ${validationErrors.briefSummary ? 'border-red-500' : ''} bg-[#F6F6F6] focus:outline-none text-[#322B25] text-base min-h-[120px] overflow-y-auto`}
+                placeholder="Provide a brief summary of your invention"
+                required
+              />
+                <button
+                  type="button"
+                  className="px-4 py-3 ml-4 rounded-[4px]  bg-[#2B2521] text-[#FFFFFF] font-medium"
+                  onClick={() => handleAISuggest('briefSummary')}
+                  disabled={aiLoading === 'briefSummary'}
+                >
+                  <img src={AIAnalyzeIcon} alt="AI Analyze" style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} className={aiLoading === 'briefSummary' ? 'fade' : ''} />
+                </button>
               </div>
+              {showError('briefSummary')}
+            </div>
+
+            {form.priorityClaim && (
+              <>
+                <div>
+                  <label className="block font-medium mb-1 text-[#000000]">Priority Filing Date</label>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                      value={form.priorityFilingDate ? dayjs(form.priorityFilingDate) : null}
+                      onChange={date => setForm(f => ({ ...f, priorityFilingDate: date ? date.format('YYYY-MM-DD') : '' }))}
+                      disableFuture
+                      format="DD-MM-YYYY"
+                      slotProps={{
+                        textField: {
+                          placeholder: 'dd-mm-yyyy',
+                          fullWidth: true,
+                          size: 'medium',
+                          sx: {
+                            backgroundColor: '#302F2F',
+                            borderRadius: '0.75rem',
+                            '& .MuiOutlinedInput-root': {
+                              borderRadius: '0.75rem',
+                            },
+                            '& .MuiOutlinedInput-notchedOutline': {
+                              borderColor: '#6C6C6C',
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': {
+                              borderColor: '#868686',
+                            },
+                            '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
+                              borderColor: '#6C6C6C',
+                            },
+                          },
+                          error: Boolean(validationErrors.priorityFilingDate),
+                          helperText: validationErrors.priorityFilingDate || '',
+                        },
+                        popper: {
+                          sx: {
+                            '& .MuiPaper-root': {
+                              borderRadius: 2,
+                              boxShadow: '0 4px 24px 0 rgba(108, 108, 108, 0.10)',
+                            },
+                            '& .MuiPickersDay-root': {
+                              borderRadius: '8px',
+                              fontWeight: 500,
+                              '&.Mui-selected': {
+                                backgroundColor: '#302F2F',
+                                color: '#fff',
+                              },
+                              '&:hover': {
+                                backgroundColor: '#6C6C6C',
+                                color: '#fff',
+                              },
+                            },
+                            '& .MuiPickersCalendarHeader-label': {
+                              color: '#FFFFFF',
+                              fontWeight: 700,
+                              fontSize: '1.15rem',
+                            },
+                            '& .MuiPickersArrowSwitcher-root button': {
+                              color: '#FFFFFF',
+                            },
+                            '& .MuiPickersCalendarHeader-switchViewButton': {
+                              color: '#FFFFFF',
+                            },
+                            '& .MuiPickersDay-today': {
+                              border: '1.5px solid #6C6C6C',
+                              background: '#302F2F',
+                              color: '#FFFFFF',
+                            },
+                            '& .MuiPickersDay-root.Mui-disabled': {
+                              color: '#6C6C6C',
+                            },
+                            '& .MuiPickersCalendarHeader-root': {
+                              background: '#1C1C1C',
+                              borderRadius: '12px 12px 0 0',
+                            },
+                            '& .MuiPickersDay-dayOutsideMonth': {
+                              color: '#6C6C6C',
+                            },
+                            '& .MuiPickersYear-yearButton, & .MuiPickersMonth-monthButton': {
+                              borderRadius: '8px',
+                              fontWeight: 600,
+                              '&.Mui-selected': {
+                                backgroundColor: '#302F2F',
+                                color: '#fff',
+                              },
+                              '&:hover': {
+                                backgroundColor: '#6C6C6C',
+                                color: '#fff',
+                              },
+                            },
+                          },
+                        },
+                      }}
+                    />
+                  </LocalizationProvider>
+                </div>
+                {/* File upload for certified copy (if needed) */}
+                <div className="mt-4">
+                  <label className="block font-medium mb-1 text-[#FFFFFF]">Certified Copy of Priority Document</label>
+                  <div className="relative w-full mb-2">
+                    <input
+                      name="certifiedCopy"
+                      type="file"
+                      accept="application/pdf"
+                      onChange={handleChange}
+                      className="hidden"
+                      id="certified-copy-upload"
+                    />
+                    <label
+                      htmlFor="certified-copy-upload"
+                      className="w-full px-4 py-3 rounded-[4px]  border border-[#322B25]/5 border-[1.5px] bg-[#302F2F] text-[#FFFFFF] font-medium hover:bg-[#232323] hover:border-[#868686] transition-colors cursor-pointer text-center appearance-none"
+                      style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
+                    >
+                      Browse Files
+                    </label>
+                  </div>
+                  {form.certifiedCopy && (
+                    <p className="text-sm text-[#868686] mt-2">Selected: {form.certifiedCopy.name}</p>
+                  )}
+                  {validationErrors.certifiedCopy && (
+                    <p className="text-red-500 text-xs mt-1">{validationErrors.certifiedCopy}</p>
+                  )}
+                  <p className="text-xs text-[#868686] mt-1">Upload certified copy of priority document (PDF). Max 10MB.</p>
+                </div>
+              </>
             )}
           </div>
-        </div>
-      )}
+        )}
 
-      {step === 3 && (
-        <div className="space-y-6">
-          <div>
-            <label className="block font-medium mb-1 text-[#322B25]">Claims <span className="text-[#868686]">*</span></label>
-            <div className="flex gap-2 items-center">
-            <textarea
-              name="claims"
-              value={form.claims.join('\n')}
-              onChange={(e) => setForm(f => ({ ...f, claims: e.target.value.split('\n') }))}
-              className={`w-full px-4 py-3 rounded-lg border ${validationErrors.claims ? 'border-red-500' : 'border-[#E2E2E2] border-[1px]'} bg-[#FFFFFF] focus:outline-none text-[#322B25] text-base resize-none h-10 overflow-hidden`}
-              placeholder="Enter patent claims (one per line)"
-              required
-            />
-              <button
-                type="button"
-                className="px-3 py-3 ml-4 rounded-[4px]  bg-[#1E1E1E] text-[#FFFFFF] font-medium 
-"
-                onClick={() => handleAISuggest('claims')}
-                disabled={aiLoading === 'claims'}
-              >
-                <IoSparkles className="w-4 h-4" />
-                {aiLoading === 'claims' ? '' : ''}
-              </button>
+        {step === 1 && (
+          <div className="space-y-6">
+            <div>
+              <label className="block font-medium mb-1 text-[#322B25]">Technical Field <span className="text-[#868686]">*</span></label>
+              <div className="flex gap-2 items-center">
+              <textarea
+                name="technicalField"
+                value={form.technicalField}
+                onChange={handleChange}
+                className={`w-full px-4 py-3 rounded-[4px] bg-[#F6F6F6] focus:outline-none  text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+                placeholder="Describe the technical field to which the invention relates"
+                required
+              />
+                <button
+                  type="button"
+                  className="px-3 py-3 ml-4 rounded-[4px]  bg-[#322B25] text-[#FFFFFF] font-medium"
+                  onClick={() => handleAISuggest('technicalField')}
+                  disabled={aiLoading === 'technicalField'}
+                >
+                  <img src={AIAnalyzeIcon} alt="AI Analyze" style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} className={aiLoading === 'technicalField' ? 'fade' : ''} />
+                </button>
+              </div>
+              {showError('technicalField')}
             </div>
-            {showError('claims')}
+
+            <div>
+              <label className="block font-medium mb-1 text-[#000000]">Background Art <span className="text-[#202020]">*</span></label>
+              <div className="flex gap-2 items-center">
+              <textarea
+                name="backgroundArt"
+                value={form.backgroundArt}
+                onChange={handleChange}
+                className={`w-full px-4 py-3 rounded-[4px] bg-[#F6F6F6] focus:outline-none text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+                placeholder="Describe the existing art, problems, and limitations that your invention addresses"
+                required
+              />
+                <button
+                  type="button"
+                  className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium"
+                  onClick={() => handleAISuggest('backgroundArt')}
+                  disabled={aiLoading === 'backgroundArt'}
+                >
+                  <img src={AIAnalyzeIcon} alt="AI Analyze" style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} className={aiLoading === 'backgroundArt' ? 'fade' : ''} />
+                </button>
+              </div>
+              {showError('backgroundArt')}
+            </div>
+
+            <div>
+              <label className="block font-medium mb-1 text-[#000000] ">Detailed Description <span className="text-[#202020]">*</span></label>
+              <div className="flex gap-2 items-center">
+              <textarea
+                name="detailedDescription"
+                value={form.detailedDescription}
+                onChange={handleChange}
+                  className={`w-full px-4 py-3 rounded-[4px] bg-[#F6F6F6] focus:outline-none text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+                  placeholder="Provide a detailed description of your invention, including all components, how they interact, and alternative embodiments"
+                required
+              />
+                <button
+                  type="button"
+                  className="px-3 py-3 ml-4 rounded-[4px]  bg-[#322B25] text-[#FFFFFF] font-medium"
+                  onClick={() => handleAISuggest('detailedDescription')}
+                  disabled={aiLoading === 'detailedDescription'}
+                >
+                  <img src={AIAnalyzeIcon} alt="AI Analyze" style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} className={aiLoading === 'detailedDescription' ? 'fade' : ''} />
+                </button>
+              </div>
+              {showError('detailedDescription')}
+            </div>
+
+            <div>
+              <label className="block font-medium mb-1 text-[#000000]">Advantageous Effects <span className="text-[#202020]">*</span></label>
+              <div className="flex gap-2 items-center">
+              <textarea
+                name="advantageousEffects"
+                value={form.advantageousEffects}
+                onChange={handleChange}
+                className={`w-full px-4 py-3 rounded-[4px] bg-[#F6F6F6] focus:outline-none  text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+                placeholder="Describe the advantages and improvements your invention provides over existing solutions"
+                required
+              />
+                <button
+                  type="button"
+                  className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium"
+                  onClick={() => handleAISuggest('advantageousEffects')}
+                  disabled={aiLoading === 'advantageousEffects'}
+                >
+                  <img src={AIAnalyzeIcon} alt="AI Analyze" style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} className={aiLoading === 'advantageousEffects' ? 'fade' : ''} />
+                </button>
+              </div>
+              {showError('advantageousEffects')}
+            </div>
+
+            <div>
+              <label className="block font-medium mb-1 text-[#000000]">Drawing References</label>
+              <p className="text-sm text-[#868686] mb-4">List the drawings you plan to include and briefly describe each</p>
+              <div className="space-y-4">
+                {form.drawings && form.drawings.map((drawing, index) => (
+                  <div key={index} className="grid grid-cols-4 gap-4 items-center">
+                  <input
+                    type="text"
+                      name={`drawingFigure${index + 1}`}
+                      value={drawing.figure}
+                      onChange={e => handleDrawingChange(index, 'figure', e.target.value)}
+                      className={`flex h-10 w-full rounded-[4px] border border-[#322B25]/5 border-[1.5px] bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none  disabled:cursor-not-allowed disabled:opacity-50 md:text-sm col-span-1 text-[#322B25]`}
+                      placeholder={`Fig. ${index + 1}`}
+                  />
+                  <input
+                    type="text"
+                      name={`drawingDescription${index + 1}`}
+                      value={drawing.description}
+                      onChange={e => handleDrawingChange(index, 'description', e.target.value)}
+                      className={`flex h-10 w-full rounded-[4px] border border-[#322B25]/5 border-[1.5px] bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm col-span-2 text-[#322B25]`}
+                      placeholder={`Description of Figure ${index + 1}`}
+                  />
+                    <div className="flex items-center gap-2 col-span-1">
+                  <input
+                        type="file"
+                        accept="image/*,application/pdf"
+                        id={`drawing-file-${index}`}
+                        style={{ display: 'none' }}
+                        onChange={e => handleDrawingFileChange(index, e.target.files[0])}
+                      />
+                      <label htmlFor={`drawing-file-${index}`} className="px-2 py-2 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+"
+                      >
+                        Upload
+                      </label>
+                      {drawing.file && (
+                        <span className="text-xs text-[#868686] ml-2">{drawing.file.name}</span>
+                      )}
+                </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
+        )}
+
+        {step === 2 && (
+          <div className="space-y-6">
+            <div>
+              <label className="block font-medium mb-1 text-[#000000]">Known Prior Art <span className="text-[#202020]">*</span></label>
+              <div className="flex gap-2 items-center">
+              <textarea
+                name="knownPriorArt"
+                value={form.knownPriorArt}
+                onChange={handleChange}
+                className={`w-full px-4 py-3 rounded-[4px] ${validationErrors.knownPriorArt ? 'border-red-500' : ''} bg-[#F6F6F6] focus:outline-none  text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+                placeholder="Describe any known existing solutions or technologies related to your invention"
+                required
+              />
+                <button
+                  type="button"
+                  className="px-3 py-3 ml-4 rounded-[4px]  bg-[#302D2A] text-[#FFFFFF] font-medium 
+"
+                  onClick={() => handleAISuggest('knownPriorArt')}
+                  disabled={aiLoading === 'knownPriorArt'}
+                >
+                  <img src={AIAnalyzeIcon} alt="AI Analyze" style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} className={aiLoading === 'knownPriorArt' ? 'fade' : ''} />
+                </button>
+              </div>
+              {showError('knownPriorArt')}
+            </div>
+
+            <div>
+              <label className="block font-medium mb-1 text-[#000000]">Prior Art References</label>
+              <div className="space-y-4">
+                {form.priorArtReferences.map((ref, index) => (
+                  <div key={index} className="flex gap-4">
+                    <div className="flex flex-col flex-1">
+                      <label className="text-sm text-[#000000] mb-1">Reference</label>
+                      {ref.fromSearch ? (
+                        <div className="flex h-10 items-center px-3 bg-[#FFFFFF] rounded-md text-base text-[#322B25]">{ref.reference}</div>
+                      ) : (
+                      <input
+                        type="text"
+                        value={ref.reference}
+                        onChange={(e) => {
+                          const newRefs = [...form.priorArtReferences];
+                          newRefs[index] = { ...ref, reference: e.target.value };
+                          setForm(f => ({ ...f, priorArtReferences: newRefs }));
+                        }}
+                        className={`flex h-10 w-full rounded-md border ${
+                          validationErrors.priorArtReferences ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
+                        } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
+                        placeholder="Patent number or article title"
+                      />
+                      )}
+                    </div>
+                    <div className="flex flex-col w-[200px]">
+                      <label className="text-sm text-[#000000] mb-1">Type</label>
+                      <>
+                        {ref.fromSearch ? (
+                          <div className="flex h-10 items-center px-3 bg-[#1C1C1C] rounded-md text-base text-[#322B25]">{ref.type}</div>
+                        ) : (
+                      <input
+                        type="text"
+                        value={ref.type}
+                        onChange={(e) => {
+                          const newRefs = [...form.priorArtReferences];
+                          newRefs[index] = { ...ref, type: e.target.value };
+                          setForm(f => ({ ...f, priorArtReferences: newRefs }));
+                        }}
+                        className={`flex h-10 w-full rounded-md border ${
+                          validationErrors.priorArtReferences ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
+                        } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
+                        placeholder="Patent, Article, etc."
+                      />
+                        )}
+                      </>
+                    </div>
+                    <div className="flex flex-col flex-1">
+                      <label className="text-sm text-[#000000] mb-1">Relevance</label>
+                      <>
+                        {ref.fromSearch ? (
+                          <div className="flex h-10 items-center px-3 bg-[#1C1C1C] rounded-md text-base text-[#322B25]">{ref.relevance}</div>
+                        ) : (
+                      <input
+                        type="text"
+                        value={ref.relevance}
+                        onChange={(e) => {
+                          const newRefs = [...form.priorArtReferences];
+                          newRefs[index] = { ...ref, relevance: e.target.value };
+                          setForm(f => ({ ...f, priorArtReferences: newRefs }));
+                        }}
+                        className={`flex h-10 w-full rounded-md border ${
+                          validationErrors.priorArtReferences ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
+                        } bg-[#FFFFFF] px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#868686] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm text-[#322B25]`}
+                        placeholder="How it relates to your invention"
+                      />
+                        )}
+                      </>
+                    </div>
+                    {index > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const newRefs = [...form.priorArtReferences];
+                          newRefs.splice(index, 1);
+                          setForm(f => ({ ...f, priorArtReferences: newRefs }));
+                        }}
+                        className="self-end h-10 px-3 text-red-500 hover:bg-[#322B25] rounded-md transition-colors"
+                        title="Remove reference"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setForm(f => ({
+                      ...f,
+                      priorArtReferences: [...f.priorArtReferences, { reference: '', type: '', relevance: '' }]
+                    }));
+                  }}
+                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none  disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-[#302F2F] text-[#FFFFFF] hover:bg-[#6C6C6C] h-10 px-4 py-2 w-full"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+                  </svg>
+                  Add Reference
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label className="block font-medium mb-1 text-[#000000]">Search for Prior Art</label>
+              <div className="flex gap-4">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className={`flex-1 px-4 py-3 rounded-[4px] border ${
+                    validationErrors.searchQuery ? 'border-red-500' : 'border-[#322B25]/5 border-[1.5px]'
+                  } bg-[#ffffff] focus:outline-none  text-[#322B25] text-base h-10`}
+                  placeholder="Enter keywords related to your invention"
+                />
+                <button
+                  type="button"
+                  onClick={handleSearchPriorArt}
+                  className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium 
+"
+                  disabled={aiLoading}
+                >
+                  {aiLoading ? 'Searching...' : 'Search'}
+                </button>
+              </div>
+              
+              {/* Search Results */}
+              {searchResults.length > 0 && (
+                <div className="mt-6 border border-[#6C6C6C] rounded-lg p-4 bg-[#302F2F]">
+                  <h3 className="text-lg font-medium mb-2 text-[#FFFFFF]">Search Results for "{searchQuery}"</h3>
+                  <p className="text-sm text-[#868686] mb-3">Found {searchResults.length} potentially relevant documents</p>
+                  
+                  <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-[#6C6C6C]">
+                      <thead className="bg-[#1C1C1C]">
+                        <tr>
+                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Reference</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Type</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Relevance</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-[#302F2F] divide-y divide-[#6C6C6C]">
+                        {searchResults.map((result, index) => (
+                          <tr key={index}>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#FFFFFF]">{result.reference}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-[#868686]">{result.type}</td>
+                            <td className="px-6 py-4 text-sm text-[#868686]">{result.relevance}</td>
+                            <td className="pl-[35px] pr-6 py-4 whitespace-nowrap text-sm text-[#868686]">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setForm(f => ({
+                                    ...f,
+                                    priorArtReferences: [
+                                      ...f.priorArtReferences,
+                                      { 
+                                        reference: result.reference,
+                                        type: result.type,
+                                        relevance: result.relevance,
+                                        fromSearch: true
+                                      }
+                                    ]
+                                  }));
+                                  toast.success('Reference added to your list');
+                                }}
+                                className="inline-flex items-center justify-center w-8 h-8 text-[#FFFFFF] hover:text-[#FFFFFF] hover:bg-[#6C6C6C] rounded-[25%] border border-[#6C6C6C] transition-colors"
+                                title="Add to References"
+                              >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className="space-y-6">
+            <div>
+              <label className="block font-medium mb-1 text-[#000000]">Claims <span className="text-[#868686]">*</span></label>
+              <div className="flex gap-2 items-center">
+              <textarea
+                name="claims"
+                value={form.claims.join('\n')}
+                onChange={(e) => setForm(f => ({ ...f, claims: e.target.value.split('\n') }))}
+                className={`w-full px-4 py-3 rounded-lg border ${validationErrors.claims ? 'border-red-500' : 'border-[#E2E2E2] border-[1px]'} bg-[#FFFFFF] focus:outline-none text-[#322B25] text-base resize-none h-10 overflow-hidden`}
+                placeholder="Enter patent claims (one per line)"
+                required
+              />
+                <button
+                  type="button"
+                  className="px-3 py-3 ml-4 rounded-[4px]  bg-[#1E1E1E] text-[#FFFFFF] font-medium"
+                  onClick={() => handleAISuggest('claims')}
+                  disabled={aiLoading === 'claims'}
+                >
+                  <img src={AIAnalyzeIcon} alt="AI Analyze" style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} className={aiLoading === 'claims' ? 'fade' : ''} />
+                </button>
+              </div>
+              {showError('claims')}
+            </div>
+          </div>
+        )}
+
+        {/* AI Suggestions */}
+        <div className="mt-8 mb-6">
+          <AISuggestionBox 
+            suggestions={
+              step === 0 ? suggestions.basicInfo :
+              step === 1 ? suggestions.detailedDescription :
+              step === 2 ? suggestions.priorArt :
+              suggestions.claims
+            } 
+          />
         </div>
-      )}
 
-      {/* AI Suggestions */}
-      <div className="mt-8 mb-6">
-        <AISuggestionBox 
-          suggestions={
-            step === 0 ? suggestions.basicInfo :
-            step === 1 ? suggestions.detailedDescription :
-            step === 2 ? suggestions.priorArt :
-            suggestions.claims
-          } 
-        />
-      </div>
-
-      {/* Navigation Buttons */}
-      <div className="flex justify-between mt-8">
-        <button
-          type="button"
-          onClick={() => setStep(s => Math.max(0, s - 1))}
-          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[4px] text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C]/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-[#6C6C6C] bg-[#2B2521] text-[#FFFFFF] hover:bg-[#E2E2E2] hover:text-[#322B25] h-10 px-[27px] py-[16px]"
-          disabled={step === 0}
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-          Previous
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            if (step === steps.length - 1) {
-              handleSubmit();
-            } else {
-              handleNext();
-            }
-          }}
-          className={`px-[27px] py-[11px] rounded-[4px]  bg-[#2B2521] text-[#FFFFFF] font-medium 
-          }`}
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? 'Processing...' : step === steps.length - 1 ? 'Submit' : 'Next'}
-        </button>
-      </div>
+        {/* Navigation Buttons */}
+        <div className="flex justify-between mt-8">
+          <button
+            type="button"
+            onClick={() => setStep(s => Math.max(0, s - 1))}
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[4px] text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C]/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-[#6C6C6C] bg-[#2B2521] text-[#FFFFFF] hover:bg-[#E2E2E2] hover:text-[#322B25] h-10 px-[27px] py-[16px]"
+            disabled={step === 0}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Previous
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              if (step === steps.length - 1) {
+                handleSubmit();
+              } else {
+                handleNext();
+              }
+            }}
+            className={`px-[27px] py-[11px] rounded-[4px]  bg-[#2B2521] text-[#FFFFFF] font-medium 
+            }`}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Processing...' : step === steps.length - 1 ? 'Submit' : 'Next'}
+          </button>
+        </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  );
-};
+    </>);
+}
 
 export default PatentFiling; 
