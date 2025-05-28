@@ -118,7 +118,7 @@ const PatentGenerateDocuments = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#1C1C1C] flex items-center justify-center">
+      <div className="">
         <div className="text-center max-w-md p-6 bg-[#302F2F] rounded-lg border border-[#6C6C6C]">
           <div className="text-red-500 mb-4">
             <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,11 +139,11 @@ const PatentGenerateDocuments = () => {
   }
 
   return (
-    <div className="px-0 py-0">
+    <div className="px-0 py-0 h-full">
       {/* Outer container for the wide border effect */}
-      <div className="max-w-4xl mx-auto rounded-[16px] p-6 mb-8 relative z-10" style={{ backgroundImage: `url(${generatebg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+      <div className="max-w-5xl  mx-auto rounded-[16px]   h-full relative z-10" >
         {/* Inner container for the white content area */}
-        <div className="bg-[#FFFFFF] rounded-[12px]  p-8">
+        <div className="bg-[#FFFFFF] rounded-[12px] h-full p-4">
           {/* Header Section */}
           <div className="mb-6">
             <div className="flex items-center gap-4 mb-2">
@@ -216,7 +216,7 @@ const PatentGenerateDocuments = () => {
               <button
                 onClick={handleGenerate}
                 disabled={isGenerating}
-                className={`px-8 py-3 bg-[#232323] text-[#FFFFFF] rounded-[4px] border border-[#322B25] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors flex items-center space-x-2 ${
+                className={`px-8 py-3 bg-[#2B2521] text-[#FFFFFF] rounded-[4px]  font-medium transition-colors flex items-center space-x-2 ${
                 isGenerating ? 'opacity-50 cursor-not-allowed' : ''
               }`}
               >

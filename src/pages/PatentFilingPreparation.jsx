@@ -91,7 +91,7 @@ const PatentFilingPreparation = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F3F3F1] px-4 py-10 rounded-[12px]">
+    <div className="min-h-screen bg-[#FFFFFF] px-4 py-10 rounded-[12px]">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-6">
@@ -160,10 +160,10 @@ const PatentFilingPreparation = () => {
           {activeTab === 'checklist' && (
             <>
               {/* Filing Checklist */}
-              <div className="bg-[#E3E2DF] rounded-[8px] border: 1px solid #FFFFFF0A p-6">
+              <div className=" rounded-[8px] border: 1px solid #FFFFFF0A p-6">
                 <h2 className="text-xl font-semibold text-[#322B25] mb-4">Filing Checklist</h2>
                 <div className="space-y-4">
-                  <div className="flex items-start space-x-3 p-3 bg-[#CFD2D4] rounded-[8px]">
+                  <div className="flex items-start space-x-3 p-3 bg-[#EEE8E2] rounded-[8px]">
                     <div className="flex-shrink-0 mt-1">
                       <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
@@ -174,7 +174,7 @@ const PatentFilingPreparation = () => {
                       <p className="text-sm text-[#4f4f4f]">Basic application details and requirements</p>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3 p-3 bg-[#CFD2D4] rounded-[8px]">
+                  <div className="flex items-start space-x-3 p-3 bg-[#EEE8E2] rounded-[8px]">
                     <div className="flex-shrink-0 mt-1">
                       <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
@@ -185,7 +185,7 @@ const PatentFilingPreparation = () => {
                       <p className="text-sm text-[#4f4f4f]">All required documents generated</p>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3 p-3 bg-[#CFD2D4] rounded-[8px]">
+                  <div className="flex items-start space-x-3 p-3 bg-[#EEE8E2] rounded-[8px]">
                     <div className="flex-shrink-0 mt-1">
                       <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
@@ -202,10 +202,11 @@ const PatentFilingPreparation = () => {
           )}
 
           {activeTab === 'analysis' && (
-            <div className="bg-[#FFF] rounded-[8px] border: 1px solid #FFFFFF0A p-6">
+            <div className="bg-[#FFFFFF] rounded-[8px] border: 1px solid #FFFFFF0A p-6">
               <h2 className="text-xl font-semibold text-[#322B25] mb-4">AI Filing Assessment</h2>
               <p className="text-[#4f4f4f] mb-6">Get an AI-powered analysis of your application's filing readiness</p>
 
+              <div className="bg-[#F8F7F3] rounded-[4px] p-6 mb-8 text-center">
               {!analysis && (
                 <div className="text-center py-8 max-w-xl mx-auto">
                   <div className="flex justify-center mb-5">
@@ -216,10 +217,10 @@ const PatentFilingPreparation = () => {
                   <button
                     onClick={handleAIAnalysis}
                     disabled={isLoading}
-                    className={`flex items-center space-x-2 px-[27px] py-[16px] rounded-[4px] hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors duration-200 mx-auto mt-2 border border-[#322B25]/5 border-[1.5px] ${
+                    className={`flex items-center space-x-2 px-[27px] py-[16px] rounded-[4px]  transition-colors duration-200 mx-auto mt-2 ${
                       isLoading
                         ? 'bg-[#1C1C1C] text-[#868686] cursor-not-allowed'
-                        : 'bg-[#302F2F] text-[#FFFFFF] hover:bg-[#6C6C6C]'
+                        : 'bg-[#302D2A] text-[#FFFFFF]'
                     }`}
                   >
                     {isLoading ? (
@@ -241,6 +242,7 @@ const PatentFilingPreparation = () => {
                   </button>
                 </div>
               )}
+                </div>
 
               {error && (
                 <div className="mt-4 p-4 bg-[#1C1C1C] text-red-500 rounded-lg text-center border border-[#6C6C6C]">
@@ -251,56 +253,53 @@ const PatentFilingPreparation = () => {
               {analysis && (
                 <div className="space-y-8">
                   {/* Approval Status */}
-                  <div className="p-6 bg-[#1E342F] border border-[#6C6C6C] rounded-lg">
-                    <div className="flex flex-col items-center text-center">
-                      <div className="relative w-32 h-32 mb-4">
+                  <div className="bg-[#2B2521] rounded-[12px] p-6">
+                    <div className="flex items-center gap-16 px-12 py-12">
+                      {/* Donut */}
+                      <div className="relative w-64 h-64 flex-shrink-0">
                         <svg className="w-full h-full" viewBox="0 0 36 36">
-                          <defs>
-                            <linearGradient id="approvalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                              <stop offset="0%" stopColor="#3987BE" />
-                              <stop offset="100%" stopColor="#D48EA3" />
-                            </linearGradient>
-                          </defs>
-                          {/* Background circle (gradient for remaining) */}
                           <path
                             d="M18 2.0845
                               a 15.9155 15.9155 0 0 1 0 31.831
                               a 15.9155 15.9155 0 0 1 0 -31.831"
                             fill="none"
-                            stroke="url(#approvalGradient)"
+                            stroke="#3A3532"
                             strokeWidth="3"
                           />
-                          {/* Progress arc (red for completed) */}
                           <path
                             d="M18 2.0845
                               a 15.9155 15.9155 0 0 1 0 31.831
                               a 15.9155 15.9155 0 0 1 0 -31.831"
                             fill="none"
-                            stroke="#EF4444"
+                            stroke="#D6A3B2"
                             strokeWidth="3"
-                            strokeDasharray="100, 100"
-                            strokeDashoffset={100 - analysis.overview.approvalPercentage}
+                            strokeDasharray={`${analysis.overview.approvalPercentage}, 100`}
                             strokeLinecap="round"
-                            style={{ transition: 'stroke-dashoffset 0.5s' }}
                           />
                         </svg>
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-2xl font-bold text-[#FFFFFF]">
+                          <span className="text-4xl font-bold text-white">
                             {analysis.overview.approvalPercentage}%
                           </span>
                         </div>
                       </div>
-                      <h3 className="text-xl font-semibold text-[#FFFFFF] mb-2">
-                        {analysis.overview.approvalPercentage >= 80 ? 'Good' : 
-                         analysis.overview.approvalPercentage >= 60 ? 'Moderate' : 'Needs Improvement'}
-                      </h3>
-                      <p className="text-[#868686] max-w-md">
-                        {analysis.overview.approvalPercentage >= 80 ? 
-                          'Your application shows strong potential for approval.' :
-                         analysis.overview.approvalPercentage >= 60 ?
-                          'Your application has moderate chances of approval with some improvements needed.' :
-                          'Your application needs significant improvements for approval.'}
-                      </p>
+                      {/* Text */}
+                      <div className="flex flex-col justify-center items-start text-left">
+                        <h3 className="text-5xl font-medium mb-4 text-[#D6A3B2]">
+                          {analysis.overview.approvalPercentage >= 80
+                            ? 'Good'
+                            : analysis.overview.approvalPercentage >= 60
+                            ? 'Moderate'
+                            : 'Needs Improvement'}
+                        </h3>
+                        <p className="text-2xl text-white leading-snug">
+                          {analysis.overview.approvalPercentage >= 80
+                            ? 'Your application shows strong potential for approval.'
+                            : analysis.overview.approvalPercentage >= 60
+                            ? 'Your application has moderate chances of approval with some improvements needed.'
+                            : 'Your application needs significant improvements for approval.'}
+                        </p>
+                      </div>
                     </div>
                   </div>
 
@@ -425,10 +424,10 @@ const PatentFilingPreparation = () => {
                     <button
                       onClick={handleAIAnalysis}
                       disabled={isLoading}
-                      className={`flex items-center space-x-2 px-[27px] py-[16px] rounded-[4px] transition-colors duration-200 hover:border-[#302F2F] hover:text-[#322B25]/90 border border-[#322B25]/5 border-[1.5px] ${
+                      className={`flex items-center space-x-2 px-[27px] py-[16px] rounded-[4px] transition-colors duration-200 ${
                         isLoading
                           ? 'bg-[#1C1C1C] text-[#868686] cursor-not-allowed'
-                          : 'bg-[#302F2F] text-[#FFFFFF] hover:bg-[#6C6C6C]'
+                          : 'bg-[#302F2F] text-[#FFFFFF] ]'
                       }`}
                     >
                       {isLoading ? (
@@ -456,21 +455,21 @@ const PatentFilingPreparation = () => {
         </div>
 
         {/* Filing Calendar - always visible */}
-        <div className="bg-[#E3E2DF] rounded-[8px] border: 1px solid #FFFFFF0A p-6 mt-8">
+        <div className=" rounded-[8px] border: 1px solid #FFFFFF0A p-6 mt-8">
           <h2 className="text-xl font-semibold text-[#322B25] mb-2">Filing Calendar</h2>
           <p className="text-[#4f4f4f] mb-6">Important dates for your patent application</p>
           <div className="space-y-6">
-            <div className="p-4 bg-[#CFD2D4] rounded-[8px] border: 1px solid #FFFFFF0A p-6">
+            <div className="p-4 bg-[#EEE8E2] rounded-[8px] border: 1px solid #FFFFFF0A p-6">
               <h3 className="font-medium text-[#322B25]">Estimated Filing Date</h3>
               <p className="text-sm text-[#4f4f4f] mb-2">When your application will be submitted</p>
               <p className="text-[#322B25] font-medium text-lg">{formatDate(currentDate)}</p>
             </div>
-            <div className="p-4 bg-[#CFD2D4] rounded-[8px] border: 1px solid #FFFFFF0A p-6">
+            <div className="p-4 bg-[#EEE8E2] rounded-[8px] border: 1px solid #FFFFFF0A p-6">
               <h3 className="font-medium text-[#322B25]">Estimated First Office Action</h3>
               <p className="text-sm text-[#4f4f4f] mb-2">Initial review by USPTO</p>
               <p className="text-[#322B25] font-medium text-lg">12-18 months</p>
             </div>
-            <div className="p-4 bg-[#CFD2D4] rounded-[8px] border: 1px solid #FFFFFF0A p-6">
+            <div className="p-4 bg-[#EEE8E2] rounded-[8px] border: 1px solid #FFFFFF0A p-6">
               <h3 className="font-medium text-[#322B25]">Estimated Grant Time</h3>
               <p className="text-sm text-[#4f4f4f] mb-2">Total time for application approval</p>
               <p className="text-[#322B25] font-medium text-lg">24-30 months</p>
@@ -482,7 +481,7 @@ const PatentFilingPreparation = () => {
         <div className="mt-8 flex justify-center">
           <button
             onClick={() => navigate('/dashboard')}
-            className="px-[27px] py-[16px] bg-[#302F2F] text-[#FFFFFF] rounded-[4px] hover:bg-[#6C6C6C] transition-colors flex items-center gap-2 border border-[#322B25]/5 border-[1.5px]"
+            className="px-[27px] py-[16px] bg-[#302D2A] text-[#FFFFFF] rounded-[4px] transition-colors flex items-center gap-2 "
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />

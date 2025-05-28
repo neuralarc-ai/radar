@@ -6,8 +6,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import AddressInput from '../components/AddressInput';
 import CustomSelect from '../components/CustomSelect';
 import { IoArrowBack } from 'react-icons/io5';
-import { IoInformationCircleOutline, IoBagHandleOutline, IoDocumentTextOutline, IoSparkles } from 'react-icons/io5';
+import { IoInformationCircleOutline, IoBagHandleOutline, IoDocumentTextOutline, IoSparkles, IoBulbOutline } from 'react-icons/io5';
 import { DatePickerShadcn } from "../components/ui/DatePickerShadcn";
+import AIAnalyzeIcon from '../assests/AI_Analyze.png';
 
 const steps = [
   'Basic Info',
@@ -67,19 +68,54 @@ const commerceTypes = [
 ];
 const countries = ['United States', 'India', 'United Kingdom', 'Canada', 'Australia', 'Other'];
 
-// Add these styles to your component
-const customStyles = {
-  calendar: {
-    base: "w-full px-4 py-3 rounded-lg border border-[#322B25] bg-[#322B25] focus:outline-none focus:ring-2 focus:ring-[#302F2F] text-[#FFFFFF] appearance-none",
-    hover: "hover:border-[#868686]",
-    focus: "focus:border-[#302F2F] focus:ring-2 focus:ring-[#302F2F]/20",
-  },
-  fileUpload: {
-    container: "relative w-full mb-4",
-    input: "hidden",
-    button: "w-full px-4 py-3 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors cursor-pointer text-center",
-  }
+const suggestions = {
+  basicInfo: [
+    "Use a unique, distinctive name for your trademark.",
+    "Select the correct mark type for your application.",
+    "Provide the full legal name and address of the owner.",
+    "If you have an attorney, include their details."
+  ],
+  detailedDescription: [
+    "Describe your business, products, or services clearly.",
+    "Select the correct filing basis and provide accurate dates.",
+    "List all relevant trademark classes.",
+    "Describe your goods/services in detail."
+  ],
+  priorArt: [
+    "Provide evidence of use if filing under 'Use in Commerce'.",
+    "Upload a clear specimen showing the mark in use.",
+    "Include any priority claims and supporting documents.",
+    "Agree to the declaration and sign digitally."
+  ],
+  claims: [
+    "Review all information before submitting.",
+    "Ensure all required fields are completed.",
+    "Double-check uploaded files for clarity and accuracy.",
+    "Consult an attorney if unsure about any section."
+  ]
 };
+
+const AISuggestionBox = ({ suggestions }) => (
+  <div className="-z-50 p-4 mb-6">
+    <div className="flex items-center gap-2 mb-2">
+      <IoBulbOutline className="w-5 h-5 text-[#322B25]" />
+      <h3 className="text-sm font-medium text-[#322B25]">AI Suggestions</h3>
+    </div>
+    <ul className="space-y-2">
+      {suggestions.map((suggestion, index) => (
+        <li key={index} className="text-sm text-[#322B25] flex items-start gap-2">
+          <span className="text-[#322B25] mt-1">•</span>
+          {suggestion}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const fadeStyle = `
+@keyframes fadeInOut { from { opacity: 1; } to { opacity: 0.3; } }
+.fade { animation: fadeInOut 1s linear infinite alternate; }
+`;
 
 const TrademarkFiling = () => {
   const navigate = useNavigate();
@@ -93,18 +129,9 @@ const TrademarkFiling = () => {
   const [aiLoading, setAiLoading] = useState(null);
   const [aiClassRecommendation, setAiClassRecommendation] = useState(null);
 
-  // Add logging for route changes
-  useEffect(() => {
-    console.log('TrademarkFiling mounted');
-    console.log('Current path:', window.location.pathname);
-  }, []);
-
-  // Add useEffect to handle returned form data
   useEffect(() => {
     if (location.state?.isReturning && location.state?.formData) {
-      console.log('Received form data from GenerateDocuments:', location.state.formData);
       setForm(location.state.formData);
-      // Set the step to the last step since we're returning from GenerateDocuments
       setStep(steps.length - 1);
     }
   }, [location.state]);
@@ -120,57 +147,36 @@ const TrademarkFiling = () => {
     }
   };
 
-  const handleClassChange = (e) => {
-    const { options } = e.target;
-    const selected = [];
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].selected) selected.push(options[i].value);
-    }
-    setForm((f) => ({ ...f, trademarkClass: selected }));
-  };
-
   const handleAISuggest = async (field) => {
     try {
       setAiLoading(field);
-      console.log('Starting AI suggestion for field:', field);
       let suggestion = '';
-
       if (field === 'trademarkName') {
-        console.log('Getting AI suggestion for trademark name');
         suggestion = await getAITrademarkName(form.trademarkName || '');
       } else if (field === 'businessDescription') {
-        console.log('Getting AI description for business description');
         const currentDescription = form.businessDescription || '';
         if (!currentDescription.trim()) {
           toast.error('Please provide at least a brief description of your business');
           return;
         }
         const response = await getAIDescription(currentDescription);
-        console.log('Received suggestion:', response);
         suggestion = response.description;
       } else if (field === 'goodsServices') {
-        console.log('Getting AI class recommendation');
         const recommendation = await getAIClassRecommendation(form.goodsServices || '');
         setAiClassRecommendation(recommendation);
-
-        // Update the form with the suggested classes
         if (recommendation && recommendation.classes) {
           const suggestedClasses = recommendation.classes.map(c => c.number);
           setForm(f => ({ ...f, trademarkClass: suggestedClasses }));
         }
-        return; // Don't set suggestion as we're handling it differently
+        return;
       } else if (field === 'logoDescription') {
-        console.log('Getting AI mark description suggestion');
         if (!form.markType) {
           toast.error('Please select a mark type first');
           return;
         }
-
-        // For Standard Character Mark, we don't need a file upload
         if (form.markType === 'Standard Character Mark (text only)') {
           suggestion = await getAIMarkDescription(form.logoDescription || '', null, form.markType);
         } else {
-          // For other mark types, check if a file is uploaded
           if (!form.logo) {
             toast.error(`Please upload a ${form.markType.toLowerCase()} first`);
             return;
@@ -178,9 +184,6 @@ const TrademarkFiling = () => {
           suggestion = await getAIMarkDescription(form.logoDescription || '', form.logo, form.markType);
         }
       }
-
-      console.log('Received suggestion:', suggestion);
-
       if (suggestion) {
         setForm((f) => ({ ...f, [field]: suggestion }));
         toast.success('AI suggestion applied successfully');
@@ -188,123 +191,41 @@ const TrademarkFiling = () => {
         toast.error('No suggestion available. Please try again.');
       }
     } catch (err) {
-      console.error('Error in handleAISuggest:', err);
-      toast.error(`Failed to get AI suggestion: ${err.message}`);
+      toast.error('Failed to get AI suggestion');
     } finally {
       setAiLoading(null);
     }
   };
 
-  const handleClassSelect = (classNumber) => {
-    setForm(f => {
-      const currentClasses = f.trademarkClass || [];
-      const newClasses = currentClasses.includes(classNumber)
-        ? currentClasses.filter(c => c !== classNumber)
-        : [...currentClasses, classNumber];
-      return { ...f, trademarkClass: newClasses };
-    });
-  };
-
-  const getClassDescription = (classNumber) => {
-    if (!aiClassRecommendation?.classes) return '';
-    const classInfo = aiClassRecommendation.classes.find(c => c.number === classNumber);
-    return classInfo ? classInfo.description : '';
-  };
-
-  const nextStep = () => setStep((s) => Math.min(s + 1, steps.length - 1));
-  const prevStep = () => setStep((s) => Math.max(s - 1, 0));
-
-  const validateCurrentStep = () => {
+  const validateStep = (currentStep) => {
     const errors = {};
-
-    // Step 1: Mark & Owner Details
-    if (step === 0) {
-      if (!form.trademarkName?.trim()) {
-        errors.trademarkName = 'Trademark name is required';
-      }
-      if (!form.markType) {
-        errors.markType = 'Mark type is required';
-      }
-      if (form.markType === 'Design Mark (logo or stylized text)') {
-        if (!form.logo) {
-          errors.logo = 'Logo is required for design marks';
-        }
-        if (!form.logoDescription?.trim()) {
-          errors.logoDescription = 'Logo description is required for design marks';
-        }
-      }
-      if (!form.ownerName?.trim()) {
-        errors.ownerName = 'Owner name is required';
-      }
-      if (!form.ownerType) {
-        errors.ownerType = 'Owner type is required';
-      }
-      if (!form.ownerAddress?.trim() || form.ownerAddress === '') {
-        errors.ownerAddress = 'Owner address is required';
-      }
-    }
-
-    // Step 2: Filing & Usage
-    if (step === 1) {
-      if (!form.filingBasis) {
-        errors.filingBasis = 'Filing basis is required';
-      }
-      if (!form.businessDescription?.trim()) {
-        errors.businessDescription = 'Business description is required';
-      }
-      if (!form.trademarkClass?.length) {
-        errors.trademarkClass = 'At least one trademark class is required';
-      }
-      if (!form.goodsServices?.trim()) {
-        errors.goodsServices = 'Goods/services description is required';
-      }
-      if (form.filingBasis === 'Use in Commerce (Section 1(a))') {
-        if (!form.firstUseAnywhere) {
-          errors.firstUseAnywhere = 'Date of first use anywhere is required';
-        }
-        if (!form.firstUseCommerce) {
-          errors.firstUseCommerce = 'Date of first use in commerce is required';
-        }
-        if (!form.typeOfCommerce) {
-          errors.typeOfCommerce = 'Type of commerce is required';
-        }
-        if (!form.markUsage?.trim()) {
-          errors.markUsage = 'Mark usage description is required';
-        }
-        if (!form.specimen) {
-          errors.specimen = 'Specimen of use is required';
-        }
-      }
-    }
-
-    // Step 3: Priority & Declaration
-    if (step === 2) {
+    if (currentStep === 0) {
+      if (!form.trademarkName?.trim()) errors.trademarkName = 'Trademark name is required';
+      if (!form.markType) errors.markType = 'Mark type is required';
+      if (!form.ownerName?.trim()) errors.ownerName = 'Owner name is required';
+      if (!form.ownerType) errors.ownerType = 'Owner type is required';
+      if (!form.ownerAddress?.trim()) errors.ownerAddress = 'Owner address is required';
+    } else if (currentStep === 1) {
+      if (!form.filingBasis) errors.filingBasis = 'Filing basis is required';
+      if (!form.businessDescription?.trim()) errors.businessDescription = 'Business description is required';
+      if (!form.trademarkClass?.length) errors.trademarkClass = 'At least one trademark class is required';
+      if (!form.goodsServices?.trim()) errors.goodsServices = 'Goods/services description is required';
+    } else if (currentStep === 2) {
       if (form.priorityClaim) {
-        if (!form.priorityCountry) {
-          errors.priorityCountry = 'Priority country is required';
-        }
-        if (!form.priorityAppNumber?.trim()) {
-          errors.priorityAppNumber = 'Priority application number is required';
-        }
-        if (!form.priorityFilingDate) {
-          errors.priorityFilingDate = 'Priority filing date is required';
-        }
+        if (!form.priorityCountry) errors.priorityCountry = 'Priority country is required';
+        if (!form.priorityAppNumber?.trim()) errors.priorityAppNumber = 'Priority application number is required';
+        if (!form.priorityFilingDate) errors.priorityFilingDate = 'Priority filing date is required';
       }
-      if (!form.declaration) {
-        errors.declaration = 'You must agree to the declaration';
-      }
-      if (!form.signature?.trim()) {
-        errors.signature = 'Digital signature is required';
-      }
+      if (!form.declaration) errors.declaration = 'You must agree to the declaration';
+      if (!form.signature?.trim()) errors.signature = 'Digital signature is required';
     }
-
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
   const handleNext = () => {
-    if (validateCurrentStep()) {
-      setStep((s) => Math.min(s + 1, steps.length - 1));
+    if (validateStep(step)) {
+      setStep(s => Math.min(steps.length - 1, s + 1));
     } else {
       toast.error('Please fill in all required fields');
     }
@@ -312,42 +233,25 @@ const TrademarkFiling = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submit button clicked');
-
-    // Final validation
-    const { isValid, errors } = validateTrademarkForm(form);
-    if (!isValid) {
-      console.log('Validation errors:', errors);
-      setValidationErrors(errors);
+    if (!validateStep(step)) {
       toast.error('Please fill in all required fields');
       return;
     }
-
     setIsSubmitting(true);
     setSubmissionError(null);
-
     try {
-      console.log('Submitting form data:', form);
       const result = await submitTrademarkForm(form);
-      console.log('Submission result:', result);
-
       if (result.success) {
         setSubmissionData(result.data);
-        console.log('Stored submission data:', result.data);
         toast.success('Trademark application submitted successfully!');
-
-        // Navigate to Generate Documents page with the submission data
-        console.log('Navigating to Generate Documents with data:', result.data);
         navigate('/dashboard/generate-documents', {
           state: { submissionData: result.data }
         });
       } else {
-        console.error('Submission failed:', result.error);
         setSubmissionError(result.error || 'Failed to submit application');
         toast.error(result.error || 'Failed to submit application');
       }
     } catch (error) {
-      console.error('Submission error:', error);
       setSubmissionError(error.message);
       toast.error('Failed to submit trademark application. Please try again.');
     } finally {
@@ -355,14 +259,19 @@ const TrademarkFiling = () => {
     }
   };
 
-  const isUseInCommerce = form.filingBasis === 'Use in Commerce (Section 1(a))';
-  const isIntentToUse = form.filingBasis === 'Intent to Use (Section 1(b))';
+  const showError = (fieldName) => {
+    if (validationErrors[fieldName]) {
+      return (
+        <p className="text-red-500 text-sm mt-1">{validationErrors[fieldName]}</p>
+      );
+    }
+    return null;
+  };
 
-  // Progress calculation
   const progressPercent = ((step + 1) / steps.length) * 100;
 
   return (
-    <div className="w-[88%] mx-auto p-8 outline outline-1 outline-[#000000]/5  rounded-[12px] bg-[#EFECE5]">
+    <div className="w-[88%] mx-auto p-8 outline outline-1 outline-[#000000]/5 rounded-[12px] bg-[#ffffff]">
       {/* Progress Bar Section */}
       <div className="mb-8">
         <div className='flex items-center gap-4 mb-6'>
@@ -424,7 +333,7 @@ const TrademarkFiling = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Step 1: Mark & Owner Details */}
+        {/* Step 1: Basic Info */}
         {step === 0 && (
           <>
             <div className="mb-6">
@@ -436,10 +345,11 @@ const TrademarkFiling = () => {
                 name="trademarkName"
                 value={form.trademarkName}
                 onChange={handleChange}
-                className="w-full px-4 py-2 ' rounded-[4px] bg-[#FFFFFF] focus:outline-none text-base h-10` text-[#000000]"
+                className="w-full px-4 py-2 rounded-[4px] bg-[#FFFFFF] focus:outline-none text-base h-10 text-[#000000]"
                 placeholder="Enter your trademark name"
                 required
               />
+              {showError('trademarkName')}
             </div>
             <div>
               <label className="block font-medium mb-1 text-[#322B25]">Mark Type <span className="text-[#302F2F]">*</span></label>
@@ -458,59 +368,12 @@ const TrademarkFiling = () => {
                   </label>
                 ))}
               </div>
-              {validationErrors.markType && (
-                <p className="text-red-500 text-xs mt-1">{validationErrors.markType}</p>
-              )}
+              {showError('markType')}
             </div>
-            {['Design Mark (logo or stylized text)', 'Color Mark'].includes(form.markType) && (
-              <>
-                <div className="mb-4">
-                  <label className="block font-medium mb-6 text-[#000000]">Mark Image Upload <span className="text-[#302F2F]">*</span></label>
-                  <div className={customStyles.fileUpload.container}>
-                    <input
-                      name="logo"
-                      type="file"
-                      accept="image/jpeg,image/png,image/svg+xml"
-                      onChange={handleChange}
-                      className={customStyles.fileUpload.input}
-                      id="logo-upload"
-                    />
-                    <label
-                      htmlFor="logo-upload"
-                      className={customStyles.fileUpload.button}
-                      style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
-                    >
-                      Browse Files
-                    </label>
-                  </div>
-                  {form.logo && (
-                    <p className="text-sm text-[#322B25]/80 mt-2">Selected: {form.logo.name}</p>
-                  )}
-                  {validationErrors.logo && (
-                    <p className="text-red-500 text-xs mt-1">{validationErrors.logo}</p>
-                  )}
-                  <p className="text-xs text-[#000000]/95 mt-1">Upload your mark image (JPEG, PNG, SVG). Max 10MB.</p>
-                </div>
-                <div>
-                  <label className="block font-medium mb-1 text-[#322B25]">Mark Description <span className="text-[#302F2F]">*</span></label>
-                  <div className="flex gap-2 items-center">
-                    <textarea
-                      name="logoDescription"
-                      value={form.logoDescription}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]"
-                      placeholder="Describe mark elements (color, shape, stylization)"
-                    />
-                  </div>
-                  {validationErrors.logoDescription && (
-                    <p className="text-red-500 text-xs mt-1">{validationErrors.logoDescription}</p>
-                  )}
-                </div>
-              </>
-            )}
             <div>
               <label className="block font-medium mb-1 text-[#322B25]">Owner Name <span className="text-[#302F2F]">*</span></label>
-              <input name="ownerName" value={form.ownerName} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]" placeholder="Full legal name" required />
+              <input name="ownerName" value={form.ownerName} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px] focus:outline-none text-[#000000]" placeholder="Full legal name" required />
+              {showError('ownerName')}
             </div>
             <div>
               <label className="block font-medium mb-1 text-[#322B25]">Owner Type <span className="text-[#302F2F]">*</span></label>
@@ -523,10 +386,10 @@ const TrademarkFiling = () => {
                 error={validationErrors.ownerType}
                 required
               />
+              {showError('ownerType')}
             </div>
             <div>
               <label className="block font-medium mb-1 text-[#322B25]">Owner Address <span className="text-[#302F2F]">*</span></label>
-              
               <AddressInput
                 name="ownerAddress"
                 value={form.ownerAddress}
@@ -534,58 +397,11 @@ const TrademarkFiling = () => {
                 error={validationErrors.ownerAddress}
                 placeholder="Full mailing address"
               />
-            </div>
-            <div className="border-t border-[#000000]/10 pt-6 mt-6">
-              <div className="flex items-center gap-2 mb-4">
-                <input
-                  name="hasAttorney"
-                  type="checkbox"
-                  checked={form.hasAttorney}
-                  onChange={handleChange}
-                />
-                <label className="font-medium text-[#000000]">I have an attorney representing me</label>
-              </div>
-
-              {form.hasAttorney && (
-                <div className="space-y-4 pl-6 border-l-2 border-[#FFFFFF]/40">
-                  <div>
-                    <label className="block font-medium mb-1 text-[#000000]">Attorney Name</label>
-                    <input
-                      name="attorneyName"
-                      value={form.attorneyName}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]"
-                      placeholder="Attorney's full name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block font-medium mb-1 text-[#000000]">Attorney Address</label>
-                    <input
-                      name="attorneyAddress"
-                      value={form.attorneyAddress}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]"
-                      placeholder="Attorney's address"
-                    />
-                  </div>
-                  <div>
-                    <label className="block font-medium mb-1 text-[#000000]">Attorney Email</label>
-                    <input
-                      name="attorneyEmail"
-                      type="email"
-                      value={form.attorneyEmail}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]"
-                      placeholder="Attorney's email address"
-                    />
-                  </div>
-                </div>
-              )}
+              {showError('ownerAddress')}
             </div>
           </>
         )}
-
-        {/* Step 2: Filing & Usage */}
+        {/* Step 2: Goods & Services */}
         {step === 1 && (
           <>
             <div>
@@ -599,6 +415,7 @@ const TrademarkFiling = () => {
                 error={validationErrors.filingBasis}
                 required
               />
+              {showError('filingBasis')}
             </div>
             <div>
               <label className="block font-medium mb-1 text-[#322B25]">Business Description <span className="text-[#302F2F]">*</span></label>
@@ -613,162 +430,37 @@ const TrademarkFiling = () => {
                 />
                 <button
                   type="button"
-                  className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
-
- transition-all flex items-center gap-1"
+                  className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-all flex items-center gap-1"
                   onClick={() => handleAISuggest('businessDescription')}
                   disabled={aiLoading === 'businessDescription'}
                 >
-                  <IoSparkles className="w-4 h-4" />
-                  {aiLoading === 'businessDescription' ? '' : ''}
+                  <img src={AIAnalyzeIcon} alt="AI Analyze" style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} className={aiLoading === 'businessDescription' ? 'fade' : ''} />
                 </button>
               </div>
+              {showError('businessDescription')}
             </div>
             <div>
               <label className="block font-medium mb-1 text-[#322B25]">Trademark Class <span className="text-[#302F2F]">*</span></label>
-              <div className="flex gap-2 items-center mb-2">
-                <textarea
-                  name="goodsServices"
-                  value={form.goodsServices}
-                  onChange={handleChange} 
-                  className="w-[80%] px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]"
-                  placeholder="Describe your goods/services in detail"
-                />
-                <button
-                  type="button"
-                  className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
- transition-all flex items-center gap-1"
-                  onClick={() => handleAISuggest('goodsServices')}
-                  disabled={aiLoading === 'goodsServices'}
-                >
-                  <IoSparkles className="w-4 h-4" />
-                  {aiLoading === 'goodsServices' ? 'Analyzing...' : ''}
-                </button>
-              </div>
-
-              {aiClassRecommendation && (
-                <div className="space-y-4 p-4 bg-[#FFFFFF]/10 rounded-lg">
-                  <p className="text-sm text-[#000000]/80">{aiClassRecommendation.summary}</p>
-
-                  <div className="space-y-2">
-                    {aiClassRecommendation.classes.map((classInfo) => (
-                      <div key={classInfo.number} className="flex items-start text-[#000000] gap-2">
-                        <input
-                          type="checkbox"
-                          id={`class-${classInfo.number}`}
-                          checked={form.trademarkClass?.includes(classInfo.number)}
-                          onChange={() => handleClassSelect(classInfo.number)}
-                          className="mt-1"
-                        />
-                        <label htmlFor={`class-${classInfo.number}`} className="flex-1">
-                          <div className="font-medium">Class {classInfo.number}</div>
-                          <div className="text-sm text-[#000000]/40">{classInfo.explanation}</div>
-                          <div className="text-sm mt-1">{classInfo.description}</div>
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {validationErrors.trademarkClass && (
-                <p className="text-red-500 text-xs mt-1">{validationErrors.trademarkClass}</p>
-              )}
+              <textarea
+                name="goodsServices"
+                value={form.goodsServices}
+                onChange={handleChange}
+                className="w-[80%] px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]"
+                placeholder="Describe your goods/services in detail"
+              />
+              <button
+                type="button"
+                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-all flex items-center gap-1"
+                onClick={() => handleAISuggest('goodsServices')}
+                disabled={aiLoading === 'goodsServices'}
+              >
+                <img src={AIAnalyzeIcon} alt="AI Analyze" style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} className={aiLoading === 'goodsServices' ? 'fade' : ''} />
+              </button>
+              {showError('goodsServices')}
             </div>
-            {isUseInCommerce && (
-              <div className="space-y-4">
-                <div>
-                  <label className="block font-medium mb-1 text-[#000000]">
-                    Date of First Use Anywhere <span className="text-[#302F2F]">*</span>
-                  </label>
-                  <DatePickerShadcn
-                    value={form.firstUseAnywhere}
-                    onChange={date => setForm(f => ({ ...f, firstUseAnywhere: date }))}
-                    placeholder="YYYY-MM-DD"
-                  />
-                  {validationErrors.firstUseAnywhere && (
-                    <p className="text-red-500 text-xs mt-1">{validationErrors.firstUseAnywhere}</p>
-                  )}
-                </div>
-                <div>
-                  <label className="block font-medium mb-1 text-[#322B25]">Date of First Use in Commerce <span className="text-[#302F2F]">*</span></label>
-                  <DatePickerShadcn
-                    value={form.firstUseCommerce}
-                    onChange={date => setForm(f => ({ ...f, firstUseCommerce: date }))}
-                    placeholder="YYYY-MM-DD"
-                  />
-                  {validationErrors.firstUseCommerce && (
-                    <p className="text-red-500 text-xs mt-1">{validationErrors.firstUseCommerce}</p>
-                  )}
-                </div>
-                {/* Type of Commerce Dropdown */}
-                <div>
-                  <label className="block font-medium mb-1 text-[#322B25]">Type of Commerce <span className="text-[#302F2F]">*</span></label>
-                  <select
-                    name="typeOfCommerce"
-                    value={form.typeOfCommerce}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000] appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM2QzZDNkMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-no-repeat bg-[right_1rem_center]"
-                    required
-                  >
-                    <option value="" className="bg-[#FFFFFF] text-[#000000]">Select type of commerce</option>
-                    {commerceTypes.map((type) => (
-                      <option key={type} value={type} className="bg-[#E8E8E8] text-[#000000]">{type}</option>
-                    ))}
-                  </select>
-                  {validationErrors.typeOfCommerce && (
-                    <p className="text-red-500 text-xs mt-1">{validationErrors.typeOfCommerce}</p>
-                  )}
-                </div>
-                {/* Mark Usage Textarea */}
-                <div>
-                  <label className="block font-medium mb-1 text-[#322B25]">Mark Usage Description <span className="text-[#FFFFFF]">*</span></label>
-                  <textarea
-                    name="markUsage"
-                    value={form.markUsage}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-  [4px]  focus:outline-none text-[#000000]"
-                    placeholder="Describe how the mark is used in commerce"
-                    required
-                  />
-                  {validationErrors.markUsage && (
-                    <p className="text-red-500 text-xs mt-1">{validationErrors.markUsage}</p>
-                  )}
-                </div>
-                {/* Specimen File Upload */}
-                <div>
-                  <label className="block font-medium mb-4 text-[#322B25]">Specimen of Use <span className="text-[#FFFFFF]">*</span></label>
-                  <div className={customStyles.fileUpload.container}>
-                    <input
-                      type="file"
-                      name="specimen"
-                      accept=".jpeg,.jpg,.png,.pdf"
-                      onChange={handleChange}
-                      className={customStyles.fileUpload.input}
-                      id="specimen-upload"
-                    />
-                    <label
-                      htmlFor="specimen-upload"
-                      className={customStyles.fileUpload.button}
-                      style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
-                    >
-                      Browse Files
-                    </label>
-                  </div>
-                  {form.specimen && (
-                    <p className="text-sm text-[#302F2F]/80 mt-2">Selected: {form.specimen.name}</p>
-                  )}
-                  {validationErrors.specimen && (
-                    <p className="text-red-500 text-xs mt-1">{validationErrors.specimen}</p>
-                  )}
-                  <p className="text-xs text-[#000000]/70 mt-1">Upload your specimen (JPEG, PNG, PDF). Max 10MB.</p>
-                </div>
-              </div>
-            )}
           </>
         )}
-
-        {/* Step 3: Priority & Declaration */}
+        {/* Step 3: Usage Evidence */}
         {step === 2 && (
           <>
             <div className="flex items-center gap-2 mb-2">
@@ -798,27 +490,16 @@ const TrademarkFiling = () => {
                 </div>
                 <div>
                   <label className="block font-medium mb-1 text-[#000000]">Priority Filing Date</label>
-                  <input name="priorityFilingDate" type="date" value={form.priorityFilingDate} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]" />
-                </div>
-                <div>
-                  <label className="block font-medium mb-1 text-[#000000]">Certified Copy of Priority Document</label>
-                  <input
-                    name="certifiedCopy"
-                    type="file"
-                    accept="application/pdf"
-                    onChange={handleChange}
-                    className={`block w-full text-[#FFFFFF] ${validationErrors.certifiedCopy ? 'border-red-500' : ''}`}
+                  <DatePickerShadcn
+                    value={form.priorityFilingDate}
+                    onChange={date => setForm(f => ({ ...f, priorityFilingDate: date }))}
                   />
-                  {validationErrors.certifiedCopy && (
-                    <p className="text-red-500 text-xs mt-1">{validationErrors.certifiedCopy}</p>
-                  )}
-                  <p className="text-xs text-[#6C6C6C]/90 mt-1">Upload certified copy of priority document (PDF). Max 10MB.</p>
                 </div>
               </div>
             )}
             <div>
               <label className="block font-medium mb-1 text-[#000000]">Additional Notes</label>
-                <textarea name="additionalNotes" value={form.additionalNotes} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]" placeholder="Any special instructions, background info, etc." />
+              <textarea name="additionalNotes" value={form.additionalNotes} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]" placeholder="Any special instructions, background info, etc." />
             </div>
             <div className="mb-4 p-4 bg-[#302F2F]/10 rounded">
               <p className="text-[#000000]/70 text-sm">
@@ -832,22 +513,26 @@ const TrademarkFiling = () => {
             <div>
               <label className="block font-medium mb-1 text-[#000000]">Digital Signature <span className="text-[#302F2F]">*</span></label>
               <input name="signature" value={form.signature} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]" placeholder="Type your full name as signature" required />
+              {showError('signature')}
             </div>
           </>
         )}
-
-        {/* Submission Status */}
-        {submissionError && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-red-600">{submissionError}</p>
-          </div>
-        )}
-
+        {/* AI Suggestions */}
+        <div className="mt-8 mb-6">
+          <AISuggestionBox 
+            suggestions={
+              step === 0 ? suggestions.basicInfo :
+              step === 1 ? suggestions.detailedDescription :
+              step === 2 ? suggestions.priorArt :
+              suggestions.claims
+            } 
+          />
+        </div>
         {/* Navigation Buttons */}
         <div className="flex justify-between pt-6">
           <button
             type="button"
-            onClick={prevStep}
+            onClick={() => setStep(s => Math.max(0, s - 1))}
             disabled={step === 0 || isSubmitting}
             className="px-6 py-2 rounded-lg font-semibold bg-[#1C1C1C] border border-[#6C6C6C]/20 text-[#868686] hover:bg-[#E8E8E8]/10 transition-all disabled:opacity-50"
           >
@@ -857,7 +542,7 @@ const TrademarkFiling = () => {
             <button
               type="button"
               onClick={handleNext}
-              className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90-[#302F2F]/30 transition-all"
+              className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-all"
             >
               Next
             </button>
@@ -865,7 +550,7 @@ const TrademarkFiling = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90-[#302F2F]/30 transition-all"
+              className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-all"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Filing'}
             </button>

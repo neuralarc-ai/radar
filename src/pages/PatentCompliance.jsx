@@ -64,11 +64,11 @@ const PatentCompliance = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case 'met':
-        return 'text-[#C5CFB8]';
+        return 'text-[#97A487]';
       case 'missing':
-        return 'text-[#D3B8AC]';
+        return 'text-[#B7A694]';
       case 'partial':
-        return 'text-[#B4BFCA]';
+        return 'text-[#5695C2]';
       default:
         return 'text-gray-600';
     }
@@ -170,7 +170,7 @@ const PatentCompliance = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#EFECE5] rounded-[12px] flex items-center justify-center">
+      <div className="">
         <div className="text-center max-w-md p-6 bg-[#FFFFFF] rounded-lg border border-[#000000]/5 border-[1.5px]">
           <div className="text-red-500 mb-4">
             <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -191,12 +191,12 @@ const PatentCompliance = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="">
       {/* Outer container for the wide border effect */}
-      <div className="rounded-[24px]" style={{ backgroundImage: `url(${doc})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-        <div className="p-8">
+      <div className="rounded-[24px] " >
+        <div className="">
           {/* Inner container for the white content area */}
-          <div className="bg-[#FFFFFF] rounded-[12px] p-8">
+          <div className="bg-[#FFFFFF] h-full rounded-[12px] p-8">
             {/* Header Section */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-6">
@@ -213,7 +213,7 @@ const PatentCompliance = () => {
           <p className="text-[#4F4F4F] mt-2">Verify your patent application against USPTO filing requirements</p>
         </div>
 
-        <div className="bg-[#FFFFFF] rounded-lg border border-[#000000]/5 border-[1.5px] p-6 mb-8">
+        <div className=" rounded-lg border border-[#000000]/5 border-[1.5px] p-6 mb-8">
           {!complianceResults ? (
             <>
                   <div className="mb-8">
@@ -276,7 +276,7 @@ const PatentCompliance = () => {
                 <button
                   onClick={handleRunComplianceCheck}
                   disabled={isLoading}
-                  className={`px-[27px] py-[16px] bg-[#302F2F] text-[#FFFFFF] rounded-[4px] hover:bg-[#6C6C6C] hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors flex items-center space-x-2 border border-[#322B25] ${
+                  className={`px-[27px] py-[16px] bg-[#302F2F] text-[#FFFFFF] rounded-[4px]  transition-colors flex items-center space-x-2 ${
                     isLoading ? 'opacity-50 cursor-not-allowed' : ''
                   }`}
                 >
@@ -305,15 +305,16 @@ const PatentCompliance = () => {
                 <div className="mb-8">
                   <div className="bg-[#2B2521] rounded-[12px] border: 1px solid #FFFFFF0A p-6">
                     <h2 className="text-xl font-semibold text-[#FFFFFF] mb-4">Overall Compliance Score</h2>
-                    <div className="flex flex-col items-center text-center">
-                      <div className="relative w-32 h-32 mb-4">
+                    <div className="flex items-center gap-16 px-12 py-12">
+                      {/* Donut */}
+                      <div className="relative w-64 h-64 flex-shrink-0">
                         <svg className="w-full h-full" viewBox="0 0 36 36">
                           <path
                             d="M18 2.0845
                               a 15.9155 15.9155 0 0 1 0 31.831
                               a 15.9155 15.9155 0 0 1 0 -31.831"
                             fill="none"
-                            stroke="#1C1C1C"
+                            stroke="#3A3532"
                             strokeWidth="3"
                           />
                           <path
@@ -321,51 +322,67 @@ const PatentCompliance = () => {
                               a 15.9155 15.9155 0 0 1 0 31.831
                               a 15.9155 15.9155 0 0 1 0 -31.831"
                             fill="none"
-                            stroke="#EF4444"
+                            stroke="#D6A3B2"
                             strokeWidth="3"
                             strokeDasharray={`${complianceResults.overallCompliance}, 100`}
                             strokeLinecap="round"
                           />
                         </svg>
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-2xl font-bold text-[#FFFFFF]">{complianceResults.overallCompliance}%</span>
+                          <span className="text-4xl font-bold text-white">{complianceResults.overallCompliance}%</span>
                         </div>
                       </div>
-                      <h3 className={`text-xl font-semibold mb-2 ${getRatingColor(complianceResults.overallCompliance)}`}>
-                        {getRatingText(complianceResults.overallCompliance)}
-                      </h3>
-                      <p className="text-[#868686] max-w-md">
-                        {complianceResults.overallCompliance >= 80 
-                          ? 'Your application meets most requirements for filing.'
-                          : 'Your application needs improvements for approval.'}
-                      </p>
+                      {/* Text */}
+                      <div className="flex flex-col justify-center items-start text-left">
+                        <h3 className="text-5xl font-medium mb-4 text-[#D6A3B2]">
+                          {getRatingText(complianceResults.overallCompliance)}
+                        </h3>
+                        <p className="text-2xl text-white leading-snug">
+                          Your application needs<br />
+                          improvements for approval.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-[#2B2521] rounded-[12px] border: 1px solid #FFFFFF0A p-6">
+              <div className="bg-[#FFFFFF] rounded-[12px] border: 1px solid #FFFFFF0A p-6">
                 <div className="space-y-4">
-                  {complianceResults.requirements.map((req) => (
-                    <div key={req.id} className="flex items-start space-x-4 p-4 bg-[#FFFFFF]/5 rounded-lg hover:bg-[#6C6C6C] transition-colors duration-200">
-                      <div className="flex-shrink-0 mt-1">
-                        {getStatusPill(req.status)}
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-[#FFFFFF] mb-1">{req.name}</h4>
-                        <p className="text-[#868686] text-sm">{req.details}</p>
-                        {req.status === 'missing' && (
-                          <div className="mt-2 text-sm text-[#D3B8AC]">
-                            <span className="font-medium">Action Required:</span> {req.recommendation}
+                  {complianceResults.requirements.map((req) => {
+                    let cardBg = '';
+                    switch (req.status) {
+                      case 'partial':
+                        cardBg = 'bg-[#DCE0E5]';
+                        break;
+                      case 'missing':
+                        cardBg = 'bg-[#EAE5DF]';
+                        break;
+                      case 'met':
+                        cardBg = 'bg-[#EAECE8]';
+                        break;
+                      default:
+                        cardBg = 'bg-white';
+                    }
+                    return (
+                      <div key={req.id} className={`flex items-start space-x-6 p-8 mb-6 rounded-xl ${cardBg}`}>
+                        <div className="flex-shrink-0 flex items-center justify-center h-12">
+                          {getStatusPill(req.status)}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center mb-1">
+                            <span className="text-2xl font-medium text-[#444] mr-4">Title</span>
                           </div>
-                        )}
-                        {req.status === 'partial' && (
-                          <div className="mt-2 text-sm text-[#B4BFCA]/100">
-                            <span className="font-medium">Recommendation:</span> {req.recommendation}
+                          <div className="text-[#444] text-base mb-2">
+                            The patent title ‘dzfgfzfgf’ is not descriptive of the invention.
                           </div>
-                        )}
+                          <div className="text-[#444] text-lg font-normal">
+                            <span className="font-medium">Recommendation:</span> Provide a more descriptive title that accurately reflects the invention.
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
@@ -373,11 +390,11 @@ const PatentCompliance = () => {
                 <button
                   onClick={handleRunComplianceCheck}
                   disabled={isLoading}
-                  className={`flex items-center space-x-2 px-[27px] py-[16px] rounded-[4px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+                  className={`flex items-center space-x-2 px-[27px] py-[16px] rounded-[4px]  bg-[#322B25] text-[#FFFFFF] font-medium 
  ${
                     isLoading
                       ? 'bg-[#1C1C1C] text-[#868686] cursor-not-allowed'
-                      : 'bg-[#302F2F] text-[#FFFFFF] hover:bg-[#6C6C6C]'
+                      : 'bg-[#302F2F] text-[#FFFFFF] '
                   }`}
                 >
                   {isLoading ? (
@@ -400,7 +417,7 @@ const PatentCompliance = () => {
 
                 <button
                   onClick={handleContinue}
-                  className="flex items-center space-x-2 px-[27px] py-[16px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90
+                  className="flex items-center space-x-2 px-[27px] py-[16px] rounded-[4px] bg-[#322B25] text-[#FFFFFF] font-medium 
 "
                 >
                   <span>Continue to Filing Prep</span>
@@ -426,7 +443,6 @@ const PatentCompliance = () => {
                   </div>
                 </div>
               )}
-                  </div>
             </div>
           )}
 

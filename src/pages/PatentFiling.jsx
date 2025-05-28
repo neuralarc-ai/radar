@@ -325,7 +325,7 @@ const PatentFiling = () => {
   return (
     <>
       <style>{fadeStyle}</style>
-      <div className="min-h-[calc(100vh-144px)] bg-[#FBFAF8] ">
+      <div className="bg-[#FBFAF8] ">
         {/* Navbar */}
         
         

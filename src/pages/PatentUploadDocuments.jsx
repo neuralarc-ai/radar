@@ -136,12 +136,12 @@ function PatentUploadDocuments() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="">
       {/* Outer container for the wide border effect */}
-      <div className="rounded-[24px]" style={{ backgroundImage: `url(${doc})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-        <div className="p-8">
+      <div className="rounded-[24px]" >
+        <div className="">
           {/* Inner container for the white content area */}
-          <div className="bg-[#FFFFFF] rounded-[12px] p-8">
+          <div className="bg-[#FFFFFF] h-full rounded-[12px] p-8">
             <div className="mb-8">
               <div className='flex items-center gap-2 mb-6'>
                 <button 
@@ -209,11 +209,11 @@ function PatentUploadDocuments() {
                   </svg>
                   <p className="text-[#322B25]">Drag and drop files here, or click to select files</p>
                     {selectedCategory ? (
-                      <p className="text-sm text-[#868686]">
+                      <p className="text-sm text-[#2D2623]">
                         Allowed formats: {documentCategories.find(cat => cat.id === selectedCategory)?.typeDescription} (Max 10MB)
                       </p>
                     ) : (
-                      <p className="text-sm text-[#868686]">Please select a document category first</p>
+                      <p className="text-sm text-[#2D2623]">Please select a document category first</p>
                     )}
                   </div>
                 </div>
@@ -254,7 +254,7 @@ function PatentUploadDocuments() {
                   <span>Back</span>
                 </button>
                 <button
-                    className="px-[27px] py-[16px] bg-[#302F2F] text-[#FFFFFF] rounded-[4px] hover:bg-[#6C6C6C] hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors flex items-center gap-2 border border-[#322B25]"
+                    className="px-[27px] py-[16px] bg-[#302F2F] text-[#FFFFFF] rounded-[4px]  transition-colors flex items-center gap-2 border border-[#322B25]"
                   onClick={handleCheckCompliance}
                 >
                   <span>Check Compliance</span>
