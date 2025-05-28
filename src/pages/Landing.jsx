@@ -194,7 +194,7 @@ const Landing = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-medium mb-4 text-[#000000]">{feature.title}</h3>
+                  <h3 className="text-xl font-medium mb-4 text-[#000000]">{feature.title}</h3>
 
                   <div className="mt-2 p-4 rounded-[8px]" style={{ backgroundColor: feature.descriptionBg }}>
                     <p className="text-[#FFFFFF] text-sm">{feature.description}</p>

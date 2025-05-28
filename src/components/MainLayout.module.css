@@ -1,0 +1,417 @@
+.menuButton {
+    grid-column: 3;
+    justify-self: end;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    padding: 0;
+    background: none;
+    border: none;
+    position: relative;
+}
+
+.menuSquare {
+    width: 72px;
+    height: 72px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    background: #4C474073;
+    box-shadow: 0 15px 16px 0 #0000001A;
+}
+
+.menuCircle {
+    width: 48px;
+    height: 48px;
+    background: #000000;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.menuLine {
+    width: 24px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+.menuLine:first-child.open {
+    transform: translateY(4px) rotate(45deg);
+}
+.menuLine:last-child.open {
+    transform: translateY(-4px) rotate(-45deg);
+}
+
+.dialogWrapper {
+    position: relative;
+    top: 50%;
+    z-index: 999;
+    padding: 2px;
+    border-radius: 12px;
+    min-width: 320px;
+    max-width: 620px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog {
+    position: absolute;
+    top: 112px;
+    right: 32px;
+    background: #38312C;
+    border-radius: 12px;
+    padding: 12px;
+    width: 400px;
+    overflow: hidden;
+    z-index: 1000;
+    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dialog::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 24px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #38312C;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    z-index: 999;
+}
+
+.menuItem {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.2s;
+    border-radius: 8px;
+}
+.menuItem:hover {
+    background: rgba(0, 0, 0, 0.11);
+}
+.menuItem:not(:last-child) {
+    margin-bottom: 4px;
+}
+.menuItem svg {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.menuIcon {
+    filter: brightness(0) invert(1) opacity(0.8);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+
+.menuItem:hover .menuIcon {
+    opacity: 1;
+}
+
+.profileSection {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.5rem;
+}
+
+.profileImage {
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.profilePlaceholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileName {
+    font-weight: 500;
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.profileEmail {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.menuSection {
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 0 16px;
+    min-width: 300px;
+}
+
+.tokenUsage {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    padding: 16px 8px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    min-width: 280px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.tokenUsage:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.tokenUsageTitle {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 4px;
+}
+
+.progressBarContainer {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progressBar {
+    width: 20%;
+    height: 100%;
+    background: #FFFFFF;
+    border-radius: 4px;
+}
+
+.usageText {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.remainingText {
+    font-size: 12px;
+    text-align: right;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Subscription Modal Styles */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modalContent {
+    background: #EFECE5;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: none;
+    position: relative;
+    padding: 32px;
+}
+
+.modalContent::before {
+    content: none;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 0 8px;
+}
+
+.modalTitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+}
+
+.closeButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 10;
+}
+.closeButton:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #000000;
+}
+
+.subscriptionCards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 0 8px;
+}
+@media (max-width: 768px) {
+    .subscriptionCards {
+        grid-template-columns: 1fr;
+    }
+}
+
+.subscriptionCard {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+.subscriptionCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.cardHeader {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.planName {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0 0 8px 0;
+}
+
+.priceContainer {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 36px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.period {
+    font-size: 16px;
+    color: #666666;
+}
+
+.featuresList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    flex-grow: 1;
+}
+
+.featureItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: #333333;
+    font-size: 15px;
+    font-weight: 400;
+}
+.featureItem svg {
+    color: #4CAF50;
+    flex-shrink: 0;
+}
+
+.subscribeButton {
+    background: #333333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    width: 100%;
+}
+.subscribeButton:hover {
+    opacity: 0.9;
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.subscribeButton:active {
+    transform: none;
+} 
