@@ -30,7 +30,7 @@ const steps = [
     path: '/dashboard/patent/compliance',
     progress: 80
   },
-  {
+  {                                     
     id: 'filing-prep',
     title: 'Filing Preparation',
     description: 'Final review before patent submission',

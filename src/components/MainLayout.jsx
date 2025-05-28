@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ProgressSidebar from './ProgressSidebar';
 import { MinimalFooter } from './Footer';
+import filingBg from '../assests/bg/filling.png';
+import radarLogoPng from '../assests/radar_top_logo.png';
 
 const MainLayout = ({ children }) => {
   const location = useLocation();
@@ -65,18 +67,40 @@ const MainLayout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#FFFFFF]">
-      <div className="flex flex-1">
-        <div className="w-96 flex-shrink-0">
-          <ProgressSidebar progress={progress} />
+    <div className="flex flex-col min-h-screen items-center p-8">
+      {/* Top section for logo and menu button */}
+      <div className="flex justify-between items-center w-full max-w-[1200px] mb-8">
+        {/* Radar Logo */}
+        <div className="">
+          <img src={radarLogoPng} alt="Radar Logo" className="h-11 w-auto" />
         </div>
-        <main className="w-full bg-[#F8F7F3] p-10 grain-texture">
-          {children}
-        </main>
+
+        {/* Top-right button */}
+        <div className="w-10 h-10 bg-[#302F2F] rounded-full flex items-center justify-center">
+          <div className="w-5 h-0.5 bg-white mb-1"></div>
+          <div className="w-5 h-0.5 bg-white mt-1"></div>
+        </div>
       </div>
-      <div className="relative z-10">
+
+      {/* Main layout container with image background and border effect */}
+      <div className="relative w-full max-w-[1200px] mx-auto rounded-[24px] p-3 shadow-xl bg-cover bg-center" style={{ backgroundImage: `url(${filingBg})` }}>
+        {/* Inner white content area */}
+        <div className="flex bg-white rounded-[22px] overflow-hidden">
+          {/* Left panel (ProgressSidebar) */}
+          <div className="w-2/5 flex-shrink-0">
+            <ProgressSidebar progress={progress} />
+          </div>
+          {/* Right panel (Main Content) */}
+          <main className="flex-1 p-8 overflow-y-auto">
+            {children}
+          </main>
+        </div>
+      </div>
+
+      {/* Footer outside the main container, maybe adjust positioning later */}
+      {/* <div className="relative z-10">
         <MinimalFooter />
-      </div>
+      </div> */}
     </div>
   );
 };

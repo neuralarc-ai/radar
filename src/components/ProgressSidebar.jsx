@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import filingBg from '../assests/bg/filling.png';
 import radarLogoPng from '../assests/radar_top_logo.png'; // Import the logo image
 
 const getSteps = (path) => {
@@ -119,15 +120,19 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
   };
 
   return (
-    <div className="fixed  left-0 top-0 bottom-0 max-w-md bg-[#FFFFFF] border-r border-[#FFFFFF]/5 border-[1.5px] overflow-y-auto">
+    <div
+  className="overflow-y-auto h-full relative"
+>
+  <div
+    className="absolute top-0 right-0 w-[22px] h-full bg-no-repeat bg-cover"
+    style={{ backgroundImage: `url(${filingBg})` }}
+  />
 
       {/* Add the logo here */}
-      <div className="w-fullflex justify-start py-6 px-6">
-        <img src={radarLogoPng} alt="Radar Logo" className="h-11 w-auto" />
-      </div>
+
 
       <div className="p-6">
-        <div className="mb-6">
+        <div className="mb-6 mt-8">
           <h2 className="text-3xl font-semibold text-[#000000] mb-6">
             {location.pathname.includes('/patent') ? 'Patent Filing Progress' : 'Trademark Filing Progress'}
           </h2>
@@ -175,10 +180,10 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
                   {/* Step indicator: outer and inner circle */}
                   <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center relative z-10">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      isActive ? 'bg-[#D9D9D9]' : 'bg-[#D9D9D9]'
+                      isCompleted ? 'bg-[#D9D9D9]' : isActive ? 'bg-[#D9D9D9]' : 'bg-[#D9D9D9]'
                     }`}>
                       <div className={`w-4 h-4 rounded-full flex items-center justify-center ${
-                        isActive ? 'bg-[#302F2F]' : 'bg-[#BDBDBD]'
+                        isCompleted ? 'bg-[#BDBDBD]' : isActive ? 'bg-[#302F2F]' : 'bg-[#D9D9D9]'
                       }`} />
                     </div>
                   </div>
@@ -186,11 +191,11 @@ const ProgressSidebar = ({ progress: externalProgress }) => {
                   {/* Step content */}
                   <div className="flex-1">
                     <h3 className={`text-[24px] font-semibold ${
-                      isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'
+                      isCompleted ? 'text-[#BDBDBD]' : isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'
                     }`}>
                       {step.title}
                     </h3>
-                    <p className={`text-[16px] ${isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'}`}>{step.description}</p>
+                    <p className={`text-[16px] ${isCompleted ? 'text-[#BDBDBD]' : isActive ? 'text-[#202020]' : 'text-[#BDBDBD]'}`}>{step.description}</p>
                   </div>
                 </div>
               </div>

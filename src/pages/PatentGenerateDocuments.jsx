@@ -141,11 +141,12 @@ const PatentGenerateDocuments = () => {
   return (
     <div className="px-0 py-0">
       {/* Outer container for the wide border effect */}
-      <div className="rounded-[16px] p-6 mb-8 relative z-10" style={{ backgroundImage: `url(${generatebg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+      <div className="max-w-4xl mx-auto rounded-[16px] p-6 mb-8 relative z-10" style={{ backgroundImage: `url(${generatebg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
         {/* Inner container for the white content area */}
-        <div className="bg-[#FFFFFF] rounded-[12px]  p-6 mb-8">
-          <div className="mb-8">
-            <div className="flex items-center gap-4 mb-6">
+        <div className="bg-[#FFFFFF] rounded-[12px]  p-8">
+          {/* Header Section */}
+          <div className="mb-6">
+            <div className="flex items-center gap-4 mb-2">
               <button
                 type="button"
                 className="p-2 text-[#202020] hover:text-[#FFFFFF] transition-colors rounded-[4px] hover:bg-[#302F2F] border border-[#322B25]/5 border-[1.5px]]"
@@ -156,27 +157,26 @@ const PatentGenerateDocuments = () => {
               </button>
               <h1 className="text-2xl font-bold text-[#322B25]">Generate Your Patent Documents</h1>
             </div>
-            <p className="text-[#322B25] mt-2">
+            <p className="text-[#322B25] text-base">
             Generate and manage filing-ready documents for your patent application</p>
           </div>
 
-          <div className="bg-[#FFFFFF] rounded-[4px]  p-6 mb-8">
-          <div className="mb-10">
-              <h2 className="text-2xl font-semibold text-[#322B25] mb-3">Generate Your Documents</h2>
-              <p className="text-[#322B25] mb-4">Our AI will analyze your application data and generate all required documents</p>
-            </div>
-            
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center justify-center w-40 h-40 rounded-full mb-4">
-                <svg className="w-24 h-24 text-[#000000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          {/* Generate Section */}
+          <div className="bg-[#F8F7F3] rounded-[4px] p-6 mb-8 text-center">
+            <div className="text-center mb-2">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-1">
+                <svg className="w-10 h-10 text-[#000000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-medium text-[#322B25] mb-2">Ready to generate your patent filing documents</h3>
+              <h3 className="text-base font-medium text-[#868686]">Ready to generate your patent filing documents</h3>
             </div>
-            
-            <div className="bg-[#E8E8E8] rounded-lg p-8 mb-10">
-              <div className="max-w-3xl mx-auto space-y-3">
+            <div className="mb-4">
+                <p className="text-[#322B25] text-base">Our AI will analyze your application data and generate all required documents</p>
+            </div>
+          </div>
+            <div className="rounded-lg p-6 mt-2">
+              <div className="max-w-3xl mx-auto space-y-3 text-left">
                 <div className="flex items-start space-x-2">
                   <div className="flex-shrink-0 mt-1">
                     <svg className="w-3 h-3 text-[#000000]" fill="currentColor" viewBox="0 0 24 24">
@@ -212,13 +212,13 @@ const PatentGenerateDocuments = () => {
               </div>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-8">
               <button
                 onClick={handleGenerate}
                 disabled={isGenerating}
-                  className={`px-8 py-3 bg-[#2B2521] text-[#ffffff] rounded-[4px] rounded-[4px] border border-[#322B25]  font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors flex items-center space-x-2 ${
-                  isGenerating ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
+                className={`px-8 py-3 bg-[#232323] text-[#FFFFFF] rounded-[4px] border border-[#322B25] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors flex items-center space-x-2 ${
+                isGenerating ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
               >
                 {isGenerating ? (
                   <div className="flex items-center">
@@ -230,15 +230,13 @@ const PatentGenerateDocuments = () => {
                   </div>
                 ) : (
                   <>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                    
                     <span>Generate Patent Documents</span>
                   </>
                 )}
               </button>
             </div>
-          </div>
+          
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { IoArrowBack } from 'react-icons/io5';
 import { getPatentFilingDocuments, downloadPatentDocument } from '../services/patentDocumentService';
+import doc from '../assests/bg/doc.png'; // Import background image
 
 const PatentDocuments = () => {
   const navigate = useNavigate();
@@ -205,8 +206,12 @@ const PatentDocuments = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#EFECE5] px-4 py-10">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen">
+      {/* Outer container for the wide border effect */}
+      <div className="min-h-screen px-4 pt-2 pb-2 rounded-[24px]" style={{ backgroundImage: `url(${doc})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+        <div className="px-4 py-6">
+          {/* Inner container for the white content area */}
+          <div className="bg-[#FFFFFF] rounded-[12px] p-8">
         <div className="mb-8">
           <div className='flex items-center gap-2 mb-6'>
             <button 
@@ -225,12 +230,12 @@ const PatentDocuments = () => {
 
         <div className="bg-[#A8B0B8] rounded-[8px] overflow-hidden">
           <table className="min-w-full">
-            <thead className="bg-[#A8B0B8]">
+                <thead className="bg-[#b7beae]">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#000000] uppercase tracking-wider">Document Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#000000] uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#000000] uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-[#000000] uppercase tracking-wider">Action</th>
+                    <th className="px-6 py-3 text-left text-base font-medium text-[#000000] uppercase tracking-wider">Document Name</th>
+                    <th className="px-6 py-3 text-left text-base font-medium text-[#000000] uppercase tracking-wider">Type</th>
+                    <th className="px-6 py-3 text-left text-base font-medium text-[#000000] uppercase tracking-wider">Status</th>
+                    <th className="px-6 py-3 text-right text-base font-medium text-[#000000] uppercase tracking-wider">Action</th>
               </tr>
             </thead>
             <tbody className="bg-[#FFFFFF] divide-y divide-[#A8B0B8]/20">
@@ -239,18 +244,18 @@ const PatentDocuments = () => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div>
-                        <div className="text-sm font-medium text-[#000000]">{doc.name}</div>
-                        <div className="text-xs text-[#868686] font-medium">Required</div>
+                            <div className="text-base font-medium text-[#000000]">{doc.name}</div>
+                            <div className="text-sm text-[#868686] font-medium">Required</div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-[#000000]">{doc.type}</div>
+                        <div className="text-base text-[#000000]">{doc.type}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {getStatusBadge(doc.status)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-base font-medium">
                     <button
                       onClick={() => handleDownloadPDF(doc.name, doc.content)}
                       className="text-[#000000] hover:text-[#868686]"
@@ -280,50 +285,44 @@ const PatentDocuments = () => {
         </div>
 
         {/* Next Steps Section */}
-        <div className="mt-12 bg-[#CFD4C9] rounded-[8px] p-6">
-          <h2 className="text-xl font-semibold text-[#322B25] mb-6">Next Steps</h2>
-          <div className="space-y-6">
+            <h2 className="text-xl font-semibold text-[#322B25] mt-12 mb-6">Next Steps</h2>
+            <div className="space-y-8">
             {/* Review Documents */}
-            <div className="flex items-start gap-4">
-              <div className="p-2 bg-[#FFFFFF] rounded-full">
+              <div className="bg-[#f8f7f3] rounded-[8px] p-6 flex items-start gap-4">
+                <div className="p-2 bg-[#d5c1b0] rounded-full">
                 <svg className="w-5 h-5 text-[#322B25]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
               <div>
                 <h3 className="text-lg font-medium text-[#322B25]">Review Documents</h3>
-                <p className="text-[#868686]">Download and carefully review all generated patent documents for accuracy</p>
+                  <p className="text-[#4f4f4f]">Download and carefully review all generated patent documents for accuracy</p>
+                </div>
               </div>
-            </div>
-
-            <div className="border-t border-[#6C6C6C]"></div>
 
             {/* Validate Compliance */}
-            <div className="flex items-start gap-4">
-              <div className="p-2 bg-[#FFFFFF] rounded-full">
+              <div className="bg-[#f8f7f3] rounded-[8px] p-6 flex items-start gap-4">
+                <div className="p-2 bg-[#d5c1b0] rounded-full">
                 <svg className="w-5 h-5 text-[#322B25]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div>
                 <h3 className="text-lg font-medium text-[#322B25]">Validate Compliance</h3>
-                <p className="text-[#868686]">Run our compliance checker to ensure all patent filing requirements are met</p>
+                  <p className="text-[#4f4f4f]">Run our compliance checker to ensure all patent filing requirements are met</p>
+                </div>
               </div>
-            </div>
-
-            <div className="border-t border-[#6C6C6C]"></div>
 
             {/* Submit Application */}
-            <div className="flex items-start gap-4">
-              <div className="p-2 bg-[#FFFFFF] rounded-full">
+              <div className="bg-[#f8f7f3] rounded-[8px] p-6 flex items-start gap-4">
+                <div className="p-2 bg-[#d5c1b0] rounded-full">
                 <svg className="w-5 h-5 text-[#322B25]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
                 </svg>
               </div>
               <div>
                 <h3 className="text-lg font-medium text-[#322B25]">Submit Application</h3>
-                <p className="text-[#868686]">Use the documents to file your patent application with the appropriate patent office</p>
-              </div>
+                  <p className="text-[#4f4f4f]">Use the documents to file your patent application with the appropriate patent office</p>
             </div>
           </div>
         </div>
@@ -339,6 +338,8 @@ const PatentDocuments = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
             </svg>
           </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
