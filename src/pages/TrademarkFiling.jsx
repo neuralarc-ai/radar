@@ -113,8 +113,14 @@ const AISuggestionBox = ({ suggestions }) => (
 );
 
 const fadeStyle = `
-@keyframes fadeInOut { from { opacity: 1; } to { opacity: 0.3; } }
-.fade { animation: fadeInOut 1s linear infinite alternate; }
+@keyframes fadeInOut {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+.fade {
+  animation: fadeInOut 1.5s ease-in-out infinite;
+}
 `;
 
 const TrademarkFiling = () => {
@@ -136,6 +142,16 @@ const TrademarkFiling = () => {
     }
   }, [location.state]);
 
+  useEffect(() => {
+    const styleEl = document.createElement('style');
+    styleEl.textContent = fadeStyle;
+    document.head.appendChild(styleEl);
+
+    return () => {
+      document.head.removeChild(styleEl);
+    };
+  }, []);
+
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     if (type === 'checkbox') {
@@ -155,7 +171,7 @@ const TrademarkFiling = () => {
         suggestion = await getAITrademarkName(form.trademarkName || '');
       } else if (field === 'businessDescription') {
         const currentDescription = form.businessDescription || '';
-        if (!currentDescription.trim()) {
+        if (typeof currentDescription !== 'string' || !currentDescription.trim()) {
           toast.error('Please provide at least a brief description of your business');
           return;
         }
@@ -185,7 +201,7 @@ const TrademarkFiling = () => {
         }
       }
       if (suggestion) {
-        setForm((f) => ({ ...f, [field]: suggestion }));
+        setForm((f) => ({ ...f, [field]: typeof suggestion === 'string' ? suggestion : '' }));
         toast.success('AI suggestion applied successfully');
       } else {
         toast.error('No suggestion available. Please try again.');
@@ -200,24 +216,24 @@ const TrademarkFiling = () => {
   const validateStep = (currentStep) => {
     const errors = {};
     if (currentStep === 0) {
-      if (!form.trademarkName?.trim()) errors.trademarkName = 'Trademark name is required';
+      if (typeof form.trademarkName !== 'string' || !form.trademarkName.trim()) errors.trademarkName = 'Trademark name is required';
       if (!form.markType) errors.markType = 'Mark type is required';
-      if (!form.ownerName?.trim()) errors.ownerName = 'Owner name is required';
+      if (typeof form.ownerName !== 'string' || !form.ownerName.trim()) errors.ownerName = 'Owner name is required';
       if (!form.ownerType) errors.ownerType = 'Owner type is required';
-      if (!form.ownerAddress?.trim()) errors.ownerAddress = 'Owner address is required';
+      if (typeof form.ownerAddress !== 'string' || !form.ownerAddress.trim()) errors.ownerAddress = 'Owner address is required';
     } else if (currentStep === 1) {
       if (!form.filingBasis) errors.filingBasis = 'Filing basis is required';
-      if (!form.businessDescription?.trim()) errors.businessDescription = 'Business description is required';
+      if (typeof form.businessDescription !== 'string' || !form.businessDescription.trim()) errors.businessDescription = 'Business description is required';
       if (!form.trademarkClass?.length) errors.trademarkClass = 'At least one trademark class is required';
-      if (!form.goodsServices?.trim()) errors.goodsServices = 'Goods/services description is required';
+      if (typeof form.goodsServices !== 'string' || !form.goodsServices.trim()) errors.goodsServices = 'Goods/services description is required';
     } else if (currentStep === 2) {
       if (form.priorityClaim) {
         if (!form.priorityCountry) errors.priorityCountry = 'Priority country is required';
-        if (!form.priorityAppNumber?.trim()) errors.priorityAppNumber = 'Priority application number is required';
+        if (typeof form.priorityAppNumber !== 'string' || !form.priorityAppNumber.trim()) errors.priorityAppNumber = 'Priority application number is required';
         if (!form.priorityFilingDate) errors.priorityFilingDate = 'Priority filing date is required';
       }
       if (!form.declaration) errors.declaration = 'You must agree to the declaration';
-      if (!form.signature?.trim()) errors.signature = 'Digital signature is required';
+      if (typeof form.signature !== 'string' || !form.signature.trim()) errors.signature = 'Digital signature is required';
     }
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
@@ -271,17 +287,17 @@ const TrademarkFiling = () => {
   const progressPercent = ((step + 1) / steps.length) * 100;
 
   return (
-    <div className="w-[88%] mx-auto p-8 outline outline-1 outline-[#000000]/5 rounded-[12px] bg-[#ffffff]">
+    <div className=" mx-auto p-8 outline outline-1 outline-[#000000]/5 rounded-[12px] bg-[#ffffff]">
       {/* Progress Bar Section */}
-      <div className="mb-8">
-        <div className='flex items-center gap-4 mb-6'>
+      <div className="mb-8  ">
+        <div className='flex items-center gap-4 mb-4'>
           <button
             type="button"
-            className="circular-button"
+            className="p-2 text-[#202020] transition-colors rounded-[4px] "
             onClick={() => navigate(-1)}
             aria-label="Go back"
           >
-            <IoArrowBack className="icon" />
+            <IoArrowBack className="w-6 h-6" />
           </button>
           <h1 className="text-2xl font-bold text-[#322B25]">Trademark Application Wizard</h1>
         </div>
@@ -345,7 +361,7 @@ const TrademarkFiling = () => {
                 name="trademarkName"
                 value={form.trademarkName}
                 onChange={handleChange}
-                className="w-full px-4 py-2 rounded-[4px] bg-[#FFFFFF] focus:outline-none text-base h-10 text-[#000000]"
+                className="w-full px-4 py-2 rounded-[4px] bg-[#f6f6f6] focus:outline-none text-base h-10 text-[#000000]"
                 placeholder="Enter your trademark name"
                 required
               />
@@ -372,7 +388,7 @@ const TrademarkFiling = () => {
             </div>
             <div>
               <label className="block font-medium mb-1 text-[#322B25]">Owner Name <span className="text-[#302F2F]">*</span></label>
-              <input name="ownerName" value={form.ownerName} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px] focus:outline-none text-[#000000]" placeholder="Full legal name" required />
+              <input name="ownerName" value={form.ownerName} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px] bg-[#f6f6f6] focus:outline-none text-[#000000]" placeholder="Full legal name" required />
               {showError('ownerName')}
             </div>
             <div>
@@ -393,7 +409,7 @@ const TrademarkFiling = () => {
               <AddressInput
                 name="ownerAddress"
                 value={form.ownerAddress}
-                onChange={handleChange}
+                onChange={handleChange} className="w-full px-4 py-3 rounded-[4px] bg-[#f6f6f6] focus:outline-none text-[#000000]"
                 error={validationErrors.ownerAddress}
                 placeholder="Full mailing address"
               />
@@ -424,17 +440,22 @@ const TrademarkFiling = () => {
                   name="businessDescription"
                   value={form.businessDescription}
                   onChange={handleChange}
-                  className="w-[80%] px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]"
+                  className="w-[80%] px-4 py-3 rounded-[4px] bg-[#f6f6f6] focus:outline-none text-[#000000]"
                   placeholder="Describe your business, products, or services"
                   required
                 />
                 <button
                   type="button"
-                  className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-all flex items-center gap-1"
+                  className={`px-3 py-3 ml-4 rounded-[4px] bg-[#322B25] text-[#FFFFFF] transition-all ${aiLoading === 'businessDescription' ? 'opacity-50' : ''}`}
                   onClick={() => handleAISuggest('businessDescription')}
                   disabled={aiLoading === 'businessDescription'}
                 >
-                  <img src={AIAnalyzeIcon} alt="AI Analyze" style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} className={aiLoading === 'businessDescription' ? 'fade' : ''} />
+                  <img 
+                    src={AIAnalyzeIcon} 
+                    alt="AI Analyze" 
+                    style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} 
+                    className={aiLoading === 'businessDescription' ? 'fade' : ''} 
+                  />
                 </button>
               </div>
               {showError('businessDescription')}
@@ -445,16 +466,21 @@ const TrademarkFiling = () => {
                 name="goodsServices"
                 value={form.goodsServices}
                 onChange={handleChange}
-                className="w-[80%] px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]"
+                className="w-[80%] px-4 py-3 rounded-[4px] bg-[#f6f6f6] focus:outline-none text-[#000000]"
                 placeholder="Describe your goods/services in detail"
               />
               <button
                 type="button"
-                className="px-3 py-3 ml-4 rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-all flex items-center gap-1"
+                className={`px-3 py-3 ml-4 rounded-[4px] bg-[#322B25] text-[#FFFFFF] font-medium transition-all flex items-center gap-1 ${aiLoading === 'goodsServices' ? 'opacity-50' : ''}`}
                 onClick={() => handleAISuggest('goodsServices')}
                 disabled={aiLoading === 'goodsServices'}
               >
-                <img src={AIAnalyzeIcon} alt="AI Analyze" style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} className={aiLoading === 'goodsServices' ? 'fade' : ''} />
+                <img 
+                  src={AIAnalyzeIcon} 
+                  alt="AI Analyze" 
+                  style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} 
+                  className={aiLoading === 'goodsServices' ? 'fade' : ''} 
+                />
               </button>
               {showError('goodsServices')}
             </div>
@@ -499,7 +525,7 @@ const TrademarkFiling = () => {
             )}
             <div>
               <label className="block font-medium mb-1 text-[#000000]">Additional Notes</label>
-              <textarea name="additionalNotes" value={form.additionalNotes} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]" placeholder="Any special instructions, background info, etc." />
+              <textarea name="additionalNotes" value={form.additionalNotes} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px] bg-[#f6f6f6] focus:outline-none text-[#000000]" placeholder="Any special instructions, background info, etc." />
             </div>
             <div className="mb-4 p-4 bg-[#302F2F]/10 rounded">
               <p className="text-[#000000]/70 text-sm">
@@ -512,7 +538,7 @@ const TrademarkFiling = () => {
             </div>
             <div>
               <label className="block font-medium mb-1 text-[#000000]">Digital Signature <span className="text-[#302F2F]">*</span></label>
-              <input name="signature" value={form.signature} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px]  focus:outline-none text-[#000000]" placeholder="Type your full name as signature" required />
+              <input name="signature" value={form.signature} onChange={handleChange} className="w-full px-4 py-3 rounded-[4px] bg-[#f6f6f6] focus:outline-none text-[#000000]" placeholder="Type your full name as signature" required />
               {showError('signature')}
             </div>
           </>
@@ -534,7 +560,7 @@ const TrademarkFiling = () => {
             type="button"
             onClick={() => setStep(s => Math.max(0, s - 1))}
             disabled={step === 0 || isSubmitting}
-            className="px-6 py-2 rounded-lg font-semibold bg-[#1C1C1C] border border-[#6C6C6C]/20 text-[#868686] hover:bg-[#E8E8E8]/10 transition-all disabled:opacity-50"
+            className="px-6 py-2 rounded-lg font-semibold bg-[#322B25]  text-[#000000]  transition-all disabled:opacity-50"
           >
             Back
           </button>
@@ -542,8 +568,8 @@ const TrademarkFiling = () => {
             <button
               type="button"
               onClick={handleNext}
-              className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-all"
-            >
+                className="px-[27px] py-[11px] rounded-[4px]  bg-[#322B25] text-[#FFFFFF] font-medium  transition-all"
+              >
               Next
             </button>
           ) : (

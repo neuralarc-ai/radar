@@ -236,7 +236,7 @@ const MainLayout = ({ children }) => {
               <ProgressSidebar progress={progress} />
             </div>
             {/* Right panel (Main Content) */}
-            <main className="flex-1 max-h-[calc(100vh-244px)] overflow-y-auto rounded-[22px] ">
+            <main className="flex-1 max-h-[calc(100vh-244px)] h-full overflow-y-auto rounded-[22px] ">
               {children}
             </main>
           </div>

@@ -97,7 +97,7 @@ const PatentFilingPreparation = () => {
           <div className="flex items-center gap-2 mb-6">
             <button
               type="button"
-              className="p-2 text-[#FFFFFF] hover:text-[#FFFFFF] transition-colors rounded-[4px] hover:bg-[#302F2F] border border-[#6C6C6C]"
+              className="p-2 text-[#202020] transition-colors rounded-[4px] "
               onClick={() => navigate(-1)}
               aria-label="Go back"
             >
@@ -305,23 +305,26 @@ const PatentFilingPreparation = () => {
 
                   {/* Overview Section */}
                   <div className="p-4 bg-[#CFD4C9] rounded-[8px]">
-                    <h3 className="text-lg font-semibold text-[#202020] mb-2">Overview</h3>
-                    <p className="text-[#202020AD] mb-4">{analysis.overview.summary}</p>
+                    <div className='bg-[#E3E2DF80] rounded-[8px] p-4 mb-2'>
+                      <h3 className="text-lg font-semibold text-[#202020] mb-2">Overview</h3>
+                      <p className="text-[#202020AD] mb-4">{analysis.overview.summary}</p>
+                    </div>
                     <div className="space-y-2">
-                      <h4 className="font-medium text-[#202020]">Next Steps</h4>
-                      <ul className="list-disc list-inside text-[#202020AD]">
-                        {analysis.overview.nextSteps.map((step, index) => (
-                          <li key={index}>{step}</li>
-                        ))}
-                      </ul>
+                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                        <h4 className="font-medium text-[#202020]">Next Steps</h4>
+                        <ul className="list-disc list-inside text-[#202020AD]">
+                          {analysis.overview.nextSteps.map((step, index) => (
+                            <li key={index}>{step}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
 
                   {/* Application Review Section */}
                   <div className="p-4 bg-[#CFD4C9]  rounded-[8px]">
-                    <h3 className="text-lg font-semibold text-[#202020] mb-4">Application Review</h3>
                     <div className="space-y-6">
-                      <div>
+                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
                         <h4 className="font-medium text-[#202020] mb-2">Strengths</h4>
                         <ul className="list-disc list-inside text-[#202020AD] space-y-2">
                           {analysis.applicationReview.strengths.map((strength, index) => (
@@ -329,8 +332,8 @@ const PatentFilingPreparation = () => {
                           ))}
                         </ul>
                       </div>
-                      <div>
-                        <h4 className="font-medium text-[#C6AEA3]/100i am mb-2">Areas for Improvement</h4>
+                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                        <h4 className="font-medium text-[#C6AEA3] mb-2">Areas for Improvement</h4>
                         <ul className="list-disc list-inside text-[#202020AD] space-y-2">
                           {analysis.applicationReview.weaknesses.map((weakness, index) => (
                             <li key={index}>{weakness}</li>
@@ -342,9 +345,8 @@ const PatentFilingPreparation = () => {
 
                   {/* Document Analysis Section */}
                   <div className="p-4 bg-[#1E342F] border border-[#6C6C6C] rounded-lg">
-                    <h3 className="text-lg font-semibold text-[#FFFFFF] mb-4">Document Analysis</h3>
                     <div className="space-y-4">
-                      <div>
+                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
                         <h4 className="font-medium text-[#FFFFFF] mb-2">Required Documents</h4>
                         <ul className="list-disc list-inside text-[#F8F8F8AD]">
                           {analysis.documentAnalysis.requiredDocuments.map((doc, index) => (
@@ -353,7 +355,7 @@ const PatentFilingPreparation = () => {
                         </ul>
                       </div>
                       {analysis.documentAnalysis.missingDocuments.length > 0 && (
-                        <div>
+                        <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
                           <h4 className="font-medium pt-3 text-[#C6AEA3] mb-2">Missing Documents</h4>
                           <ul className="list-disc list-inside text-[#F8F8F8AD]">
                             {analysis.documentAnalysis.missingDocuments.map((doc, index) => (
@@ -367,9 +369,8 @@ const PatentFilingPreparation = () => {
 
                   {/* Filing Strategy Section */}
                   <div className="p-4 bg-[#1E342F] border border-[#6C6C6C] rounded-lg">
-                    <h3 className="text-lg font-semibold text-[#FFFFFF] mb-4">Filing Strategy</h3>
                     <div className="space-y-4">
-                      <div>
+                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
                         <h4 className="font-medium text-[#FFFFFF] mb-2">Recommended Jurisdiction Order</h4>
                         <ul className="list-decimal list-inside text-[#868686]">
                           {analysis.filingStrategy.jurisdictionOrder.map((jurisdiction, index) => (
@@ -377,7 +378,7 @@ const PatentFilingPreparation = () => {
                           ))}
                         </ul>
                       </div>
-                      <div>
+                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
                         <h4 className="font-medium text-[#FFFFFF] mb-2">Timeline</h4>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div className="p-3 bg-[#CFD4C9] rounded-[8px]">

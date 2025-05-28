@@ -202,7 +202,7 @@ const PatentCompliance = () => {
           <div className="flex items-center gap-2 mb-6">
             <button
               type="button"
-              className="p-2  text-[#322B25] hover:text-[#FFFFFF] transition-colors rounded-[4px] hover:bg-[#302F2F] border border-[#000000]/5 border-[1.5px]"
+              className="p-2 text-[#202020] transition-colors rounded-[4px] "
               onClick={() => navigate(-1)}
               aria-label="Go back"
             >
@@ -374,7 +374,7 @@ const PatentCompliance = () => {
                             <span className="text-2xl font-medium text-[#444] mr-4">Title</span>
                           </div>
                           <div className="text-[#444] text-base mb-2">
-                            The patent title ‘dzfgfzfgf’ is not descriptive of the invention.
+                            The patent title 'dzfgfzfgf' is not descriptive of the invention.
                           </div>
                           <div className="text-[#444] text-lg font-normal">
                             <span className="font-medium">Recommendation:</span> Provide a more descriptive title that accurately reflects the invention.

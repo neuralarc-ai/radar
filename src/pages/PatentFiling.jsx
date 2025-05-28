@@ -361,11 +361,11 @@ const PatentFiling = () => {
           <div className='flex items-center gap-4 mb-6'>
             <button
               type="button"
-              className="circular-button"
+              className="p-2 text-[#202020] transition-colors rounded-[4px] "
               onClick={() => navigate(-1)}
               aria-label="Go back"
             >
-              <IoArrowBack className="icon" />
+              <IoArrowBack className="w-6 h-6" />
             </button>
             <h1 className="text-2xl font-bold text-[#1E1E1E]">Patent Application Wizard</h1>
           </div>
@@ -1009,17 +1009,14 @@ const PatentFiling = () => {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between mt-8">
+        <div className="flex justify-between pt-6">
           <button
             type="button"
             onClick={() => setStep(s => Math.max(0, s - 1))}
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[4px] text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C6C6C]/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-[#6C6C6C] bg-[#2B2521] text-[#FFFFFF] hover:bg-[#E2E2E2] hover:text-[#322B25] h-10 px-[27px] py-[16px]"
-            disabled={step === 0}
+            disabled={step === 0 || isSubmitting}
+            className="px-[27px] py-[11px] rounded-[4px] bg-[#322B25] text-[#FFFFFF] font-medium transition-all disabled:opacity-50"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-            </svg>
-            Previous
+            Back
           </button>
           <button
             type="button"

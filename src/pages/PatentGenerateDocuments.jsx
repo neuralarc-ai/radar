@@ -107,7 +107,7 @@ const PatentGenerateDocuments = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#1C1C1C] flex items-center justify-center">
+      <div className="">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFFFFF] mx-auto"></div>
           <p className="mt-4 text-[#FFFFFF]">Loading submission data...</p>
@@ -119,7 +119,7 @@ const PatentGenerateDocuments = () => {
   if (error) {
     return (
       <div className="">
-        <div className="text-center max-w-md p-6 bg-[#302F2F] rounded-lg border border-[#6C6C6C]">
+        <div className="text-center  max-w-md p-6 bg-[#302F2F] rounded-lg border border-[#6C6C6C]">
           <div className="text-red-500 mb-4">
             <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -129,7 +129,7 @@ const PatentGenerateDocuments = () => {
           <p className="text-[#868686] mb-6">{error}</p>
           <button
             onClick={handleBack}
-            className="px-6 py-2 bg-[#302F2F] text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors border border-[#6C6C6C]"
+            className="px-6 py-2 bg-[#302F2F] h-full text-[#FFFFFF] rounded-lg hover:bg-[#6C6C6C] transition-colors border border-[#6C6C6C]"
           >
             Back to Patent Filing
           </button>

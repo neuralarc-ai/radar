@@ -152,46 +152,51 @@ function UploadDocuments() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EFECE5] px-4 py-10">
-      <ProgressSidebar/>
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <div className='flex items-center gap-2 mb-6'>
-            <button 
-              type="button"
-              className="p-2 text-[#202020] hover:text-[#FFFFFF] transition-colors rounded-[4px] hover:bg-[#302F2F] border border-[#322B25]/5 border-[1.5px]"
-              onClick={() => navigate(-1)}
-              aria-label="Go back"
-            >
-              <IoArrowBack className="w-6 h-6" />
-            </button>
-            <h1 className="text-2xl font-bold text-[#322B25]">Upload Manager</h1>
-          </div>
-          <p className="text-[#4F4F4F] mt-2">Upload and manage supporting documents for your application</p>
-        </div>
+    <div className="">
+      {/* Outer container for the wide border effect */}
+      <div className="rounded-[24px]" >
+        <div className="">
+          {/* Inner container for the white content area */}
+          <div className="bg-[#FFFFFF] h-full rounded-[12px] p-8">
+            <div className="mb-8">
+              <div className='flex items-center gap-2 mb-6'>
+                <button 
+                  type="button"
+                  className="p-2 text-[#202020] transition-colors rounded-[4px] "
+                  onClick={() => navigate(-1)}
+                  aria-label="Go back"
+                >
+                  <IoArrowBack className="w-6 h-6" />
+                </button>
+                <h1 className="text-2xl font-bold text-[#322B25]">Upload Manager</h1>
+              </div>
+              <p className="text-[#4F4F4F] mt-2">Upload and manage supporting documents for your application</p>
+            </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Side - Upload Documents */}
-          <div className="lg:col-span-2">
-            <div className="bg-[#FFFFFF] border border-[#E8E8E8] rounded-[4px] p-6">
-              <h2 className="text-xl font-semibold mb-6 text-[#322B25]">Upload Documents</h2>
+            <div className="rounded-[8px] border border-[#000000]/5 border-[1.5px] p-6">
+              <h2 className="text-xl font-semibold text-[#322B25] mb-2">Upload Documents</h2>
               <p className="text-[#4F4F4F] mb-6">Select a category and upload supporting files</p>
 
               <div className="mb-6">
                 <label className="block text-sm font-medium text-[#4F4F4F] mb-2">
                   Select document category
                 </label>
-                <CustomSelect
+                <select
                   name="documentCategory"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  options={documentCategories.map(category => `${category.name} ${category.required ? '(Required)' : ''}`)}
-                  placeholder="Select a category"
-                  className="w-full "
-                />
+                  className="w-full px-[14px] py-[16px] rounded-[4px] bg-[#f6f6f6] focus:outline-none focus:ring-2 focus:ring-[#6C6C6C] text-[#1c1c1c] appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%231c1c1c%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[length:16px_12px] bg-[right_4px_center] bg-no-repeat pr-8"
+                >
+                  <option value="">Select a category</option>
+                  {documentCategories.map(category => (
+                    <option key={category.id} value={category.id}>
+                      {category.name} {category.required ? '(Required)' : ''}
+                    </option>
+                  ))}
+                </select>
               </div>
 
-              <div className="relative border-2 border-dashed border-[#6C6C6C] rounded-lg p-8 text-center cursor-pointer hover:border-[#868686] transition-colors bg-[#F5F5F5]">
+              <div className="bg-[#F5F5F5] relative rounded-lg p-8 text-center cursor-pointer hover:border-[#868686] transition-colors">
                 <input
                   id="file-input"
                   type="file"
@@ -213,26 +218,29 @@ function UploadDocuments() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
                   <p className="text-[#322B25]">Drag and drop files here, or click to select files</p>
-                  <p className="text-sm text-[#868686]">Supported formats: PDF, DOCX, JPEG, PNG, TIFF (Max 10MB)</p>
+                  <p className="text-sm text-[#2D2623]">Supported formats: PDF, DOCX, JPEG, PNG, TIFF (Max 10MB)</p>
                   </div>
                 </div>
               </div>
 
-              {files.length > 0 && (
+              {uploadedFiles.length > 0 && (
                 <div className="mt-6">
-                  <h3 className="text-lg font-medium mb-4 text-[#322B25]">Selected Files</h3>
+                  <h3 className="text-lg font-medium text-[#322B25] mb-4">Uploaded Files</h3>
                   <div className="space-y-2">
-                    {files.map((file, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-[#F5F5F5] rounded-lg">
+                    {uploadedFiles.map((file, index) => (
+                      <div key={file.id} className="flex items-center justify-between p-3 bg-[#F5F5F5] rounded-lg border border-[#6C6C6C]">
                         <div className="flex items-center space-x-3">
                           <svg className="h-5 w-5 text-[#868686]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                           </svg>
-                          <span className="text-sm text-[#322B25]">{file.name}</span>
+                          <div>
+                            <p className="text-sm font-medium text-[#322B25]">{file.name}</p>
+                            <p className="text-xs text-[#868686]">{file.category}</p>
+                          </div>
                         </div>
                         <button
                           onClick={() => handleRemoveFile(file.id)}
-                          className="text-red-500 hover:text-red-700"
+                          className="text-red-500 hover:text-red-400"
                         >
                           <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -243,121 +251,26 @@ function UploadDocuments() {
                   </div>
                 </div>
               )}
-            </div>
 
-            {/* Uploaded Documents Section */}
-            <div className="bg-[#FFFFFF] border border-[#E8E8E8] rounded-[4px] p-6 mt-6">
-              <h2 className="text-xl font-semibold mb-6 text-[#322B25]">Uploaded Documents</h2>
-              {uploadedFiles.length > 0 ? (
-                <div className="space-y-4">
-                  {uploadedFiles.map((file) => (
-                    <div key={file.id} className="flex items-center justify-between p-4 bg-[#F5F5F5] rounded-lg">
-                      <div className="flex items-center space-x-3">
-                        <svg className="h-5 w-5 text-[#868686]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        <div>
-                          <p className="text-sm font-medium text-[#322B25]">{file.name}</p>
-                          <p className="text-xs text-[#868686]">{file.category}</p>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => handleRemoveFile(file.id)}
-                        className="text-red-500 hover:text-red-700"
-                      >
-                        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-[#868686] text-center py-4">No documents uploaded yet</p>
-              )}
-            </div>
-
-            {/* Check Compliance Button */}
-            <div className="mt-6 flex justify-between items-center">
-              <button
-                onClick={() => navigate(-1)}
-                className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors"
-              >
-                Back
-              </button>
-              <button
-                onClick={() => navigate(`/dashboard/compliance/${filingId}`)}
-                className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-colors flex items-center gap-2"
-              >
-                Check Compliance
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Right Side - Required Documents */}
-          {/* <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold mb-6">Required Documents</h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-medium mb-4">Document Checklist</h3>
-                  <ul className="space-y-4">
-                    {documentCategories.filter(cat => cat.required).map(category => {
-                      const isUploaded = uploadedFiles.some(file => file.category === category.id);
-                      return (
-                        <li 
-                          key={category.id} 
-                          className={`flex items-center justify-between ${isUploaded ? 'text-green-600' : 'text-gray-600'}`}
-                        >
-                          <div className="flex items-center">
-                            {isUploaded ? (
-                              <svg className="h-5 w-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                              </svg>
-                            ) : (
-                              <svg className="h-5 w-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                            )}
-                            <span className="text-sm font-medium">{category.name}</span>
-                          </div>
-                          {isUploaded ? (
-                            <span className="text-xs bg-green-100 text-green-800 px-2.5 py-1 rounded-full">
-                              Uploaded
-                            </span>
-                          ) : (
-                            <span className="text-xs bg-yellow-100 text-yellow-800 px-2.5 py-1 rounded-full">
-                              Pending
-                            </span>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-
-                <div className="border-t border-gray-200 pt-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-700">Upload Progress</span>
-                    <span className="text-sm text-gray-500">
-                      {uploadedFiles.filter(file => documentCategories.find(cat => cat.id === file.category)?.required).length} of {documentCategories.filter(cat => cat.required).length} required
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div 
-                      className="bg-[#C67B49] h-2 rounded-full transition-all duration-300" 
-                      style={{ 
-                        width: `${Math.min(100, (uploadedFiles.filter(file => documentCategories.find(cat => cat.id === file.category)?.required).length / documentCategories.filter(cat => cat.required).length) * 100)}%` 
-                      }}
-                    ></div>
-                  </div>
-                </div>
+              <div className="mt-8 flex justify-between">
+                <button
+                  className="px-[27px] py-[16px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90"
+                  onClick={() => navigate(-1)}
+                >
+                  <span>Back</span>
+                </button>
+                <button
+                  className="px-[27px] py-[16px] bg-[#302F2F] text-[#FFFFFF] rounded-[4px] transition-colors flex items-center gap-2 border border-[#322B25]"
+                  onClick={() => navigate(`/dashboard/compliance/${filingId}`)}
+                >
+                  <span>Check Compliance</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
