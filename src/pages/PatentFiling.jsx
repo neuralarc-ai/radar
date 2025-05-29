@@ -11,6 +11,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { getAIDescription } from '../services/trademarkService'; // Import background image
 import AIAnalyzeIcon from '../assests/AI_Analyze.png';
+import box01 from '../assests/box01.png';
+import box02 from '../assests/box02.png';
+import box03 from '../assests/box03.png';
+import box04 from '../assests/box04.png';
+import box05 from '../assests/box05.png';
+
 
 const steps = [
   'Basic Info',
@@ -453,7 +459,7 @@ const PatentFiling = () => {
 
             <div>
               <label className="block font-medium mb-1 text-[#000000]">Patent Type <span className="text-[#202020]">*</span></label>
-              <CustomSelect
+              <CustomSelect 
                 name="patentType"
                 value={form.patentType}
                 onChange={handleChange}

@@ -56,7 +56,9 @@
 }
 
 .dialogWrapper {
-    position: relative;
+    position: absolute;
+    max-width: 1440px;
+    margin: 0 auto;
     top: 50%;
     z-index: 999;
     padding: 2px;
@@ -72,7 +74,7 @@
 .dialog {
     position: absolute;
     top: 112px;
-    right: 32px;
+    right: 64px;
     background: #38312C;
     border-radius: 12px;
     padding: 12px;
@@ -85,17 +87,6 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.dialog::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: 24px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #38312C;
-}
 
 .overlay {
     position: fixed;
@@ -104,6 +95,8 @@
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     z-index: 999;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 .menuItem {

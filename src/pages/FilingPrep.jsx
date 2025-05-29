@@ -181,204 +181,211 @@ function FilingPrep() {
           )}
 
           {activeTab === 'analysis' && (
-            <div className="space-y-8">
-              {/* Approval Status (Donut Chart) */}
+            <div className="bg-[#FFFFFF] rounded-[8px] border: 1px solid #FFFFFF0A p-6">
+              <h2 className="text-xl font-semibold text-[#322B25] mb-4">AI Filing Assessment</h2>
+              <p className="text-[#4f4f4f] mb-6">Get an AI-powered analysis of your application's filing readiness</p>
+
+              <div className="bg-[#F8F7F3] rounded-[4px] p-6 mb-8 text-center">
+                {!analysis && (
+                  <div className="text-center py-8 max-w-xl mx-auto">
+                    <div className="flex justify-center mb-5">
+                      <HiOutlineDocumentCheck size={80} className="text-[#FFFFFF]" />
+                    </div>
+                    <p className="text-lg text-[#202020] mt-5 mb-1">Get an AI-powered analysis of your application's filing readiness</p>
+                    <p className="text-[#868686] mb-8">Our AI can analyze your complete application and provide insights on its filing readiness and potential areas for improvement.</p>
+                    <button
+                      onClick={handleAIAnalysis}
+                      disabled={isLoading}
+                      className={`flex items-center space-x-2 px-[27px] py-[16px] rounded-[4px] transition-colors duration-200 mx-auto mt-2 ${
+                        isLoading
+                          ? 'bg-[#1C1C1C] text-[#868686] cursor-not-allowed'
+                          : 'bg-[#302D2A] text-[#FFFFFF]'
+                      }`}
+                    >
+                      {isLoading ? (
+                        <>
+                          <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          <span>Analyzing...</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                          </svg>
+                          <span>Run AI Analysis</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {error && (
+                <div className="mt-4 p-4 bg-[#1C1C1C] text-red-500 rounded-lg text-center border border-[#6C6C6C]">
+                  {error}
+                </div>
+              )}
+
               {analysis && (
-                <div className="bg-[#2B2521] rounded-[16px] p-8 shadow-sm">
-                  <h2 className="text-xl font-semibold text-white mb-8">Overall Compliance Score</h2>
-                  <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-                    {/* Donut */}
-                    <div className="relative w-56 h-56 flex-shrink-0">
-                      <svg className="w-full h-full" viewBox="0 0 36 36">
-                        <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#3A3532" strokeWidth="3" />
-                        <path
-                          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                          fill="none"
-                          stroke="#D6A3B2"
-                          strokeWidth="3"
-                          strokeDasharray={`${analysis.overview.approvalPercentage}, 100`}
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-4xl font-bold text-white">
-                          {analysis.overview.approvalPercentage}%
-                        </span>
+                <>
+                  {/* Approval Status (Donut Chart) */}
+                  <div className="bg-[#2B2521] rounded-[16px] p-8 shadow-sm">
+                    <h2 className="text-xl font-semibold text-white mb-8">Overall Compliance Score</h2>
+                    <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                      {/* Donut */}
+                      <div className="relative w-56 h-56 flex-shrink-0">
+                        <svg className="w-full h-full" viewBox="0 0 36 36">
+                          <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#3A3532" strokeWidth="3" />
+                          <path
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                            fill="none"
+                            stroke="#D6A3B2"
+                            strokeWidth="3"
+                            strokeDasharray={`${analysis.overview.approvalPercentage}, 100`}
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-4xl font-bold text-white">
+                            {analysis.overview.approvalPercentage}%
+                          </span>
+                        </div>
+                      </div>
+                      {/* Text */}
+                      <div className="flex flex-col justify-center items-start text-left">
+                        <h3 className="text-3xl font-medium mb-4 text-[#D6A3B2]">
+                          {analysis.overview.approvalPercentage >= 80 ? 'Good' : analysis.overview.approvalPercentage >= 60 ? 'Moderate' : 'Needs Improvement'}
+                        </h3>
+                        <p className="text-lg text-white leading-snug">
+                          {analysis.overview.approvalPercentage >= 80 ? 'Your application shows strong potential for approval.' : analysis.overview.approvalPercentage >= 60 ? 'Your application has moderate chances of approval with some improvements needed.' : 'Your application needs significant improvements for approval.'}
+                        </p>
                       </div>
                     </div>
-                    {/* Text */}
-                    <div className="flex flex-col justify-center items-start text-left">
-                      <h3 className="text-3xl font-medium mb-4 text-[#D6A3B2]">
-                        {analysis.overview.approvalPercentage >= 80 ? 'Good' : analysis.overview.approvalPercentage >= 60 ? 'Moderate' : 'Needs Improvement'}
-                      </h3>
-                      <p className="text-lg text-white leading-snug">
-                        {analysis.overview.approvalPercentage >= 80 ? 'Your application shows strong potential for approval.' : analysis.overview.approvalPercentage >= 60 ? 'Your application has moderate chances of approval with some improvements needed.' : 'Your application needs significant improvements for approval.'}
-                      </p>
-                    </div>
                   </div>
-                </div>
-              )}
 
-              {/* Overview Section */}
-              {analysis && (
-                <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box01}) center/cover no-repeat`}}>
-                 <div className='bg-[#E3E2DF80] rounded-[8px] p-4 mb-2'>
-                 <h3 className="text-lg font-semibold text-[#322B25] mb-2">Overview</h3>
-                 <p className="text-[#322B25] mb-4">{analysis.overview.summary}</p>
-                 </div>
-                  <div className="space-y-2">
-                   <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
-                   <h4 className="font-medium text-[#322B25]">Next Steps</h4>
-                    <ul className="list-disc list-inside text-[#322B25]">
-                      {analysis.overview.nextSteps.map((step, index) => (
-                        <li key={index}>{step}</li>
-                      ))}
-                    </ul>
+                  {/* Overview Section */}
+                  <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box01}) center/cover no-repeat`}}>
+                   <div className='bg-[#E3E2DF80] rounded-[8px] p-4 mb-2'>
+                   <h3 className="text-lg font-semibold text-[#322B25] mb-2">Overview</h3>
+                   <p className="text-[#322B25] mb-4">{analysis.overview.summary}</p>
                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Application Review Section */}
-              {analysis && (
-                <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box02}) center/cover no-repeat`}}>
-                  <h3 className="text-lg font-semibold text-[#322B25] mb-4">Application Review</h3>
-                  <div className="space-y-6">
-                    <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
-                      <h4 className="font-medium text-[#322B25] mb-2">Strengths</h4>
-                      <ul className="list-disc list-inside text-[#322B25] space-y-2">
-                        {analysis.applicationReview.strengths.map((strength, index) => (
-                          <li key={index}>{strength}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
-                      <h4 className="font-medium text-[#322B25] mb-2">Areas for Improvement</h4>
-                      <ul className="list-disc list-inside text-[#322B25] space-y-2">
-                        {analysis.applicationReview.weaknesses.map((weakness, index) => (
-                          <li key={index}>{weakness}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Document Analysis Section */}
-              {analysis && (
-                <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box03}) center/cover no-repeat`}}>
-                  <h3 className="text-lg font-semibold text-[#322B25] mb-4">Documents Required</h3>
-                  <div className="space-y-4">
-                    <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
-                      <h4 className="font-medium text-[#322B25] mb-2">Required Documents</h4>
+                    <div className="space-y-2">
+                     <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                     <h4 className="font-medium text-[#322B25]">Next Steps</h4>
                       <ul className="list-disc list-inside text-[#322B25]">
-                        {analysis.documentAnalysis.requiredDocuments.map((doc, index) => (
-                          <li key={index}>{doc}</li>
+                        {analysis.overview.nextSteps.map((step, index) => (
+                          <li key={index}>{step}</li>
                         ))}
                       </ul>
+                     </div>
                     </div>
-                    {analysis.documentAnalysis.missingDocuments.length > 0 && (
+                  </div>
+
+                  {/* Application Review Section */}
+                  <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box02}) center/cover no-repeat`}}>
+                    <h3 className="text-lg font-semibold text-[#322B25] mb-4">Application Review</h3>
+                    <div className="space-y-6">
                       <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
-                        <h4 className="font-medium pt-3 text-[#C6AEA3] mb-2">Missing Documents</h4>
+                        <h4 className="font-medium text-[#322B25] mb-2">Strengths</h4>
+                        <ul className="list-disc list-inside text-[#322B25] space-y-2">
+                          {analysis.applicationReview.strengths.map((strength, index) => (
+                            <li key={index}>{strength}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                        <h4 className="font-medium text-[#322B25] mb-2">Areas for Improvement</h4>
+                        <ul className="list-disc list-inside text-[#322B25] space-y-2">
+                          {analysis.applicationReview.weaknesses.map((weakness, index) => (
+                            <li key={index}>{weakness}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Document Analysis Section */}
+                  <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box03}) center/cover no-repeat`}}>
+                    <h3 className="text-lg font-semibold text-[#322B25] mb-4">Documents Required</h3>
+                    <div className="space-y-4">
+                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                        <h4 className="font-medium text-[#322B25] mb-2">Required Documents</h4>
                         <ul className="list-disc list-inside text-[#322B25]">
-                          {analysis.documentAnalysis.missingDocuments.map((doc, index) => (
+                          {analysis.documentAnalysis.requiredDocuments.map((doc, index) => (
                             <li key={index}>{doc}</li>
                           ))}
                         </ul>
                       </div>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Filing Strategy Section */}
-              {analysis && (
-                <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box04}) center/cover no-repeat`}}>
-                  <h3 className="text-lg font-semibold text-[#322B25] mb-4">Filing Strategy</h3>
-                  <div className="space-y-4">
-                    <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
-                      <h4 className="font-medium text-[#322B25] mb-2">Recommended Jurisdiction Order</h4>
-                      <ul className="list-decimal list-inside text-[#322B25]">
-                        {analysis.filingStrategy.jurisdictionOrder.map((jurisdiction, index) => (
-                          <li key={index}>{jurisdiction}</li>
-                        ))}
-                      </ul>
+                      {analysis.documentAnalysis.missingDocuments.length > 0 && (
+                        <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                          <h4 className="font-medium pt-3 text-[#C6AEA3] mb-2">Missing Documents</h4>
+                          <ul className="list-disc list-inside text-[#322B25]">
+                            {analysis.documentAnalysis.missingDocuments.map((doc, index) => (
+                              <li key={index}>{doc}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
-                    <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
-                      <h4 className="font-medium text-[#322B25] mb-2">Timeline</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="p-3 rounded-[8px] bg-[#F3F3E6]">
-                          <p className="text-sm text-[#322B25]">Filing Date</p>
-                          <p className="font-medium text-[#322B25]">{analysis.filingStrategy.timeline.filingDate}</p>
-                        </div>
-                        <div className="p-3 rounded-[8px] bg-[#F3F3E6]">
-                          <p className="text-sm text-[#322B25]">First Office Action</p>
-                          <p className="font-medium text-[#322B25]">{analysis.filingStrategy.timeline.firstOfficeAction}</p>
-                        </div>
-                        <div className="p-3 rounded-[8px] bg-[#F3F3E6]">
-                          <p className="text-sm text-[#322B25]">Estimated Registration</p>
-                          <p className="font-medium text-[#322B25]">{analysis.filingStrategy.timeline.estimatedRegistration}</p>
+                  </div>
+
+                  {/* Filing Strategy Section */}
+                  <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box04}) center/cover no-repeat`}}>
+                    <h3 className="text-lg font-semibold text-[#322B25] mb-4">Filing Strategy</h3>
+                    <div className="space-y-4">
+                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                        <h4 className="font-medium text-[#322B25] mb-2">Recommended Jurisdiction Order</h4>
+                        <ul className="list-decimal list-inside text-[#322B25]">
+                          {analysis.filingStrategy.jurisdictionOrder.map((jurisdiction, index) => (
+                            <li key={index}>{jurisdiction}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                        <h4 className="font-medium text-[#322B25] mb-2">Timeline</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="p-3 rounded-[8px] bg-[#F3F3E6]">
+                            <p className="text-sm text-[#322B25]">Filing Date</p>
+                            <p className="font-medium text-[#322B25]">{analysis.filingStrategy.timeline.filingDate}</p>
+                          </div>
+                          <div className="p-3 rounded-[8px] bg-[#F3F3E6]">
+                            <p className="text-sm text-[#322B25]">First Office Action</p>
+                            <p className="font-medium text-[#322B25]">{analysis.filingStrategy.timeline.firstOfficeAction}</p>
+                          </div>
+                          <div className="p-3 rounded-[8px] bg-[#F3F3E6]">
+                            <p className="text-sm text-[#322B25]">Estimated Registration</p>
+                            <p className="font-medium text-[#322B25]">{analysis.filingStrategy.timeline.estimatedRegistration}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
 
-              {/* Recommendations Section */}
-              {analysis && (
-                <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box05}) center/cover no-repeat`}}>
-                  <h3 className="text-lg font-semibold text-[#322B25] mb-4">Recommendations</h3>
-                  <div className="space-y-4">
-                    {analysis.recommendations.map((rec, index) => (
-                      <div key={index} className="p-4 rounded-[8px] bg-[#FFFFFF] flex items-center justify-between">
-                        <div>
-                          <h4 className="font-medium text-[#322B25]">{rec.title}</h4>
-                          <p className="mt-2 text-[#322B25]">{rec.description}</p>
+                  {/* Recommendations Section */}
+                  <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box05}) center/cover no-repeat`}}>
+                    <h3 className="text-lg font-semibold text-[#322B25] mb-4">Recommendations</h3>
+                    <div className="space-y-4">
+                      {analysis.recommendations.map((rec, index) => (
+                        <div key={index} className="p-4 rounded-[8px] bg-[#FFFFFF] flex items-center justify-between">
+                          <div>
+                            <h4 className="font-medium text-[#322B25]">{rec.title}</h4>
+                            <p className="mt-2 text-[#322B25]">{rec.description}</p>
+                          </div>
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            rec.priority === 'high' ? 'bg-red-500/20 text-red-500' :
+                            rec.priority === 'medium' ? 'bg-yellow-500/20 text-yellow-500' :
+                            'bg-green-500/20 text-green-500'
+                          }`}>
+                            {rec.priority} priority
+                          </span>
                         </div>
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          rec.priority === 'high' ? 'bg-red-500/20 text-red-500' :
-                          rec.priority === 'medium' ? 'bg-yellow-500/20 text-yellow-500' :
-                          'bg-green-500/20 text-green-500'
-                        }`}>
-                          {rec.priority} priority
-                        </span>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-
-              {/* Rerun Analysis Button */}
-              {analysis && (
-                <div className="flex justify-center pt-8">
-                  <button
-                    onClick={handleAIAnalysis}
-                    disabled={isLoading}
-                    className={`flex items-center space-x-2 px-8 py-4 rounded-[6px] transition-colors duration-200 font-semibold text-base ${
-                      isLoading
-                        ? 'bg-[#1C1C1C] text-[#868686] cursor-not-allowed'
-                        : 'bg-[#322B25] text-[#FFFFFF]'
-                    }`}
-                  >
-                    {isLoading ? (
-                      <>
-                        <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        <span>Re-running Analysis...</span>
-                      </>
-                    ) : (
-                      <>
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
-                        <span>Re-run Analysis</span>
-                      </>
-                    )}
-                  </button>
-                </div>
+                </>
               )}
             </div>
           )}

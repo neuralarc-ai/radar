@@ -9,6 +9,8 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../services/supabaseClient';
 import { MinimalFooter } from '../components/Footer';
 import backgroundImage from '../assests/background.png';
+import vectorLogo from '../assests/Vector.png';
+
 const SignIn = () => {
   // Tab state
   const [activeTab, setActiveTab] = useState('login');
@@ -259,7 +261,15 @@ const SignIn = () => {
           <Link to="/disclaimer" className="text-sm text-[#FFFFFF] hover:text-white"><u>Disclaimer</u></Link>
           <span className="text-[#FFFFFF]">•</span>
           <span className="text-[#FFFFFF] text-sm">
-            Copyright 2025. All rights reserved. <span className="font-bold">Radar</span>, A thing by <span className="font-bold">NeuralArc</span>
+            Copyright 2025. All rights reserved. <span className="font-bold">Radar</span>, A thing by <a href="https://www.neuralarc.ai/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
+              <span className="font-bold">NeuralArc</span>
+              <img
+                src={vectorLogo}
+                alt="NeuralArc Logo"
+                className="inline-block ml-1 align-middle"
+                style={{ height: '18px', width: 'auto', verticalAlign: 'middle' }}
+              />
+            </a>
           </span>
         </div>
       </footer>

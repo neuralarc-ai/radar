@@ -371,13 +371,13 @@ const PatentCompliance = () => {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center mb-1">
-                            <span className="text-2xl font-medium text-[#444] mr-4">Title</span>
+                            <span className="text-2xl font-medium text-[#444] mr-4">{req.name}</span>
                           </div>
                           <div className="text-[#444] text-base mb-2">
-                            The patent title 'dzfgfzfgf' is not descriptive of the invention.
+                            {req.details}
                           </div>
                           <div className="text-[#444] text-lg font-normal">
-                            <span className="font-medium">Recommendation:</span> Provide a more descriptive title that accurately reflects the invention.
+                            <span className="font-medium">Recommendation:</span> {req.recommendation}
                           </div>
                         </div>
                       </div>

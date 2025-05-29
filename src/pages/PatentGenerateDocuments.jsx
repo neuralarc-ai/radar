@@ -149,7 +149,7 @@ const PatentGenerateDocuments = () => {
             <div className="flex items-center gap-4 mb-2">
               <button
                 type="button"
-                className="p-2 text-[#202020] hover:text-[#FFFFFF] transition-colors rounded-[4px] hover:bg-[#302F2F] border border-[#322B25]/5 border-[1.5px]]"
+                className="p-2 text-[#202020] "
                 onClick={() => navigate(-1)}
                 aria-label="Go back"
               >

@@ -462,26 +462,28 @@ const TrademarkFiling = () => {
             </div>
             <div>
               <label className="block font-medium mb-1 text-[#322B25]">Trademark Class <span className="text-[#302F2F]">*</span></label>
-              <textarea
-                name="goodsServices"
-                value={form.goodsServices}
-                onChange={handleChange}
-                className="w-[80%] px-4 py-3 rounded-[4px] bg-[#f6f6f6] focus:outline-none text-[#000000]"
-                placeholder="Describe your goods/services in detail"
-              />
-              <button
-                type="button"
-                className={`px-3 py-3 ml-4 rounded-[4px] bg-[#322B25] text-[#FFFFFF] font-medium transition-all flex items-center gap-1 ${aiLoading === 'goodsServices' ? 'opacity-50' : ''}`}
-                onClick={() => handleAISuggest('goodsServices')}
-                disabled={aiLoading === 'goodsServices'}
-              >
-                <img 
-                  src={AIAnalyzeIcon} 
-                  alt="AI Analyze" 
-                  style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} 
-                  className={aiLoading === 'goodsServices' ? 'fade' : ''} 
+              <div className="flex gap-2 items-start">
+                <textarea
+                  name="goodsServices"
+                  value={form.goodsServices}
+                  onChange={handleChange}
+                  className="flex-1 px-4 py-3 rounded-[4px] bg-[#f6f6f6] focus:outline-none text-[#000000]"
+                  placeholder="Describe your goods/services in detail"
                 />
-              </button>
+                <button
+                  type="button"
+                  className={`px-3 py-3 rounded-[4px] bg-[#322B25] text-[#FFFFFF] font-medium transition-all flex items-center gap-1 ${aiLoading === 'goodsServices' ? 'opacity-50' : ''}`}
+                  onClick={() => handleAISuggest('goodsServices')}
+                  disabled={aiLoading === 'goodsServices'}
+                >
+                  <img 
+                    src={AIAnalyzeIcon} 
+                    alt="AI Analyze" 
+                    style={{ height: 24, width: 24, display: 'inline-block', verticalAlign: 'middle', marginTop: '-4px' }} 
+                    className={aiLoading === 'goodsServices' ? 'fade' : ''} 
+                  />
+                </button>
+              </div>
               {showError('goodsServices')}
             </div>
           </>
@@ -560,7 +562,7 @@ const TrademarkFiling = () => {
             type="button"
             onClick={() => setStep(s => Math.max(0, s - 1))}
             disabled={step === 0 || isSubmitting}
-            className="px-6 py-2 rounded-lg font-semibold bg-[#322B25]  text-[#000000]  transition-all disabled:opacity-50"
+            className="px-6 py-2 rounded-[4px] font-semibold bg-[#322B25]  text-[#FFFFFF]  transition-all disabled:opacity-50"
           >
             Back
           </button>
@@ -568,7 +570,7 @@ const TrademarkFiling = () => {
             <button
               type="button"
               onClick={handleNext}
-                className="px-[27px] py-[11px] rounded-[4px]  bg-[#322B25] text-[#FFFFFF] font-medium  transition-all"
+              className="px-[27px] py-[11px] rounded-[4px]  bg-[#302D2A] text-[#FFFFFF] font-medium  transition-all"
               >
               Next
             </button>
@@ -576,7 +578,7 @@ const TrademarkFiling = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-[27px] py-[11px] rounded-[4px] border border-[#322B25] bg-[#322B25] text-[#FFFFFF] font-medium hover:bg-[#322B25]/50 hover:border-[#302F2F] hover:text-[#322B25]/90 transition-all"
+              className="px-[27px] py-[11px] rounded-[4px] bg-[#302D2A] text-[#FFFFFF] font-medium transition-all"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Filing'}
             </button>
