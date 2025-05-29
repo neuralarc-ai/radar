@@ -232,7 +232,7 @@ function FilingPrep() {
               {analysis && (
                 <>
                   {/* Approval Status (Donut Chart) */}
-                  <div className="bg-[#2B2521] rounded-[16px] p-8 shadow-sm">
+                  <div className="bg-[#2B2521] rounded-[16px] p-8 shadow-sm mb-6">
                     <h2 className="text-xl font-semibold text-white mb-8">Overall Compliance Score</h2>
                     <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
                       {/* Donut */}
@@ -268,12 +268,12 @@ function FilingPrep() {
 
                   {/* Overview Section */}
                   <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box01}) center/cover no-repeat`}}>
-                   <div className='bg-[#E3E2DF80] rounded-[8px] p-4 mb-2'>
+                   <div className='bg-[#E3E2DF50] rounded-[8px] p-4 mb-2'>
                    <h3 className="text-lg font-semibold text-[#322B25] mb-2">Overview</h3>
                    <p className="text-[#322B25] mb-4">{analysis.overview.summary}</p>
                    </div>
                     <div className="space-y-2">
-                     <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                     <div className='bg-[#E3E2DF50] rounded-[8px] p-4'>
                      <h4 className="font-medium text-[#322B25]">Next Steps</h4>
                       <ul className="list-disc list-inside text-[#322B25]">
                         {analysis.overview.nextSteps.map((step, index) => (
@@ -288,7 +288,7 @@ function FilingPrep() {
                   <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box02}) center/cover no-repeat`}}>
                     <h3 className="text-lg font-semibold text-[#322B25] mb-4">Application Review</h3>
                     <div className="space-y-6">
-                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                      <div className='bg-[#E3E2DF50] rounded-[8px] p-4'>
                         <h4 className="font-medium text-[#322B25] mb-2">Strengths</h4>
                         <ul className="list-disc list-inside text-[#322B25] space-y-2">
                           {analysis.applicationReview.strengths.map((strength, index) => (
@@ -296,7 +296,7 @@ function FilingPrep() {
                           ))}
                         </ul>
                       </div>
-                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                      <div className='bg-[#E3E2DF50] rounded-[8px] p-4'>
                         <h4 className="font-medium text-[#322B25] mb-2">Areas for Improvement</h4>
                         <ul className="list-disc list-inside text-[#322B25] space-y-2">
                           {analysis.applicationReview.weaknesses.map((weakness, index) => (
@@ -311,7 +311,7 @@ function FilingPrep() {
                   <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box03}) center/cover no-repeat`}}>
                     <h3 className="text-lg font-semibold text-[#322B25] mb-4">Documents Required</h3>
                     <div className="space-y-4">
-                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                      <div className='bg-[#E3E2DF50] rounded-[8px] p-4'>
                         <h4 className="font-medium text-[#322B25] mb-2">Required Documents</h4>
                         <ul className="list-disc list-inside text-[#322B25]">
                           {analysis.documentAnalysis.requiredDocuments.map((doc, index) => (
@@ -336,7 +336,7 @@ function FilingPrep() {
                   <div className="rounded-[12px] p-6 mb-2" style={{background: `url(${box04}) center/cover no-repeat`}}>
                     <h3 className="text-lg font-semibold text-[#322B25] mb-4">Filing Strategy</h3>
                     <div className="space-y-4">
-                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                      <div className='bg-[#E3E2DF50] rounded-[8px] p-4'>
                         <h4 className="font-medium text-[#322B25] mb-2">Recommended Jurisdiction Order</h4>
                         <ul className="list-decimal list-inside text-[#322B25]">
                           {analysis.filingStrategy.jurisdictionOrder.map((jurisdiction, index) => (
@@ -344,19 +344,19 @@ function FilingPrep() {
                           ))}
                         </ul>
                       </div>
-                      <div className='bg-[#E3E2DF80] rounded-[8px] p-4'>
+                      <div className='bg-[#E3E2DF50] rounded-[8px] p-4'>
                         <h4 className="font-medium text-[#322B25] mb-2">Timeline</h4>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div className="p-3 rounded-[8px] bg-[#F3F3E6]">
-                            <p className="text-sm text-[#322B25]">Filing Date</p>
+                            <p className="text-xs text-[#322B25]">Filing Date</p>
                             <p className="font-medium text-[#322B25]">{analysis.filingStrategy.timeline.filingDate}</p>
                           </div>
                           <div className="p-3 rounded-[8px] bg-[#F3F3E6]">
-                            <p className="text-sm text-[#322B25]">First Office Action</p>
+                            <p className="text-xs text-[#322B25]">First Office Action</p>
                             <p className="font-medium text-[#322B25]">{analysis.filingStrategy.timeline.firstOfficeAction}</p>
                           </div>
                           <div className="p-3 rounded-[8px] bg-[#F3F3E6]">
-                            <p className="text-sm text-[#322B25]">Estimated Registration</p>
+                            <p className="text-xs text-[#322B25]">Estimated Registration</p>
                             <p className="font-medium text-[#322B25]">{analysis.filingStrategy.timeline.estimatedRegistration}</p>
                           </div>
                         </div>
@@ -369,15 +369,15 @@ function FilingPrep() {
                     <h3 className="text-lg font-semibold text-[#322B25] mb-4">Recommendations</h3>
                     <div className="space-y-4">
                       {analysis.recommendations.map((rec, index) => (
-                        <div key={index} className="p-4 rounded-[8px] bg-[#FFFFFF] flex items-center justify-between">
+                        <div key={index} className="p-4 rounded-[8px] bg-[#E3E2DF50] flex items-center justify-between">
                           <div>
                             <h4 className="font-medium text-[#322B25]">{rec.title}</h4>
                             <p className="mt-2 text-[#322B25]">{rec.description}</p>
                           </div>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            rec.priority === 'high' ? 'bg-red-500/20 text-red-500' :
-                            rec.priority === 'medium' ? 'bg-yellow-500/20 text-yellow-500' :
-                            'bg-green-500/20 text-green-500'
+                          <span className={`px-2 py-1 rounded-[4px] text-xs font-medium ${
+                            rec.priority === 'high' ? 'bg-[#F8F8F775] text-red-500' :
+                            rec.priority === 'medium' ? 'bg-[#F8F8F775] text-yellow-500' :
+                            'bg-[#F8F8F775] text-green-500'
                           }`}>
                             {rec.priority} priority
                           </span>

@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import ProgressSidebar from './ProgressSidebar';
 import { MinimalFooter } from './Footer';
 import filingBg from '../assests/bg/filling.png';
+import bg2 from '../assests/bg2.png';
+import mainBg from '../assests/Main_bg.png';
 import radarLogoPng from '../assests/radar_top_logo.png';
 import styles from './MainLayout.module.css';
 import cn from 'classnames';
@@ -228,7 +230,27 @@ const MainLayout = ({ children }) => {
         </div>
 
         {/* Main layout container with image background and border effect */}
-        <div className="relative w-full p-6 max-w-[1440px] mx-auto rounded-[24px] p-3 mb-12 shadow-xl bg-cover bg-center " style={{ backgroundImage: `url(${filingBg})` }}>
+        <div
+          className="relative w-full p-6 max-w-[1440px] mx-auto rounded-[24px] p-3 mb-12 shadow-xl bg-cover bg-center "
+          style={{
+            backgroundImage:
+              location.pathname.toLowerCase().includes('/patent')
+                ? `url(${mainBg})`
+                : [
+                    '/trademark',
+                    '/generate-documents',
+                    '/documents',
+                    '/confirmation',
+                    '/filingprep',
+                    '/filing-prep',
+                    '/compliancechecker',
+                    '/compliance-checker',
+                    '/compliance'
+                  ].some((route) => location.pathname.toLowerCase().includes(route))
+                ? `url(${bg2})`
+                : `url(${filingBg})`
+          }}
+        >
           {/* Inner white content area */}
           <div className="flex rounded-[22px] gap-4 overflow-hidden">
             {/* Left panel (ProgressSidebar) */}

@@ -16,6 +16,7 @@ import box02 from '../assests/box02.png';
 import box03 from '../assests/box03.png';
 import box04 from '../assests/box04.png';
 import box05 from '../assests/box05.png';
+import SearchBg from '../assests/Search_bg.png'; // Added import for searchBg
 
 
 const steps = [
@@ -796,7 +797,7 @@ const PatentFiling = () => {
                     <div className="flex flex-col flex-1">
                       <label className="text-sm text-[#000000] mb-1">Reference</label>
                       {ref.fromSearch ? (
-                        <div className="flex h-10 items-center px-3 bg-[#FFFFFF] rounded-md text-base text-[#322B25]">{ref.reference}</div>
+                        <div className="flex h-10 items-center px-3 bg-[#f6f6f6] rounded-md text-base text-[#322B25]">{ref.reference}</div>
                       ) : (
                       <input
                         type="text"
@@ -817,7 +818,7 @@ const PatentFiling = () => {
                       <label className="text-sm text-[#000000] mb-1">Type</label>
                       <>
                         {ref.fromSearch ? (
-                          <div className="flex h-10 items-center px-3 bg-[#1C1C1C] rounded-md text-base text-[#322B25]">{ref.type}</div>
+                          <div className="flex h-10 items-center px-3 bg-[#f6f6f6] rounded-md text-base text-[#322B25]">{ref.type}</div>
                         ) : (
                       <input
                         type="text"
@@ -839,7 +840,7 @@ const PatentFiling = () => {
                       <label className="text-sm text-[#000000] mb-1">Relevance</label>
                       <>
                         {ref.fromSearch ? (
-                          <div className="flex h-10 items-center px-3 bg-[#1C1C1C] rounded-md text-base text-[#322B25]">{ref.relevance}</div>
+                          <div className="flex h-10 items-center px-3 bg-[#f6f6f6] rounded-md text-base text-[#322B25]">{ref.relevance}</div>
                         ) : (
                       <input
                         type="text"
@@ -919,26 +920,35 @@ const PatentFiling = () => {
               {/* Search Results */}
               {searchResults.length > 0 && (
                 <div className="mt-6 border border-[#6C6C6C] rounded-lg p-4 bg-[#302F2F]">
+                  <div className="flex items-center justify-between rounded-[4px] ">
                   <h3 className="text-lg font-medium mb-2 text-[#FFFFFF]">Search Results for "{searchQuery}"</h3>
                   <p className="text-sm text-[#868686] mb-3">Found {searchResults.length} potentially relevant documents</p>
+                  </div>
                   
-                  <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-[#6C6C6C]">
-                      <thead className="bg-[#1C1C1C]">
+                  <div className="overflow-x-auto ">
+                    <table
+                      className="min-w-full  rounded-[4px] divide-y divide-[#000000]"
+                      style={{
+                        backgroundImage: `url(${SearchBg})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    >
+                      <thead className="bg-[#E3E2DF80] rounded-[4px] border border-[#ffffff04] border-[1px]">
                         <tr>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Reference</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Type</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Relevance</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#868686] uppercase tracking-wider">Actions</th>
+                          <th scope="col" className="px-6 py-3 text-left text-sm font-medium text-[#000000] uppercase tracking-wider">Reference</th>
+                            <th scope="col" className="px-6 py-3 text-left text-sm font-medium text-[#000000] uppercase tracking-wider">Type</th>
+                            <th scope="col" className="px-6 py-3 text-left text-sm font-medium text-[#000000] uppercase tracking-wider">Relevance</th>
+                            <th scope="col" className="px-6 py-3 text-left text-sm font-medium text-[#000000] uppercase tracking-wider">Actions</th>
                         </tr>
                       </thead>
-                      <tbody className="bg-[#302F2F] divide-y divide-[#6C6C6C]">
+                      <tbody className="bg-[#E3E2DF50] divide-y divide-[#6C6C6C]">
                         {searchResults.map((result, index) => (
                           <tr key={index}>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#FFFFFF]">{result.reference}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-[#868686]">{result.type}</td>
-                            <td className="px-6 py-4 text-sm text-[#868686]">{result.relevance}</td>
-                            <td className="pl-[35px] pr-6 py-4 whitespace-nowrap text-sm text-[#868686]">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#000000]">{result.reference}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-[#000000]">{result.type}</td>
+                            <td className="px-6 py-4 text-sm text-[#000000]">{result.relevance}</td>
+                            <td className="pl-[35px] pr-6 py-4 whitespace-nowrap text-sm text-[#000000]">
                               <button
                                 type="button"
                                 onClick={() => {
