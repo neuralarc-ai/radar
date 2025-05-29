@@ -1,6 +1,7 @@
 import { supabase } from './supabaseClient';
 
-const AI_SERVICE_URL = process.env.REACT_APP_AI_SERVICE_URL || 'http://localhost:3001';
+const AI_SERVICE_URL =
+  process.env.REACT_APP_AI_SERVICE_URL || `${window.location.origin}`;
 
 export const getPatentFilingPrepAnalysis = async (filingId) => {
   try {
@@ -30,7 +31,7 @@ Please provide a detailed analysis report in the following JSON format:
     "status": "string",
     "summary": "string",
     "nextSteps": ["string"],
-    "approvalPercentage": number // A number between 0-100 indicating the likelihood of approval
+    "approvalPercentage": number
   },
   "applicationReview": {
     "strengths": ["string"],
@@ -72,7 +73,6 @@ IMPORTANT:
 1. The approvalPercentage should be based on the overall strength of the application, completeness of documents, and compliance with USPTO requirements.
 2. Respond ONLY with the JSON object, no additional text or explanation.`;
 
-    // Call the AI analysis endpoint
     const response = await fetch(`${AI_SERVICE_URL}/api/analyze`, {
       method: 'POST',
       headers: {
@@ -86,7 +86,6 @@ IMPORTANT:
     }
 
     const data = await response.json();
-    // Parse the nested response structure
     const parsedResponse = JSON.parse(data.content[0].text);
 
     return {
@@ -97,4 +96,4 @@ IMPORTANT:
     console.error('Error getting patent filing preparation analysis:', error);
     throw error;
   }
-}; 
+};

@@ -6,7 +6,7 @@ const AI_SERVICE_URL = process.env.REACT_APP_AI_SERVICE_URL || 'http://localhost
 // Claude API helper
 export const callClaude = async (prompt) => {
   try {
-    const response = await fetch('http://localhost:3001/api/analyze', {
+    const response = await fetch(`${AI_SERVICE_URL}/api/analyze`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

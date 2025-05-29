@@ -1,8 +1,8 @@
-const AI_SERVICE_URL = process.env.REACT_APP_AI_SERVICE_URL || 'http://localhost:3001';
+const AI_SERVICE_URL =
+  process.env.REACT_APP_AI_SERVICE_URL || `${window.location.origin}`;
 
 export const generateDocuments = async (filing, files) => {
   try {
-    // Construct the prompt for the AI
     const prompt = `You are a legal document expert. Please generate the following documents based on this trademark filing data:
 
 1. Trademark Application
@@ -30,8 +30,6 @@ Filing Data:
 
 Please generate professional, legally accurate documents for each section. Format them clearly and include all necessary legal language. Each document should be complete and ready for filing, with no placeholders or incomplete sections.`;
 
-    // TODO: Replace with actual AI API call
-    // This is a mock response for now
     const mockResponse = {
       trademarkApplication: `TRADEMARK APPLICATION
 
@@ -114,17 +112,12 @@ export const analyzeCompliance = async (prompt) => {
   try {
     const response = await fetch(`${AI_SERVICE_URL}/api/analyze`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to analyze compliance');
-    }
+    if (!response.ok) throw new Error('Failed to analyze compliance');
 
-    // The server now returns the content directly as a string
     return await response.text();
   } catch (error) {
     console.error('Error in compliance analysis:', error);
@@ -136,19 +129,13 @@ export const analyzeApprovalChances = async (prompt) => {
   try {
     const response = await fetch(`${AI_SERVICE_URL}/api/analyze`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt }),
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to analyze approval chances');
-    }
+    if (!response.ok) throw new Error('Failed to analyze approval chances');
 
-    const data = await response.json();
-    // The server returns the content directly as a string
-    return data;
+    return await response.json();
   } catch (error) {
     console.error('Error analyzing approval chances:', error);
     throw error;
@@ -159,21 +146,15 @@ export const analyzeFilingDates = async (prompt) => {
   try {
     const response = await fetch(`${AI_SERVICE_URL}/api/analyze`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt }),
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to analyze filing dates');
-    }
+    if (!response.ok) throw new Error('Failed to analyze filing dates');
 
-    const data = await response.json();
-    // The server returns the content directly as a string
-    return data;
+    return await response.json();
   } catch (error) {
     console.error('Error analyzing filing dates:', error);
     throw error;
   }
-}; 
+};
